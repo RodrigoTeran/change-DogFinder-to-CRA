@@ -1,0 +1,37 @@
+.cardHeaderSection2Index {
+  position: relative;
+  &.animationCard-header-section-2-index {
+    transform: scale(0);
+    transform-origin: right;
+  }
+  &::before,
+  &::after {
+    content: "";
+    background-color: #ffffff;
+    opacity: 0.07;
+    width: 0;
+    height: 0;
+    position: absolute;
+    transition: 0.4s ease-in-out;
+  }
+  &::after {
+    bottom: 0;
+    right: 15px;
+  }
+  &::before {
+    top: 0;
+    left: 15px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      &::before,
+      &::after {
+        width: calc(100% - 30px);
+        height: 100%;
+        transition: 0.4s ease-in-out;
+      }
+    }
+  }
+  transition: 0.5s ease-in-out;
+}

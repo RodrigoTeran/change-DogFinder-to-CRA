@@ -1,0 +1,53 @@
+.section-1-index {
+  color: white;
+
+  h3 {
+    font-family: "Roboto Condensed", sans-serif;
+  }
+}
+
+.icon-header-section-1-index {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 15px;
+  fill: var(--tertiary-color);
+}
+
+.card-section-1-index {
+  &-col {
+    &.animationCard-section-1-index {
+      transform: translateX(-150px);
+      opacity: 0;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: scale(1.05);
+        transition: ease-in-out 0.25s;
+      }
+    }
+    transition: ease-in-out 0.65s;
+  }
+
+  color: white;
+  margin-top: 10px;
+  background-color: rgba(32, 32, 32, 1);
+  border: rgba(35, 35, 35, 1) 2px solid;
+  margin-bottom: 10px;
+  height: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description-card-section-1-index {
+  font-size: 15px;
+  color: #fff;
+}
+
+.icon-card-section-1-index {
+  fill: var(--tertiary-color);
+  padding-bottom: 10px;
+  width: 60px;
+  height: 60px;
+}

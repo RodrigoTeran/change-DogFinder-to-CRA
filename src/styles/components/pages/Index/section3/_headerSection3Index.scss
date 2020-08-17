@@ -1,0 +1,112 @@
+.container-header-section-3-index {
+  padding-top: 50px;
+  color: #fff;
+
+  h3 {
+    font-family: "Roboto Condensed", sans-serif;
+    padding-bottom: 20px;
+  }
+  &-span {
+    &-1 {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--tertiary-color-light);
+    }
+  }
+}
+:root {
+  /*MARQUEE VARIABLES*/
+  --number-of-elements-at-same-time: 4;
+  --number-of-elements-total: 15;
+  --speed-of-marquee: 35s;
+}
+.marquee-index-section-3 {
+  padding: 0;
+  margin-top: 10px;
+  background-color: rgba(20, 20, 20, 1);
+  overflow: hidden;
+  height: 200px;
+  width: 100%;
+  position: relative;
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    content: "";
+    width: 10rem;
+    height: 100%;
+    z-index: 1;
+  }
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, #111111 0%, transparent 100%);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, #111111 0%, transparent 100%);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    animation: scrollingMarquee var(--speed-of-marquee) linear infinite;
+    li {
+      width: calc(100% / var(--number-of-elements-at-same-time));
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        fill: var(--tertiary-color-light);
+        width: 80px;
+        transition: 0.3s ease-in-out;
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            transition: 0.3s ease-in-out;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+}
+@keyframes scrollingMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      calc(calc(100% / var(--number-of-elements-at-same-time) * -1) * var(--number-of-elements-total))
+    );
+  }
+}
+
+// 1200 or more BIEN
+// 990 or less 3 elements and modify speed
+// 770 or less 2 elements and modify speed
+
+/*# wide or more*/
+@media screen and (min-width: 1200px) {
+  :root {
+    /*MARQUEE VARIABLES*/
+    --number-of-elements-at-same-time: 4;
+    --speed-of-marquee: 35s;
+  }
+}
+/*#wide or less*/
+@media screen and (max-width: 990px) {
+  :root {
+    /*MARQUEE VARIABLES*/
+    --number-of-elements-at-same-time: 3;
+    --speed-of-marquee: 32s;
+  }
+}
+/*#wide or less*/
+@media screen and (max-width: 760px) {
+  :root {
+    /*MARQUEE VARIABLES*/
+    --number-of-elements-at-same-time: 2;
+    --speed-of-marquee: 32s;
+  }
+}

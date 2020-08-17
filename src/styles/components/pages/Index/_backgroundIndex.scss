@@ -1,0 +1,71 @@
+.index-page-body-container {
+  position: relative;
+  z-index: var(--z-index-index-page-body-container);
+  width: 100%;
+
+  &-2 {
+    position: relative;
+    z-index: var(--z-index-index-page-body-container);
+    width: 100%;
+    top: 3000px;
+  }
+
+  &-3 {
+    position: relative;
+    z-index: var(--z-index-index-page-body-container);
+    width: 100%;
+    top: 3000px;
+  }
+}
+
+.text-back-h1,
+.span-text-back-h1 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 2.5vw;
+  font-weight: bold;
+
+  .span-text-back-h1 {
+    color: var(--tertiary-color);
+  }
+}
+
+.background-pages-image {
+  color: var(--secondary-color);
+  position: fixed;
+  opacity: 1;
+  z-index: var(--z-index-background-pages-image);
+  height: 100%;
+  width: 100%;
+  transition: opacity 1s;
+
+  &-1,
+  &-2,
+  &-3,
+  &-1-png,
+  &-2-png,
+  &-3-png {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  &-1 {
+    background-image: url("../../../../public/Images/image-header-index-page.webp");
+    &-png {
+      background-image: url("../../../../public/Images/image-header-index-page.png");
+    }
+  }
+
+  &-2 {
+    background-image: url("../../../../public/Images/image-header-index-page-2.webp");
+    &-png {
+      background-image: url("../../../../public/Images/image-header-index-page-2.png");
+    }
+  }
+
+  &-3 {
+    background-image: url("../../../../public/Images/image-header-index-page-6.webp");
+    &-png {
+      background-image: url("../../../../public/Images/image-header-index-page-6.png");
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.card-section-3-index {
+  background-color: rgba(32, 32, 32, 1);
+  border: rgba(35, 35, 35, 1) 2px solid;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-height: 205px;
+  padding: 0;
+  transition: ease-in-out 0.65s;
+
+  &.animationCard-section-3-index {
+    transform: translateX(-150px);
+    opacity: 0;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.05);
+      transition: ease-in-out 0.25s;
+    }
+  }
+
+  &-header {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    height: 120px;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Roboto Condensed", sans-serif;
+    position: relative;
+
+    svg {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: calc(50% - 20px);
+      left: 12px;
+      fill: var(--tertiary-color);
+    }
+  }
+  &-section {
+    justify-content: center;
+    display: flex;
+    height: 85px;
+  }
+}

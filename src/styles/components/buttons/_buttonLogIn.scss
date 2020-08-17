@@ -1,0 +1,24 @@
+.button-log-in {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: ease-in-out 0.1s;
+  a {
+    width: 100%;
+    font-size: 1.8rem;
+    color: #000000;
+    border-radius: 5px;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      transition: ease-in-out 0.1s;
+    }
+  }
+}
