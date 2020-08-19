@@ -1,9 +1,12 @@
 // COMPONENTS
 import CardSection1Index from "./Cards/CardSection1Index";
 import ButtonWhite from "../../Buttons/ButtonWhite";
+// Modules
+import React from "react";
+
 
 // CONFIG
-import { APP_NAME_CAPITALS } from "../../../config";
+import { APP_NAME_CAPITALS } from "../../../utils/config";
 
 const HeaderSection1Index = () => {
   return (

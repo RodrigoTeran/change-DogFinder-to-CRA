@@ -1,5 +1,7 @@
 // COMPONENTS
 import CardSection2Section1Index from "./Cards/CardSection2Section1Index";
+// Modules
+import React from "react";
 
 const Section2Index_section1 = () => {
   return (

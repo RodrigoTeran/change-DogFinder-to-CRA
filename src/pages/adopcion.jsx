@@ -1,14 +1,14 @@
 // Modulos
 import { useEffect } from "react";
 import React from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet"
 import { connect } from "react-redux";
 
 // Selectores
 import { getUsername } from "../store/reducers/user/selector";
 
 // Configuraciones
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
@@ -16,7 +16,6 @@ import {
 } from "../store/reducers/layout/actions";
 
 // -----------------------Componentes-----------------------
-import Layout from "../components/Layout";
 import FooterLayout from "../components/FooterLayout";
 
 const Adopt = ({
@@ -29,16 +28,14 @@ const Adopt = ({
   }, []);
   return (
     <>
-      <Head>
+      <Helmet>
         <title>{APP_NAME} - Adopción</title>
         <meta name="description" content={`Adopta una mascota en ${APP_NAME}`} />
-      </Head>
-      <Layout>
-        <div className={`adopt-page text-center`}>
-          ¡Página para que {username} adopte una mascota!
+      </Helmet>
+      <div className={`adopt-page text-center`}>
+        ¡Página para que {username} adopte una mascota!
         </div>
-        <FooterLayout style="with-absolute"></FooterLayout>
-      </Layout>
+      <FooterLayout style="with-absolute"></FooterLayout>
     </>
   );
 };

@@ -1,6 +1,6 @@
 // Modulos
 import { useEffect, useState } from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { getResponsiveMenuBarBody } from "../store/reducers/layout/selector";
 
 // Configuraciones
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
@@ -21,7 +21,6 @@ import {
 
 // ------------------------Componentes-----------------------
 // Seccion 1
-import Layout from "../components/Layout";
 import IndexHeader from "../components/IndexPageComponents/Headers/IndexHeader";
 import HeaderSection1Index from "../components/IndexPageComponents/Section1/HeaderSection1Index";
 import BackgroundImage from "../components/IndexPageComponents/BackgroundImage";
@@ -270,28 +269,26 @@ const Index = ({
 	const { topL1, topL2, topL3 } = tops; // Para poder usarlos de manera mas sencilla
 	return (
 		<>
-			<Head>
+			<Helmet>
 				<title>{APP_NAME}</title>
 				<meta name="description" content={`${APP_NAME} es una aplicación que ayuda a rescatar tu perro en caso de extravío.`} />
-			</Head>
+			</Helmet>
 			<BackgroundImage /> {/* El Background de Index */}
-			<Layout>
-				{/* Primera Seccion */}
-				<div className="index-page-body-container" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL1}px` }}>
-					<header><IndexHeader /></header>
-					<section style={{ paddingBottom: "30px" }} className="section-1-index"><HeaderSection1Index /></section>
-				</div>
-				{/* Segunda Seccion */}
-				<div className="index-page-body-container-2" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL2}px` }}>
-					<header><HeaderSection2Index /></header>
-					<section><Section2Index_section1 /></section>
-				</div>
-				{/* Tercera Seccion */}
-				<div className="index-page-body-container-3" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL3}px` }}>
-					<header><HeaderSection3Index /></header>
-					<FooterLayout style="without-absolute"></FooterLayout>
-				</div>
-			</Layout>
+			{/* Primera Seccion */}
+			<div className="index-page-body-container" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL1}px` }}>
+				<header><IndexHeader /></header>
+				<section style={{ paddingBottom: "30px" }} className="section-1-index"><HeaderSection1Index /></section>
+			</div>
+			{/* Segunda Seccion */}
+			<div className="index-page-body-container-2" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL2}px` }}>
+				<header><HeaderSection2Index /></header>
+				<section><Section2Index_section1 /></section>
+			</div>
+			{/* Tercera Seccion */}
+			<div className="index-page-body-container-3" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL3}px` }}>
+				<header><HeaderSection3Index /></header>
+				<FooterLayout style="without-absolute"></FooterLayout>
+			</div>
 		</>
 	);
 };

@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getWebp } from "../../store/reducers/user/selector";
 import { getBackgroundPagesImage } from "../../store/reducers/indexPage/selector";
+// Modules
+import React from "react";
+
 import ButtonWhite from "../Buttons/ButtonWhite";
 
 const BackgroundImage = ({

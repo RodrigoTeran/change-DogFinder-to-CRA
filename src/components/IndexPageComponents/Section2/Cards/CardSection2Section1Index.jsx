@@ -2,6 +2,8 @@
 import { connect } from "react-redux";
 import { getAnimations } from "../../../../store/reducers/indexPage/selector";
 import { getWebp } from "../../../../store/reducers/user/selector";
+// Modules
+import React from "react";
 
 // Components
 import ButtonWhite from "../../../Buttons/ButtonWhite";

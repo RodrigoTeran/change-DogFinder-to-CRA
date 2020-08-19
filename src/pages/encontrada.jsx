@@ -1,23 +1,22 @@
 // Modulos
 import { useEffect } from "react";
 import React from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 
 // Selectores
-import { getUsername } from "../../../store/reducers/user/selector";
+import { getUsername } from "../store/reducers/user/selector";
 
 // Configuraciones
-import { APP_NAME } from "../../../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
   updateTopMenuBarActivatedAction
-} from "../../../store/reducers/layout/actions";
+} from "../store/reducers/layout/actions";
 
 // -----------------------Componentes-----------------------
-import Layout from "../../../components/Layout";
-import FooterLayout from "../../../components/FooterLayout";
+import FooterLayout from "../components/FooterLayout";
 
 const DogFounded = ({
   username,
@@ -29,16 +28,14 @@ const DogFounded = ({
   }, []);
   return (
     <>
-      <Head>
+      <Helmet>
         <title>{APP_NAME} - Registro perro encontrado</title>
         <meta name="description" content={`Sección para que ${username} registre una mascota perdida en ${APP_NAME}`} />
-      </Head>
-      <Layout>
-        <div className={`dog-founded-page text-center`}>
-          Sección para que {username} registre a un perro perdido que encontró
+      </Helmet>
+      <div className={`dog-founded-page text-center`}>
+        Sección para que {username} registre a un perro perdido que encontró
         </div>
-        <FooterLayout style="with-absolute"></FooterLayout>
-      </Layout>
+      <FooterLayout style="with-absolute"></FooterLayout>
     </>
   );
 };

@@ -1,11 +1,11 @@
 // Modulos
 import { useEffect } from "react";
-import Head from "next/head";
 import React from "react";
 import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
 
 // Configuraciones
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
@@ -13,7 +13,6 @@ import {
 } from "../store/reducers/layout/actions";
 
 // -----------------------Componentes-----------------------
-import Layout from "../components/Layout";
 import FooterLayout from "../components/FooterLayout";
 
 const Politicas = ({
@@ -25,16 +24,14 @@ const Politicas = ({
   }, []);
   return (
     <>
-      <Head>
+      <Helmet>
         <title>{APP_NAME} - Políticas de Privacidad</title>
         <meta name="description" content={`Políticas de Privacidad de ${APP_NAME}`} />
-      </Head>
-      <Layout>
-        <div className={`privacy-page text-center`}>
-          Políticas de Privacidad
+      </Helmet>
+      <div className={`privacy-page text-center`}>
+        Políticas de Privacidad
         </div>
-        <FooterLayout style="with-absolute"></FooterLayout>
-      </Layout>
+      <FooterLayout style="with-absolute"></FooterLayout>
     </>
   );
 };

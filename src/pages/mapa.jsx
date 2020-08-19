@@ -1,6 +1,6 @@
 // Modulos
 import { useEffect } from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { getUsername } from "../store/reducers/user/selector";
 
 // Configuraciones
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
@@ -16,7 +16,6 @@ import {
 } from "../store/reducers/layout/actions";
 
 // -----------------------Componentes-----------------------
-import Layout from "../components/Layout";
 import FooterLayout from "../components/FooterLayout";
 
 const Map = ({
@@ -29,16 +28,14 @@ const Map = ({
   }, []);
   return (
     <>
-      <Head>
+      <Helmet>
         <title>{APP_NAME} - Mapa</title>
         <meta name="description" content={`Sección de mapa de ${APP_NAME} para ${username}`} />
-      </Head>
-      <Layout>
-        <div className={`map-page text-center`}>
-          Sección de mapa para {username}
-        </div>
-        <FooterLayout style="with-absolute"></FooterLayout>
-      </Layout>
+      </Helmet>
+      <div className={`map-page text-center`}>
+        Sección de mapa para {username}
+      </div>
+      <FooterLayout style="with-absolute"></FooterLayout>
     </>
   );
 };

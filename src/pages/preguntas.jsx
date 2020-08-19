@@ -1,11 +1,11 @@
 // Modulos
 import { useEffect } from "react";
-import Head from "next/head";
 import React from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 
 // Configuraciones
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
@@ -13,7 +13,6 @@ import {
 } from "../store/reducers/layout/actions";
 
 // -----------------------Componentes-----------------------
-import Layout from "../components/Layout";
 import FooterLayout from "../components/FooterLayout";
 
 const Preguntas = ({
@@ -25,16 +24,14 @@ const Preguntas = ({
   }, []);
   return (
     <>
-      <Head>
+      <Helmet>
         <title>{APP_NAME} - Preguntas</title>
         <meta name="description" content={`Preguntas frecuentes de ${APP_NAME}`} />
-      </Head>
-      <Layout>
-        <div className={`questions-page text-center`}>
-          Preguntas Frecuentes
+      </Helmet>
+      <div className={`questions-page text-center`}>
+        Preguntas Frecuentes
         </div>
-        <FooterLayout style="with-absolute"></FooterLayout>
-      </Layout>
+      <FooterLayout style="with-absolute"></FooterLayout>
     </>
   );
 };

@@ -1,5 +1,7 @@
 // COMPONENTS
 import CardHeaderSection3Index from "./Cards/CardHeaderSection3Index";
+// Modules
+import React from "react";
 
 const HeaderSection3Index = () => {
   return (

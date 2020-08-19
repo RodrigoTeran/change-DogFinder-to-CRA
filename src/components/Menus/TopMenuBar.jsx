@@ -1,6 +1,9 @@
 // MODULES
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+// Modules
+import React from "react";
+
 import { getResponsiveMenuBarBody, getLines, getTopMenuBar } from "../../store/reducers/layout/selector";
 import {
   getAuth,
@@ -24,7 +27,7 @@ import {
 } from "../../store/reducers/user/actions";
 
 // CONFIG
-import { APP_NAME_CAPITALS, APP_NAME } from "../../config";
+import { APP_NAME_CAPITALS, APP_NAME } from "../../utils/config";
 
 const Menubar = ({
   responsiveMenuBarBodyClasses,
@@ -99,7 +102,7 @@ const Menubar = ({
             <ul className="navbar-nav pr-5">
               <li className="mx-3">
                 {auth ? (
-                  <Link href="/comprar">
+                  <Link to="/comprar">
                     <a className="link-after-effect" title="Se perdió mi perro">SE PERDIÓ MI PERRO</a>
                   </Link>
                 ) : (
@@ -108,7 +111,7 @@ const Menubar = ({
               </li>
               <li className="mr-3">
                 {auth ? (
-                  <Link href="/registro/mascota/encontrada">
+                  <Link to="/registro/mascota/encontrada">
                     <a className="link-after-effect" title="Encontré a un perro">ENCONTRÉ A UN PERRO</a>
                   </Link>
                 ) : (
@@ -117,7 +120,7 @@ const Menubar = ({
               </li>
               {auth ? (
                 <li className="mr-3">
-                  <Link href="/mapa">
+                  <Link to="/mapa">
                     <a className="link-after-effect" title="Mapa">MAPA</a>
                   </Link>
                 </li>
@@ -129,7 +132,7 @@ const Menubar = ({
               paddingRight: auth ? ("80px") : ("0px"),
             }}>
               <li style={{ cursor: "pointer", marginRight: auth ? ("30px") : ("40px") }}>
-                <Link href="/">
+                <Link to="/">
                   <div className="Top-menu-bar-image-profile">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z" /></svg>
                   </div>
@@ -137,7 +140,7 @@ const Menubar = ({
               </li>
               <li className="mx-3">
                 {auth ? (
-                  <Link href="/adopcion">
+                  <Link to="/adopcion">
                     <a className="Top-menu-bar-button" title="Adopta a un perro">ADOPCIÓN</a>
                   </Link>
                 ) : (
@@ -168,7 +171,7 @@ const Menubar = ({
                 )}
               {auth ? (
                 <li className="ml-3" style={{ marginRight: "20px" }}>
-                  <Link href="/perfil">
+                  <Link to="/perfil">
                     <a title={`${username}`}>
                       <div className="Top-menu-bar-image-profile">
                         <img src={`${imgId}`} alt="Perfil" className="rounded-circle img-fluid mr-2"></img>

@@ -1,6 +1,9 @@
 // MODULES
 import { connect } from "react-redux";
 import { getAnimations } from "../../../../store/reducers/indexPage/selector";
+// Modules
+import React from "react";
+
 import { getWebp } from "../../../../store/reducers/user/selector";
 
 const CardHeaderSection2Index = ({

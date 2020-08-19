@@ -1,3 +1,6 @@
+// Modules
+import React from "react";
+
 // Components
 import CardMainSectionProfile from "./Cards/CardMainSectionProfile";
 const MainSectionProfilePage = () => {

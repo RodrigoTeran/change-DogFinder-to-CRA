@@ -1,11 +1,11 @@
 // Modulos
 import { useEffect } from "react";
 import React from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 
 // Configuraciones
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
@@ -13,7 +13,6 @@ import {
 } from "../store/reducers/layout/actions";
 
 // -----------------------Componentes-----------------------
-import Layout from "../components/Layout";
 import FooterLayout from "../components/FooterLayout";
 
 const Contactanos = ({
@@ -26,16 +25,14 @@ const Contactanos = ({
 
   return (
     <>
-      <Head>
+      <Helmet>
         <title>{APP_NAME} - Contáctanos</title>
         <meta name="description" content={`Contacta a ${APP_NAME}`} />
-      </Head>
-      <Layout>
-        <div className={`contact-us-page text-center`}>
-          Contáctanos
+      </Helmet>
+      <div className={`contact-us-page text-center`}>
+        Contáctanos
         </div>
-        <FooterLayout style="with-absolute"></FooterLayout>
-      </Layout>
+      <FooterLayout style="with-absolute"></FooterLayout>
     </>
   );
 };

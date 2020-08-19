@@ -1,5 +1,7 @@
 // COMPONENTS
 import CardIndexHeader from "./Cards/CardIndexHeader";
+// Modules
+import React from "react";
 
 const IndexHeader = () => {
   return (

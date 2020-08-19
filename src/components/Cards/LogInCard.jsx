@@ -1,6 +1,8 @@
 // MODULES
 import { connect } from "react-redux";
-import { APP_NAME } from "../../config";
+import { APP_NAME } from "../../utils/config";
+// Modules
+import React from "react";
 
 // COMPONENTS
 import ButtonLogIn from "../Buttons/ButtonLogIn";

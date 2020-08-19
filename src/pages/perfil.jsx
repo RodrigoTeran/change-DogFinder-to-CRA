@@ -1,6 +1,6 @@
 // Modulos
 import { useEffect } from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import React from "react";
 
@@ -8,7 +8,7 @@ import React from "react";
 import { getUsername, getImgId } from "../store/reducers/user/selector";
 
 // Configuraciones
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../utils/config";
 
 // Acciones
 import {
@@ -17,7 +17,6 @@ import {
 
 // -----------------------Componentes-----------------------
 import HeaderProfilePage from "../components/ProfilePageComponents/Header";
-import Layout from "../components/Layout";
 import FooterLayout from "../components/FooterLayout";
 import MainSectionProfilePage from "../components/ProfilePageComponents/MainSection/MainSectionProfilePage";
 
@@ -32,17 +31,15 @@ const Profile = ({
   }, []);
   return (
     <>
-      <Head>
+      <Helmet>
         <title>{APP_NAME} - {username}</title>
         <meta name="description" content={`Perfil ${APP_NAME} de ${username}`} />
-      </Head>
-      <Layout>
-        <div className={`profile-page`}>
-          <HeaderProfilePage username={username} email={"r@gmail.com"} imgId={imgId}></HeaderProfilePage>
-          <MainSectionProfilePage></MainSectionProfilePage>          
-        </div>
-        <FooterLayout style="with-absolute"></FooterLayout>        
-      </Layout>
+      </Helmet>
+      <div className={`profile-page`}>
+        <HeaderProfilePage username={username} email={"r@gmail.com"} imgId={imgId}></HeaderProfilePage>
+        <MainSectionProfilePage></MainSectionProfilePage>
+      </div>
+      <FooterLayout style="with-absolute"></FooterLayout>
     </>
   );
 };

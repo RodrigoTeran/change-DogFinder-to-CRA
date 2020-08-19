@@ -63,6 +63,7 @@ const App = ({
   }, []);
 
   // -----------------------Funciones-----------------------
+  const history = useHistory();
   const getUserData = () => {
     const data = fetcher(getUser, "GET");
     if (data) {
@@ -77,7 +78,6 @@ const App = ({
         imgId: null,
         auth: false,
       });
-      const history = useHistory();
       history.push("/");
     };
   };
@@ -140,7 +140,7 @@ const App = ({
             <Route path="/terminos">
               <Terms></Terms>
             </Route>
-            <Route path="/mascota/encontrada">
+            <Route path="/registro/mascota/encontrada">
               <DogFounded></DogFounded>
             </Route>
           </Switch>

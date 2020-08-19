@@ -1,5 +1,8 @@
 // MODULES
 import { connect } from "react-redux";
+// Modules
+import React from "react";
+
 import { getAnimations } from "../../../../store/reducers/indexPage/selector";
 
 const CardSection1Index = ({

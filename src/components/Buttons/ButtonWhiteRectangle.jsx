@@ -1,3 +1,7 @@
+// Modules
+import React from "react";
+import { Link } from "react-router-dom";
+
 const ButtonWhiteRectangle = ({
   clickFunction,
   mb,
@@ -9,20 +13,22 @@ const ButtonWhiteRectangle = ({
   fontSize
 }) => {
   return (
-    <button onClick={clickFunction} className={`buttonWhiteRectangleStyles ${mb} ${mt}`} style={{
-      fontSize: fontSize || "1.2rem",
-      width: width,
-      height: height
-    }}>
-      <div className="buttonWhiteRectangleStyles-container">
-        <div className="buttonWhiteRectangleStyles-container-svg">
-          {children}
+    <Link to={`${clickFunction}`}>
+      <button className={`buttonWhiteRectangleStyles ${mb} ${mt}`} style={{
+        fontSize: fontSize || "1.2rem",
+        width: width,
+        height: height
+      }}>
+        <div className="buttonWhiteRectangleStyles-container">
+          <div className="buttonWhiteRectangleStyles-container-svg">
+            {children}
+          </div>
+          <div className="buttonWhiteRectangleStyles-container-span">
+            <span>{text}</span>
+          </div>
         </div>
-        <div className="buttonWhiteRectangleStyles-container-span">
-          <span>{text}</span>
-        </div>
-      </div>
-    </button>
+      </button>
+    </Link>
   );
 };
 export default ButtonWhiteRectangle;
