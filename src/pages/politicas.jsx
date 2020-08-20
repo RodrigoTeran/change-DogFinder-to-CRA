@@ -31,7 +31,7 @@ const Politicas = ({
       <div className={`privacy-page text-center`}>
         Políticas de Privacidad
         </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

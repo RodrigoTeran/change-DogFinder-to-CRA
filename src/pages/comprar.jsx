@@ -35,7 +35,7 @@ const Purchase = ({
       <div className={`purchase-page text-center`}>
         Página para comprar perfiles de {username}
       </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

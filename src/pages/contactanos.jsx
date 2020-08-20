@@ -32,7 +32,7 @@ const Contactanos = ({
       <div className={`contact-us-page text-center`}>
         Contáctanos
         </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

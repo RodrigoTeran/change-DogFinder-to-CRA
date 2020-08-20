@@ -95,33 +95,33 @@ const Menubar = ({
         <div className="container-fluid">
           <ul className="navbar-nav">
             <li>
-              <a className="link-after-effect" title={`${APP_NAME}`}>{APP_NAME_CAPITALS}</a>
+              <div className="link-after-effect" title={`${APP_NAME}`}>{APP_NAME_CAPITALS}</div>
             </li>
           </ul>
           <div className="menu-bar-collapse content-top-menu-bar">
             <ul className="navbar-nav pr-5">
               <li className="mx-3">
                 {auth ? (
-                  <Link to="/comprar">
-                    <a className="link-after-effect" title="Se perdió mi perro">SE PERDIÓ MI PERRO</a>
+                  <Link to="/comprar" className="link-after-effect" title="Se perdió mi perro">
+                    SE PERDIÓ MI PERRO
                   </Link>
                 ) : (
-                    <a onClick={iniciarSesion} className="link-after-effect" title="Se perdió mi perro">SE PERDIÓ MI PERRO</a>
+                    <div onClick={iniciarSesion} className="link-after-effect" title="Se perdió mi perro">SE PERDIÓ MI PERRO</div>
                   )}
               </li>
               <li className="mr-3">
                 {auth ? (
-                  <Link to="/registro/mascota/encontrada">
-                    <a className="link-after-effect" title="Encontré a un perro">ENCONTRÉ A UN PERRO</a>
+                  <Link to="/registro/mascota/encontrada" className="link-after-effect" title="Encontré a un perro">
+                    ENCONTRÉ A UN PERRO
                   </Link>
                 ) : (
-                    <a onClick={iniciarSesion} className="link-after-effect" title="Encontré a un perro">ENCONTRÉ A UN PERRO</a>
+                    <div onClick={iniciarSesion} className="link-after-effect" title="Encontré a un perro">ENCONTRÉ A UN PERRO</div>
                   )}
               </li>
               {auth ? (
                 <li className="mr-3">
-                  <Link to="/mapa">
-                    <a className="link-after-effect" title="Mapa">MAPA</a>
+                  <Link to="/mapa" className="link-after-effect" title="Mapa">
+                    MAPA
                   </Link>
                 </li>
               ) : (
@@ -140,11 +140,11 @@ const Menubar = ({
               </li>
               <li className="mx-3">
                 {auth ? (
-                  <Link to="/adopcion">
-                    <a className="Top-menu-bar-button" title="Adopta a un perro">ADOPCIÓN</a>
+                  <Link to="/adopcion" className="Top-menu-bar-button" title="Adopta a un perro">
+                    ADOPCIÓN
                   </Link>
                 ) : (
-                    <a onClick={iniciarSesion} className="Top-menu-bar-button" title="Adopta a un perro">ADOPCIÓN</a>
+                    <div onClick={iniciarSesion} className="Top-menu-bar-button" title="Adopta a un perro">ADOPCIÓN</div>
                   )}
               </li>
               {auth ? (
@@ -171,15 +171,13 @@ const Menubar = ({
                 )}
               {auth ? (
                 <li className="ml-3" style={{ marginRight: "20px" }}>
-                  <Link to="/perfil">
-                    <a title={`${username}`}>
-                      <div className="Top-menu-bar-image-profile">
-                        <img src={`${imgId}`} alt="Perfil" className="rounded-circle img-fluid mr-2"></img>
-                        <span>
-                          {getNameForMenuBar()}
-                        </span>
-                      </div>
-                    </a>
+                  <Link to="/perfil" title={`${username}`}>
+                    <div className="Top-menu-bar-image-profile">
+                      <img src={`${imgId}`} alt="Perfil" className="rounded-circle img-fluid mr-2"></img>
+                      <span>
+                        {getNameForMenuBar()}
+                      </span>
+                    </div>
                   </Link>
                 </li>
               ) : (

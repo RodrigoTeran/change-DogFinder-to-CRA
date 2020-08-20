@@ -35,7 +35,7 @@ const Map = ({
       <div className={`map-page text-center`}>
         Sección de mapa para {username}
       </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

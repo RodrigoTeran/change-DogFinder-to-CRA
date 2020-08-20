@@ -24,6 +24,8 @@ import LogInCard from "./components/Cards/LogInCard";
 
 // Pages
 import Index from "./pages/index";
+
+/*
 import Adpotion from "./pages/adopcion";
 import Buy from "./pages/comprar";
 import ContactUs from "./pages/contactanos";
@@ -33,6 +35,7 @@ import Politics from "./pages/politicas";
 import Questions from "./pages/preguntas";
 import Terms from "./pages/terminos";
 import DogFounded from "./pages/encontrada";
+*/
 
 // Acciones
 import {
@@ -60,10 +63,10 @@ const App = ({
     return () => {
       window.removeEventListener("resize", resizeTopLayoutBodyContainer);
     };
-  }, []);
+  });
 
   // -----------------------Funciones-----------------------
-  const history = useHistory();
+  const routerHistory = useHistory();
   const getUserData = () => {
     const data = fetcher(getUser, "GET");
     if (data) {
@@ -78,7 +81,7 @@ const App = ({
         imgId: null,
         auth: false,
       });
-      history.push("/");
+      // routerHistory.push("/");
     };
   };
   const resizeTopLayoutBodyContainer = () => {
@@ -116,6 +119,7 @@ const App = ({
             <Route path="/">
               <Index></Index>
             </Route>
+            {/*
             <Route path="/adopcion">
               <Adpotion></Adpotion>
             </Route>
@@ -143,6 +147,7 @@ const App = ({
             <Route path="/registro/mascota/encontrada">
               <DogFounded></DogFounded>
             </Route>
+             */}
           </Switch>
         </div>
         <button className="up-button-layout" onClick={goUp} title="Principio">

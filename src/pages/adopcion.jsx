@@ -35,7 +35,7 @@ const Adopt = ({
       <div className={`adopt-page text-center`}>
         ¡Página para que {username} adopte una mascota!
         </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

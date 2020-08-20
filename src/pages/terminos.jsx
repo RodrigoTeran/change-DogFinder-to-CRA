@@ -31,7 +31,7 @@ const Terminos = ({
       <div className={`terms-page text-center`}>
         Términos y Condiciones
         </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

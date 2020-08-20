@@ -35,7 +35,7 @@ const DogFounded = ({
       <div className={`dog-founded-page text-center`}>
         Sección para que {username} registre a un perro perdido que encontró
         </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

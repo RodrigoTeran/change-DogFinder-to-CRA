@@ -1,47 +1,47 @@
 // Components
-@use "components/bootstrap";
-@use "components/layout";
+@import "components/bootstrap";
+@import "components/layout";
 
 // TopMenuBar
-@use "components/topMenuBar/topMenuBar";
-@use "components/topMenuBar/responsiveTopMenuBar";
+@import "components/topMenuBar/topMenuBar";
+@import "components/topMenuBar/responsiveTopMenuBar";
 
 // Index Page
-@use "components/pages/Index/indexIndexPage";
+@import "components/pages/Index/indexIndexPage";
 
 // Profile Page
-@use "components/pages/Profile/indexProfilePage";
+@import "components/pages/Profile/indexProfilePage";
 
 // Dog Founded Page
-@use "components/pages/DogFounded/indexDogFoundedPage";
+@import "components/pages/DogFounded/indexDogFoundedPage";
 
 // Contact Us Page
-@use "components/pages/ContactUs/indexContactUsPage";
+@import "components/pages/ContactUs/indexContactUsPage";
 
 // Questions Page
-@use "components/pages/Questions/indexQuestionsPage";
+@import "components/pages/Questions/indexQuestionsPage";
 
 // Terms Page
-@use "components/pages/Terms/indexTermsPage";
+@import "components/pages/Terms/indexTermsPage";
 
 // Privacy Page
-@use "components/pages/Privacy/indexPrivacyPage";
+@import "components/pages/Privacy/indexPrivacyPage";
 
 // Adopt Page
-@use "components/pages/Adopt/indexAdoptPage";
+@import "components/pages/Adopt/indexAdoptPage";
 
 // Map Page
-@use "components/pages/Map/indexMapPage";
+@import "components/pages/Map/indexMapPage";
 
 // Purchase Page
-@use "components/pages/Purchase/indexPurchasePage";
+@import "components/pages/Purchase/indexPurchasePage";
 
 // Styles
-@use "components/buttons/indexButtons";
+@import "components/buttons/indexButtons";
 
 // Fonts
-@use "fonts/robotoCondensed";
-@use 'fonts/ubuntu';
+@import "fonts/robotoCondensed";
+@import 'fonts/ubuntu';
 
 * {
   font-family: Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Cantarell, "Open Sans",

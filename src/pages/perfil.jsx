@@ -39,7 +39,7 @@ const Profile = ({
         <HeaderProfilePage username={username} email={"r@gmail.com"} imgId={imgId}></HeaderProfilePage>
         <MainSectionProfilePage></MainSectionProfilePage>
       </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };

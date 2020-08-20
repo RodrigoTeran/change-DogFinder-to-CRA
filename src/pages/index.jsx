@@ -27,7 +27,7 @@ import BackgroundImage from "../components/IndexPageComponents/BackgroundImage";
 
 // Seccion 2
 import HeaderSection2Index from "../components/IndexPageComponents/Section2/HeaderSection2Index";
-import Section2Index_section1 from "../components/IndexPageComponents/Section2/Section2Index_section1";
+import Section2IndexSection1 from "../components/IndexPageComponents/Section2/Section2Index_section1";
 
 // Seccion 3
 import HeaderSection3Index from "../components/IndexPageComponents/Section3/HeaderSection3Index";
@@ -153,7 +153,7 @@ const Index = ({
 			window.removeEventListener("resize", handleResize);
 			window.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
+	});
 
 	// -----------------------Funciones-----------------------
 	const handleResize = () => {
@@ -282,12 +282,12 @@ const Index = ({
 			{/* Segunda Seccion */}
 			<div className="index-page-body-container-2" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL2}px` }}>
 				<header><HeaderSection2Index /></header>
-				<section><Section2Index_section1 /></section>
+				<section><Section2IndexSection1 /></section>
 			</div>
 			{/* Tercera Seccion */}
 			<div className="index-page-body-container-3" style={{ backgroundColor: "rgba(25, 25, 25, 1)", "top": `${topL3}px` }}>
 				<header><HeaderSection3Index /></header>
-				<FooterLayout style="without-absolute"></FooterLayout>
+				<FooterLayout styleForm="without-absolute"></FooterLayout>
 			</div>
 		</>
 	);

@@ -49,23 +49,23 @@
     background-position: center;
   }
   &-1 {
-    background-image: url("../../../../public/Images/image-header-index-page.webp");
+    background-image: url("/Images/image-header-index-page.webp");
     &-png {
-      background-image: url("../../../../public/Images/image-header-index-page.png");
+      background-image: url("/Images/image-header-index-page.png");
     }
   }
 
   &-2 {
-    background-image: url("../../../../public/Images/image-header-index-page-2.webp");
+    background-image: url("/Images/image-header-index-page-2.webp");
     &-png {
-      background-image: url("../../../../public/Images/image-header-index-page-2.png");
+      background-image: url("/Images/image-header-index-page-2.png");
     }
   }
 
   &-3 {
-    background-image: url("../../../../public/Images/image-header-index-page-6.webp");
+    background-image: url("/Images/image-header-index-page-6.webp");
     &-png {
-      background-image: url("../../../../public/Images/image-header-index-page-6.png");
+      background-image: url("/Images/image-header-index-page-6.png");
     }
   }
 }

@@ -31,7 +31,7 @@ const Preguntas = ({
       <div className={`questions-page text-center`}>
         Preguntas Frecuentes
         </div>
-      <FooterLayout style="with-absolute"></FooterLayout>
+      <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );
 };
