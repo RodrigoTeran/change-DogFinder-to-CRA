@@ -27,6 +27,15 @@ export const getUsername = createSelector([selectorGetUsername], (getUsername) =
   return getUsername;
 });
 
+// email
+const selectorGetEmail = (state) => {
+  return state.userReducer.email;
+};
+
+export const getEmail = createSelector([selectorGetEmail], (getEmail) => {
+  return getEmail;
+});
+
 // imgId
 const selectorGetImgId = (state) => {
   return state.userReducer.imgId;

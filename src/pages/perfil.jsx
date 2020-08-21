@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import React from "react";
 
 // Selectores
-import { getUsername, getImgId } from "../store/reducers/user/selector";
+import { getUsername, getImgId, getEmail } from "../store/reducers/user/selector";
 
 // Configuraciones
 import { APP_NAME } from "../utils/config";
@@ -23,7 +23,8 @@ import MainSectionProfilePage from "../components/ProfilePageComponents/MainSect
 const Profile = ({
   username,
   updateTopMenuBarActivated,
-  imgId
+  imgId,
+  email
 }) => {
   // -----------------------Hooks-----------------------
   useEffect(() => {
@@ -36,7 +37,7 @@ const Profile = ({
         <meta name="description" content={`Perfil ${APP_NAME} de ${username}`} />
       </Helmet>
       <div className={`profile-page`}>
-        <HeaderProfilePage username={username} email={"r@gmail.com"} imgId={imgId}></HeaderProfilePage>
+        <HeaderProfilePage username={username} email={email} imgId={imgId}></HeaderProfilePage>
         <MainSectionProfilePage></MainSectionProfilePage>
       </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>
@@ -48,7 +49,8 @@ const Profile = ({
 const mapStateToProps = (state) => {
   return {
     username: getUsername(state),
-    imgId: getImgId(state)
+    imgId: getImgId(state),
+    email: getEmail(state)
   };
 };
 

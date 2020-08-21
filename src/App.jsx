@@ -66,25 +66,31 @@ const App = ({
 
   // -----------------------Funciones-----------------------
   const getUserData = () => {
-    fetch(getUser)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        if (data) {
-          updateUser({
-            username: data.username,
-            imgId: data.profileImg,
-            auth: true,
-          });
-        } else {
-          updateUser({
-            username: null,
-            imgId: null,
-            auth: false,
-          });
-        };
-      });
+    fetch(getUser, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      if (data.username) {
+        updateUser({
+          username: data.username,
+          email: data.email,
+          imgId: data.profileImg,
+          auth: true,
+        });
+      } else {
+        updateUser({
+          username: null,
+          imgId: null,
+          email: null,
+          auth: false,
+        });
+      };
+    });
   };
   const resizeTopLayoutBodyContainer = () => {
     if (window.innerWidth >= 1121) {  // Esto se ejecuta cuando el Menu ya no debería estar en "Mobile Mode",

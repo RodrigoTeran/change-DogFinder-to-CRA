@@ -3,6 +3,7 @@ const initialState = {
   auth: false,
   username: null,
   imgId: null,
+  email: null,
 
   // Front
   logInFirstAnimation: false, // para que no aparezca en el primer load
@@ -16,6 +17,7 @@ export default function userReducer(state = initialState, action) {
       username: action.username,
       imgId: action.imgId,
       auth: action.auth,
+      email: action.email,
     };
   };
   if (action.type === "UPDATE_LOGIN") {

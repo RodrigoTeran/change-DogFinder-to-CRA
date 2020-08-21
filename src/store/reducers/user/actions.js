@@ -18,6 +18,7 @@ export const updateUserAction = (data) => {
     username: data.username,
     imgId: data.imgId,
     auth: data.auth,
+    email: data.email,
   });
 };
 
