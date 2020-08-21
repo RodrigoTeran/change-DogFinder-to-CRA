@@ -29,7 +29,7 @@ const Purchase = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Comprar</title>
+        <title>{`${APP_NAME} - Comprar`}</title>
         <meta name="description" content={`Comprar perfiles de ${APP_NAME} para ${username}`} />
       </Helmet>
       <div className={`purchase-page text-center`}>

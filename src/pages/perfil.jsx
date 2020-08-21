@@ -32,7 +32,7 @@ const Profile = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - {username}</title>
+        <title>{`${APP_NAME} - ${username}`}</title>
         <meta name="description" content={`Perfil ${APP_NAME} de ${username}`} />
       </Helmet>
       <div className={`profile-page`}>

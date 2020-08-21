@@ -25,7 +25,7 @@ const Preguntas = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Preguntas</title>
+        <title>{`${APP_NAME} - Preguntas`}</title>
         <meta name="description" content={`Preguntas frecuentes de ${APP_NAME}`} />
       </Helmet>
       <div className={`questions-page text-center`}>

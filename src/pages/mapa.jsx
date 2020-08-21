@@ -29,7 +29,7 @@ const Map = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Mapa</title>
+        <title>{`${APP_NAME} - Mapa`}</title>
         <meta name="description" content={`Sección de mapa de ${APP_NAME} para ${username}`} />
       </Helmet>
       <div className={`map-page text-center`}>

@@ -1,5 +1,4 @@
 // Modules
-import { useHistory } from "react-router-dom";
 import React from "react";
 
 // Components

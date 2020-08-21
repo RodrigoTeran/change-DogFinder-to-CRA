@@ -25,7 +25,7 @@ const Politicas = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Políticas de Privacidad</title>
+        <title>{`${APP_NAME} - Políticas de Privacidad`}</title>
         <meta name="description" content={`Políticas de Privacidad de ${APP_NAME}`} />
       </Helmet>
       <div className={`privacy-page text-center`}>

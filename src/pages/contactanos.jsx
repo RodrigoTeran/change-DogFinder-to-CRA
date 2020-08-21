@@ -26,7 +26,7 @@ const Contactanos = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Contáctanos</title>
+        <title>{`${APP_NAME} - Contáctanos`}</title>
         <meta name="description" content={`Contacta a ${APP_NAME}`} />
       </Helmet>
       <div className={`contact-us-page text-center`}>

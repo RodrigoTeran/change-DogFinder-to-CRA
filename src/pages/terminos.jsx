@@ -25,7 +25,7 @@ const Terminos = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Términos y Condiciones</title>
+        <title>{`${APP_NAME} - Términos y Condiciones`}</title>
         <meta name="description" content={`Términos y condiciones de ${APP_NAME}`} />
       </Helmet>
       <div className={`terms-page text-center`}>

@@ -29,7 +29,7 @@ const Adopt = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Adopción</title>
+        <title>{`${APP_NAME} - Adopción`}</title>
         <meta name="description" content={`Adopta una mascota en ${APP_NAME}`} />
       </Helmet>
       <div className={`adopt-page text-center`}>

@@ -29,7 +29,7 @@ const DogFounded = ({
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} - Registro perro encontrado</title>
+        <title>{`${APP_NAME} - Registro perro encontrado`}</title>
         <meta name="description" content={`Sección para que ${username} registre una mascota perdida en ${APP_NAME}`} />
       </Helmet>
       <div className={`dog-founded-page text-center`}>

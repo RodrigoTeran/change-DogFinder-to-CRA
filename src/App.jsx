@@ -1,12 +1,10 @@
-import React from "react";
-import { Router, Route, Switch, useHistory } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
 // Modulos
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { isWebpSupported } from "react-image-webp/dist/utils";
-import { fetcher } from "./utils/fetch";
 
 // Routes
 import { getUser } from "./routes/index";
@@ -24,18 +22,16 @@ import LogInCard from "./components/Cards/LogInCard";
 
 // Pages
 import Index from "./pages/index";
-
-/*
+import Profile from "./pages/perfil";
 import Adpotion from "./pages/adopcion";
 import Buy from "./pages/comprar";
 import ContactUs from "./pages/contactanos";
 import Map from "./pages/mapa";
-import Profile from "./pages/perfil";
 import Politics from "./pages/politicas";
 import Questions from "./pages/preguntas";
 import Terms from "./pages/terminos";
 import DogFounded from "./pages/encontrada";
-*/
+
 
 // Acciones
 import {
@@ -45,6 +41,9 @@ import {
 } from "./store/reducers/layout/actions";
 
 import { updateLoginAction, updateWebpAction, updateUserAction } from "./store/reducers/user/actions";
+
+require("es6-promise").polyfill();
+require("isomorphic-fetch");
 
 const App = ({
   logInActivated,
@@ -66,23 +65,26 @@ const App = ({
   });
 
   // -----------------------Funciones-----------------------
-  const routerHistory = useHistory();
   const getUserData = () => {
-    const data = fetcher(getUser, "GET");
-    if (data) {
-      updateUser({
-        username: data.username,
-        imgId: data.profileImg,
-        auth: true,
+    fetch(getUser)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        if (data) {
+          updateUser({
+            username: data.username,
+            imgId: data.profileImg,
+            auth: true,
+          });
+        } else {
+          updateUser({
+            username: null,
+            imgId: null,
+            auth: false,
+          });
+        };
       });
-    } else {
-      updateUser({
-        username: null,
-        imgId: null,
-        auth: false,
-      });
-      // routerHistory.push("/");
-    };
   };
   const resizeTopLayoutBodyContainer = () => {
     if (window.innerWidth >= 1121) {  // Esto se ejecuta cuando el Menu ya no debería estar en "Mobile Mode",
@@ -116,10 +118,9 @@ const App = ({
         <LogInCard logInActivated={logInActivated} logInFirstAnimation={logInFirstAnimation}></LogInCard>
         <div>
           <Switch>
-            <Route path="/">
-              <Index></Index>
+            <Route path="/perfil">
+              <Profile></Profile>
             </Route>
-            {/*
             <Route path="/adopcion">
               <Adpotion></Adpotion>
             </Route>
@@ -131,9 +132,6 @@ const App = ({
             </Route>
             <Route path="/mapa">
               <Map></Map>
-            </Route>
-            <Route path="/perfil">
-              <Profile></Profile>
             </Route>
             <Route path="/politicas">
               <Politics></Politics>
@@ -147,7 +145,9 @@ const App = ({
             <Route path="/registro/mascota/encontrada">
               <DogFounded></DogFounded>
             </Route>
-             */}
+            <Route path="/">
+              <Index></Index>
+            </Route>
           </Switch>
         </div>
         <button className="up-button-layout" onClick={goUp} title="Principio">
