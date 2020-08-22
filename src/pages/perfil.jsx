@@ -47,6 +47,7 @@ const Profile = ({
     }).then(res => {
       return res.json();
     }).then(data => {
+      console.log(`DATA PERFIL: ${JSON.stringify(data)}`);
       if (!data.username) {
         setYesRedirect(true);
       };
