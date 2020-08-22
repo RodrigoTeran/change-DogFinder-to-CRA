@@ -43,7 +43,7 @@ const Profile = ({
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Access-Control-Allow-Origin": "https://dogfinderapp.vercel.app/"
+        "Access-Control-Allow-Origin": "https://dogfinderapp.vercel.app"
       }
     }).then(res => {
       return res.json();
