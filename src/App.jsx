@@ -113,9 +113,9 @@ const App = ({
   const closeLogIn = () => {
     updateLogin(false);
   };
-
   return (
     <Router history={history}>
+      <a className="skip-link" href="#maincontent">.</a>
       {/* Cuando este en orientación normal */}
       <div id="div-for-portrait">
         <TopMenuBar />

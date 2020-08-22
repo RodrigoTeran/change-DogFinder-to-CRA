@@ -44,7 +44,6 @@ const IndexHeader = () => {
           </div>
         </div>
       </div>
-      <a className="skip-link" href="#maincontent"></a>
     </div>
   );
 };

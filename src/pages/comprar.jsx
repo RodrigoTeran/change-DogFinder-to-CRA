@@ -1,9 +1,9 @@
 // Modulos
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
-
+import { Redirect } from "react-router-dom";
 // Selectores
 import { getUsername } from "../store/reducers/user/selector";
 
@@ -23,15 +23,24 @@ const Purchase = ({
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
+  const [userRedirect, setUserRedirect] = useState(false);
   useEffect(() => {
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  }, []);
+    if (!username) {
+      setUserRedirect(true);
+    };
+  });
   return (
     <>
       <Helmet>
         <title>{`${APP_NAME} - Comprar`}</title>
         <meta name="description" content={`Comprar perfiles de ${APP_NAME} para ${username}`} />
       </Helmet>
+      {userRedirect ? (
+        <>
+          <Redirect to="/"></Redirect>
+        </>) : (<></>)
+      }
       <div className={`purchase-page text-center`}>
         Página para comprar perfiles de {username}
       </div>

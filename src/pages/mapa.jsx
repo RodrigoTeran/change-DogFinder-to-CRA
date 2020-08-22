@@ -1,8 +1,9 @@
 // Modulos
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 // Selectores
 import { getUsername } from "../store/reducers/user/selector";
@@ -23,15 +24,24 @@ const Map = ({
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
+  const [userRedirect, setUserRedirect] = useState(false);
   useEffect(() => {
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  }, []);
+    if (!username) {
+      setUserRedirect(true);
+    };
+  });
   return (
     <>
       <Helmet>
         <title>{`${APP_NAME} - Mapa`}</title>
         <meta name="description" content={`Sección de mapa de ${APP_NAME} para ${username}`} />
       </Helmet>
+      {userRedirect ? (
+        <>
+          <Redirect to="/"></Redirect>
+        </>) : (<></>)
+      }
       <div className={`map-page text-center`}>
         Sección de mapa para {username}
       </div>

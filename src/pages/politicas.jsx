@@ -21,7 +21,7 @@ const Politicas = ({
   // -----------------------Hooks-----------------------
   useEffect(() => {
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  }, []);
+  });
   return (
     <>
       <Helmet>

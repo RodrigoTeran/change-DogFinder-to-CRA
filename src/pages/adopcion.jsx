@@ -1,8 +1,10 @@
 // Modulos
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { Helmet } from "react-helmet"
 import { connect } from "react-redux";
+
+import { Redirect } from "react-router-dom";
 
 // Selectores
 import { getUsername } from "../store/reducers/user/selector";
@@ -23,15 +25,24 @@ const Adopt = ({
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
+  const [userRedirect, setUserRedirect] = useState(false);
   useEffect(() => {
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  }, []);
+    if (!username) {
+      setUserRedirect(true);
+    };
+  });
   return (
     <>
       <Helmet>
         <title>{`${APP_NAME} - Adopción`}</title>
         <meta name="description" content={`Adopta una mascota en ${APP_NAME}`} />
       </Helmet>
+      {userRedirect ? (
+        <>
+          <Redirect to="/"></Redirect>
+        </>) : (<></>)
+      }
       <div className={`adopt-page text-center`}>
         ¡Página para que {username} adopte una mascota!
         </div>

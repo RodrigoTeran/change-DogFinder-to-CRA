@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import React from "react";
-
 // Selectores
 import { getUsername, getImgId, getEmail } from "../store/reducers/user/selector";
 
@@ -29,7 +28,7 @@ const Profile = ({
   // -----------------------Hooks-----------------------
   useEffect(() => {
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  }, []);
+  });
   return (
     <>
       <Helmet>
