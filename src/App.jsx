@@ -75,7 +75,7 @@ const App = ({
     }).then(res => {
       return res.json();
     }).then(data => {
-      console.log(`DATA: ${JSON.stringify(data)}`);
+      console.log(`DATA USER: ${JSON.stringify(data)}`);
       if (data.username) {
         updateUser({
           username: data.username,
