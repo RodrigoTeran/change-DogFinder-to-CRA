@@ -35,6 +35,7 @@ const Purchase = ({
   const getBuyData = () => {
     fetch(getBuyDataRoute, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

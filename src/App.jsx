@@ -68,6 +68,7 @@ const App = ({
   const getUserData = () => {
     fetch(getUser, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

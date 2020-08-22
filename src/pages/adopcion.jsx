@@ -36,6 +36,7 @@ const Adopt = ({
   const getAdoptData = () => {
     fetch(getAdoptDataRoute, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

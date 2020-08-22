@@ -36,6 +36,7 @@ const Map = ({
   const getMapData = () => {
     fetch(getMapDataRoute, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

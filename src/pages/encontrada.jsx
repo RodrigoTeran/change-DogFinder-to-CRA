@@ -36,6 +36,7 @@ const DogFounded = ({
   const getFoundDogData = () => {
     fetch(getFoundDogDataRoute, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

@@ -40,6 +40,7 @@ const Profile = ({
   const getProfileData = () => {
     fetch(getProfileDataRoute, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
