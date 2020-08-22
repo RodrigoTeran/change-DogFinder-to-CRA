@@ -11,6 +11,9 @@ import { getUsername } from "../store/reducers/user/selector";
 // Configuraciones
 import { APP_NAME } from "../utils/config";
 
+// Routes
+import { getFoundDogDataRoute } from "../routes/index";
+
 // Acciones
 import {
   updateTopMenuBarActivatedAction
@@ -24,24 +27,34 @@ const DogFounded = ({
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
-  const [userRedirect, setUserRedirect] = useState(false);
   useEffect(() => {
+    getFoundDogData();
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-    if (!username) {
-      setUserRedirect(true);
-    };
   });
+  // -----------------------Funciones-----------------------
+  const [yesRedirect, setYesRedirect] = useState(false);
+  const getFoundDogData = () => {
+    fetch(getFoundDogDataRoute, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      if (!data.username) {
+        setYesRedirect(true);
+      };
+    });
+  };
   return (
     <>
       <Helmet>
         <title>{`${APP_NAME} - Registro perro encontrado`}</title>
         <meta name="description" content={`Sección para que ${username} registre una mascota perdida en ${APP_NAME}`} />
       </Helmet>
-      {userRedirect ? (
-        <>
-          <Redirect to="/"></Redirect>
-        </>) : (<></>)
-      }
+      {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       <div className={`dog-founded-page text-center`}>
         Sección para que {username} registre a un perro perdido que encontró
         </div>

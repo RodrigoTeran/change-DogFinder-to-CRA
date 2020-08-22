@@ -11,6 +11,9 @@ import { getUsername } from "../store/reducers/user/selector";
 // Configuraciones
 import { APP_NAME } from "../utils/config";
 
+// Routes
+import { getMapDataRoute } from "../routes/index";
+
 // Acciones
 import {
   updateTopMenuBarActivatedAction
@@ -24,24 +27,34 @@ const Map = ({
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
-  const [userRedirect, setUserRedirect] = useState(false);
   useEffect(() => {
+    getMapData();
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-    if (!username) {
-      setUserRedirect(true);
-    };
   });
+  // -----------------------Funciones-----------------------
+  const [yesRedirect, setYesRedirect] = useState(false);
+  const getMapData = () => {
+    fetch(getMapDataRoute, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      if (!data.username) {
+        setYesRedirect(true);
+      };
+    });
+  };
   return (
     <>
       <Helmet>
         <title>{`${APP_NAME} - Mapa`}</title>
         <meta name="description" content={`Sección de mapa de ${APP_NAME} para ${username}`} />
       </Helmet>
-      {userRedirect ? (
-        <>
-          <Redirect to="/"></Redirect>
-        </>) : (<></>)
-      }
+      {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       <div className={`map-page text-center`}>
         Sección de mapa para {username}
       </div>

@@ -1,9 +1,19 @@
 const routes = {}
 
+// Config
+routes.apiDomain = `http://localhost:5000`;
+
+// Auth
 routes.authGoogle = `/auth/google`;
 routes.authFacebook = `/auth/facebook`;
-routes.getUser = `/user`;
 routes.logout = `/auth/logout`;
-routes.apiDomain = `http://localhost:5000`;
+
+// Data
+routes.getUser = `/user`;
+routes.getProfileDataRoute = `/data/profile`;
+routes.getMapDataRoute = `/data/map`;
+routes.getFoundDogDataRoute = `/data/found`;
+routes.getBuyDataRoute = `/data/buy`;
+routes.getAdoptDataRoute = `/data/adopt`;
 
 module.exports = routes;

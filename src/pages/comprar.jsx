@@ -10,6 +10,9 @@ import { getUsername } from "../store/reducers/user/selector";
 // Configuraciones
 import { APP_NAME } from "../utils/config";
 
+// Routes
+import { getBuyDataRoute } from "../routes/index";
+
 // Acciones
 import {
   updateTopMenuBarActivatedAction
@@ -23,24 +26,34 @@ const Purchase = ({
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
-  const [userRedirect, setUserRedirect] = useState(false);
   useEffect(() => {
+    getBuyData();
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-    if (!username) {
-      setUserRedirect(true);
-    };
   });
+  // -----------------------Funciones-----------------------
+  const [yesRedirect, setYesRedirect] = useState(false);
+  const getBuyData = () => {
+    fetch(getBuyDataRoute, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      if (!data.username) {
+        setYesRedirect(true);
+      };
+    });
+  };
   return (
     <>
       <Helmet>
         <title>{`${APP_NAME} - Comprar`}</title>
         <meta name="description" content={`Comprar perfiles de ${APP_NAME} para ${username}`} />
       </Helmet>
-      {userRedirect ? (
-        <>
-          <Redirect to="/"></Redirect>
-        </>) : (<></>)
-      }
+      {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       <div className={`purchase-page text-center`}>
         Página para comprar perfiles de {username}
       </div>
