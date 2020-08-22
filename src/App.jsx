@@ -76,7 +76,9 @@ const App = ({
       return res.json();
     }).then(data => {
       console.log(`DATA USER: ${JSON.stringify(data)}`);
-      if (data.username) {
+      console.log(`DATA USERNAME: ${JSON.stringify(data.username)}`);
+      console.log(`DATA SIN STRINGIFY: ${data}`);
+      if (data.username !== "tu cola") {
         updateUser({
           username: data.username,
           email: data.email,
