@@ -1,0 +1,3 @@
+Issues:
+  - Poner un cargando en el TopMenuBar
+  - Poner un cargando en las paginas con auth requerido, hasta que llegue a info

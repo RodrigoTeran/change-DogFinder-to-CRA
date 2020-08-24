@@ -2,7 +2,8 @@
 import { connect } from "react-redux";
 import { getResponsiveMenuBarBody } from "../../store/reducers/layout/selector";
 // Modules
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import {
@@ -12,7 +13,8 @@ import {
 } from "../../store/reducers/user/selector";
 import {
   updateLoginAction,
-  updateLogInFirstAnimationAction
+  updateLogInFirstAnimationAction,
+  updateUserAction
 } from "../../store/reducers/user/actions";
 
 // Routes
@@ -32,15 +34,16 @@ const ResponsiveMenuBar = ({
   username,
   updateLogin,
   updateLogInFirstAnimation,
-
   updateResponsiveMenuBarBodyOpen,
   updateTopMenuBarActivated,
   updateLines,
+  updateUser
 }) => {
   const iniciarSesion = () => {
     updateLogInFirstAnimation(true);
     updateLogin(true);
   };
+  const [yesRedirect, setYesRedirect] = useState(false);
   const logoutWithFetch = () => {
     fetch(logout, {
       method: "GET",
@@ -50,7 +53,15 @@ const ResponsiveMenuBar = ({
         "Accept": "application/json",
         "token": localStorage.getItem("token")
       }
-    });
+    }).then(() => {
+      updateUser({
+        username: null,
+        imgId: null,
+        email: null,
+        auth: false,
+      });
+      setYesRedirect(true);
+    });;
   };
   const closeResponsiveMenuBar = () => {
     // Cerrar
@@ -83,6 +94,7 @@ const ResponsiveMenuBar = ({
   };
   return (
     <>
+      {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {/* Si el reponsive menu bar body tiene alguna de esas dos clases, se le ponen */}
       <div className={`Responsive-menu-bar-body ${responsiveMenuBarBodyClasses.open ? ("open") : ("")} ${responsiveMenuBarBodyClasses.trans ? ("trans") : ("")}`}>
         <div className={`Responsive-menu-bar-content`}>
@@ -181,6 +193,7 @@ const mapDispatchToProps = (dispatch) => {
     updateResponsiveMenuBarBodyOpen: (data) => { dispatch(updateResponsiveMenuBarBodyOpenAction(data)) },
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
     updateLines: (data) => { dispatch(updateLinesAction(data)) },
+    updateUser: (data) => { dispatch(updateUserAction(data)) },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ResponsiveMenuBar);

@@ -2,7 +2,8 @@
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 // Modules
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import { getResponsiveMenuBarBody, getLines, getTopMenuBar } from "../../store/reducers/layout/selector";
 import {
@@ -23,7 +24,8 @@ import {
 } from "../../store/reducers/layout/actions";
 import {
   updateLoginAction,
-  updateLogInFirstAnimationAction
+  updateLogInFirstAnimationAction,
+  updateUserAction
 } from "../../store/reducers/user/actions";
 
 // CONFIG
@@ -43,7 +45,8 @@ const Menubar = ({
   updateResponsiveMenuBarBodyOpen,
   updateTopMenuBarActivated,
   updateLines,
-  updateLogInFirstAnimation
+  updateLogInFirstAnimation,
+  updateUser
 }) => {
   const operateResponsiveMenuBar = (action, actionReverse) => {
     // Abrir
@@ -58,6 +61,7 @@ const Menubar = ({
       window.scroll({ top: document.scrollingElement.scrollTop + 1, left: 0, behavior: 'smooth' }); // Movemos el scroll tantito para que el TopMenuBar se actualize,
     };
   };
+  const [yesRedirect, setYesRedirect] = useState(false);
   const logoutWithFetch = () => {
     fetch(logout, {
       method: "GET",
@@ -67,6 +71,14 @@ const Menubar = ({
         "Accept": "application/json",
         "token": localStorage.getItem("token")
       }
+    }).then(() => {
+      updateUser({
+        username: null,
+        imgId: null,
+        email: null,
+        auth: false,
+      });
+      setYesRedirect(true);
     });
   };
   const interactResponsiveMenuBar = () => {  // Cerrar o abrir el Responsive Menu Bar
@@ -101,6 +113,7 @@ const Menubar = ({
   };
   return (
     <>
+      {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {/* Si top menu bar esta activado se le pone la clase, lo mismo con su clase toggled */}
       <nav className={`navbar navbar-expand-lg fixed-top Top-menu-bar ${topMenuBar.activated ? ("activated") : ("")}`}>
         <div className="container-fluid">
@@ -230,6 +243,7 @@ const mapDispatchToProps = (dispatch) => {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
     updateLines: (data) => { dispatch(updateLinesAction(data)) },
     updateLogInFirstAnimation: (data) => { dispatch(updateLogInFirstAnimationAction(data)) },
+    updateUser: (data) => { dispatch(updateUserAction(data)) },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Menubar);
