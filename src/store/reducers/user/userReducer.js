@@ -5,6 +5,9 @@ const initialState = {
   imgId: null,
   email: null,
 
+  // Saber si ya llego response de /user
+  firstResponseUserAPI: false,
+
   // Front
   logInFirstAnimation: false, // para que no aparezca en el primer load
   logInActivated: false,
@@ -18,6 +21,12 @@ export default function userReducer(state = initialState, action) {
       imgId: action.imgId,
       auth: action.auth,
       email: action.email,
+    };
+  };
+  if (action.type === "UPDATE_FIRST_RESPONSE_API") {
+    return {
+      ...state,
+      firstResponseUserAPI: true
     };
   };
   if (action.type === "UPDATE_LOGIN") {

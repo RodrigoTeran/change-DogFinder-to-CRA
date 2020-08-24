@@ -1,7 +1,6 @@
 // MODULES
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-// Modules
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
@@ -9,7 +8,8 @@ import { getResponsiveMenuBarBody, getLines, getTopMenuBar } from "../../store/r
 import {
   getAuth,
   getImgId,
-  getUsername
+  getUsername,
+  getFirstResponseUserAPI
 } from "../../store/reducers/user/selector";
 
 // Routes
@@ -25,7 +25,7 @@ import {
 import {
   updateLoginAction,
   updateLogInFirstAnimationAction,
-  updateUserAction
+  updateUserAction,
 } from "../../store/reducers/user/actions";
 
 // CONFIG
@@ -40,6 +40,7 @@ const Menubar = ({
   auth,
   imgId,
   username,
+  firstResponseUserAPI,
   updateResponsiveMenuBarBodyTrans,
   updateLogin,
   updateResponsiveMenuBarBodyOpen,
@@ -116,7 +117,7 @@ const Menubar = ({
     <>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {/* Si top menu bar esta activado se le pone la clase, lo mismo con su clase toggled */}
-      <nav className={`navbar navbar-expand-lg fixed-top Top-menu-bar ${topMenuBar.activated ? ("activated") : ("")}`}>
+      <nav className={`navbar navbar-expand-lg fixed-top Top-menu-bar ${topMenuBar.activated ? ("activated") : ("")}`} style={{ visibility: firstResponseUserAPI ? ("visible") : ("hidden") }}>
         <div className="container-fluid">
           <ul className="navbar-nav">
             <li>
@@ -218,6 +219,11 @@ const Menubar = ({
           </div>
         </div>
       </nav>
+      {firstResponseUserAPI ? (<></>) : (<>
+        <div style={{ color: "#FFF", display: "flex", justifyContent: "center", paddingLeft: "60px", paddingRight: "60px", alignItems: "center", width: "100%", height: "90px", position: "absolute", top: 0, zIndex: 9999999999 }}>
+          <div style={{ fontSize: "20px", fontFamily: "Roboto Condensed" }}>conectando...</div>
+        </div>
+      </>)}
     </>
   );
 };
@@ -231,7 +237,8 @@ const mapStateToProps = (state) => {
     topMenuBar: getTopMenuBar(state),
     auth: getAuth(state),
     imgId: getImgId(state),
-    username: getUsername(state)
+    username: getUsername(state),
+    firstResponseUserAPI: getFirstResponseUserAPI(state)
   };
 };
 

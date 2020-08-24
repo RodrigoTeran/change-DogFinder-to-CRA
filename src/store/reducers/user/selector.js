@@ -62,3 +62,12 @@ const selectorGetLogInFirstAnimation = (state) => {
 export const getLogInFirstAnimation = createSelector([selectorGetLogInFirstAnimation], (getLogInFirstAnimation) => {
   return getLogInFirstAnimation;
 });
+
+// firstResponseUserAPI
+const selectorGetFirstResponseUserAPI = (state) => {
+  return state.userReducer.firstResponseUserAPI;
+};
+
+export const getFirstResponseUserAPI = createSelector([selectorGetFirstResponseUserAPI], (getFirstResponseUserAPI) => {
+  return getFirstResponseUserAPI;
+});

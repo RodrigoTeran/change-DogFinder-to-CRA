@@ -40,6 +40,11 @@ import {
   updateLinesAction,
 } from "./store/reducers/layout/actions";
 
+// Acciones
+import {
+  updateFirstResponseAPIAction
+} from "./store/reducers/user/actions";
+
 import { updateLoginAction, updateWebpAction, updateUserAction } from "./store/reducers/user/actions";
 
 require("es6-promise").polyfill();
@@ -53,7 +58,8 @@ const App = ({
   updateResponsiveMenuBarBodyOpen,
   updateTopMenuBarActivated,
   updateLines,
-  updateUser
+  updateUser,
+  updateFirstResponseAPI
 }) => {
   useEffect(() => {
     getUserData();
@@ -77,6 +83,7 @@ const App = ({
     }).then(res => {
       return res.json();
     }).then(data => {
+      updateFirstResponseAPI();
       if (data.username) {
         updateUser({
           username: data.username,
@@ -188,6 +195,7 @@ const mapDispatchToProps = (dispatch) => {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
     updateLines: (data) => { dispatch(updateLinesAction(data)) },
     updateUser: (data) => { dispatch(updateUserAction(data)) },
+    updateFirstResponseAPI: () => { dispatch(updateFirstResponseAPIAction()) },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

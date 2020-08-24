@@ -28,3 +28,9 @@ export const updateLogInFirstAnimationAction = (data) => {
     logInFirstAnimation: data,
   });
 };
+
+export const updateFirstResponseAPIAction = () => {
+  return ({
+    type: "UPDATE_FIRST_RESPONSE_API"
+  });
+};
