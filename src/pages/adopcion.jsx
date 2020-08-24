@@ -40,6 +40,7 @@ const Adopt = ({
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "token": localStorage.getItem("token")
       }
     }).then(res => {
       return res.json();

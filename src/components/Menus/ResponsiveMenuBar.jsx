@@ -41,6 +41,17 @@ const ResponsiveMenuBar = ({
     updateLogInFirstAnimation(true);
     updateLogin(true);
   };
+  const logoutWithFetch = () => {
+    fetch(logout, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": localStorage.getItem("token")
+      }
+    });
+  };
   const closeResponsiveMenuBar = () => {
     // Cerrar
     updateResponsiveMenuBarBodyOpen(false);
@@ -100,9 +111,9 @@ const ResponsiveMenuBar = ({
                 {/* Notificaciones */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z" /></svg>
                 {/* Cerrar sesión */}
-                <a href={`${logout}`}>
+                <div onClick={logoutWithFetch} style={{ cursor: "pointer" }}>
                   <svg style={{ marginRight: 0 }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M624 448h-80V113.45C544 86.19 522.47 64 496 64H384v64h96v384h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM312.24 1.01l-192 49.74C105.99 54.44 96 67.7 96 82.92V448H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h336V33.18c0-21.58-19.56-37.41-39.76-32.17zM264 288c-13.25 0-24-14.33-24-32s10.75-32 24-32 24 14.33 24 32-10.75 32-24 32z" /></svg>
-                </a>
+                </div>
               </div>
               <div onClick={closeResponsiveMenuBar}>
                 <Link to="/comprar">

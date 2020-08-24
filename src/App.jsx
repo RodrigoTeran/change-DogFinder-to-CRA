@@ -72,14 +72,12 @@ const App = ({
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "token": localStorage.getItem("token")
       }
     }).then(res => {
       return res.json();
     }).then(data => {
-      console.log(`DATA USER: ${JSON.stringify(data)}`);
-      console.log(`DATA USERNAME: ${JSON.stringify(data.username)}`);
-      console.log(`DATA SIN STRINGIFY: ${data}`);
-      if (data.username !== "tu cola") {
+      if (data.username) {
         updateUser({
           username: data.username,
           email: data.email,
@@ -128,7 +126,7 @@ const App = ({
         <LogInCard logInActivated={logInActivated} logInFirstAnimation={logInFirstAnimation}></LogInCard>
         <div>
           <Switch>
-            <Route path="/perfil">
+            <Route path="/perfil/">
               <Profile></Profile>
             </Route>
             <Route path="/adopcion">
@@ -155,7 +153,7 @@ const App = ({
             <Route path="/registro/mascota/encontrada">
               <DogFounded></DogFounded>
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Index></Index>
             </Route>
           </Switch>

@@ -23,15 +23,25 @@ import {
 import HeaderProfilePage from "../components/ProfilePageComponents/Header";
 import FooterLayout from "../components/FooterLayout";
 import MainSectionProfilePage from "../components/ProfilePageComponents/MainSection/MainSectionProfilePage";
+import { useLocation } from "react-router-dom";
 
 const Profile = ({
   username,
   updateTopMenuBarActivated,
   imgId,
-  email
+  email,
 }) => {
   // -----------------------Hooks-----------------------
+  let location = useLocation();
   useEffect(() => {
+    try {
+      // Se acaba de registrar
+      const badToken = location.search;
+      const realToken = badToken.substr(7, badToken.length - 1);
+      if (realToken.length > 20) {
+        localStorage.setItem("token", realToken);
+      };
+    } catch { };
     getProfileData();
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
   });
@@ -44,11 +54,11 @@ const Profile = ({
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "token": localStorage.getItem("token")
       }
     }).then(res => {
       return res.json();
     }).then(data => {
-      console.log(`DATA PERFIL: ${JSON.stringify(data)}`);
       if (!data.username) {
         setYesRedirect(true);
       };
