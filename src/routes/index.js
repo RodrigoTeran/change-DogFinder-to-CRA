@@ -5,16 +5,16 @@ const routes = {}
 routes.apiDomain = "https://agile-coast-82296.herokuapp.com";
 
 // Auth
-routes.authGoogle = `https://agile-coast-82296.herokuapp.com/auth/google`;
-routes.authFacebook = `https://agile-coast-82296.herokuapp.com/auth/facebook`;
-routes.logout = `https://agile-coast-82296.herokuapp.com/auth/logout`;
+routes.authGoogle = `${routes.apiDomain}/auth/google`;
+routes.authFacebook = `${routes.apiDomain}/auth/facebook`;
+routes.logout = `${routes.apiDomain}/auth/logout`;
 
 // Data
-routes.getUser = `https://agile-coast-82296.herokuapp.com/user`;
-routes.getProfileDataRoute = `https://agile-coast-82296.herokuapp.com/data/profile`;
-routes.getMapDataRoute = `https://agile-coast-82296.herokuapp.com/data/map`;
-routes.getFoundDogDataRoute = `https://agile-coast-82296.herokuapp.com/data/found`;
-routes.getBuyDataRoute = `https://agile-coast-82296.herokuapp.com/data/buy`;
-routes.getAdoptDataRoute = `https://agile-coast-82296.herokuapp.com/data/adopt`;
+routes.getUser = `${routes.apiDomain}/user`;
+routes.getProfileDataRoute = `${routes.apiDomain}/data/profile`;
+routes.getMapDataRoute = `${routes.apiDomain}/data/map`;
+routes.getFoundDogDataRoute = `${routes.apiDomain}/data/found`;
+routes.getBuyDataRoute = `${routes.apiDomain}/data/buy`;
+routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 
 module.exports = routes;
