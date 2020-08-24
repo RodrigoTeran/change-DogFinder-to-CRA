@@ -60,6 +60,7 @@ const ResponsiveMenuBar = ({
         email: null,
         auth: false,
       });
+      localStorage.removeItem("token");
       setYesRedirect(true);
     });;
   };
