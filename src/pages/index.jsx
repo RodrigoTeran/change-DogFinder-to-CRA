@@ -143,7 +143,7 @@ const Index = ({
 	// -----------------------Hooks-----------------------
 	useEffect(() => {
 		if (!firstScroll) {
-			window.scroll({ top: 1, left: 0, behavior: 'smooth' }); // Movemos el scroll tantito para que el TopMenuBar se actualize
+			window.scroll({ top: document.scrollingElement.scrollTop + 1, left: 0, behavior: 'smooth' }); // Movemos el scroll tantito para que el TopMenuBar se actualize
 			setFirstScroll(true);
 		};
 		// poner estado... 
