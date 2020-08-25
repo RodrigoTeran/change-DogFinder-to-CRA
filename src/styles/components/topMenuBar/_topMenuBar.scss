@@ -16,6 +16,43 @@
   }
 }
 
+.loader {
+  &-menubar,
+  &-pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    z-index: 9999999999;
+    svg {
+      fill: #aaaaaa;
+      width: 30px;
+      height: 30px;
+      animation: loaderMenuBar 2s linear infinite;
+    }
+  }
+  &-menubar {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  &-pages {
+    position: absolute;
+    top: 100px;
+    left: 0;
+  }
+}
+
+@keyframes loaderMenuBar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .content-top-menu-bar {
   display: flex;
   width: 90%;
@@ -28,25 +65,25 @@
   padding-top: 35px;
   padding-bottom: 35px;
   font-size: 15px;
-  
+
   &-image-profile {
     position: absolute;
     img {
       width: 32px;
     }
-    svg{
+    svg {
       width: 25px;
       height: 25px;
       top: calc(50% + 3.5px);
       position: absolute;
       fill: #ffffff;
     }
-    top: calc(50% - 16px);    
+    top: calc(50% - 16px);
   }
 
   &.activated {
     background-color: rgba(25, 25, 25, 1);
-    transition: ease-in-out .1s;
+    transition: ease-in-out 0.1s;
   }
 
   &-button {
