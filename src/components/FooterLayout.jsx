@@ -25,7 +25,7 @@ const FooterLayout = ({ styleForm }) => {
           <div className="col-lg-3 col-md-6 col-sm-12 text-center">
             <div className="container-link-footer-layout">
               <Link to="/terminos" className="link-after-effect" title="Terminos y condiciones">
-                Terminos y condiciones
+                Términos y condiciones
               </Link>
             </div>
           </div>

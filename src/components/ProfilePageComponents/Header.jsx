@@ -10,7 +10,7 @@ const HeaderProfilePage = ({
 }) => {
   return (
     <div className="d-flex row justify-content-around align-items-center">
-      <div style={{ fontSize: "2rem" }} className="col-lg-6 col-md-6 col-sm-10 my-3">
+      <div style={{ fontSize: "1rem" }} className="col-lg-6 col-md-6 col-sm-10 my-3">
         <div className="d-flex justify-content-center">
           <img className="rounded-circle img-fluid mr-3" src={`${imgId}`} alt={`${username}`} style={{ width: "4.5rem", height: "4.5rem" }}></img>
           <div className="d-flex justify-content-center text-left" style={{ flexDirection: "column" }}>
