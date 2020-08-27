@@ -127,13 +127,9 @@ const Menubar = ({
           <div className="menu-bar-collapse content-top-menu-bar">
             <ul className="navbar-nav pr-5">
               <li className="mx-3">
-                {auth ? (
-                  <Link to="/comprar" className="link-after-effect" title="Se perdió mi perro" style={{ cursor: "pointer" }}>
-                    SE PERDIÓ MI PERRO
-                  </Link>
-                ) : (
-                    <div onClick={iniciarSesion} className="link-after-effect" title="Se perdió mi perro" style={{ cursor: "pointer" }}>SE PERDIÓ MI PERRO</div>
-                  )}
+                <Link to="/comprar" className="link-after-effect" title="Se perdió mi perro" style={{ cursor: "pointer" }}>
+                  SE PERDIÓ MI PERRO
+                </Link>
               </li>
               <li className="mr-3">
                 {auth ? (

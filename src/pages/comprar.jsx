@@ -3,15 +3,12 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-// Selectores
-import { getUsername } from "../store/reducers/user/selector";
 
 // Configuraciones
 import { APP_NAME } from "../utils/config";
 
-// Routes
-import { getBuyDataRoute } from "../routes/index";
+// Selectores
+import { getUsername } from "../store/reducers/user/selector";
 
 // Acciones
 import {
@@ -21,52 +18,32 @@ import {
 // -----------------------Componentes-----------------------
 import FooterLayout from "../components/FooterLayout";
 import HeaderBuyPage from "../components/BuyPageComponents/Header/HeaderBuyPage";
+import MainSectionPayment from "../components/BuyPageComponents/PaymentComponent/MainSectionPayment";
 
 const Purchase = ({
   username,
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
+  const [firstScroll, setFirstScroll] = useState(false);
   useEffect(() => {
-    getBuyData();
+    if (!firstScroll) {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+      setFirstScroll(true);
+    };
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
   });
   // -----------------------Funciones-----------------------
-  const [yesRedirect, setYesRedirect] = useState(false);
-  const getBuyData = () => {
-    fetch(getBuyDataRoute, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": localStorage.getItem("token")
-      }
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      if (!data.username) {
-        setYesRedirect(true);
-      };
-    });
-  };
   return (
     <>
       <Helmet>
         <title>{`${APP_NAME} - Comprar`}</title>
-        <meta name="description" content={`Comprar perfiles de ${APP_NAME} para ${username}`} />
+        <meta name="description" content={`Comprar perfiles de ${APP_NAME}${username ? (`para ${username}`) : ("")}`} />
       </Helmet>
-      {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
-      {username ? (
-        <div className={`purchase-page text-center space-footer-bottom`}>
-          <HeaderBuyPage></HeaderBuyPage>
-          Página para comprar perfiles de {username}
-        </div>
-      ) : (
-          <div className="loader-pages">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" /></svg>
-          </div>
-        )}
+      <div className={`purchase-page text-center space-footer-bottom`}>
+        <HeaderBuyPage></HeaderBuyPage>
+        <MainSectionPayment></MainSectionPayment>
+      </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );

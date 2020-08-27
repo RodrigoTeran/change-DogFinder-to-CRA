@@ -1,18 +1,45 @@
 import React from "react";
-import { APP_NAME } from "../../../../utils/config";
+// import { APP_NAME } from "../../../../utils/config";
 
 const CardHeaderBuyPage = () => {
   return (
     <div className="purchase-page-header-card">
-      <div className="purchase-page-header-card-h1">
-        Un perfil de {APP_NAME}
+      <div className="purchase-page-header-card-title">
+        Servicios
       </div>
-      <div className="purchase-page-header-card-precio">
-        $100
+      <div className="row purchase-page-header-card-row">
+        <div className="purchase-page-header-card-free col-lg-4 col-md-6">
+          <div className="purchase-page-header-card-free-h1">
+            Servicios gratuitos (solo con iniciar sesión):
+          </div>
+          <div className="purchase-page-header-card-free-element">
+            uso del mapa (solo ver la información)
+          </div>
+          <div className="purchase-page-header-card-free-element">
+            adopción (con uso de la app de mensajes)
+          </div>
+          <div className="purchase-page-header-card-free-element">
+            poder registrar un perro que encontró (se podrá poner en contacto con su dueño con el uso de la app de mensajes)
+          </div>          
+        </div>
+        <div className="purchase-page-header-card-premium col-lg-4 col-md-6">
+          <div className="purchase-page-header-card-premium-h1">
+            Servicios premium $100 un perfil:
+          </div>
+          <div className="purchase-page-header-card-premium-element">
+            búsqueda de tu mascota con inteligencia artificial
+          </div>
+          <div className="purchase-page-header-card-premium-element">
+            poder registrar su mascota perdida (se podrá poner en contacto con el usuario de la plataforma que encontró a su mascota con el uso de la app de mensajes)
+          </div>          
+          <div className="purchase-page-header-card-premium-element">
+            uso del mapa (tu mascota se anuncia en caso de extraviarse)
+          </div>
+          <div className="purchase-page-header-card-premium-element">
+            contactos con organizaciones responsables (tu mascota se reporta perdida en caso de extraviarse)
+          </div>            
+        </div>
       </div>
-      <div className="purchase-page-header-card-precio-service">
-        Servicio de por vida
-      </div>            
     </div>
   )
 };

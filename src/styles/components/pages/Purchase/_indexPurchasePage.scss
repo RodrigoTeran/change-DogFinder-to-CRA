@@ -3,18 +3,76 @@
   color: #ffffff;
   padding-top: 100px;
   &-header {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 40px;
     &-h1 {
       font-family: "Roboto Condensed", sans-serif;
       font-size: 2rem;
       font-weight: bold;
       padding-left: 10px;
       padding-right: 10px;
+      &-sub {
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: var(--tertiary-color-light);
+      }
     }
     &-card {
+      &-title{
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      &-row {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        width: 90%;
+        margin-left: 5%;
+      }
+      &-free,
+      &-premium {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        &-h1 {
+          font-family: "Roboto Condensed", sans-serif;
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 15px;
+        }
+        &-element {
+          padding: 7px;
+          padding-left: 15px;
+          width: 300px;
+          border-radius: 5px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          position: relative;
+          background-color: rgba(45, 45, 45, 1);
+          margin-bottom: 20px;
+          transition: ease-in-out .1s;
+          @media (hover: hover) and (pointer: fine) {
+            &:hover {
+              transform: translateY(-5px);
+              transition: ease-in-out .1s;
+            }
+          }
+          &::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--tertiary-color-light);
+            border-radius: 2px 0px 0px 2px;
+          }
+        }
+      }
       &-container {
-        margin-top: 30px;
+        margin-top: 50px;
         margin-bottom: 30px;
         justify-content: center;
         width: 90%;
@@ -22,34 +80,9 @@
         display: flex;
         align-items: center;
       }
-      &-h1 {
-        font-size: 1.2rem;
-        font-weight: bold;
-        width: 90%;
-        background-color: var(--tertiary-color);
-        margin-left: 5%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        min-height: 4rem;
-        padding: 5px;
-      }
-      &-precio {
-        &-service {
-          padding: 2px;
-          background-color: rgba(55, 55, 55, 1);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-      background-color: rgba(35, 35, 35, 1);
-      width: 90%;
-      max-width: 450px;
+      width: 100%;
       border-radius: 20px;
       padding-top: 10px;
-      height: 500px;
     }
   }
 }

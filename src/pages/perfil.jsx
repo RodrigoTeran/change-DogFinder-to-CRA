@@ -33,7 +33,12 @@ const Profile = ({
 }) => {
   // -----------------------Hooks-----------------------
   let location = useLocation();
+  const [firstScroll, setFirstScroll] = useState(false);
   useEffect(() => {
+    if (!firstScroll) {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+      setFirstScroll(true);
+    };
     try {
       // Se acaba de registrar
       const badToken = location.search;
