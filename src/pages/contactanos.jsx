@@ -29,7 +29,7 @@ const Contactanos = ({
         <title>{`${APP_NAME} - Contáctanos`}</title>
         <meta name="description" content={`Contacta a ${APP_NAME}`} />
       </Helmet>
-      <div className={`contact-us-page text-center`}>
+      <div className={`contact-us-page text-center space-footer-bottom`}>
         Contáctanos
         </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>

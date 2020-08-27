@@ -28,9 +28,9 @@ const Terminos = ({
         <title>{`${APP_NAME} - Términos y Condiciones`}</title>
         <meta name="description" content={`Términos y condiciones de ${APP_NAME}`} />
       </Helmet>
-      <div className={`terms-page text-center`}>
+      <div className={`terms-page text-center space-footer-bottom`}>
         Términos y Condiciones
-        </div>
+      </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
   );

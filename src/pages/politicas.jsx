@@ -28,7 +28,7 @@ const Politicas = ({
         <title>{`${APP_NAME} - Políticas de Privacidad`}</title>
         <meta name="description" content={`Políticas de Privacidad de ${APP_NAME}`} />
       </Helmet>
-      <div className={`privacy-page text-center`}>
+      <div className={`privacy-page text-center space-footer-bottom`}>
         Políticas de Privacidad
         </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>

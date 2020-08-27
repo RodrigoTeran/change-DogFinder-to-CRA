@@ -58,7 +58,7 @@ const Adopt = ({
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {username ? (
-        <div className={`adopt-page text-center`}>
+        <div className={`adopt-page text-center space-footer-bottom`}>
           ¡Página para que {username} adopte una mascota!
         </div>
       ) : (

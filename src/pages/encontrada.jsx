@@ -58,7 +58,7 @@ const DogFounded = ({
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {username ? (
-        <div className={`dog-founded-page text-center`}>
+        <div className={`dog-founded-page text-center space-footer-bottom`}>
           Sección para que {username} registre a un perro perdido que encontró
         </div>
       ) : (

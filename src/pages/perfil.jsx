@@ -72,7 +72,7 @@ const Profile = ({
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {username ? (
-        <div className={`profile-page`}>
+        <div className={`profile-page space-footer-bottom`}>
           <HeaderProfilePage username={username} email={email} imgId={imgId}></HeaderProfilePage>
           <MainSectionProfilePage></MainSectionProfilePage>
         </div>

@@ -58,7 +58,7 @@ const Map = ({
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {username ? (
-        <div className={`map-page text-center`}>
+        <div className={`map-page text-center space-footer-bottom`}>
           Sección de mapa para {username}
         </div>
       ) : (

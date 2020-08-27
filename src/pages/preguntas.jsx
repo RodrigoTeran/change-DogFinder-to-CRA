@@ -28,7 +28,7 @@ const Preguntas = ({
         <title>{`${APP_NAME} - Preguntas`}</title>
         <meta name="description" content={`Preguntas frecuentes de ${APP_NAME}`} />
       </Helmet>
-      <div className={`questions-page text-center`}>
+      <div className={`questions-page text-center space-footer-bottom`}>
         Preguntas Frecuentes
         </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>

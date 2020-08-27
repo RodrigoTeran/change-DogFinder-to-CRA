@@ -40,6 +40,7 @@
   background-color: #000000;
   color: #ffffff;
   position: absolute;
+  margin: 0;
   width: 100%;
   padding-top: 25px;
   padding-bottom: 50px;
@@ -111,4 +112,15 @@
     opacity: 1;
     transition: transform ease-in-out 0.25s, opacity ease-in-out 0.05s;
   }
+}
+
+.space-footer-bottom {
+  margin-bottom: 130px;
+  padding-bottom: 50px;
+  @media screen and (max-width: 991px){
+    margin-bottom: 175px;
+  }
+  @media screen and (max-width: 767px){
+    margin-bottom: 280px;
+  }  
 }

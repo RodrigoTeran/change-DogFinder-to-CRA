@@ -20,6 +20,7 @@ import {
 
 // -----------------------Componentes-----------------------
 import FooterLayout from "../components/FooterLayout";
+import HeaderBuyPage from "../components/BuyPageComponents/Header/HeaderBuyPage";
 
 const Purchase = ({
   username,
@@ -57,7 +58,8 @@ const Purchase = ({
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {username ? (
-        <div className={`purchase-page text-center`}>
+        <div className={`purchase-page text-center space-footer-bottom`}>
+          <HeaderBuyPage></HeaderBuyPage>
           Página para comprar perfiles de {username}
         </div>
       ) : (
