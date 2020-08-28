@@ -17,4 +17,7 @@ routes.getFoundDogDataRoute = `${routes.apiDomain}/data/found`;
 routes.getBuyDataRoute = `${routes.apiDomain}/data/buy`;
 routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 
+// Stripe
+routes.postPayment = `${routes.apiDomain}/pay/service`;
+
 module.exports = routes;

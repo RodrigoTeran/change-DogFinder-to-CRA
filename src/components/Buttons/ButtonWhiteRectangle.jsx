@@ -11,12 +11,13 @@ const ButtonWhiteRectangle = ({
   children,
   text,
   fontSize,
-  clickFunctionAnotherOne
+  clickFunctionAnotherOne,
+  noClick
 }) => {
   return (
     <>
-      {clickFunctionAnotherOne ? (
-        <button onClick={clickFunctionAnotherOne} className={`buttonWhiteRectangleStyles ${mb} ${mt}`} style={{
+      {noClick ? (
+        <button className={`buttonWhiteRectangleStyles ${mb} ${mt}`} style={{
           fontSize: fontSize || "1.2rem",
           width: width,
           height: height
@@ -41,32 +42,61 @@ const ButtonWhiteRectangle = ({
           </div>
         </button>
       ) : (
-          <Link to={`${clickFunction}`}>
-            <button className={`buttonWhiteRectangleStyles ${mb} ${mt}`} style={{
-              fontSize: fontSize || "1.2rem",
-              width: width,
-              height: height
-            }}>
-              <div className="buttonWhiteRectangleStyles-container">
-                {children ? (
-                  <div className="buttonWhiteRectangleStyles-container-svg">
-                    {children}
-                  </div>
-                ) : (
-                    <></>
-                  )}
-                {children ? (
-                  <div className="buttonWhiteRectangleStyles-container-span">
-                    <span>{text}</span>
-                  </div>
-                ) : (
-                    <div className="buttonWhiteRectangleStyles-container-span">
-                      <span style={{ marginLeft: "0px" }}>{text}</span>
+          <>
+            {clickFunctionAnotherOne ? (
+              <button onClick={clickFunctionAnotherOne} className={`buttonWhiteRectangleStyles ${mb} ${mt}`} style={{
+                fontSize: fontSize || "1.2rem",
+                width: width,
+                height: height
+              }}>
+                <div className="buttonWhiteRectangleStyles-container">
+                  {children ? (
+                    <div className="buttonWhiteRectangleStyles-container-svg">
+                      {children}
                     </div>
-                  )}
-              </div>
-            </button>
-          </Link >
+                  ) : (
+                      <></>
+                    )}
+                  {children ? (
+                    <div className="buttonWhiteRectangleStyles-container-span">
+                      <span>{text}</span>
+                    </div>
+                  ) : (
+                      <div className="buttonWhiteRectangleStyles-container-span">
+                        <span style={{ marginLeft: "0px" }}>{text}</span>
+                      </div>
+                    )}
+                </div>
+              </button>
+            ) : (
+                <Link to={`${clickFunction}`}>
+                  <button className={`buttonWhiteRectangleStyles ${mb} ${mt}`} style={{
+                    fontSize: fontSize || "1.2rem",
+                    width: width,
+                    height: height
+                  }}>
+                    <div className="buttonWhiteRectangleStyles-container">
+                      {children ? (
+                        <div className="buttonWhiteRectangleStyles-container-svg">
+                          {children}
+                        </div>
+                      ) : (
+                          <></>
+                        )}
+                      {children ? (
+                        <div className="buttonWhiteRectangleStyles-container-span">
+                          <span>{text}</span>
+                        </div>
+                      ) : (
+                          <div className="buttonWhiteRectangleStyles-container-span">
+                            <span style={{ marginLeft: "0px" }}>{text}</span>
+                          </div>
+                        )}
+                    </div>
+                  </button>
+                </Link >
+              )}
+          </>
         )}
     </>
   );
