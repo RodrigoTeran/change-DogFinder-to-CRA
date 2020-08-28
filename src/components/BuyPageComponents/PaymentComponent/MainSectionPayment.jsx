@@ -43,9 +43,9 @@ const MainSectionPayment = ({
       headers: headers,
       body: JSON.stringify(body)
     }).then(res => {
-      console.log(`Response: ${res}`);
+      console.log(`Response: ${JSON.stringify(res)}`);
     }).catch(err => {
-      console.log(`Error: ${err}`);
+      console.log(`Error: ${JSON.stringify(err)}`);
     });
   };
   const [product, setProduct] = useState({
