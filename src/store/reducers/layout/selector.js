@@ -27,11 +27,20 @@ export const getLines = createSelector([selectorGetLines], (getLines) => {
   return getLines;
 });
 
-// messagesComponent
-const selectorGetMessagesComponent = (state) => {
-  return state.layoutReducer.messagesComponent;
+// successMessagesComponent
+const selectorGetSuccessMessagesComponent = (state) => {
+  return state.layoutReducer.successMessagesComponent;
 };
 
-export const getMessagesComponent = createSelector([selectorGetMessagesComponent], (getMessagesComponent) => {
-  return getMessagesComponent;
+export const getSuccessMessagesComponent = createSelector([selectorGetSuccessMessagesComponent], (getSuccessMessagesComponent) => {
+  return getSuccessMessagesComponent;
+});
+
+// failureMessagesComponent
+const selectorGetFailureMessagesComponent = (state) => {
+  return state.layoutReducer.failureMessagesComponent;
+};
+
+export const getFailureMessagesComponent = createSelector([selectorGetFailureMessagesComponent], (getFailureMessagesComponent) => {
+  return getFailureMessagesComponent;
 });

@@ -28,10 +28,18 @@ export const updateResponsiveMenuBarBodyTransAction = (data) => {
   });
 };
 
-export const updateMessagesComponentAction = (data) => {
+export const updateSuccessMessagesComponentAction = (data) => {
   return ({
-    type: "UPDATE_MESSAGES_COMPONENT",
-    typeData: data.type,
+    type: "UPDATE_SUCCESS_MESSAGES_COMPONENT",
+    state: data.state,
+    title: data.title,
+    description: data.description,
+  });
+};
+
+export const updateFailureMessagesComponentAction = (data) => {
+  return ({
+    type: "UPDATE_FAILURE_MESSAGES_COMPONENT",
     state: data.state,
     title: data.title,
     description: data.description,

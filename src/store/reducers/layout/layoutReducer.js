@@ -14,20 +14,33 @@ const initialState = {
     x_line2: false,
     x_line3: false,
   },
-  messagesComponent: {
+  successMessagesComponent: {
     state: false,
     title: undefined,
     description: undefined,
-    type: undefined
+  },
+  failureMessagesComponent: {
+    state: false,
+    title: undefined,
+    description: undefined,
   }
 };
 
 export default function layoutReducer(state = initialState, action) {
-  if (action.type === "UPDATE_MESSAGES_COMPONENT") {
+  if (action.type === "UPDATE_SUCCESS_MESSAGES_COMPONENT") {
     return {
       ...state,
-      messagesComponent: {
-        type: action.typeData,
+      successMessagesComponent: {
+        state: action.state,
+        title: action.title,
+        description: action.description,
+      }
+    };
+  };
+  if (action.type === "UPDATE_FAILURE_MESSAGES_COMPONENT") {
+    return {
+      ...state,
+      failureMessagesComponent: {
         state: action.state,
         title: action.title,
         description: action.description,
