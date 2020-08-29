@@ -41,6 +41,11 @@ const MainSectionPayment = ({
     updateLogin(true);
   };
   const [redirectPaymentSuccess, setRedirectPaymentSuccess] = useState(false);
+  const [keyInput, setKeyInput] = useState(true);
+  const [email, setEmail] = useState("a01704108@itesm.mx");
+  const getTop = (component) => {	// Función que calcula la distancia que existe de un componente y hasta arriba de la página
+    return (parseInt(document.querySelector(component).getBoundingClientRect().top + document.scrollingElement.scrollTop));
+  };
   const makePayment = token => {
     const body = {
       token,
@@ -59,26 +64,25 @@ const MainSectionPayment = ({
     }).then(res => {
       return res.json();
     }).then(data => {
+      /*
+      Posibles status:
+      (No user) no hay usuario... no auth
+      (Success) se mando el correo con la key    
+      */
       if (data.status === "Success") {
-        updateSuccessMessagesComponent({
-          state: true,
-          title: "Pago",
-          description: "Se ha realizado el pago con éxito",
-        });
-        setRedirectPaymentSuccess(true);
-      } else if (data.status === "Email") {
+        // Poner contenedor email
+        setEmail(data.email);
+        setKeyInput(true);
+        window.scroll({ top: getTop(".input-key-pay"), left: 0, behavior: 'smooth' }); // Movemos el scroll para que cheque el input
+      } else {
         updateFailureMessagesComponent({
           state: true,
           title: "Error",
-          description: "El correo electrónico de la compra no coincide con el de la cuenta de la sesión actual",
+          description: "Se ha producido un error con la compra. Vuelva a intentar.",
         });
-      } else if (data.status === "Failure") {
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error",
-          description: "Error con el pago",
-        });
+        setKeyInput(false);
       };
+      // setRedirectPaymentSuccess(true);
     });
   };
   return (
@@ -102,12 +106,27 @@ const MainSectionPayment = ({
                 noClick={true}
               ></ButtonWhiteRectangle>
             </StripeCheckout>
+            <div>
+              {keyInput ? (
+                <>
+                  <div className="input-key-pay">
+                    <div className="input-key-pay-h1">
+                      Introduzca la clave que te mandamos a {email}
+                    </div>
+                    <div>
+                    <input id="input-key-pay" maxLength="10" className="input-key-pay-input" type="text" />
+                      <button className="input-key-pay-button">Enviar</button>
+                    </div>
+                  </div>
+                </>
+              ) : (<></>)}
+            </div>
           </>
         ) : (
             <>
               <div className="purchase-page-payment-noauth">
                 Inicia Sesión para poder comprar un perfil
-            </div>
+              </div>
               <ButtonWhiteRectangle text="Iniciar Sesión"
                 width="175px"
                 height="50px"
