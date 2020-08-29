@@ -18,6 +18,16 @@ export const getWebp = createSelector([selectorGetWebp], (getWebp) => {
   return getWebp;
 });
 
+// profiles
+const selectorGetProfiles = (state) => {
+  return state.userReducer.profiles;
+};
+
+export const getProfiles = createSelector([selectorGetProfiles], (getProfiles) => {
+  return getProfiles;
+});
+
+
 // username
 const selectorGetUsername = (state) => {
   return state.userReducer.username;

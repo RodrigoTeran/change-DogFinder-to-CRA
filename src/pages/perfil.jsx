@@ -19,6 +19,13 @@ import {
   updateTopMenuBarActivatedAction
 } from "../store/reducers/layout/actions";
 
+
+// Acciones
+import {
+  updateProfilesAction
+} from "../store/reducers/user/actions";
+
+
 // -----------------------Componentes-----------------------
 import HeaderProfilePage from "../components/ProfilePageComponents/Header";
 import FooterLayout from "../components/FooterLayout";
@@ -30,6 +37,7 @@ const Profile = ({
   updateTopMenuBarActivated,
   imgId,
   email,
+  updateProfiles
 }) => {
   // -----------------------Hooks-----------------------
   let location = useLocation();
@@ -66,6 +74,8 @@ const Profile = ({
     }).then(data => {
       if (!data.username) {
         setYesRedirect(true);
+      } else {
+        updateProfiles(data.profiles);
       };
     });
   };
@@ -104,6 +114,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
+    updateProfiles: (data) => { dispatch(updateProfilesAction(data)) },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

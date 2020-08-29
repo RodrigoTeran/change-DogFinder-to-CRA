@@ -22,6 +22,13 @@ export const updateUserAction = (data) => {
   });
 };
 
+export const updateProfilesAction = (data) => {
+  return ({
+    type: "UPDATE_PROFILES",
+    profiles: data,
+  });
+};
+
 export const updateLogInFirstAnimationAction = (data) => {
   return ({
     type: "UPDATE_LOGIN_FIRST_ANIMATION",

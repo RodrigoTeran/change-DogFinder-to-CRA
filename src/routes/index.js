@@ -14,7 +14,6 @@ routes.getUser = `${routes.apiDomain}/user`;
 routes.getProfileDataRoute = `${routes.apiDomain}/data/profile`;
 routes.getMapDataRoute = `${routes.apiDomain}/data/map`;
 routes.getFoundDogDataRoute = `${routes.apiDomain}/data/found`;
-routes.getBuyDataRoute = `${routes.apiDomain}/data/buy`;
 routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 
 // Stripe

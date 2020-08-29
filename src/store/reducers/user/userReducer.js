@@ -12,6 +12,9 @@ const initialState = {
   logInFirstAnimation: false, // para que no aparezca en el primer load
   logInActivated: false,
   webp: true,
+
+  // Profiles
+  profiles: []
 };
 export default function userReducer(state = initialState, action) {
   if (action.type === "UPDATE_USER") {
@@ -23,6 +26,12 @@ export default function userReducer(state = initialState, action) {
       email: action.email,
     };
   };
+  if (action.type === "UPDATE_PROFILES") {
+    return {
+      ...state,
+      profiles: action.profiles,
+    };
+  };  
   if (action.type === "UPDATE_FIRST_RESPONSE_API") {
     return {
       ...state,
