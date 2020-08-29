@@ -14,9 +14,26 @@ const initialState = {
     x_line2: false,
     x_line3: false,
   },
+  messagesComponent: {
+    state: false,
+    title: undefined,
+    description: undefined,
+    type: undefined
+  }
 };
 
 export default function layoutReducer(state = initialState, action) {
+  if (action.type === "UPDATE_MESSAGES_COMPONENT") {
+    return {
+      ...state,
+      messagesComponent: {
+        type: action.typeData,
+        state: action.state,
+        title: action.title,
+        description: action.description,
+      }
+    };
+  };
   if (action.type === "UPDATE_RESPONSIVE_MENU_BAR_BODY_OPEN_CLASS") {
     return {
       ...state,

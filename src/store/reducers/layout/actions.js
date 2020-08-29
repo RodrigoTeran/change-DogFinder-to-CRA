@@ -27,3 +27,13 @@ export const updateResponsiveMenuBarBodyTransAction = (data) => {
     state: data
   });
 };
+
+export const updateMessagesComponentAction = (data) => {
+  return ({
+    type: "UPDATE_MESSAGES_COMPONENT",
+    typeData: data.type,
+    state: data.state,
+    title: data.title,
+    description: data.description,
+  });
+};

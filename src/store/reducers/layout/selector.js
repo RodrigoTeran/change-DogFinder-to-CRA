@@ -26,3 +26,12 @@ const selectorGetLines = (state) => {
 export const getLines = createSelector([selectorGetLines], (getLines) => {
   return getLines;
 });
+
+// messagesComponent
+const selectorGetMessagesComponent = (state) => {
+  return state.layoutReducer.messagesComponent;
+};
+
+export const getMessagesComponent = createSelector([selectorGetMessagesComponent], (getMessagesComponent) => {
+  return getMessagesComponent;
+});

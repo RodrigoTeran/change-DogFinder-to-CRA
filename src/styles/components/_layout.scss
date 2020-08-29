@@ -117,10 +117,92 @@
 .space-footer-bottom {
   margin-bottom: 125px;
   padding-bottom: 50px;
-  @media screen and (max-width: 991px){
+  @media screen and (max-width: 991px) {
     margin-bottom: 175px;
   }
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     margin-bottom: 280px;
-  }  
+  }
+}
+
+.messages-component {
+  &-black-wall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    background-color: rgba(0, 0, 0, 1);
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    transition: 0s ease-in-out 0.3s;
+    visibility: visible;
+    &.close {
+      visibility: hidden;
+      opacity: 0;
+      transition: 0s ease-in-out 0.3s;
+    }
+  }
+  position: fixed;
+  &.close {
+    visibility: hidden;
+    opacity: 0.8;
+    transition: 0.3s ease-in-out;
+  }
+  visibility: visible;
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+
+  width: 500px;
+  min-height: 100px;
+  padding-bottom: 20px;
+
+  top: calc(50% - 80px);
+  left: calc(50% - 250px);
+
+  z-index: 999999999;
+  color: #ffffff;
+  border-radius: 10px;
+  text-align: left;
+  padding-left: 15px;
+  padding-top: 10px;
+
+  &-title {
+    font-size: 1.5rem;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: bold;
+  }
+  &-description {
+    margin-top: 15px;
+  }
+  &-button {
+    &.close {
+      visibility: hidden;
+      opacity: 0;
+      transition: 0s ease-in-out 0.3s;
+    }
+    visibility: visible;
+    opacity: 1;
+    transition: 0s ease-in-out 0.3s;
+    position: absolute;
+    z-index: 9999999999;
+    top: 5px;
+    right: 5px;
+    background-color: transparent;
+    border: none;
+    &-svg {
+      fill: #ffffff;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &-success {
+    background-color: #0e6916f1;
+    transition: 0s ease-in-out .3s;
+  }
+  &-error {
+    background-color: red;
+    transition: 0s ease-in-out .3s;
+  }
 }
