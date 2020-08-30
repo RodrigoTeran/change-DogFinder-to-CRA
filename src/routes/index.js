@@ -18,5 +18,6 @@ routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 
 // Stripe
 routes.postPayment = `${routes.apiDomain}/pay/service`;
+routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
 
 module.exports = routes;

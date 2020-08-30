@@ -10,7 +10,7 @@ import {
 import { APP_NAME, STRIPE_KEY } from "../../../utils/config";
 
 // Routes
-import { postPayment } from "../../../routes/index";
+import { postPayment, postKeyPayment } from "../../../routes/index";
 
 // Acciones
 import {
@@ -40,12 +40,14 @@ const MainSectionPayment = ({
     updateLogInFirstAnimation(true);
     updateLogin(true);
   };
-  const [redirectPaymentSuccess, setRedirectPaymentSuccess] = useState(false);
-  const [keyInput, setKeyInput] = useState(true);
-  const [email, setEmail] = useState("a01704108@itesm.mx");
+  const [keyInput, setKeyInput] = useState(false);
+  const [email, setEmail] = useState("");
   const getTop = (component) => {	// Función que calcula la distancia que existe de un componente y hasta arriba de la página
     return (parseInt(document.querySelector(component).getBoundingClientRect().top + document.scrollingElement.scrollTop));
   };
+
+
+  // ------------------------------------------------- Hacer Pago
   const makePayment = token => {
     const body = {
       token,
@@ -64,17 +66,12 @@ const MainSectionPayment = ({
     }).then(res => {
       return res.json();
     }).then(data => {
-      /*
-      Posibles status:
-      (No user) no hay usuario... no auth
-      (Success) se mando el correo con la key    
-      */
       if (data.status === "Success") {
         // Poner contenedor email
         setEmail(data.email);
         setKeyInput(true);
         window.scroll({ top: getTop(".input-key-pay"), left: 0, behavior: 'smooth' }); // Movemos el scroll para que cheque el input
-      } else {
+      } else { // No user
         updateFailureMessagesComponent({
           state: true,
           title: "Error",
@@ -82,7 +79,57 @@ const MainSectionPayment = ({
         });
         setKeyInput(false);
       };
-      // setRedirectPaymentSuccess(true);
+    });
+  };
+  const [valueKey, setValueKey] = useState("");
+  const [redirectPaymentSuccess, setRedirectPaymentSuccess] = useState(false);
+  const changeInputKey = e => {
+    setValueKey(e.target.value);
+  };
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  // ------------------------------------------------- Mandar KEY
+  const sendKeyPaymentAPI = () => {
+    setIsLoading(true);
+    const body = {
+      key: valueKey
+    };
+    const headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "token": localStorage.getItem("token")
+    };
+    return fetch(postKeyPayment, {
+      method: "POST",
+      headers: headers,
+      credentials: "include",
+      body: JSON.stringify(body)
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      setIsLoading(false);
+      if (data.status === "Success") {
+        // Pago exitoso
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Pago exitoso",
+          description: "Se ha realizado el pago exitosamente.",
+        });
+        setRedirectPaymentSuccess(true);
+      } else if (data.status === "Key bad") { // Key bad
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error con la clave",
+          description: "La clave de acceso ya expiró, o no coincide con ninguna cuenta activa. Vuelva a intentar.",
+        });
+      } else { // Failure
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "Se ha producido un error con la compra. Vuelva a intentar.",
+        });
+      };
     });
   };
   return (
@@ -111,13 +158,20 @@ const MainSectionPayment = ({
                 <>
                   <div className="input-key-pay">
                     <div className="input-key-pay-h1">
-                      Introduzca la clave que te mandamos a {email}
+                      Introduzca la clave que mandamos a {email}
                     </div>
                     <div>
-                    <input id="input-key-pay" maxLength="10" className="input-key-pay-input" type="text" />
-                      <button className="input-key-pay-button">Enviar</button>
+                      <input onChange={changeInputKey} maxLength="10" className="input-key-pay-input" type="text" />
+                      <button onClick={sendKeyPaymentAPI} className="input-key-pay-button">Enviar</button>
                     </div>
                   </div>
+                  {isLoading ? (
+                    <div className="loader-block" style={{
+                      paddingTop: "80px"
+                    }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" /></svg>
+                    </div>
+                  ) : (<></>)}
                 </>
               ) : (<></>)}
             </div>

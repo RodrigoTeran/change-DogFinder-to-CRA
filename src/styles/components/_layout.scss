@@ -171,7 +171,7 @@
   &-success {
     background-color: #a6d6aa;
     color: #27582b;
-    border: solid 4px #4f9255;
+    border: solid 2px #4f9255;
     .messages-component {
       &-button {
         &.close {
@@ -223,16 +223,3 @@
     }
   }
 }
-/*
-@media screen and (min-width: 520px) {
-  .messages-component {
-    width: 90%;
-  }
-}
-@media screen and (max-width: 519px) {
-  .messages-component {
-    width: 90%;
-    left: 5%;
-  }
-}
-*/
