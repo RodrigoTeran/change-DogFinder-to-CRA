@@ -64,30 +64,16 @@
     }
   }
   &-input {
-    margin-top: 20px;
     width: 280px;
     height: 50px;
     background-color: rgba(85, 85, 85, 1);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #ffffff;
     text-align: center;
     border: none;
 
-    -webkit-box-shadow: -183px 203px 0px -150px #ffffff;
-    -moz-box-shadow: -183px 203px 0px -150px #ffffff;
-    box-shadow: -183px 203px 0px -150px #ffffff;
-    transition: ease-in-out 0.3s;
-
     &:focus {
       outline: none;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        transition: ease-in-out 0.3s;
-        -webkit-box-shadow: -3px 4px 0px 0px #ffffff;
-        -moz-box-shadow: -3px 4px 0px 0px #ffffff;
-        box-shadow: -3px 4px 0px 0px #ffffff;
-      }
     }
   }
 }

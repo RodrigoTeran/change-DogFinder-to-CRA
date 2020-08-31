@@ -1,2 +1,5 @@
 Issues:
-  - Hacer la página de compra de perfil
+  --- Que el scroll automatico de la pagina de compra, tome en cuenta el topmenubar en mobile
+  --- Ponerle menos marginBottom al footer Layout en mobile
+  --- Estilizar mejor el input del key en comprar
+  --- Que el loading de la pagina de perfil tenga como determinante el fetch de la pagina, no el user de redux

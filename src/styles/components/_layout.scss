@@ -121,7 +121,7 @@
     margin-bottom: 175px;
   }
   @media screen and (max-width: 767px) {
-    margin-bottom: 280px;
+    margin-bottom: 275px;
   }
 }
 
@@ -196,9 +196,9 @@
     }
   }
   &-error {
-    background-color: rgb(216, 141, 141);
+    background-color: rgb(233, 173, 173);
     color: rgb(46, 14, 14);
-    border: solid 4px rgb(46, 14, 14);
+    border: solid 3px rgb(46, 14, 14);
     .messages-component {
       &-button {
         &.close {

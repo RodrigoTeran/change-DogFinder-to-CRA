@@ -70,7 +70,7 @@ const MainSectionPayment = ({
         // Poner contenedor email
         setEmail(data.email);
         setKeyInput(true);
-        window.scroll({ top: getTop(".input-key-pay"), left: 0, behavior: 'smooth' }); // Movemos el scroll para que cheque el input
+        window.scroll({ top: getTop(".input-key-pay") - 110, left: 0, behavior: 'smooth' }); // Movemos el scroll para que cheque el input
       } else { // No user
         updateFailureMessagesComponent({
           state: true,

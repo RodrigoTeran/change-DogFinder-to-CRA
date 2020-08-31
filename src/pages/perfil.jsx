@@ -25,7 +25,6 @@ import {
   updateProfilesAction
 } from "../store/reducers/user/actions";
 
-
 // -----------------------Componentes-----------------------
 import HeaderProfilePage from "../components/ProfilePageComponents/Header";
 import FooterLayout from "../components/FooterLayout";
@@ -37,7 +36,7 @@ const Profile = ({
   updateTopMenuBarActivated,
   imgId,
   email,
-  updateProfiles
+  updateProfiles,
 }) => {
   // -----------------------Hooks-----------------------
   let location = useLocation();
@@ -60,6 +59,7 @@ const Profile = ({
   });
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
+  const [yesDataAPI, setYesDataAPI] = useState(false);
   const getProfileData = () => {
     fetch(getProfileDataRoute, {
       method: "GET",
@@ -76,6 +76,7 @@ const Profile = ({
         setYesRedirect(true);
       } else {
         updateProfiles(data.profiles);
+        setYesDataAPI(true);
       };
     });
   };
@@ -86,7 +87,7 @@ const Profile = ({
         <meta name="description" content={`Perfil ${APP_NAME} de ${username}`} />
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
-      {username ? (
+      {yesDataAPI ? (
         <div className={`profile-page space-footer-bottom`}>
           <HeaderProfilePage username={username} email={email} imgId={imgId}></HeaderProfilePage>
           <MainSectionProfilePage></MainSectionProfilePage>
