@@ -1,5 +1,13 @@
 Issues:
-  --- Que el scroll automatico de la pagina de compra, tome en cuenta el topmenubar en mobile
-  --- Ponerle menos marginBottom al footer Layout en mobile
-  --- Estilizar mejor el input del key en comprar
-  --- Que el loading de la pagina de perfil tenga como determinante el fetch de la pagina, no el user de redux
+  - Que cuando se acceda desde otro dispositivo que se bloque la app hasta que llegue un response
+    --> metodo en API
+  - Abrir el input de keys en comprar siempre solo si el usuario tiene un Stripe profile
+    - que cuando pida la info del /user mandar compraActiva=true o compraActiva=false y ya...
+    - en el API: 
+      - cuando llega un req al /user, checa en Stripes si hay un modelo que tenga el mismo uderId que corresponda
+        a user._id y ya con eso se sabe...
+  - Que cuando le des a un perfil te abra por ejemplo algo así: /perfil/cuenta/mascota-0
+    - añado la ruta de cuenta, ya que tecnicamente /perfil/{variable} ya esta siendo utilizada por el token
+  - Crear boton tempral para eliminar un perfil
+  - Poder cambiar el nombre a un perfil
+  - Poder cambiar la imagen de portada de un perfil
