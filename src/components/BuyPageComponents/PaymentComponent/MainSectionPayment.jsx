@@ -4,7 +4,8 @@ import StripeCheckout from "react-stripe-checkout";
 import { Redirect } from "react-router-dom";
 // Selectores
 import {
-  getAuth
+  getAuth,
+  getKeyActiveUser
 } from "../../../store/reducers/user/selector";
 
 import { APP_NAME, STRIPE_KEY } from "../../../utils/config";
@@ -15,7 +16,8 @@ import { postPayment, postKeyPayment } from "../../../routes/index";
 // Acciones
 import {
   updateLogInFirstAnimationAction,
-  updateLoginAction
+  updateLoginAction,
+  updateKeyActiveUserAction
 } from "../../../store/reducers/user/actions";
 import {
   updateSuccessMessagesComponentAction,
@@ -29,7 +31,10 @@ const MainSectionPayment = ({
   updateLogin,
   updateLogInFirstAnimation,
   updateSuccessMessagesComponent,
-  updateFailureMessagesComponent
+  updateFailureMessagesComponent,
+
+  updateKeyActiveUser,
+  keyActiveUser
 }) => {
   const product = {
     name: `Perfil de ${APP_NAME}`,
@@ -40,13 +45,9 @@ const MainSectionPayment = ({
     updateLogInFirstAnimation(true);
     updateLogin(true);
   };
-  const [keyInput, setKeyInput] = useState(false);
-  const [email, setEmail] = useState("");
   const getTop = (component) => {	// Función que calcula la distancia que existe de un componente y hasta arriba de la página
     return (parseInt(document.querySelector(component).getBoundingClientRect().top + document.scrollingElement.scrollTop));
   };
-
-
   // ------------------------------------------------- Hacer Pago
   const makePayment = token => {
     const body = {
@@ -68,8 +69,7 @@ const MainSectionPayment = ({
     }).then(data => {
       if (data.status === "Success") {
         // Poner contenedor email
-        setEmail(data.email);
-        setKeyInput(true);
+        updateKeyActiveUser(data.email);
         window.scroll({ top: getTop(".input-key-pay") - 110, left: 0, behavior: 'smooth' }); // Movemos el scroll para que cheque el input
       } else { // No user
         updateFailureMessagesComponent({
@@ -77,7 +77,7 @@ const MainSectionPayment = ({
           title: "Error",
           description: "Se ha producido un error con la compra. Vuelva a intentar.",
         });
-        setKeyInput(false);
+        updateKeyActiveUser(undefined);
       };
     });
   };
@@ -117,6 +117,7 @@ const MainSectionPayment = ({
           description: "Se ha realizado el pago exitosamente.",
         });
         setRedirectPaymentSuccess(true);
+        updateKeyActiveUser(undefined);
       } else if (data.status === "Key bad") { // Key bad
         updateFailureMessagesComponent({
           state: true,
@@ -154,11 +155,11 @@ const MainSectionPayment = ({
               ></ButtonWhiteRectangle>
             </StripeCheckout>
             <div>
-              {keyInput ? (
+              {keyActiveUser ? (
                 <>
                   <div className="input-key-pay">
                     <div className="input-key-pay-h1">
-                      Introduzca la clave que mandamos a {email}
+                      Introduzca la clave que mandamos a {keyActiveUser}
                     </div>
                     <div>
                       <input onChange={changeInputKey} maxLength="10" className="input-key-pay-input" type="text" />
@@ -197,6 +198,7 @@ const MainSectionPayment = ({
 const mapStateToProps = (state) => {
   return {
     auth: getAuth(state),
+    keyActiveUser: getKeyActiveUser(state)
   };
 };
 // Las acciones de REDUX
@@ -206,6 +208,7 @@ const mapDispatchToProps = (dispatch) => {
     updateLogInFirstAnimation: (data) => { dispatch(updateLogInFirstAnimationAction(data)) },
     updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
     updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
+    updateKeyActiveUser: (data) => { dispatch(updateKeyActiveUserAction(data)) },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MainSectionPayment);

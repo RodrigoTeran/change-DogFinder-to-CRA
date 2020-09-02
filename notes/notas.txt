@@ -1,7 +1,7 @@
 Issues:
   - Que cuando se acceda desde otro dispositivo que se bloque la app hasta que llegue un response
     --> metodo en API
-  - Abrir el input de keys en comprar siempre solo si el usuario tiene un Stripe profile
+  --------------- Abrir el input de keys en comprar siempre solo si el usuario tiene un Stripe profile
     - que cuando pida la info del /user mandar compraActiva=true o compraActiva=false y ya...
     - en el API: 
       - cuando llega un req al /user, checa en Stripes si hay un modelo que tenga el mismo uderId que corresponda

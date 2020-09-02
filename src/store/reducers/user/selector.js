@@ -18,6 +18,16 @@ export const getWebp = createSelector([selectorGetWebp], (getWebp) => {
   return getWebp;
 });
 
+// keyActiveUser
+const selectorGetKeyActiveUser = (state) => {
+  return state.userReducer.keyActiveUser;
+};
+
+export const getKeyActiveUser = createSelector([selectorGetKeyActiveUser], (getKeyActiveUser) => {
+  return getKeyActiveUser;
+});
+
+
 // profiles
 const selectorGetProfiles = (state) => {
   return state.userReducer.profiles;

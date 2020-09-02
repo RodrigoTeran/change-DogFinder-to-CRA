@@ -44,7 +44,8 @@ import {
 
 // Acciones
 import {
-  updateFirstResponseAPIAction
+  updateFirstResponseAPIAction,
+  updateKeyActiveUserAction
 } from "./store/reducers/user/actions";
 
 import { updateLoginAction, updateWebpAction, updateUserAction } from "./store/reducers/user/actions";
@@ -61,7 +62,9 @@ const App = ({
   updateTopMenuBarActivated,
   updateLines,
   updateUser,
-  updateFirstResponseAPI
+  updateFirstResponseAPI,
+
+  updateKeyActiveUser
 }) => {
   useEffect(() => {
     getUserData();
@@ -93,6 +96,7 @@ const App = ({
           imgId: data.profileImg,
           auth: true,
         });
+        updateKeyActiveUser(data.compraActiva);
       } else {
         updateUser({
           username: null,
@@ -100,6 +104,7 @@ const App = ({
           email: null,
           auth: false,
         });
+        updateKeyActiveUser(undefined);
       };
     });
   };
@@ -200,6 +205,7 @@ const mapDispatchToProps = (dispatch) => {
     updateLines: (data) => { dispatch(updateLinesAction(data)) },
     updateUser: (data) => { dispatch(updateUserAction(data)) },
     updateFirstResponseAPI: () => { dispatch(updateFirstResponseAPIAction()) },
+    updateKeyActiveUser: (data) => { dispatch(updateKeyActiveUserAction(data)) },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

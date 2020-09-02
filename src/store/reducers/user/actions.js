@@ -12,6 +12,13 @@ export const updateWebpAction = (data) => {
   });
 };
 
+export const updateKeyActiveUserAction = (data) => {
+  return ({
+    type: "UPDATE_KEY_ACTIVE_USER",
+    state: data
+  });
+};
+
 export const updateUserAction = (data) => {
   return ({
     type: "UPDATE_USER",

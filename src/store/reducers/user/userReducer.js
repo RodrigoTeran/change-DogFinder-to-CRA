@@ -14,7 +14,10 @@ const initialState = {
   webp: true,
 
   // Profiles
-  profiles: []
+  profiles: [],
+
+  // Key Active
+  keyActiveUser: undefined
 };
 export default function userReducer(state = initialState, action) {
   if (action.type === "UPDATE_USER") {
@@ -26,12 +29,18 @@ export default function userReducer(state = initialState, action) {
       email: action.email,
     };
   };
+  if (action.type === "UPDATE_KEY_ACTIVE_USER") {
+    return {
+      ...state,
+      keyActiveUser: action.state
+    };
+  };
   if (action.type === "UPDATE_PROFILES") {
     return {
       ...state,
       profiles: action.profiles,
     };
-  };  
+  };
   if (action.type === "UPDATE_FIRST_RESPONSE_API") {
     return {
       ...state,
