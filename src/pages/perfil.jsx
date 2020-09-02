@@ -16,7 +16,8 @@ import { getProfileDataRoute } from "../routes/index";
 
 // Acciones
 import {
-  updateTopMenuBarActivatedAction
+  updateTopMenuBarActivatedAction,
+  updateFailureMessagesComponentAction
 } from "../store/reducers/layout/actions";
 
 
@@ -37,6 +38,7 @@ const Profile = ({
   imgId,
   email,
   updateProfiles,
+  updateFailureMessagesComponent
 }) => {
   // -----------------------Hooks-----------------------
   let location = useLocation();
@@ -49,6 +51,14 @@ const Profile = ({
     try {
       // Se acaba de registrar
       const badToken = location.search;
+      const pathName = location.pathname;
+      if (pathName === "/perfil/newSession/") { // MAIL
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error con la sesión",
+          description: `Esta sesión esta abierta en otro dispositivo. Por seguridad te mandamos un correo para que puedas permitir o rechazar el acceso a este dispositivo.`,
+        });
+      };
       const realToken = badToken.substr(7, badToken.length - 1);
       if (realToken.length > 20) {
         localStorage.setItem("token", realToken);
@@ -116,6 +126,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
     updateProfiles: (data) => { dispatch(updateProfilesAction(data)) },
+    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
