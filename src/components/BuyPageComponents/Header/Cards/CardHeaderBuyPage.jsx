@@ -19,7 +19,7 @@ const CardHeaderBuyPage = () => {
           </div>
           <div className="purchase-page-header-card-free-element">
             poder registrar un perro que encontró (se podrá poner en contacto con su dueño con el uso de la app de mensajes)
-          </div>          
+          </div>
         </div>
         <div className="purchase-page-header-card-premium col-lg-4 col-md-6">
           <div className="purchase-page-header-card-premium-h1">
@@ -30,7 +30,10 @@ const CardHeaderBuyPage = () => {
           </div>
           <div className="purchase-page-header-card-premium-element">
             poder registrar su mascota perdida (se podrá poner en contacto con el usuario de la plataforma que encontró a su mascota con el uso de la app de mensajes)
-          </div>          
+          </div>
+          <div className="purchase-page-header-card-premium-element">
+            adopción (con uso de la app de mensajes)
+          </div>
           <div className="purchase-page-header-card-premium-element">
             uso del mapa (tu mascota se anuncia en caso de extraviarse)
           </div>
@@ -39,10 +42,13 @@ const CardHeaderBuyPage = () => {
           </div>
           <div className="purchase-page-header-card-premium-element">
             búsqueda por medio de bots en todo el Internet (en caso de extraviarse tu mascota)
-          </div>                    
+          </div>
           <div className="purchase-page-header-card-premium-element">
             contactos con organizaciones responsables (tu mascota se reporta perdida en caso de extraviarse)
-          </div>            
+          </div>
+          <div className="purchase-page-header-card-premium-element">
+          poder registrar un perro que encontró (se podrá poner en contacto con su dueño con el uso de la app de mensajes)
+          </div>          
         </div>
       </div>
     </div>
