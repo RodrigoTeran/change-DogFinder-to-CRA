@@ -17,7 +17,14 @@ const initialState = {
   profiles: [],
 
   // Key Active
-  keyActiveUser: undefined
+  keyActiveUser: undefined,
+
+  // Pet Profile (actual only one)
+  petProfile: {
+    name: undefined,
+    petProfileImage: undefined,
+    images: []
+  }
 };
 export default function userReducer(state = initialState, action) {
   if (action.type === "UPDATE_USER") {

@@ -12,6 +12,7 @@ routes.logout = `${routes.apiDomain}/auth/logout`;
 // Data
 routes.getUser = `${routes.apiDomain}/user`;
 routes.getProfileDataRoute = `${routes.apiDomain}/data/profile`;
+routes.getpetProfileDataRoute = `${routes.apiDomain}/data/pet`;
 routes.getMapDataRoute = `${routes.apiDomain}/data/map`;
 routes.getFoundDogDataRoute = `${routes.apiDomain}/data/found`;
 routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
