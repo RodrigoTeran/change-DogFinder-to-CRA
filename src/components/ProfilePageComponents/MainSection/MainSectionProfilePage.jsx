@@ -22,7 +22,7 @@ const MainSectionProfilePage = ({
         <div className="row main-section-profile-page-cards-section">
           {profiles.map(profile => {
             return (
-              <CardMainSectionProfile petName={profile.petName} key={profile.profileId}></CardMainSectionProfile>
+              <CardMainSectionProfile petName={profile.petName} key={profile.profileId} profileImage={profile.profileImage}></CardMainSectionProfile>
             )
           })}
         </div>

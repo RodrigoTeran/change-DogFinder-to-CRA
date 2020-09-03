@@ -20,4 +20,7 @@ routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 routes.postPayment = `${routes.apiDomain}/pay/service`;
 routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
 
+// Temporal
+routes.eraseProfile = `${routes.apiDomain}/erase/profile`;
+
 module.exports = routes;

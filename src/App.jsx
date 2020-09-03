@@ -33,6 +33,7 @@ import Politics from "./pages/politicas";
 import Questions from "./pages/preguntas";
 import Terms from "./pages/terminos";
 import DogFounded from "./pages/encontrada";
+import PerfilMascota from "./pages/perfilMascota";
 
 
 // Acciones
@@ -140,6 +141,9 @@ const App = ({
         <LogInCard logInActivated={logInActivated} logInFirstAnimation={logInFirstAnimation}></LogInCard>
         <div>
           <Switch>
+            <Route path="/perfil/mascota">
+              <PerfilMascota></PerfilMascota>
+            </Route>
             <Route path="/perfil/">
               <Profile></Profile>
             </Route>
