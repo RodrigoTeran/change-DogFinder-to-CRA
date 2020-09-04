@@ -3,4 +3,55 @@
   padding-top: 100px;
   margin-left: 5%;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &-profile-image {
+      margin-top: 30px;
+      width: 250px;
+      border: 6px solid #fff;
+    }
+    &-h1 {
+      &-svg {
+        fill: var(--tertiary-color-light);
+        width: 20px;
+        height: 20px;
+        margin-left: 20px;
+        cursor: pointer;
+        transition: ease-in-out 0.3s;
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            transition: ease-in-out 0.3s;
+            transform: scale(1.2);
+          }
+        }
+      }
+      display: flex;
+      justify-content: center;
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 1.8rem;
+      text-align: center;
+      font-weight: bold;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .pet-profile-page-header-h1 {
+    flex-direction: column;
+    &-svg {
+      width: 30px;
+      height: 30px;
+      margin-left: 0px;
+      margin-top: 15px;
+    }
+  }
 }

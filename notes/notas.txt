@@ -1,6 +1,10 @@
 Issues:
-  - Que cuando le des a un perfil te abra por ejemplo algo así: /perfil/cuenta/mascota-0
-    - añado la ruta de cuenta, ya que tecnicamente /perfil/{variable} ya esta siendo utilizada por el token
-  - Crear boton tempral para eliminar un perfil
   - Poder cambiar el nombre a un perfil
+    - Sobre el input:
+      El input va a ser un componente que ahi mismo voy a poner
+    - Para el cambio de nombre:
+      Primero se debe de hacer un fetch con el nuevo nombre
+      cuando llegue el response, si es error ponemos un mensaje. Ejemplo: Ya existe ese nombre
+      si esta todo bien, cambiamos el estado de yesDataAPI del padre,
+      asi va a agarrar la info otra vez por el use Effect. Y todo listo
   - Poder cambiar la imagen de portada de un perfil

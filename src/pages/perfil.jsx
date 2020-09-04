@@ -71,24 +71,26 @@ const Profile = ({
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
   const getProfileData = () => {
-    fetch(getProfileDataRoute, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": localStorage.getItem("token")
-      }
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      if (!data.username) {
-        setYesRedirect(true);
-      } else {
-        updateProfiles(data.profiles);
-        setYesDataAPI(true);
-      };
-    });
+    if (!yesDataAPI) {
+      fetch(getProfileDataRoute, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "token": localStorage.getItem("token")
+        }
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        if (!data.username) {
+          setYesRedirect(true);
+        } else {
+          updateProfiles(data.profiles);
+          setYesDataAPI(true);
+        };
+      });
+    };
   };
   return (
     <>

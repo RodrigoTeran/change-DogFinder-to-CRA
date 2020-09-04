@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 
@@ -15,30 +15,36 @@ import {
   updateTopMenuBarActivatedAction,
 } from "../store/reducers/layout/actions";
 
+import {
+  updatePetProfileAction
+} from "../store/reducers/user/actions";
+
+import {
+  getPetProfile
+} from "../store/reducers/user/selector";
 
 import {
   eraseProfile,
   getpetProfileDataRoute
 } from "../routes/index";
 
+import PerfilMascotaHeader from "../components/PerfilMascotaComponents/PerfilMascotaHeader";
+
 const PerfilMascota = ({
   updateTopMenuBarActivated,
-  updateFailureMessagesComponent
+  updateFailureMessagesComponent,
+
+  petProfile,
+  updatePetProfile
 }) => {
-  let location = useLocation();
-  const [mascotaName, setMascotaName] = useState("");
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
   useEffect(() => {
-    const pathName = location.pathname;
-    const mascotaStringFeo = pathName.substr(16, pathName.length - 1);
-    const mascota = mascotaStringFeo.replace(/-/gi, " ");
-    setMascotaName(mascota);
     getPetProfileDataFunction();  // Get data
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
   });
   const eraseProfileFunction = () => {
-    fetch(`${eraseProfile}/${mascotaName}`, {
+    fetch(`${eraseProfile}/${petProfile.name}`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -52,44 +58,49 @@ const PerfilMascota = ({
       setYesRedirect(true);
     });
   };
-  
+
   // Data Pet Profile
   const getPetProfileDataFunction = () => {
-    fetch(`${getpetProfileDataRoute}/${mascotaName}`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": localStorage.getItem("token")
-      }
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      if (data.status) { // todo bien
-        setYesDataAPI(true);
-      } else {
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error con el contacto con el perfil",
-          description: `Vuelva a intentarlo.`,
-        });
-        setYesRedirect(true);
-      };
-    });
+    if (!yesDataAPI) {
+      fetch(`${getpetProfileDataRoute}/${petProfile.name}`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "token": localStorage.getItem("token")
+        }
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        if (data.status) { // todo bien
+          setYesDataAPI(true);
+          updatePetProfile({
+            name: data.profilePet.petName,
+            petProfileImage: data.profilePet.profileImage,
+            images: data.profilePet.images
+          });
+        } else {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error con el contacto con el perfil",
+            description: `Vuelva a intentarlo.`,
+          });
+          setYesRedirect(true);
+        };
+      });
+    };
   };
   return (
     <>
       <Helmet>
-        <title>{`${APP_NAME} - ${mascotaName}`}</title>
-        <meta name="description" content={`Perfil de ${mascotaName}`} />
+        <title>{`${APP_NAME} - ${petProfile.name}`}</title>
+        <meta name="description" content={`Perfil de ${petProfile.name}`} />
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {yesDataAPI ? (
         <div className={`pet-profile-page space-footer-bottom`}>
-          <div>
-            {mascotaName}
-          </div>
+          <PerfilMascotaHeader></PerfilMascotaHeader>
           <div>
             <ButtonWhiteRectangle text="Borrar Perfil"
               width="175px"
@@ -110,14 +121,17 @@ const PerfilMascota = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    petProfile: getPetProfile(state)
+  };
 };
 
 // Acciones de REDUX
 const mapDispatchToProps = (dispatch) => {
   return {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
-    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) }
+    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
+    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PerfilMascota);

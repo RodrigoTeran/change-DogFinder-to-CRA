@@ -29,6 +29,15 @@ export const updateUserAction = (data) => {
   });
 };
 
+export const updatePetProfileAction = (data) => {
+  return ({
+    type: "UPDATE_PET_PROFILE",
+    name: data.name,
+    petProfileImage: data.petProfileImage,
+    images: data.images,
+  });
+};
+
 export const updateProfilesAction = (data) => {
   return ({
     type: "UPDATE_PROFILES",

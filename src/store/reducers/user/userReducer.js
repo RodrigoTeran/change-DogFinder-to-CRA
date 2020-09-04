@@ -27,6 +27,16 @@ const initialState = {
   }
 };
 export default function userReducer(state = initialState, action) {
+  if (action.type === "UPDATE_PET_PROFILE") {
+    return {
+      ...state,
+      petProfile: {
+        name: action.name,
+        petProfileImage: action.petProfileImage,
+        images: action.images,
+      }
+    };
+  };
   if (action.type === "UPDATE_USER") {
     return {
       ...state,

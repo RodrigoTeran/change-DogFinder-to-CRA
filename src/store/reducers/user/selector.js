@@ -1,5 +1,14 @@
 import { createSelector } from "reselect";
 
+// petProfile
+const selectorGetPetProfile = (state) => {
+  return state.userReducer.petProfile;
+};
+
+export const getPetProfile = createSelector([selectorGetPetProfile], (getPetProfile) => {
+  return getPetProfile;
+});
+
 // auth
 const selectorGetAuth = (state) => {
   return state.userReducer.auth;
