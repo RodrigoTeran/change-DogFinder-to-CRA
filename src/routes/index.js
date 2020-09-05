@@ -17,6 +17,9 @@ routes.getMapDataRoute = `${routes.apiDomain}/data/map`;
 routes.getFoundDogDataRoute = `${routes.apiDomain}/data/found`;
 routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 
+// Edit
+routes.editPetName = `${routes.apiDomain}/edit`;
+
 // Stripe
 routes.postPayment = `${routes.apiDomain}/pay/service`;
 routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;

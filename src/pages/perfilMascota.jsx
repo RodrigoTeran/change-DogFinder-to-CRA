@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 
@@ -16,12 +16,12 @@ import {
 } from "../store/reducers/layout/actions";
 
 import {
-  updatePetProfileAction
-} from "../store/reducers/user/actions";
-
-import {
   getPetProfile
 } from "../store/reducers/user/selector";
+
+import {
+  updatePetProfileAction
+} from "../store/reducers/user/actions";
 
 import {
   eraseProfile,
@@ -34,17 +34,30 @@ const PerfilMascota = ({
   updateTopMenuBarActivated,
   updateFailureMessagesComponent,
 
-  petProfile,
-  updatePetProfile
+  updatePetProfile,
+  petProfile
 }) => {
+  let location = useLocation();
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
   useEffect(() => {
     getPetProfileDataFunction();  // Get data
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
   });
+
+  const getURL = () => {
+    if (!petProfile.name || petProfile.name === "") {
+      const pathName = location.pathname;
+      const mascotaStringFeo = pathName.substr(16, pathName.length - 1);
+      const mascota = mascotaStringFeo.replace(/-/gi, " ");
+      return mascota;
+    } else {
+      return petProfile.name;
+    };
+  };
+
   const eraseProfileFunction = () => {
-    fetch(`${eraseProfile}/${petProfile.name}`, {
+    fetch(`${eraseProfile}/${getURL()}`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -62,7 +75,7 @@ const PerfilMascota = ({
   // Data Pet Profile
   const getPetProfileDataFunction = () => {
     if (!yesDataAPI) {
-      fetch(`${getpetProfileDataRoute}/${petProfile.name}`, {
+      fetch(`${getpetProfileDataRoute}/${getURL()}`, {
         method: "GET",
         credentials: "include",
         headers: {

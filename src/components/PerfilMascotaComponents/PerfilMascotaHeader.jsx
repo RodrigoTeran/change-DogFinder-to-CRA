@@ -1,21 +1,31 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import {
   updatePetProfileAction
 } from "../../store/reducers/user/actions";
 
 import {
-  getPetProfile,
-  getWebp
+  getWebp,
+  getPetProfile
 } from "../../store/reducers/user/selector";
 
 import InputTextComponent from "../InputTextComponent";
+import {
+  updateFailureMessagesComponentAction,
+  updateSuccessMessagesComponentAction
+} from "../../store/reducers/layout/actions";
+
+import {
+  editPetName
+} from "../../routes/index";
 
 const PerfilMascotaHeader = ({
   petProfile,
-  getWebp
-  // updatePetProfile
+  getWebp,
+  updateFailureMessagesComponent,
+  updateSuccessMessagesComponent
 }) => {
   const [isInputActivated, setIsInputActivated] = useState(false);
   const openInput = () => {
@@ -24,12 +34,64 @@ const PerfilMascotaHeader = ({
   const closeInput = () => {
     setIsInputActivated(false);
   };
+
+  let body = {
+    newName: ""
+  };
+  const changeInput = e => {
+    body = {
+      newName: e.target.value
+    };
+  };
+  // Data Pet Profile
+  const editPetNameFunction = () => {
+    closeInput();
+    if (body.newName === "") {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error al cambiar el nombre",
+        description: `El nombre debe contener al menos 1 caracter`,
+      });
+    } else {
+      fetch(`${editPetName}/${petProfile.name}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "token": localStorage.getItem("token")
+        },
+        body: JSON.stringify(body)
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        if (data.status) { // todo bien
+          setYesRedirect(true);
+          updateSuccessMessagesComponent({
+            state: true,
+            title: "Cambio con éxito",
+            description: `Se cambió el nombre de tu mascota con éxito`,
+          })
+        } else {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error al cambiar el nombre",
+            description: `Ese nombre ya lo tiene registrado en otra de sus mascotas`,
+          });
+        };
+      });
+    };
+  };
+  const [yesRedirect, setYesRedirect] = useState(false);
   return (
     <div className="pet-profile-page-header">
+      {yesRedirect ? (<Redirect to="/perfil"></Redirect>) : (<></>)}
       <InputTextComponent
         closeInput={closeInput}
         closeStyle={!isInputActivated}
         maxLenghtInput={20}
+        onChangeFunction={changeInput}
+        clickFunction={editPetNameFunction}
       >
         <div className="input-layout-text-title">Escribe el nuevo nombre de tu mascota</div>
         <div className="input-layout-text-subtitle">Máximo número de caracteres: 20</div>
@@ -48,15 +110,17 @@ const PerfilMascotaHeader = ({
 // Clases de REDUX
 const mapStateToProps = (state) => {
   return {
-    petProfile: getPetProfile(state),
-    getWebp: getWebp(state)
+    getWebp: getWebp(state),
+    petProfile: getPetProfile(state)
   };
 };
 
 // Acciones de REDUX
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
+    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) },
+    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
+    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PerfilMascotaHeader);

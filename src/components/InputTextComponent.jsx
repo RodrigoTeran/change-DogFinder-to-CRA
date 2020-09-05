@@ -5,7 +5,8 @@ const InputTextComponent = ({
   children,
   closeInput,
   closeStyle,
-  clickFunction
+  clickFunction,
+  onChangeFunction
 }) => {
   return (
     <div className={`input-layout-text ${closeStyle ? ("closed") : ("")}`}>
@@ -17,7 +18,7 @@ const InputTextComponent = ({
           {children}
         </div>
         <div className="input-layout-text-form-div">
-          <input type="text" maxLength={maxLenghtInput} className="input-layout-text-form-input" />
+          <input onChange={onChangeFunction} type="text" maxLength={maxLenghtInput} className="input-layout-text-form-input" />
           <button onClick={clickFunction} className="input-key-pay-button input-layout-text-form-button-send" style={{ backgroundColor: "rgba(25, 25, 25, 1)", marginTop: "0px" }}>Enviar</button>
         </div>
       </div>
