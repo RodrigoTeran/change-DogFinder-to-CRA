@@ -13,7 +13,8 @@ import {
 const CardMainSectionProfile = ({
   petName,
   profileImage,
-  updatePetProfile
+  updatePetProfile,
+  getWebp
 }) => {
   const urlNameFunction = (petNameParametro) => {
     const newString = petNameParametro.replace(/ /g, "-");
@@ -43,7 +44,9 @@ const CardMainSectionProfile = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    getWebp: getWebp(state),
+  };
 };
 
 // Acciones de REDUX
