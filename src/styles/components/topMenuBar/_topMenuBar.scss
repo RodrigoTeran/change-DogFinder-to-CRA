@@ -1,5 +1,13 @@
 .up-button-layout {
   background-color: var(--tertiary-color);
+  &.closed {
+    transition: ease-in-out 0.3s;
+    transform: translateY(-30px) scale(0);
+    opacity: 0;
+  }
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+  transition: ease-in-out 0.3s;
   border: none;
   position: fixed;
   bottom: 15px;

@@ -24,7 +24,8 @@ routes.editPetName = `${routes.apiDomain}/edit`;
 routes.postPayment = `${routes.apiDomain}/pay/service`;
 routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
 
-// Temporal
+// Pet
+routes.postNewPet = `${routes.apiDomain}/new/pet`;
 routes.eraseProfile = `${routes.apiDomain}/erase/profile`;
 
 module.exports = routes;

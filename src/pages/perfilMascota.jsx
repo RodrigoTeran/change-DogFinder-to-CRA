@@ -13,6 +13,7 @@ import ButtonWhiteRectangle from "../components/Buttons/ButtonWhiteRectangle";
 import {
   updateFailureMessagesComponentAction,
   updateTopMenuBarActivatedAction,
+  updateSuccessMessagesComponentAction
 } from "../store/reducers/layout/actions";
 
 import {
@@ -33,6 +34,7 @@ import PerfilMascotaHeader from "../components/PerfilMascotaComponents/PerfilMas
 const PerfilMascota = ({
   updateTopMenuBarActivated,
   updateFailureMessagesComponent,
+  updateSuccessMessagesComponent,
 
   updatePetProfile,
   petProfile
@@ -68,6 +70,11 @@ const PerfilMascota = ({
     }).then(res => {
       return res.json();
     }).then(data => {
+      updateSuccessMessagesComponent({
+        state: true,
+        title: "Se borro el perfil",
+        description: `Se borro el perfil con éxito`,
+      })
       setYesRedirect(true);
     });
   };
@@ -144,7 +151,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
     updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
-    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
+    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) },
+    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PerfilMascota);

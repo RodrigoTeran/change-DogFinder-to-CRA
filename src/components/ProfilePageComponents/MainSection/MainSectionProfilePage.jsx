@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 // Components
 import CardMainSectionProfile from "./Cards/CardMainSectionProfile";
+import CardMainSectionNewPet from "./Cards/CardMainSectionNewPet";
 
 // Selectores
 import {
@@ -11,23 +12,36 @@ import {
 } from "../../../store/reducers/user/selector";
 
 const MainSectionProfilePage = ({
-  profiles
+  profiles,
+  isPremium
 }) => {
   return (
     <div className="main-section-profile-page">
       <div className="main-section-profile-page-title">
         PERFILES
       </div>
-      {profiles.length > 0 ? (
-        <div className="row main-section-profile-page-cards-section">
-          {profiles.map(profile => {
-            return (
-              <CardMainSectionProfile petName={profile.petName} key={profile.profileId} profileImage={profile.profileImage}></CardMainSectionProfile>
-            )
-          })}
-        </div>
+      {isPremium ? (
+        <>
+          <div style={{ marginBottom: "50px" }}>
+            <CardMainSectionNewPet></CardMainSectionNewPet>
+          </div>
+          <div className="row main-section-profile-page-cards-section">
+            {profiles.length > 0 ? (
+              <>
+                {profiles.map(profile => {
+                  return (
+                    <CardMainSectionProfile petName={profile.petName} key={profile.profileId} profileImage={profile.profileImage}></CardMainSectionProfile>
+                  )
+                })
+                }
+              </>
+            ) : (
+                <></>
+              )}
+          </div>
+        </>
       ) : (
-          <div>Actualmente no tienes ningún perfil de mascota registrado. Pulsa el botón de adquirir perfil.</div>
+          <div>Actualmente no tienes una cuenta premium. Pulsa el botón de ser premium.</div>
         )}
     </div>
   );

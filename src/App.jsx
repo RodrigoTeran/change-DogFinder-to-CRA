@@ -2,7 +2,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
 // Modulos
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { isWebpSupported } from "react-image-webp/dist/utils";
 
@@ -64,19 +64,26 @@ const App = ({
   updateLines,
   updateUser,
   updateFirstResponseAPI,
-
   updateKeyActiveUser
 }) => {
   useEffect(() => {
     getUserData();
     updateWebp(isWebpSupported());
     window.addEventListener("resize", resizeTopLayoutBodyContainer);
+    window.addEventListener("scroll", scrollGoUpArrow);
     return () => {
       window.removeEventListener("resize", resizeTopLayoutBodyContainer);
+      window.removeEventListener("scroll", scrollGoUpArrow);
     };
   });
 
   // -----------------------Funciones-----------------------
+  const [arrowAppear, setArrowAppear] = useState(false);
+  const scrollGoUpArrow = () => {
+    if (document.scrollingElement.scrollTop > window.innerHeight - 100) {
+      setArrowAppear(true);
+    } else { setArrowAppear(false); }
+  };
   const getUserData = () => {
     fetch(getUser, {
       method: "GET",
@@ -141,44 +148,22 @@ const App = ({
         <LogInCard logInActivated={logInActivated} logInFirstAnimation={logInFirstAnimation}></LogInCard>
         <div>
           <Switch>
-            <Route path="/perfil/mascota">
-              <PerfilMascota></PerfilMascota>
-            </Route>
-            <Route path="/perfil/">
-              <Profile></Profile>
-            </Route>
-            <Route path="/adopcion">
-              <Adpotion></Adpotion>
-            </Route>
-            <Route path="/comprar">
-              <Buy></Buy>
-            </Route>
-            <Route path="/contactanos">
-              <ContactUs></ContactUs>
-            </Route>
-            <Route path="/mapa">
-              <Map></Map>
-            </Route>
-            <Route path="/politicas">
-              <Politics></Politics>
-            </Route>
-            <Route path="/preguntas">
-              <Questions></Questions>
-            </Route>
-            <Route path="/terminos">
-              <Terms></Terms>
-            </Route>
-            <Route path="/registro/mascota/encontrada">
-              <DogFounded></DogFounded>
-            </Route>
-            <Route exact path="/">
-              <Index></Index>
-            </Route>
+            <Route path="/perfil/mascota"><PerfilMascota></PerfilMascota></Route>
+            <Route path="/perfil/"><Profile></Profile></Route>
+            <Route path="/adopcion"><Adpotion></Adpotion></Route>
+            <Route path="/comprar"><Buy></Buy></Route>
+            <Route path="/contactanos"><ContactUs></ContactUs></Route>
+            <Route path="/mapa"><Map></Map></Route>
+            <Route path="/politicas"><Politics></Politics></Route>
+            <Route path="/preguntas"><Questions></Questions></Route>
+            <Route path="/terminos"><Terms></Terms></Route>
+            <Route path="/registro/mascota/encontrada"><DogFounded></DogFounded></Route>
+            <Route exact path="/"><Index></Index></Route>
           </Switch>
         </div>
         <FailureMessagesComponent></FailureMessagesComponent>
         <SuccessMessagesComponent></SuccessMessagesComponent>
-        <button className="up-button-layout" onClick={goUp} title="Principio">
+        <button className={`up-button-layout ${arrowAppear ? ("") : ("closed")}`} onClick={goUp} title="Principio">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M177 255.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 351.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 425.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1zm-34-192L7 199.7c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l96.4-96.4 96.4 96.4c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9l-136-136c-9.2-9.4-24.4-9.4-33.8 0z" /></svg>
         </button>
       </div>

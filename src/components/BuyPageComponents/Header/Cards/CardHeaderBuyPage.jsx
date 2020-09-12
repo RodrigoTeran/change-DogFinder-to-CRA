@@ -23,7 +23,7 @@ const CardHeaderBuyPage = () => {
         </div>
         <div className="purchase-page-header-card-premium col-lg-4 col-md-6">
           <div className="purchase-page-header-card-premium-h1">
-            Premium ($100 un perfil):
+            Premium $500:
           </div>
           <div className="purchase-page-header-card-premium-element">
             búsqueda de tu mascota con inteligencia artificial
@@ -47,8 +47,8 @@ const CardHeaderBuyPage = () => {
             contactos con organizaciones responsables (tu mascota se reporta perdida en caso de extraviarse)
           </div>
           <div className="purchase-page-header-card-premium-element">
-          poder registrar un perro que encontró (se podrá poner en contacto con su dueño con el uso de la app de mensajes)
-          </div>          
+            poder registrar un perro que encontró (se podrá poner en contacto con su dueño con el uso de la app de mensajes)
+          </div>
         </div>
       </div>
     </div>

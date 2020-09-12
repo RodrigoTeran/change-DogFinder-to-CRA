@@ -70,6 +70,9 @@ const Profile = ({
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
+  
+  const [isPremium, setIsPremium] = useState(false);
+  
   const getProfileData = () => {
     if (!yesDataAPI) {
       fetch(getProfileDataRoute, {
@@ -87,6 +90,7 @@ const Profile = ({
           setYesRedirect(true);
         } else {
           updateProfiles(data.profiles);
+          setIsPremium(data.premium);
           setYesDataAPI(true);
         };
       });
@@ -101,8 +105,8 @@ const Profile = ({
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {yesDataAPI ? (
         <div className={`profile-page space-footer-bottom`}>
-          <HeaderProfilePage username={username} email={email} imgId={imgId}></HeaderProfilePage>
-          <MainSectionProfilePage></MainSectionProfilePage>
+          <HeaderProfilePage isPremium={isPremium} username={username} email={email} imgId={imgId}></HeaderProfilePage>
+          <MainSectionProfilePage isPremium={isPremium}></MainSectionProfilePage>
         </div>
       ) : (
           <div className="loader-pages">

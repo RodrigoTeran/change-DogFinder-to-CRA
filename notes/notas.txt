@@ -1,2 +1,7 @@
 Issues:
+  - Poner una coronita cuando dice en el header perfil button "Ya cuentas con premium" como svg
+  - Estilizar boton "Nuevo Perfil" en main Section Perfil
+  - Pasar a premium la pagina de compra
+  - Que cada accion de fetch muestre un loader, (tooodas)
   - Poder cambiar la imagen de portada de un perfil
+
