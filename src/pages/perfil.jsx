@@ -6,7 +6,7 @@ import React from "react";
 
 import { Redirect } from "react-router-dom";
 // Selectores
-import { getUsername, getImgId, getEmail } from "../store/reducers/user/selector";
+import { getUsername, getImgId, getEmail, getPremium } from "../store/reducers/user/selector";
 
 // Configuraciones
 import { APP_NAME } from "../utils/config";
@@ -37,6 +37,7 @@ const Profile = ({
   updateTopMenuBarActivated,
   imgId,
   email,
+  premium,
   updateProfiles,
   updateFailureMessagesComponent
 }) => {
@@ -71,8 +72,6 @@ const Profile = ({
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
   
-  const [isPremium, setIsPremium] = useState(false);
-  
   const getProfileData = () => {
     if (!yesDataAPI) {
       fetch(getProfileDataRoute, {
@@ -90,7 +89,6 @@ const Profile = ({
           setYesRedirect(true);
         } else {
           updateProfiles(data.profiles);
-          setIsPremium(data.premium);
           setYesDataAPI(true);
         };
       });
@@ -105,8 +103,8 @@ const Profile = ({
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {yesDataAPI ? (
         <div className={`profile-page space-footer-bottom`}>
-          <HeaderProfilePage isPremium={isPremium} username={username} email={email} imgId={imgId}></HeaderProfilePage>
-          <MainSectionProfilePage isPremium={isPremium}></MainSectionProfilePage>
+          <HeaderProfilePage isPremium={premium} username={username} email={email} imgId={imgId}></HeaderProfilePage>
+          <MainSectionProfilePage isPremium={premium}></MainSectionProfilePage>
         </div>
       ) : (
           <div className="loader-pages">
@@ -123,7 +121,8 @@ const mapStateToProps = (state) => {
   return {
     username: getUsername(state),
     imgId: getImgId(state),
-    email: getEmail(state)
+    email: getEmail(state),
+    premium: getPremium(state)
   };
 };
 

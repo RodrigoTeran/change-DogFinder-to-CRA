@@ -4,6 +4,7 @@ const initialState = {
   username: null,
   imgId: null,
   email: null,
+  premium: false,
 
   // Saber si ya llego response de /user
   firstResponseUserAPI: false,
@@ -44,6 +45,7 @@ export default function userReducer(state = initialState, action) {
       imgId: action.imgId,
       auth: action.auth,
       email: action.email,
+      premium: action.premium
     };
   };
   if (action.type === "UPDATE_KEY_ACTIVE_USER") {

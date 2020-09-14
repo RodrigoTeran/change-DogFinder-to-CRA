@@ -1,7 +1,18 @@
 Issues:
-  - Poner una coronita cuando dice en el header perfil button "Ya cuentas con premium" como svg
-  - Estilizar boton "Nuevo Perfil" en main Section Perfil
-  - Pasar a premium la pagina de compra
+  --- Poner una coronita cuando dice en el header perfil button "Ya cuentas con premium" como svg
+  --- Estilizar boton "Nuevo Perfil" en main Section Perfil
+  --- Pasar a premium la pagina de compra
+    --> La info de premium no premium va a ser global en redux, por lo tanto desde el /user se agarra
   - Que cada accion de fetch muestre un loader, (tooodas)
   - Poder cambiar la imagen de portada de un perfil
+    --> Para eso se necesita conectar con Cloudinary
+  - Crear el Video Recorder component para mandar el video por medio de multer a la API
+  - Crear el forms para mandar mascota de mi perfil:
+    --> esa info se guarda en la base de datos,
+    entonces la API checa con el forms los posibles matches, de acuerdo a la zona, raza, cuando se perdio, etc...
+    y manda esos matches a que se procesen en el API de python... luego se manda el response final
+  - Crear pagina para mandar perro perdido que no es medio
+    --> Se crea exactamente igual que en el perfil propio:
+      se manda la info a la API y se espera los responses
+    
 

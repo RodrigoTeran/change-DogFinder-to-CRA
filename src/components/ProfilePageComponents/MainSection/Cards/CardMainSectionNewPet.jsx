@@ -68,8 +68,8 @@ const CardMainSectionNewPet = ({
   return (
     <>
       {yesRedirect ? (<Redirect to={`/perfil/mascota/${petname}`}></Redirect>) : (<></>)}
-      <div className="card-main-section-profile" onClick={getProfileData} style={{ width: "200px", marginLeft: "calc(50% - 100px)" }}>
-        <div className="card-main-section-profile-content" style={{ height: "50px" }}>
+      <div className="card-main-section-profile" onClick={getProfileData} style={{ width: "300px", marginLeft: "calc(50% - 150px)" }}>
+        <div className="card-main-section-profile-content-2" style={{ height: "50px", backgroundColor: "var(--tertiary-color)" }} title="Nuevo Perfil">
           Nuevo Perfil
         </div>
       </div>

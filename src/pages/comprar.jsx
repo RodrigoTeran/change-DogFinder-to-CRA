@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { APP_NAME } from "../utils/config";
 
 // Selectores
-import { getUsername } from "../store/reducers/user/selector";
+import { getUsername, getPremium } from "../store/reducers/user/selector";
 
 // Acciones
 import {
@@ -23,6 +23,7 @@ import MainSectionPayment from "../components/BuyPageComponents/PaymentComponent
 const Purchase = ({
   username,
   updateTopMenuBarActivated,
+  premium
 }) => {
   // -----------------------Hooks-----------------------
   const [firstScroll, setFirstScroll] = useState(false);
@@ -42,7 +43,7 @@ const Purchase = ({
       </Helmet>
       <div className={`purchase-page text-center space-footer-bottom`}>
         <HeaderBuyPage></HeaderBuyPage>
-        <MainSectionPayment></MainSectionPayment>
+        <MainSectionPayment isPremium={premium}></MainSectionPayment>
       </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>
     </>
@@ -53,6 +54,7 @@ const Purchase = ({
 const mapStateToProps = (state) => {
   return {
     username: getUsername(state),
+    premium: getPremium(state)
   };
 };
 

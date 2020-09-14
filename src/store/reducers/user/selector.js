@@ -18,6 +18,15 @@ export const getAuth = createSelector([selectorGetAuth], (getAuth) => {
   return getAuth;
 });
 
+// premium
+const selectorGetPremium = (state) => {
+  return state.userReducer.premium;
+};
+
+export const getPremium = createSelector([selectorGetPremium], (getPremium) => {
+  return getPremium;
+});
+
 // webp
 const selectorGetWebp = (state) => {
   return state.userReducer.webp;

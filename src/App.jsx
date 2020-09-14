@@ -103,6 +103,7 @@ const App = ({
           email: data.email,
           imgId: data.profileImg,
           auth: true,
+          premium: data.premium
         });
         updateKeyActiveUser(data.compraActiva);
       } else {
@@ -111,6 +112,7 @@ const App = ({
           imgId: null,
           email: null,
           auth: false,
+          premium: false
         });
         updateKeyActiveUser(undefined);
       };

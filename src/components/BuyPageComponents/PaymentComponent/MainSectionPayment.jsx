@@ -34,7 +34,8 @@ const MainSectionPayment = ({
   updateFailureMessagesComponent,
 
   updateKeyActiveUser,
-  keyActiveUser
+  keyActiveUser,
+  isPremium
 }) => {
   const product = {
     name: `Perfil de ${APP_NAME}`,
@@ -140,42 +141,57 @@ const MainSectionPayment = ({
       <div>
         {auth ? (
           <>
-            <StripeCheckout
-              stripeKey={STRIPE_KEY}
-              token={makePayment}
-              name={`Compra de un perfil`}
-              amount={product.price * 100}
-              currency="MXN"
-            >
-              <ButtonWhiteRectangle text={`Comprar un perfil por $${product.price}`}
-                width="275px"
-                height="50px"
-                mt="mt-0"
-                noClick={true}
-              ></ButtonWhiteRectangle>
-            </StripeCheckout>
-            <div>
-              {keyActiveUser ? (
+            {isPremium ? (
+              <>
+                <div className="purchase-page-payment-noauth">
+                  Tu cuenta ya es premium
+                </div>
+                <ButtonWhiteRectangle text="Crear un perfil de mascota"
+                  width="275px"
+                  height="50px"
+                  clickFunction="/perfil"
+                ></ButtonWhiteRectangle>
+              </>
+            ) : (
                 <>
-                  <div className="input-key-pay">
-                    <div className="input-key-pay-h1">
-                      Introduzca la clave que mandamos a {keyActiveUser}
-                    </div>
-                    <div>
-                      <input onChange={changeInputKey} maxLength="10" className="input-key-pay-input" type="text" />
-                      <button onClick={sendKeyPaymentAPI} className="input-key-pay-button">Enviar</button>
-                    </div>
+                  <StripeCheckout
+                    stripeKey={STRIPE_KEY}
+                    token={makePayment}
+                    name={`Compra plan premium`}
+                    amount={product.price * 100}
+                    currency="MXN"
+                  >
+                    <ButtonWhiteRectangle text={`Ser premium por $${product.price}`}
+                      width="275px"
+                      height="50px"
+                      mt="mt-0"
+                      noClick={true}
+                    ></ButtonWhiteRectangle>
+                  </StripeCheckout>
+                  <div>
+                    {keyActiveUser ? (
+                      <>
+                        <div className="input-key-pay">
+                          <div className="input-key-pay-h1">
+                            Introduzca la clave que mandamos a {keyActiveUser}
+                          </div>
+                          <div>
+                            <input onChange={changeInputKey} maxLength="10" className="input-key-pay-input" type="text" />
+                            <button onClick={sendKeyPaymentAPI} className="input-key-pay-button">Enviar</button>
+                          </div>
+                        </div>
+                        {isLoading ? (
+                          <div className="loader-block" style={{
+                            paddingTop: "80px"
+                          }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" /></svg>
+                          </div>
+                        ) : (<></>)}
+                      </>
+                    ) : (<></>)}
                   </div>
-                  {isLoading ? (
-                    <div className="loader-block" style={{
-                      paddingTop: "80px"
-                    }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" /></svg>
-                    </div>
-                  ) : (<></>)}
                 </>
-              ) : (<></>)}
-            </div>
+              )}
           </>
         ) : (
             <>
