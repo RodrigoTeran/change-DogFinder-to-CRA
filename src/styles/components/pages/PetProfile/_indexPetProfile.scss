@@ -55,3 +55,22 @@
     }
   }
 }
+.img-profile-thumbnail {
+  width: 100%;
+  height: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+.prev-image-pet-profile {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Roboto Condensed", sans-serif;
+}

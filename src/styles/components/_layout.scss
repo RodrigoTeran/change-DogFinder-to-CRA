@@ -242,7 +242,7 @@
     opacity: 0;
     visibility: hidden;
   }
-  &-subtitle{
+  &-subtitle {
     font-size: 1.2rem;
     font-family: sans-serif;
     margin-bottom: 10px;
@@ -306,5 +306,43 @@
 @media screen and (max-width: 590px) {
   .input-layout-text-form-div {
     flex-direction: column;
+  }
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.input-special {
+  background-color: var(--tertiary-color);
+  padding: 10px;
+  font-size: 1.25em;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  &-div {
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transition: ease-in-out 0.3s;
+      transform: translateY(-5px);
+    }
   }
 }
