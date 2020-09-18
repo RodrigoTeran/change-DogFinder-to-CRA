@@ -61,7 +61,7 @@ const PerfilMascota = ({
 
   const eraseProfileFunction = () => {
     fetch(`${eraseProfile}/${getURL()}`, {
-      method: "GET",
+      method: "DELETE",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
@@ -122,7 +122,7 @@ const PerfilMascota = ({
       {yesDataAPI ? (
         <div className={`pet-profile-page space-footer-bottom`}>
           <PerfilMascotaHeader></PerfilMascotaHeader>
-          <ChangeImageProfile></ChangeImageProfile>
+          <ChangeImageProfile getURL={getURL}></ChangeImageProfile>
           <div>
             <ButtonWhiteRectangle text="Borrar Perfil"
               width="175px"
