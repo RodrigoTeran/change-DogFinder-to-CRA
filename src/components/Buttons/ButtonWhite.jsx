@@ -18,10 +18,17 @@ const ButtonWhite = ({
       height: height
     }}>
       <div className="buttonWhiteStyles-container">
-        <div className="buttonWhiteStyles-container-svg">
-          {children}
-        </div>
-        <div className="buttonWhiteStyles-container-span">
+        {children ? (
+          <div className="buttonWhiteStyles-container-svg">
+            {children}
+          </div>
+        ) : (
+            <></>
+          )}
+        <div className="buttonWhiteStyles-container-span"
+          style={{
+            marginLeft: children ? ("10px") : ("0px")
+          }}>
           <span>{text}</span>
         </div>
       </div>

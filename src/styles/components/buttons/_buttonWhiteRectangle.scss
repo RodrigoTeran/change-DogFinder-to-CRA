@@ -10,6 +10,9 @@
   &.redColor {
     background-color: rgb(240, 80, 51);
   }
+  &.roseColor {
+    background-color: var(--tertiary-color);
+  }
   &.greenColor {
     background-color: rgb(61, 184, 71);
   }

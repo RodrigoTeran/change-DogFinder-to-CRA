@@ -1,0 +1,23 @@
+import React from "react";
+import { connect } from "react-redux";
+
+const Component = ({
+
+}) => {
+
+  return (
+    <>
+    </>
+  );
+};
+
+// Clases de REDUX
+const mapStateToProps = (state) => {
+  return {};
+};
+
+// Acciones de REDUX
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

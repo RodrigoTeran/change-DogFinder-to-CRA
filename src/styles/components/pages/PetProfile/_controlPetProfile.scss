@@ -1,0 +1,21 @@
+.control-pet-profile {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &-petislost {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    &-h1{    
+      font-size: 1.2rem;
+      text-align: center;
+      font-weight: bold;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

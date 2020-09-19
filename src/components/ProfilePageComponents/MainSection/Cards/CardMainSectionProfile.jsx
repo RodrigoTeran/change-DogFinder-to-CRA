@@ -52,7 +52,9 @@ const CardMainSectionProfile = ({
           </div>
           <div style={{
             marginTop: "20px",
-            marginBottom: "20px"
+            marginBottom: "20px",
+            paddingLeft: "10px",
+            paddingRight: "10px"
           }}>{petName}</div>
         </div>
       </Link>

@@ -1,6 +1,4 @@
 Issues:
-  - Poder cambiar la imagen de portada de un perfil
-    --> Para eso se necesita conectar con Cloudinary
   - Crear el Video Recorder component para mandar el video por medio de multer a la API
   - Crear el forms para mandar mascota de mi perfil:
     --> esa info se guarda en la base de datos,

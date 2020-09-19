@@ -44,6 +44,7 @@
   }
   &-content {
     background-color: rgba(30, 30, 30, 1);
+    word-break: break-all;
     border: rgba(35, 35, 35, 1) 2px solid;
     &::before,
     &::after {
