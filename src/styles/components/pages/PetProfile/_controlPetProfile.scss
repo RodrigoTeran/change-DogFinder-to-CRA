@@ -2,20 +2,69 @@
   margin-top: 40px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
   &-petislost {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    &-h1{    
+    width: 100%;
+    &.column-petislost {
+      flex-direction: column;
+    }
+    &.row-petislost {
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-buttons {
+      display: flex;
+      padding-top: 0px;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      &.column-buttons {
+        flex-direction: column;
+        @media screen and (max-width: 1120px){
+          width: 75%;
+          margin-left: 12.5%;
+        }
+        @media screen and (max-width: 500px){
+          width: 100%;
+          margin-left: 0%;
+        }
+      }
+      &.row-buttons {
+        width: 50%;
+      }
+    }
+    &-label {
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 20px;
+      color: rgba(180, 180, 180, 1);
+      font-weight: bold;
+      font-style: italic;
+      &.column-label {
+        text-align: center;
+      }
+      &.row-label {
+        text-align: left;
+      }
+    }
+
+    &-h1 {
       font-size: 1.2rem;
+      height: 100%;
       text-align: center;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding-left: 10px;
       padding-right: 10px;
-      margin-bottom: 10px;
+      &.column-h1 {
+        margin-bottom: 20px;
+        
+      }
     }
   }
 }

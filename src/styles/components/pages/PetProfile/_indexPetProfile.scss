@@ -6,9 +6,35 @@
   margin-left: 5%;
   color: #fff;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  &-delete {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    @media screen and (max-width: 1120px) {
+      & {
+        justify-content: center;
+      }
+    }
+  }
+  &.column-pet-profile-page {
+    flex-direction: column;
+  }
+  &.row-pet-profile-page {
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  &-1 {
+    width: 30%;
+  }
+  &-2 {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    align-items: flex-start;
+  }
   &-header {
     width: 100%;
     display: flex;
@@ -17,7 +43,6 @@
     flex-direction: column;
     &-profile-image {
       margin-top: 30px;
-      width: 250px;
       border-radius: 5px;
     }
     &-h1 {
@@ -35,6 +60,10 @@
           }
         }
       }
+      span {
+        margin-left: 15px;
+        color: var(--tertiary-color-light);
+      }
       display: flex;
       justify-content: center;
       font-size: 1.5rem;
@@ -46,7 +75,7 @@
     }
   }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 1120px) {
   .pet-profile-page-header-h1 {
     flex-direction: column;
     &-svg {
@@ -58,8 +87,8 @@
   }
 }
 .img-profile-thumbnail {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

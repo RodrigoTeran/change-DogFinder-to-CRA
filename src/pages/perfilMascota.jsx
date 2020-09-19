@@ -8,9 +8,9 @@ import { APP_NAME } from "../utils/config";
 
 // Componentes
 import FooterLayout from "../components/FooterLayout";
-import ButtonWhiteRectangle from "../components/Buttons/ButtonWhiteRectangle";
 import ChangeImageProfile from "../components/PerfilMascotaComponents/ChangeImageProfile";
 import ControlMainPetProfile from "../components/PerfilMascotaComponents/ControlMainPetProfile";
+import ChangeNameProfile from "../components/PerfilMascotaComponents/ChangeNameProfile";
 
 import {
   updateFailureMessagesComponentAction,
@@ -28,7 +28,6 @@ import {
 } from "../store/reducers/user/actions";
 
 import {
-  eraseProfile,
   getpetProfileDataRoute
 } from "../routes/index";
 
@@ -44,9 +43,22 @@ const PerfilMascota = ({
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
   useEffect(() => {
+    handleResize();
     getPetProfileDataFunction();  // Get data
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   });
+  const [isMobile, setIsMobile] = useState(false);
+  const handleResize = () => {
+    if (window.innerWidth < 1121) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    };
+  };
 
   const getURL = () => {
     if (!petProfile.name || petProfile.name === "") {
@@ -99,13 +111,32 @@ const PerfilMascota = ({
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {yesDataAPI ? (
-        <div className={`pet-profile-page space-footer-bottom`}>
-          <PerfilMascotaHeader></PerfilMascotaHeader>
-          <ChangeImageProfile getURL={getURL}></ChangeImageProfile>
-          <ControlMainPetProfile></ControlMainPetProfile>
-          <DeletePerfilMascota setYesRedirectProp={() => {
-            setYesRedirect(true);
-          }} getURL={getURL}></DeletePerfilMascota>
+        <div className={`pet-profile-page space-footer-bottom ${isMobile ? ("column-pet-profile-page") : ("row-pet-profile-page")}`}>
+          {isMobile ? (
+            <>
+              <ChangeNameProfile></ChangeNameProfile>
+              <PerfilMascotaHeader></PerfilMascotaHeader>
+              <ChangeImageProfile getURL={getURL}></ChangeImageProfile>
+              <ControlMainPetProfile isMobile={isMobile}></ControlMainPetProfile>
+              <DeletePerfilMascota setYesRedirectProp={() => {
+                setYesRedirect(true);
+              }} getURL={getURL}></DeletePerfilMascota>
+            </>
+          ) : (
+              <>
+                <div className={`pet-profile-page-1`}>
+                  <PerfilMascotaHeader></PerfilMascotaHeader>
+                  <ChangeImageProfile getURL={getURL}></ChangeImageProfile>
+                </div>
+                <div className={`pet-profile-page-2`}>
+                  <ChangeNameProfile></ChangeNameProfile>
+                  <ControlMainPetProfile></ControlMainPetProfile>
+                  <DeletePerfilMascota setYesRedirectProp={() => {
+                    setYesRedirect(true);
+                  }} getURL={getURL}></DeletePerfilMascota>
+                </div>
+              </>
+            )}
         </div>
       ) : (
           <div className="loader-pages">
