@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import {
-  updatePetProfileAction
-} from "../../store/reducers/user/actions";
-
-import {
   getPetProfile
 } from "../../store/reducers/user/selector";
 
@@ -113,7 +109,6 @@ const mapStateToProps = (state) => {
 // Acciones de REDUX
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) },
     updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
     updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) }
   };

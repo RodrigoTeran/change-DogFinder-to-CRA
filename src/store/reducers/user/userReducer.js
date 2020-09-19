@@ -24,7 +24,8 @@ const initialState = {
   petProfile: {
     name: undefined,
     petProfileImage: undefined,
-    images: []
+    images: [],
+    isLost: false
   }
 };
 export default function userReducer(state = initialState, action) {
@@ -35,6 +36,7 @@ export default function userReducer(state = initialState, action) {
         name: action.name,
         petProfileImage: action.petProfileImage,
         images: action.images,
+        isLost: action.isLost
       }
     };
   };

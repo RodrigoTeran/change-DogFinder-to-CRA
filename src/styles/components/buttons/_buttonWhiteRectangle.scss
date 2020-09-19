@@ -10,11 +10,14 @@
   &.redColor {
     background-color: rgb(240, 80, 51);
   }
-  &.roseColor {
-    background-color: var(--tertiary-color);
+  &.sadColor {
+    background-color: #10838b;
   }
   &.greenColor {
     background-color: rgb(61, 184, 71);
+    &-2{
+      background-color: rgb(0, 119, 64)
+    }
   }
 
   &-container {

@@ -50,19 +50,25 @@
         fill: var(--tertiary-color-light);
         width: 20px;
         height: 20px;
-        margin-left: 20px;
+        margin-left: 10px;
         cursor: pointer;
         transition: ease-in-out 0.3s;
         @media (hover: hover) and (pointer: fine) {
           &:hover {
             transition: ease-in-out 0.3s;
+            fill: #fff;
             transform: scale(1.2);
           }
         }
       }
       span {
-        margin-left: 15px;
         color: var(--tertiary-color-light);
+        margin-left: 15px;
+        @media screen and (max-width: 1120px) {
+          & {
+            margin-left: 0px;
+          }
+        }
       }
       display: flex;
       justify-content: center;

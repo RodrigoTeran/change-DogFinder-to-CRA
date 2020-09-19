@@ -11,7 +11,8 @@ import {
 const CardMainSectionProfile = ({
   petName,
   profileImage,
-  updatePetProfile
+  updatePetProfile,
+  isLost
 }) => {
   const urlNameFunction = (petNameParametro) => {
     const newString = petNameParametro.replace(/ /g, "-");
@@ -21,7 +22,8 @@ const CardMainSectionProfile = ({
     updatePetProfile({
       name: petName,
       petProfileImage: profileImage,
-      images: []
+      images: [],
+      isLost: isLost
     });
   };
   useEffect(() => {

@@ -30,7 +30,12 @@ const MainSectionProfilePage = ({
               <>
                 {profiles.map(profile => {
                   return (
-                    <CardMainSectionProfile petName={profile.petName} key={profile.profileId} profileImage={profile.profileImage}></CardMainSectionProfile>
+                    <CardMainSectionProfile
+                      petName={profile.petName}
+                      key={profile.profileId}
+                      profileImage={profile.profileImage}
+                      isLost={profile.isLost}
+                    ></CardMainSectionProfile>
                   )
                 })
                 }

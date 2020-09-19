@@ -63,7 +63,8 @@ const CardMainSectionNewPet = ({
     updatePetProfile({
       name: petname,
       petProfileImage: `${defaultImage}`,
-      images: []
+      images: [],
+      isLost: false
     });
   };
   return (

@@ -36,6 +36,7 @@ export const updatePetProfileAction = (data) => {
     name: data.name,
     petProfileImage: data.petProfileImage,
     images: data.images,
+    isLost: data.isLost
   });
 };
 

@@ -20,13 +20,14 @@
       align-items: center;
       justify-content: center;
       height: 100%;
+      margin-right: calc((30% - 175px) / 2);
       &.column-buttons {
         flex-direction: column;
-        @media screen and (max-width: 1120px){
+        @media screen and (max-width: 1120px) {
           width: 75%;
           margin-left: 12.5%;
         }
-        @media screen and (max-width: 500px){
+        @media screen and (max-width: 500px) {
           width: 100%;
           margin-left: 0%;
         }
@@ -37,14 +38,14 @@
     }
     &-label {
       width: 100%;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 10px;
+      padding-right: 10px;
       padding-top: 20px;
       color: rgba(180, 180, 180, 1);
       font-weight: bold;
       font-style: italic;
       &.column-label {
-        text-align: center;
+        text-align: justify;
       }
       &.row-label {
         text-align: left;
@@ -63,7 +64,6 @@
       padding-right: 10px;
       &.column-h1 {
         margin-bottom: 20px;
-        
       }
     }
   }

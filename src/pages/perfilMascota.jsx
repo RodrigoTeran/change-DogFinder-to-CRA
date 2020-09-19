@@ -90,7 +90,8 @@ const PerfilMascota = ({
           updatePetProfile({
             name: data.profilePet.petName,
             petProfileImage: data.profilePet.profileImage,
-            images: data.profilePet.images
+            images: data.profilePet.images,
+            isLost: data.profilePet.isLost
           });
         } else {
           updateFailureMessagesComponent({

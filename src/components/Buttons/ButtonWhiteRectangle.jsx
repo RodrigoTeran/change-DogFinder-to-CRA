@@ -10,17 +10,18 @@ const ButtonWhiteRectangle = ({
   height,
   children,
   text,
-  rose,
   fontSize,
   clickFunctionAnotherOne,
   noClick,
   red,
-  green
+  green,
+  greenDif,
+  sad
 }) => {
   return (
     <>
       {noClick ? (
-        <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${rose}`} style={{
+        <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad}`} style={{
           fontSize: fontSize || "1.2rem",
           width: width,
           height: height
@@ -47,7 +48,7 @@ const ButtonWhiteRectangle = ({
       ) : (
           <>
             {clickFunctionAnotherOne ? (
-              <button onClick={clickFunctionAnotherOne} className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${rose}`} style={{
+              <button onClick={clickFunctionAnotherOne} className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad}`} style={{
                 fontSize: fontSize || "1.2rem",
                 width: width,
                 height: height
@@ -73,7 +74,7 @@ const ButtonWhiteRectangle = ({
               </button>
             ) : (
                 <Link to={`${clickFunction}`}>
-                  <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${rose}`} style={{
+                  <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad}`} style={{
                     fontSize: fontSize || "1.2rem",
                     width: width,
                     height: height
