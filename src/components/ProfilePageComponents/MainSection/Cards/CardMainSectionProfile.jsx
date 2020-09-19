@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getWebp } from "../../../../store/reducers/user/selector";
-
 // Acciones
 import {
   updatePetProfileAction
@@ -13,8 +11,7 @@ import {
 const CardMainSectionProfile = ({
   petName,
   profileImage,
-  updatePetProfile,
-  getWebp
+  updatePetProfile
 }) => {
   const urlNameFunction = (petNameParametro) => {
     const newString = petNameParametro.replace(/ /g, "-");
@@ -47,7 +44,7 @@ const CardMainSectionProfile = ({
       <Link to={`/perfil/mascota/${urlNameFunction(petName)}`}>
         <div className="card-main-section-profile-content">
           <div style={{
-            backgroundImage: "url(" + `/Images/${profileImage}.${getWebp ? ("webp") : ("png")}` + ")",
+            backgroundImage: "url(" + profileImage + ")",
             width: "90%",
             height: widthImg
           }}
@@ -65,9 +62,7 @@ const CardMainSectionProfile = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {
-    getWebp: getWebp(state),
-  };
+  return {};
 };
 
 // Acciones de REDUX

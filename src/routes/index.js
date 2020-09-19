@@ -29,4 +29,7 @@ routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
 routes.postNewPet = `${routes.apiDomain}/new/pet`;
 routes.eraseProfile = `${routes.apiDomain}/erase/profile`;
 
+// Pet default image
+routes.defaultImage = "https://res.cloudinary.com/ds2hi8ucm/image/upload/v1600480132/defaultProfiles_jbuugj.png";
+
 module.exports = routes;

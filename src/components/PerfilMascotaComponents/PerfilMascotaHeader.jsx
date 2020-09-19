@@ -7,7 +7,6 @@ import {
 } from "../../store/reducers/user/actions";
 
 import {
-  getWebp,
   getPetProfile
 } from "../../store/reducers/user/selector";
 
@@ -23,7 +22,6 @@ import {
 
 const PerfilMascotaHeader = ({
   petProfile,
-  getWebp,
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent
 }) => {
@@ -103,7 +101,7 @@ const PerfilMascotaHeader = ({
         </div>
       </div>
       <div style={{
-        backgroundImage: "url(" + `/Images/${petProfile.petProfileImage}.${getWebp ? ("webp") : ("png")}` + ")",
+        backgroundImage: "url(" + petProfile.petProfileImage + ")",
         width: "250px",
         height: "250px",
       }}
@@ -116,7 +114,6 @@ const PerfilMascotaHeader = ({
 // Clases de REDUX
 const mapStateToProps = (state) => {
   return {
-    getWebp: getWebp(state),
     petProfile: getPetProfile(state)
   };
 };

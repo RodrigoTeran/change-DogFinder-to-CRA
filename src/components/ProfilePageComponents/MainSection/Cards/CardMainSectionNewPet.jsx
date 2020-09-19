@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import {
-  postNewPet
+  postNewPet,
+  defaultImage
 } from "../../../../routes/index";
 
 // Acciones
@@ -61,7 +62,7 @@ const CardMainSectionNewPet = ({
   const updateReduxPet = () => {
     updatePetProfile({
       name: petname,
-      petProfileImage: "defaultProfiles",
+      petProfileImage: `${defaultImage}`,
       images: []
     });
   };
