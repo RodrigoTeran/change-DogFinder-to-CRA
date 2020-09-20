@@ -14,6 +14,7 @@ const ButtonWhiteRectangle = ({
   clickFunctionAnotherOne,
   noClick,
   red,
+  redDif,
   green,
   greenDif,
   sad
@@ -21,7 +22,7 @@ const ButtonWhiteRectangle = ({
   return (
     <>
       {noClick ? (
-        <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad}`} style={{
+        <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad} ${redDif}`} style={{
           fontSize: fontSize || "1.2rem",
           width: width,
           height: height
@@ -48,7 +49,7 @@ const ButtonWhiteRectangle = ({
       ) : (
           <>
             {clickFunctionAnotherOne ? (
-              <button onClick={clickFunctionAnotherOne} className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad}`} style={{
+              <button onClick={clickFunctionAnotherOne} className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad} ${redDif}`} style={{
                 fontSize: fontSize || "1.2rem",
                 width: width,
                 height: height
@@ -74,7 +75,7 @@ const ButtonWhiteRectangle = ({
               </button>
             ) : (
                 <Link to={`${clickFunction}`}>
-                  <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad}`} style={{
+                  <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad} ${redDif}`} style={{
                     fontSize: fontSize || "1.2rem",
                     width: width,
                     height: height

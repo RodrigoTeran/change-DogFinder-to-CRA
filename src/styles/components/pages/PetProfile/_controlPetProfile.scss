@@ -38,17 +38,18 @@
     }
     &-label {
       width: 100%;
-      padding-left: 10px;
-      padding-right: 10px;
       padding-top: 20px;
       color: rgba(180, 180, 180, 1);
       font-weight: bold;
       font-style: italic;
       &.column-label {
         text-align: justify;
+        padding-left: 10px;
+        padding-right: 10px;
       }
       &.row-label {
         text-align: left;
+        padding-right: calc((30% - 175px) / 2);
       }
     }
 
@@ -60,7 +61,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-left: 10px;
       padding-right: 10px;
       &.column-h1 {
         margin-bottom: 20px;

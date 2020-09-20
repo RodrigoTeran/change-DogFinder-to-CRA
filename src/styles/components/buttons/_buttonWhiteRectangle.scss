@@ -8,15 +8,18 @@
   z-index: 2;
 
   &.redColor {
-    background-color: rgb(240, 80, 51);
+    background-color: #DC4443;
+    &-2 {
+      background-color: #DC4443;
+    }
   }
   &.sadColor {
     background-color: #10838b;
   }
   &.greenColor {
     background-color: rgb(61, 184, 71);
-    &-2{
-      background-color: rgb(0, 119, 64)
+    &-2 {
+      background-color: #626EE3;
     }
   }
 

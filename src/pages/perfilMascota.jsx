@@ -11,6 +11,7 @@ import FooterLayout from "../components/FooterLayout";
 import ChangeImageProfile from "../components/PerfilMascotaComponents/ChangeImageProfile";
 import ControlMainPetProfile from "../components/PerfilMascotaComponents/ControlMainPetProfile";
 import ChangeNameProfile from "../components/PerfilMascotaComponents/ChangeNameProfile";
+import InfoPetProfile from "../components/PerfilMascotaComponents/InfoPetProfile";
 
 import {
   updateFailureMessagesComponentAction,
@@ -122,6 +123,7 @@ const PerfilMascota = ({
               <DeletePerfilMascota setYesRedirectProp={() => {
                 setYesRedirect(true);
               }} getURL={getURL}></DeletePerfilMascota>
+              <InfoPetProfile></InfoPetProfile>
             </>
           ) : (
               <>
@@ -135,6 +137,7 @@ const PerfilMascota = ({
                   <DeletePerfilMascota setYesRedirectProp={() => {
                     setYesRedirect(true);
                   }} getURL={getURL}></DeletePerfilMascota>
+                  <InfoPetProfile></InfoPetProfile>
                 </div>
               </>
             )}
