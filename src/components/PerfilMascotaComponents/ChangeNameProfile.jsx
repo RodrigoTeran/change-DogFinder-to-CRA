@@ -47,6 +47,7 @@ const ChangeNameProfile = ({
         title: "Error al cambiar el nombre",
         description: `El nombre debe contener al menos 1 caracter`,
       });
+      setIsLoading(false);
     } else {
       fetch(`${editPetName}/${petProfile.name}`, {
         method: "PUT",
