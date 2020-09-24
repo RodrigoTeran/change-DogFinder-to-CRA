@@ -41,7 +41,8 @@
       @media (hover: hover) and (pointer: fine) {
         &:hover {
           transition: ease-in-out 0.3s;
-          border: solid 4px #ff9f9f93;
+          transform: scale(1.02);
+          box-shadow: 0px 0px 50px -20px rgb(68, 68, 68);
         }
         svg:hover {
           fill: #fff;

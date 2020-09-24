@@ -6,7 +6,7 @@ import {
   getPetProfile
 } from "../../store/reducers/user/selector";
 
-import InputTextComponent from "../InputTextComponent";
+import InputTextComponent from "../Inputs/InputTextComponent";
 import {
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction

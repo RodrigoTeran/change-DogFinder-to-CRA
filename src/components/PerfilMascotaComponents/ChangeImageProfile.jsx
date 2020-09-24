@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import InputFile from "../InputFile/InputFile";
+import InputFile from "../Inputs/InputFile";
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
 
