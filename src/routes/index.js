@@ -17,7 +17,7 @@ routes.getMapDataRoute = `${routes.apiDomain}/data/map`;
 routes.getFoundDogDataRoute = `${routes.apiDomain}/data/found`;
 routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 
-// Edit
+// Edits
 routes.editPetName = `${routes.apiDomain}/edit`;
 routes.editPetProfileImage = `${routes.apiDomain}/edit/image`;
 routes.editPetProfileStatus = `${routes.apiDomain}/edit/status`;
