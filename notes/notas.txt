@@ -1,4 +1,8 @@
 Issues:
+  --- El title del Input Data List no tiene padding laterales
+  --- Que los botones de los Inputs digan mejor "Guardar" en vez de "Enviar"
+  --- Y que el placeholder del Input Data List diga mejor Buscar en vez de seleccionar, cambiar tambien el subtext entonces
+  --- Terminar lista dogBreeds
   - Crear el Video Recorder component para mandar el video por medio de multer a la API
   - Crear el forms para mandar mascota de mi perfil:
     --> esa info se guarda en la base de datos,

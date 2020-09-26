@@ -359,6 +359,7 @@
       fill: rgb(158, 157, 157);
       width: 30px;
       height: 30px;
+      margin-left: 10px;
     }
   }
   font-size: 1.5rem;
@@ -369,7 +370,7 @@
     width: 225px;
     height: 50px;
     background-color: rgba(85, 85, 85, 1);
-    padding-left: 10px;
+    padding-left: 15px;
     font-size: 1.5rem;
     color: #ffffff;
     border: none;
@@ -392,6 +393,8 @@
     font-size: 2rem;
     font-family: "Roboto Condensed", sans-serif;
     margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     text-align: center;
   }
   &-close-button {
@@ -443,11 +446,13 @@
       ul {
         list-style: none;
         padding: 0;
+        margin: 0;
         width: 100%;
         height: 100%;
         text-align: center;
         li {
           cursor: pointer;
+          word-wrap: break-word;
           margin-bottom: 5px;
           background-color: rgba(55, 55, 55, 1);
           padding: 10px;

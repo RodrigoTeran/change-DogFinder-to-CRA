@@ -19,7 +19,7 @@ const InputTextComponent = ({
         </div>
         <div className="input-layout-text-form-div">
           <input onChange={onChangeFunction} type="text" maxLength={maxLenghtInput} className="input-layout-text-form-input" />
-          <button onClick={clickFunction} className="input-key-pay-button input-layout-text-form-button-send" style={{ backgroundColor: "rgba(25, 25, 25, 1)", marginTop: "0px" }}>Enviar</button>
+          <button onClick={clickFunction} className="input-key-pay-button input-layout-text-form-button-send" style={{ backgroundColor: "rgba(25, 25, 25, 1)", marginTop: "0px" }}>Guardar</button>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const InputDataList = ({
   sendFunction,
   isInputActivated
 }) => {
-  const [selectedData, setSelectedData] = useState("Seleccionar");
+  const [selectedData, setSelectedData] = useState("Buscar");
   const [dataOpen, setDataOpen] = useState(false);
   const [data, setData] = useState(dogBreeds);
 
@@ -23,6 +23,16 @@ const InputDataList = ({
     });
     let newDataSuper = newData.filter(dog => dog !== undefined);
     setData(newDataSuper);
+  };
+
+  const writeData = () => {
+    const det = 17;
+    if (selectedData.length > det) {
+      const dataForClient = selectedData.substr(0, det) + "...";
+      return dataForClient;
+    } else {
+      return selectedData;
+    };
   };
   return (
     <>
@@ -47,7 +57,7 @@ const InputDataList = ({
                     <li key={dog} onClick={() => {
                       setSelectedData(`${dog}`);
                       setDataOpen(false);
-                    }}>
+                    }} title={`${dog}`}>
                       {dog}
                     </li>
                   )
@@ -78,9 +88,11 @@ const InputDataList = ({
                   </div>
                 </div>
               ) : (
-                  <>
-                    {selectedData}
-                  </>
+                  <div
+                    title={`${selectedData}`}
+                  >
+                    {writeData()}
+                  </div>
                 )}
             </div>
           </div>
@@ -91,7 +103,7 @@ const InputDataList = ({
               style={{
                 backgroundColor: "rgba(25, 25, 25, 1)",
                 marginTop: "0px"
-              }}>Enviar</button>
+              }}>Guardar</button>
           </div>
         </div>
       </div>

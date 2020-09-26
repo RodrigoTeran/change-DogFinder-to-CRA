@@ -11,7 +11,7 @@ const InfoPetProfile = ({
     <>
       <InputDataList
         title="Escoje la raza de tu mascota"
-        subtext="Pulsa el botón de seleccionar"
+        subtext="Pulsa el botón de Buscar"
         closeFunction={() => {
           setIsInputActivated(!isInputActivated)
         }}
