@@ -92,7 +92,10 @@ const PerfilMascota = ({
             name: data.profilePet.petName,
             petProfileImage: data.profilePet.profileImage,
             images: data.profilePet.images,
-            isLost: data.profilePet.isLost
+            isLost: data.profilePet.isLost,
+            race: data.profilePet.race,
+            location: data.profilePet.location,
+            ageYears: data.profilePet.ageYears,
           });
         } else {
           updateFailureMessagesComponent({

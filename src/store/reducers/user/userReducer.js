@@ -25,7 +25,10 @@ const initialState = {
     name: undefined,
     petProfileImage: undefined,
     images: [],
-    isLost: false
+    isLost: false,
+    dogBreed: undefined,
+    location: undefined,
+    age: undefined
   }
 };
 export default function userReducer(state = initialState, action) {
@@ -36,7 +39,10 @@ export default function userReducer(state = initialState, action) {
         name: action.name,
         petProfileImage: action.petProfileImage,
         images: action.images,
-        isLost: action.isLost
+        isLost: action.isLost,
+        dogBreed: action.dogBreed,
+        location: action.location,
+        age: action.age,
       }
     };
   };

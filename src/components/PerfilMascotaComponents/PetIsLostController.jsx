@@ -45,7 +45,7 @@ const PetIsLostController = ({
       return res.json();
     }).then(data => {
       setIsLoading(false);
-      if (data.status) {
+      if (!data.status) {
         updateFailureMessagesComponent({
           state: true,
           title: "Error",

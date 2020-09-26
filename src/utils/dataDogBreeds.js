@@ -240,7 +240,9 @@ const dogBreeds = [
   "Whippet",
   "Wolfsspitz",
   "Xoloitzcuintle",
-  "Yorkshire terrier"
+  "Yorkshire terrier",
+  "Otro",
+  "Mezcla"
 ]
 
 export default dogBreeds;

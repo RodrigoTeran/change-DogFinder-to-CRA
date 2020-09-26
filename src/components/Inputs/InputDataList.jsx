@@ -17,7 +17,7 @@ const InputDataList = ({
     let numberOfChars = dogName.length;
     let newData = dogBreeds.map(dog => {
       const substrName = dog.substr(0, numberOfChars);
-      if (substrName === dogName) {
+      if (substrName.toLowerCase() === dogName.toLowerCase()) {
         return dog;
       };
     });
@@ -27,12 +27,14 @@ const InputDataList = ({
 
   const writeData = () => {
     const det = 17;
+    let newData = "";
     if (selectedData.length > det) {
       const dataForClient = selectedData.substr(0, det) + "...";
-      return dataForClient;
+      newData = dataForClient;
     } else {
-      return selectedData;
+      newData = selectedData
     };
+    return newData;
   };
   return (
     <>
@@ -98,7 +100,10 @@ const InputDataList = ({
           </div>
           <div>
             <button
-              onClick={sendFunction}
+              onClick={() => {
+                sendFunction(selectedData);
+                closeFunction()
+              }}
               className="input-key-pay-button input-layout-text-form-button-send"
               style={{
                 backgroundColor: "rgba(25, 25, 25, 1)",

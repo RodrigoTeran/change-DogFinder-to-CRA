@@ -36,7 +36,10 @@ export const updatePetProfileAction = (data) => {
     name: data.name,
     petProfileImage: data.petProfileImage,
     images: data.images,
-    isLost: data.isLost
+    isLost: data.isLost,
+    dogBreed: data.race,
+    location: data.location,
+    age: data.ageYears,
   });
 };
 
