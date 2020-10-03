@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import dogBreeds from "../../utils/dataDogBreeds";
 
 const InputDataList = ({
   title,
   subtext,
   closeFunction,
   sendFunction,
-  isInputActivated
+  isInputActivated,
+  initialDATA
 }) => {
   const [selectedData, setSelectedData] = useState("Buscar");
   const [dataOpen, setDataOpen] = useState(false);
-  const [data, setData] = useState(dogBreeds);
+  const [data, setData] = useState(initialDATA);
 
   const changeData = (e) => {
     let dogName = e.target.value;
     let numberOfChars = dogName.length;
-    let newData = dogBreeds.map(dog => {
+    let newData = initialDATA.map(dog => {
       const substrName = dog.substr(0, numberOfChars);
       if (substrName.toLowerCase() === dogName.toLowerCase()) {
         return dog;
@@ -71,7 +71,7 @@ const InputDataList = ({
             }} onClick={() => {
               if (dataOpen) { } else {
                 setDataOpen(!dataOpen)
-                setData(dogBreeds);
+                setData(initialDATA);
               };
             }}>
               {dataOpen ? (

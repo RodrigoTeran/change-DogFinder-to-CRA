@@ -74,6 +74,7 @@ const dogBreeds = [
   "Collie de pelo largo",
   "Bearded collie",
   "Corgi galés de Cardigan",
+  "Cruzado",
   "Dachshund",
   "Dálmata",
   "Dandie Dinmont Terrier",
@@ -139,6 +140,7 @@ const dogBreeds = [
   "Münsterländer pequeño",
   "Nova Scotia Duck Tolling Retriever",
   "Ovejero magallánico",
+  "Otro",
   "Pastor alemán",
   "Pastor belga",
   "Pastor blanco suizo",
@@ -233,6 +235,7 @@ const dogBreeds = [
   "Terrier tibetano",
   "Toy spaniel inglés",
   "Tervueren",
+  "Raza Undefinida",
   "Vallhund sueco",
   "Volpino italiano",
   "Weimaraner",
@@ -241,8 +244,6 @@ const dogBreeds = [
   "Wolfsspitz",
   "Xoloitzcuintle",
   "Yorkshire terrier",
-  "Otro",
-  "Mezcla"
 ]
 
 export default dogBreeds;
