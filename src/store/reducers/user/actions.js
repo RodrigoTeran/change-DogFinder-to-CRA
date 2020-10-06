@@ -40,6 +40,7 @@ export const updatePetProfileAction = (data) => {
     dogBreed: data.race,
     location: data.location,
     age: data.ageYears,
+    coordenates: data.coordenates
   });
 };
 

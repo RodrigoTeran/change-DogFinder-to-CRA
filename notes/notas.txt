@@ -1,4 +1,5 @@
 Issues:
+  - Que pueda saber las coordenads del cliente
   - Crear el Video Recorder component para mandar el video por medio de multer a la API
   - Crear el forms para mandar mascota de mi perfil:
     --> esa info se guarda en la base de datos,

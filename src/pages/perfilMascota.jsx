@@ -96,6 +96,7 @@ const PerfilMascota = ({
             race: data.profilePet.race,
             location: data.profilePet.location,
             ageYears: data.profilePet.ageYears,
+            coordenates: data.profilePet.coordenates
           });
         } else {
           updateFailureMessagesComponent({

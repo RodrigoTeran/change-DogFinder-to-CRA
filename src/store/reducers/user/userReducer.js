@@ -28,7 +28,8 @@ const initialState = {
     isLost: false,
     dogBreed: undefined,
     location: undefined,
-    age: undefined
+    age: undefined,
+    coordenates: undefined
   }
 };
 export default function userReducer(state = initialState, action) {
@@ -43,6 +44,7 @@ export default function userReducer(state = initialState, action) {
         dogBreed: action.dogBreed,
         location: action.location,
         age: action.age,
+        coordenates: action.coordenates
       }
     };
   };

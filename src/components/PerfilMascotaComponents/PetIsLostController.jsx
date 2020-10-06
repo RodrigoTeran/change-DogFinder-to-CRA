@@ -55,7 +55,11 @@ const PetIsLostController = ({
           name: petProfile.name,
           petProfileImage: petProfile.petProfileImage,
           images: petProfile.images,
-          isLost: petProfile.isLost
+          isLost: petProfile.isLost,
+          race: petProfile.dogBreed,
+          location: petProfile.location,
+          ageYears: petProfile.age,
+          coordenates: petProfile.coordenates
         });
       } else {
         updateSuccessMessagesComponent({
@@ -64,10 +68,14 @@ const PetIsLostController = ({
           description: "Sí se pudo actualizar el estado de tu mascota",
         });
         updatePetProfile({
+          isLost: isLostVar,
           name: petProfile.name,
           petProfileImage: petProfile.petProfileImage,
           images: petProfile.images,
-          isLost: isLostVar
+          race: petProfile.dogBreed,
+          location: petProfile.location,
+          ageYears: petProfile.age,
+          coordenates: petProfile.coordenates
         });
       };
     });
