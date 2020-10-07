@@ -14,38 +14,35 @@ const InputMap = ({
   closeFunction,
   petProfile
 }) => {
-  const [actualCoordenates, setActualCoordenates] = useState({
-    latitude: undefined,
-    longitude: undefined
-  });
+  const [actualCoordenates, setActualCoordenates] = useState({});
   useEffect(() => {
-    if (petProfile.coordenates) {
-      setActualCoordenates({
-        latitude: petProfile.coordenates.latitude,
-        longitude: petProfile.coordenates.longitude
-      });
-    } else {
-      getActualCoordenates();
-    };
-  }, [])
+    getActualCoordenates();
+  }, [petProfile]);
   const getActualCoordenates = () => {
-    setActualCoordenates({
-      latitude: "loading...",
-      longitude: "loading..."
-    });
-    fetch(getCoordenatesAPI, {
-      method: "GET",
-      headers: {
-        "Accept": "application/json",
-      }
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      setActualCoordenates({
-        latitude: data.latitude,
-        longitude: data.longitude
-      });
-    });
+    try {
+      if (petProfile.coordenates.latitude !== "undefined") {
+        setActualCoordenates({
+          latitude: petProfile.coordenates.latitude,
+          longitude: petProfile.coordenates.longitude
+        });
+      } else {
+        fetch(getCoordenatesAPI, {
+          method: "GET",
+          headers: {
+            "Accept": "application/json",
+          }
+        }).then(res => {
+          return res.json();
+        }).then(data => {
+          setActualCoordenates({
+            latitude: data.latitude,
+            longitude: data.longitude
+          });
+        });
+      };
+    } catch{
+
+    };
   };
   return (
     <>
@@ -74,8 +71,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-// Acciones de REDUX
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(InputMap);
+export default connect(mapStateToProps)(InputMap);
