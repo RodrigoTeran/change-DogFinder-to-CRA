@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/combobox": "^0.11.2",
+    "@react-google-maps/api": "^1.10.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -21,7 +23,8 @@
     "react-stripe-checkout": "^2.6.3",
     "react-video-recorder": "^3.17.1",
     "redux": "^4.0.5",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "use-places-autocomplete": "^1.5.2"
   },
   "scripts": {
     "start": "react-scripts start",

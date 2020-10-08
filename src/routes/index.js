@@ -1,8 +1,7 @@
 const routes = {}
 
-// Config
-// routes.apiDomain = `http://localhost:5000`;
-routes.apiDomain = "https://agile-coast-82296.herokuapp.com";
+// Config api domain
+routes.apiDomain = process.env.REACT_APP_API_DOMAIN;
 
 // Auth
 routes.authGoogle = `${routes.apiDomain}/auth/google`;
