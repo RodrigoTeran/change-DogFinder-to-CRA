@@ -28,7 +28,7 @@ routes.postPayment = `${routes.apiDomain}/pay/service`;
 routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
 
 // Coordenates
-routes.getCoordenatesAPI = "https://geolocation-db.com/json/697de680-a737-11ea-9820-af05f4014d91";
+routes.editCoordenates = `${routes.apiDomain}/edit/coordenates`;
 
 // Pet
 routes.postNewPet = `${routes.apiDomain}/new/pet`;

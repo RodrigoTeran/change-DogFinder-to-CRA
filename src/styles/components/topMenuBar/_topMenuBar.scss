@@ -27,7 +27,8 @@
 .loader {
   &-block,
   &-menubar,
-  &-pages {
+  &-pages,
+  &-entirePage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,6 +41,15 @@
       height: 30px;
       animation: loaderMenuBar 2s linear infinite;
     }
+  }
+  &-entirePage {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: .5;
   }
   &-menubar {
     position: fixed;
