@@ -39,8 +39,10 @@ export const updatePetProfileAction = (data) => {
     isLost: data.isLost,
     dogBreed: data.race,
     location: data.location,
-    age: data.ageYears,
-    coordenates: data.coordenates
+    coordenates: data.coordenates,
+    size: data.size,
+    mainColor: data.mainColor,
+    gender: data.gender,
   });
 };
 

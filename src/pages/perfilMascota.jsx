@@ -95,8 +95,10 @@ const PerfilMascota = ({
             isLost: data.profilePet.isLost,
             race: data.profilePet.race,
             location: data.profilePet.location,
-            ageYears: data.profilePet.ageYears,
-            coordenates: data.profilePet.coordenates
+            coordenates: data.profilePet.coordenates,
+            size: data.profilePet.size,
+            mainColor: data.profilePet.mainColor,
+            gender: data.profilePet.gender,
           });
         } else {
           updateFailureMessagesComponent({

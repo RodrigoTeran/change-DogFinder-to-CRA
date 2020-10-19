@@ -21,7 +21,7 @@ routes.editPetName = `${routes.apiDomain}/edit`;
 routes.editPetProfileImage = `${routes.apiDomain}/edit/image`;
 routes.editPetProfileStatus = `${routes.apiDomain}/edit/status`;
 routes.editPetProfileRace = `${routes.apiDomain}/edit/dogBreed`;
-routes.editPetProfileAge = `${routes.apiDomain}/edit/dogAge`;
+routes.editPetProfileGender = `${routes.apiDomain}/edit/dogGender`;
 
 // Stripe
 routes.postPayment = `${routes.apiDomain}/pay/service`;

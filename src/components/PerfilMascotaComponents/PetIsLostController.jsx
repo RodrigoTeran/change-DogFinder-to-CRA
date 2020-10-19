@@ -58,7 +58,9 @@ const PetIsLostController = ({
           isLost: petProfile.isLost,
           race: petProfile.dogBreed,
           location: petProfile.location,
-          ageYears: petProfile.age,
+          size: petProfile.size,
+          mainColor: petProfile.mainColor,
+          gender: petProfile.gender,
           coordenates: petProfile.coordenates
         });
       } else {
@@ -74,7 +76,9 @@ const PetIsLostController = ({
           images: petProfile.images,
           race: petProfile.dogBreed,
           location: petProfile.location,
-          ageYears: petProfile.age,
+          size: petProfile.size,
+          mainColor: petProfile.mainColor,
+          gender: petProfile.gender,
           coordenates: petProfile.coordenates
         });
       };

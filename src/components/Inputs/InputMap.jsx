@@ -159,11 +159,13 @@ const InputMap = ({
               isLost: petProfile.isLost,
               race: petProfile.dogBreed,
               location: body.location,
-              ageYears: petProfile.age,
               coordenates: {
                 latitude: marker.lat,
                 longitude: marker.lng
-              }
+              },
+              size: petProfile.size,
+              mainColor: petProfile.mainColor,
+              gender: petProfile.gender,
             });
           } else {
             updateFailureMessagesComponent({

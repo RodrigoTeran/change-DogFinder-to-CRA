@@ -24,21 +24,29 @@ const ChangeImageProfile = ({
   const [ImageInput, setImageInput] = useState(undefined);
   const [srcImageYes, setSrcImageYes] = useState(false);
   const changeFunction = e => {
-    let urlImage = undefined;
-    urlImage = URL.createObjectURL(e.target.files[0]);
-    var allowedExtensions = /(.jpg|.jpeg|.png)$/i;
-    if (!allowedExtensions.exec(e.target.value)) {
+    try {
+      let urlImage = undefined;
+      urlImage = URL.createObjectURL(e.target.files[0]);
+      var allowedExtensions = /(.jpg|.jpeg|.png)$/i;
+      if (!allowedExtensions.exec(e.target.value)) {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error al cargar",
+          description: `La imagen no tiene extension .png .jpeg o .jpg`,
+        });
+        setSrcImageYes(false);
+        setSrcImage("");
+      } else {
+        setSrcImage(urlImage);
+        setImageInput(e.target.files[0]);
+        setSrcImageYes(true);
+      };
+    } catch{
       updateFailureMessagesComponent({
         state: true,
         title: "Error al cargar",
-        description: `La imagen no tiene extension .png .jpeg o .jpg`,
+        description: `Algo ocurrió mal :(`,
       });
-      setSrcImageYes(false);
-      setSrcImage("");
-    } else {
-      setSrcImage(urlImage);
-      setImageInput(e.target.files[0]);
-      setSrcImageYes(true);
     };
   };
   const [yesRedirect, setYesRedirect] = useState(false);
