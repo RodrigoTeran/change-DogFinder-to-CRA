@@ -81,6 +81,7 @@ const ChangeImageProfile = ({
         };
       });
   };
+  const [yesInstructions, setInstructions] = useState(false);
   return (
     <div>
       {yesRedirect ? (<Redirect to="/perfil"></Redirect>) : (<></>)}
@@ -93,6 +94,19 @@ const ChangeImageProfile = ({
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M480 416v16c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V176c0-26.51 21.49-48 48-48h16v208c0 44.112 35.888 80 80 80h336zm96-80V80c0-26.51-21.49-48-48-48H144c-26.51 0-48 21.49-48 48v256c0 26.51 21.49 48 48 48h384c26.51 0 48-21.49 48-48zM256 128c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-96 144l55.515-55.515c4.686-4.686 12.284-4.686 16.971 0L272 256l135.515-135.515c4.686-4.686 12.284-4.686 16.971 0L512 208v112H160v-48z" /></svg>
         </InputFile>
+        <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`}>
+          <div className="image-pet-profile-instructions-icon">
+            <div onClick={() => { setInstructions(!yesInstructions) }} title="Información" style={{
+              display: "flex",
+              alignItems: "center"
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg> Informacíon
+            </div>
+          </div>
+          <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
+            Esta imagen es solo de perfil, no se va a tomar en cuenta para su análisis.
+          </div>
+        </div>
         {srcImageYes ? (
           <div className="prev-image-pet-profile">
             Previsualización de la imagen

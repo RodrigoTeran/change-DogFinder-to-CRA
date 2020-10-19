@@ -132,3 +132,47 @@
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
 }
+.image-pet-profile {
+  &-instructions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 250px;
+    &.open {
+      height: 100%;
+      transition: ease-in-out 0.5s;
+    }
+    &.close {
+      height: 0;
+      transition: ease-in-out 0.5s;
+    }
+    &-icon {
+      cursor: pointer;
+      svg {
+        fill: #fff;
+        width: 25px;
+        height: 25px;
+        transition: ease-in-out 0.5s;
+        margin-right: 10px;
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            fill: var(--tertiary-color-light);
+            transform: scale(1.1);
+            transition: ease-in-out 0.5s;
+          }
+        }
+      }
+    }
+    &-text {
+      color: rgb(219, 219, 219);
+      margin-top: 5px;
+      &.open {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transition: ease-in-out 0.5s;
+      }
+      &.close {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+        transition: ease-in-out 0.5s;
+      }
+    }
+  }
+}
