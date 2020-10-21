@@ -12,6 +12,7 @@ import ChangeImageProfile from "../components/PerfilMascotaComponents/ChangeImag
 import ControlMainPetProfile from "../components/PerfilMascotaComponents/ControlMainPetProfile";
 import ChangeNameProfile from "../components/PerfilMascotaComponents/ChangeNameProfile";
 import InfoPetProfile from "../components/PerfilMascotaComponents/InfoPetProfile";
+import AgeProfileComponent from "../components/PerfilMascotaComponents/AgeProfileComponent";
 
 import {
   updateFailureMessagesComponentAction,
@@ -130,6 +131,7 @@ const PerfilMascota = ({
                 setYesRedirect(true);
               }} getURL={getURL}></DeletePerfilMascota>
               <InfoPetProfile></InfoPetProfile>
+              <AgeProfileComponent></AgeProfileComponent>
             </>
           ) : (
               <>
@@ -144,6 +146,7 @@ const PerfilMascota = ({
                     setYesRedirect(true);
                   }} getURL={getURL}></DeletePerfilMascota>
                   <InfoPetProfile></InfoPetProfile>
+                  <AgeProfileComponent></AgeProfileComponent>
                 </div>
               </>
             )}
