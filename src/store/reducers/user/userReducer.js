@@ -24,13 +24,13 @@ const initialState = {
   petProfile: {
     name: undefined,
     petProfileImage: undefined,
-    images: [],
+    images: [], // Pito
     isLost: false,
     dogBreed: undefined,
     location: undefined,
     coordenates: undefined,
-    size: undefined,
-    mainColor: undefined,
+    size: undefined, // Pito
+    mainColor: undefined, // Pito
     gender: undefined
   }
 };

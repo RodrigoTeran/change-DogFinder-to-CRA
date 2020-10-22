@@ -7,11 +7,9 @@ const ControlMainPetProfile = ({
 }) => {
 
   return (
-    <>
-      <div className="control-pet-profile">
-        <PetIsLostController isMobile={isMobile}></PetIsLostController>
-      </div>
-    </>
+    <div className="control-pet-profile">
+      <PetIsLostController isMobile={isMobile}></PetIsLostController>
+    </div>
   );
 };
 
@@ -20,8 +18,4 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-// Acciones de REDUX
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ControlMainPetProfile);
+export default connect(mapStateToProps)(ControlMainPetProfile);

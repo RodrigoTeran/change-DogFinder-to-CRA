@@ -1,14 +1,14 @@
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
 import {
-  // getPetProfile
+  getPetProfile
 } from "../../store/reducers/user/selector";
 
 import ColorProfile from "./ColorProfile";
 
 const AgeProfileComponent = ({
-  //petProfile
+  petProfile
 }) => {
 
   return (
@@ -36,7 +36,7 @@ const AgeProfileComponent = ({
           </div>
         </div>
         <div className="age-profile-result">
-          No se ha establecido
+          {petProfile.size}
         </div>
       </div>
       <ColorProfile></ColorProfile>
@@ -45,15 +45,15 @@ const AgeProfileComponent = ({
 };
 
 // Clases de REDUX
-/*
+
 const mapStateToProps = (state) => {
   return {
     petProfile: getPetProfile(state)
   };
-};*/
+};
 
 // Acciones de REDUX
 /*const mapDispatchToProps = (dispatch) => {
   return {};
 };*/
-export default AgeProfileComponent;
+export default connect(mapStateToProps)(AgeProfileComponent);

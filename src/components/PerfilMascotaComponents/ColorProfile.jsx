@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 
 import {
-  //getPetProfile,
+  getPetProfile,
   getWebp
 } from "../../store/reducers/user/selector";
 
 const ColorProfile = ({
-  //petProfile,
+  petProfile,
   isWebp
 }) => {
 
@@ -56,7 +56,7 @@ const ColorProfile = ({
           </div>
         </div>
         <div className={`color-profile-result`}>
-          No se ha establecido
+          {petProfile.mainColor}
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@ const ColorProfile = ({
 // Clases de REDUX
 const mapStateToProps = (state) => {
   return {
-    //petProfile: getPetProfile(state),
+    petProfile: getPetProfile(state),
     isWebp: getWebp(state)
   };
 };
