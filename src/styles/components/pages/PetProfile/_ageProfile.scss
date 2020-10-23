@@ -45,6 +45,9 @@
       cursor: pointer;
       transition: ease-in-out 0.3s;
       margin-bottom: 10px;
+      &.pink {
+        fill: var(--tertiary-color-light);
+      }
       @media (hover: hover) and (pointer: fine) {
         &:hover {
           transform: scale(1.1);

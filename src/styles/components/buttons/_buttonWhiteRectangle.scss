@@ -8,18 +8,18 @@
   z-index: 2;
 
   &.redColor {
-    background-color: #DC4443;
+    background-color: #dc4443;
     &-2 {
-      background-color: #DC4443;
+      background-color: #dc4443;
     }
   }
   &.sadColor {
-    background-color: #10838b;
+    background-color: var(--tertiary-color);
   }
   &.greenColor {
-    background-color: rgb(61, 184, 71);
+    background-color: rgb(28, 121, 36);
     &-2 {
-      background-color: #626EE3;
+      background-color: var(--tertiary-color);
     }
   }
 
