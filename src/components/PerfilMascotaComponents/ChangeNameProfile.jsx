@@ -37,46 +37,106 @@ const ChangeNameProfile = ({
     };
   };
   // Data Pet Profile
+  const possibleValuesForHack = [
+    "/",
+    "<",
+    ">",
+    "'",
+    '"',
+    "`",
+    "|",
+    "°",
+    "¬",
+    "?",
+    "¿",
+    "\\",
+    "@",
+    "#",
+    "&",
+    "%",
+    "(",
+    ")",
+    "¡",
+    "!",
+    "*",
+    "}",
+    "{",
+    "^",
+    "+",
+    "-",
+    ".",
+    ",",
+    ";",
+    "_",
+    "[",
+    "]",
+    "~",
+    "¨",
+    "=",
+    "´",
+  ]
+  const checkFuckingHack = () => {
+    console.log(possibleValuesForHack);
+    let status = false;
+    for (var i = 0; i < possibleValuesForHack.length; i++) {
+      for (var j = 0; j < body.newName.length; j++) {
+        if (body.newName[j] === possibleValuesForHack[i]) {
+          status = true;
+        };
+      };
+    };
+    return status;
+  }
   const [isLoading, setIsLoading] = useState(false);
   const editPetNameFunction = () => {
     closeInput();
     setIsLoading(true);
-    if (body.newName === "") {
+    const hack = checkFuckingHack();
+    if (hack) {
       updateFailureMessagesComponent({
         state: true,
         title: "Error al cambiar el nombre",
-        description: `El nombre debe contener al menos 1 caracter`,
+        description: `Debe de introducir caracteres válidos`,
       });
       setIsLoading(false);
     } else {
-      fetch(`${editPetName}/${petProfile.name}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "token": localStorage.getItem("token")
-        },
-        body: JSON.stringify(body)
-      }).then(res => {
-        return res.json();
-      }).then(data => {
+      if (body.newName === "") {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error al cambiar el nombre",
+          description: `El nombre debe contener al menos 1 caracter`,
+        });
         setIsLoading(false);
-        if (data.status) { // todo bien
-          setYesRedirect(true);
-          updateSuccessMessagesComponent({
-            state: true,
-            title: "Cambio con éxito",
-            description: `Se cambió el nombre de tu mascota con éxito`,
-          })
-        } else {
-          updateFailureMessagesComponent({
-            state: true,
-            title: "Error al cambiar el nombre",
-            description: `Ese nombre ya lo tiene registrado en otra de sus mascotas`,
-          });
-        };
-      });
+      } else {
+        fetch(`${editPetName}/${petProfile.name}`, {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "token": localStorage.getItem("token")
+          },
+          body: JSON.stringify(body)
+        }).then(res => {
+          return res.json();
+        }).then(data => {
+          setIsLoading(false);
+          if (data.status) { // todo bien
+            setYesRedirect(true);
+            updateSuccessMessagesComponent({
+              state: true,
+              title: "Cambio con éxito",
+              description: `Se cambió el nombre de tu mascota con éxito`,
+            })
+          } else {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error al cambiar el nombre",
+              description: `Ese nombre ya lo tiene registrado en otra de sus mascotas`,
+            });
+          };
+        });
+      };
     };
   };
   const [yesRedirect, setYesRedirect] = useState(false);
