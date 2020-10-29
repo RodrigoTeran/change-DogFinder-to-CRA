@@ -33,6 +33,11 @@
         width: 90%;
         margin-left: 5%;
       }
+      &-premium {
+        @media screen and (max-width: 767px) {
+          margin-top: 20px;
+        }
+      }
       &-free,
       &-premium {
         display: flex;

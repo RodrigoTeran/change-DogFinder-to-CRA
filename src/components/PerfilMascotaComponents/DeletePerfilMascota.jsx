@@ -68,13 +68,15 @@ const DeletePerfilMascota = ({
   return (
     <>
       <div className={`pet-profile-page-delete`}>
-        <div className={`pet-profile-page-delete-info`}>
-          Información de tu mascota
-        </div>
+        {window.innerWidth < 1121 ? (<></>) : (
+          <div className={`pet-profile-page-delete-info`}>
+            Información de tu mascota
+          </div>
+        )}
         <ButtonWhiteRectangle text="Borrar Perfil"
-          width="175px"
+          width={`${window.innerWidth < 1121 ? ("250px") : ("175px")}`}
           height="50px"
-          mt="mt-0"
+          mt={`${window.innerWidth < 1121 ? ("mt-3") : ("mt-0")}`}
           redDif="redColor-2"
           clickFunctionAnotherOne={eraseProfileFunction}
         >

@@ -41,23 +41,26 @@ const BannerOkCancelAction = ({
           </div>
           <h3 style={{ fontSize: "1.8rem", color: "#FFFFFF" }}>¡ALTO!</h3>
           <div className="banner-ok-cancel-action-inner-title">
+            piensalo dos veces...
+            <br />
+            <br/>
             {bannerOkCancelAction.isDisplayed.fromWho}
           </div>
           <div className="banner-ok-cancel-action-inner-buttons">
             <ButtonWhiteRectangle text="Cancelar"
-              width="92%"
-              redDif="redColor-2"
+              width="80%"
+              sad="sadColor"
               mt="mt-0"
-              height="60px"
+              height="43px"
               clickFunctionAnotherOne={() => {
                 closeBanner()
               }}
             ></ButtonWhiteRectangle>
             <ButtonWhiteRectangle text="Continuar"
-              width="92%"
+              width="80%"
               greenDif=""
-              mt="mt-2"
-              height="60px"
+              mt="mt-3"
+              height="43px"
               clickFunctionAnotherOne={() => {
                 continueButtonBanner()
               }}

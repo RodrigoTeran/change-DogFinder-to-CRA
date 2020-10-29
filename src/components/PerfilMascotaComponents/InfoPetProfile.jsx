@@ -179,6 +179,11 @@ const InfoPetProfile = ({
           setIsInputActivatedMap(false)
         }}
       ></InputMap>
+      {window.innerWidth >= 1121 ? (<></>) : (
+        <div className={`pet-profile-page-delete-info text-center`}>
+          Información de tu mascota
+        </div>
+      )}
       <div className={`info-pet-profile row`}>
         <CardInfoPetProfile
           title="Raza"

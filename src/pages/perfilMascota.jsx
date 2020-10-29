@@ -127,11 +127,11 @@ const PerfilMascota = ({
               <PerfilMascotaHeader></PerfilMascotaHeader>
               <ChangeImageProfile getURL={getURL}></ChangeImageProfile>
               <ControlMainPetProfile isMobile={isMobile}></ControlMainPetProfile>
+              <InfoPetProfile></InfoPetProfile>
+              <AgeProfileComponent></AgeProfileComponent>
               <DeletePerfilMascota setYesRedirectProp={() => {
                 setYesRedirect(true);
               }} getURL={getURL}></DeletePerfilMascota>
-              <InfoPetProfile></InfoPetProfile>
-              <AgeProfileComponent></AgeProfileComponent>
             </>
           ) : (
               <>
