@@ -21,6 +21,7 @@ import ResponsiveMenuBar from "./components/Menus/ResponsiveMenuBar";
 import LogInCard from "./components/Cards/LogInCard";
 import FailureMessagesComponent from "./components/LayoutMessages/FailureMessagesComponent";
 import SuccessMessagesComponent from "./components/LayoutMessages/SuccessMessagesComponent";
+import BannerOkCancelAction from "./components/LayoutMessages/BannerOkCancelAction";
 
 // Pages
 import Index from "./pages/index";
@@ -148,6 +149,7 @@ const App = ({
         <ResponsiveMenuBar />
         <div className={`wall-log-in-banner ${logInActivated ? ("open") : ("")}`} onClick={closeLogIn}></div>
         <LogInCard logInActivated={logInActivated} logInFirstAnimation={logInFirstAnimation}></LogInCard>
+        <BannerOkCancelAction></BannerOkCancelAction>
         <div>
           <Switch>
             <Route path="/perfil/mascota"><PerfilMascota></PerfilMascota></Route>

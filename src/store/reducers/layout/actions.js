@@ -14,6 +14,15 @@ export const updateResponsiveMenuBarBodyOpenAction = (data) => {
   });
 };
 
+export const updateBannerOkCancelActionAction = (data) => {
+  return ({
+    type: "UPDATE_BANNER_OK_CANCEL_ACTION",
+    fromWho: data.fromWho,
+    inLayout: data.inLayout,
+    okButton: data.okButton
+  });
+};
+
 export const updateTopMenuBarActivatedAction = (data) => {
   return ({
     type: "UPDATE_TOP_MENU_BAR_ACTIVATED_CLASS",

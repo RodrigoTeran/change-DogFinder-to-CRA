@@ -18,6 +18,15 @@ export const getTopMenuBar = createSelector([selectorGetTopMenuBar], (getTopMenu
   return getTopMenuBar;
 });
 
+// bannerOkCancelAction
+const selectorGetBannerOkCancelAction = (state) => {
+  return state.layoutReducer.bannerOkCancelAction;
+};
+
+export const getBannerOkCancelAction = createSelector([selectorGetBannerOkCancelAction], (getBannerOkCancelAction) => {
+  return getBannerOkCancelAction;
+});
+
 // lines
 const selectorGetLines = (state) => {
   return state.layoutReducer.lines;

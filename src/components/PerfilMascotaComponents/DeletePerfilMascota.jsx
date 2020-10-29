@@ -1,19 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
 import { connect } from "react-redux";
 import {
   eraseProfile
 } from "../../routes/index";
 import {
-  updateSuccessMessagesComponentAction
+  updateSuccessMessagesComponentAction,
+  updateBannerOkCancelActionAction
 } from "../../store/reducers/layout/actions";
+
+import {
+  getBannerOkCancelAction
+} from "../../store/reducers/layout/selector";
+
+import {
+  TEXT_WANT_DELETE_PET_PROFILE
+} from "../../utils/textForBannerOkCancelAction";
+
 const DeletePerfilMascota = ({
   getURL,
   updateSuccessMessagesComponent,
-  setYesRedirectProp
+  setYesRedirectProp,
+
+  updateBannerOkCancelAction,
+  bannerOkCancelAction
 }) => {
+  useEffect(() => {
+    if (bannerOkCancelAction.isDisplayed.fromWho === TEXT_WANT_DELETE_PET_PROFILE && bannerOkCancelAction.okButton === true) {
+      eraseProfileFunctionYes();
+      updateBannerOkCancelAction({
+        fromWho: TEXT_WANT_DELETE_PET_PROFILE,
+        inLayout: false,
+        okButton: false
+      });
+    };
+  }, [bannerOkCancelAction])
   const [isLoading, setIsLoading] = useState(false);
-  const eraseProfileFunction = () => {
+  const eraseProfileFunctionYes = () => {
     setIsLoading(true);
     fetch(`${eraseProfile}/${getURL()}`, {
       method: "DELETE",
@@ -33,6 +56,13 @@ const DeletePerfilMascota = ({
         description: `Se borro el perfil con éxito`,
       })
       setYesRedirectProp();
+    });
+  };
+  const eraseProfileFunction = () => {
+    updateBannerOkCancelAction({
+      fromWho: TEXT_WANT_DELETE_PET_PROFILE,
+      inLayout: true,
+      okButton: false
     });
   };
   return (
@@ -64,14 +94,16 @@ const DeletePerfilMascota = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    bannerOkCancelAction: getBannerOkCancelAction(state)
+  };
 };
 
 // Acciones de REDUX
 const mapDispatchToProps = (dispatch) => {
   return {
     updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
-
+    updateBannerOkCancelAction: (data) => { dispatch(updateBannerOkCancelActionAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DeletePerfilMascota);

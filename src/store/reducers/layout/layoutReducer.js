@@ -1,15 +1,15 @@
 const initialState = {
-  responsiveMenuBarBody: {  // COMPLETO
+  responsiveMenuBarBody: {
     open: false,
     trans: false
   },
-  topMenuBar: {  // COMPLETO
+  topMenuBar: {
     activated: false
   },
-  wallResponsiveMenuBar: { // COMPLETO
+  wallResponsiveMenuBar: {
     open: false
   },
-  lines: {  // COMPLETO
+  lines: {
     x_line1: false,
     x_line2: false,
     x_line3: false,
@@ -23,10 +23,31 @@ const initialState = {
     state: false,
     title: undefined,
     description: undefined,
+  },
+  bannerOkCancelAction: {
+    isDisplayed: {
+      fromWho: undefined,
+      inLayout: false
+    },
+    okButton: false,
+    firstAnimation: false
   }
 };
 
 export default function layoutReducer(state = initialState, action) {
+  if (action.type === "UPDATE_BANNER_OK_CANCEL_ACTION") {
+    return {
+      ...state,
+      bannerOkCancelAction: {
+        isDisplayed: {
+          fromWho: action.fromWho,
+          inLayout: action.inLayout
+        },
+        okButton: action.okButton,
+        firstAnimation: true
+      }
+    };
+  };
   if (action.type === "UPDATE_SUCCESS_MESSAGES_COMPONENT") {
     return {
       ...state,

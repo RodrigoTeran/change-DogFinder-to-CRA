@@ -1,0 +1,1 @@
+export const TEXT_WANT_DELETE_PET_PROFILE = "¿Estas seguro que quieres eliminar este perfil?";
