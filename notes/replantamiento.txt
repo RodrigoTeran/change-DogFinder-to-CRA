@@ -1,6 +1,1 @@
-- Quitar la edad
-- Poner el size
-- Poner el dogs main color
-- Poner el gender
-- Quitar idea de app de msgs
-- Poner time de cuando de perdio en perfil
+- Poner time de cuando se perdio en perfil

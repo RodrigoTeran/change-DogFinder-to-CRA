@@ -1,4 +1,4 @@
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import history from "./history";
 
 // Modulos
@@ -161,6 +161,9 @@ const App = ({
             <Route path="/terminos"><Terms></Terms></Route>
             <Route path="/registro/mascota/encontrada"><DogFounded></DogFounded></Route>
             <Route exact path="/"><Index></Index></Route>
+            <Route path="/">
+              <Redirect to="/"></Redirect>
+            </Route>
           </Switch>
         </div>
         <FailureMessagesComponent></FailureMessagesComponent>
