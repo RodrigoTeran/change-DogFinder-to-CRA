@@ -23,6 +23,7 @@ routes.editPetProfileStatus = `${routes.apiDomain}/edit/status`;
 routes.editPetProfileRace = `${routes.apiDomain}/edit/dogBreed`;
 routes.editPetProfileGender = `${routes.apiDomain}/edit/dogGender`;
 routes.editPetProfileSize = `${routes.apiDomain}/edit/size`;
+routes.editPetProfileColor = `${routes.apiDomain}/edit/color`;
 
 // Stripe
 routes.postPayment = `${routes.apiDomain}/pay/service`;

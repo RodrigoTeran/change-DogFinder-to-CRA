@@ -76,7 +76,6 @@ const ChangeNameProfile = ({
     "´",
   ]
   const checkFuckingHack = () => {
-    console.log(possibleValuesForHack);
     let status = false;
     for (var i = 0; i < possibleValuesForHack.length; i++) {
       for (var j = 0; j < body.newName.length; j++) {

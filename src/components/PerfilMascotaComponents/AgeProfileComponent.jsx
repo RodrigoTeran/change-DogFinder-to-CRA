@@ -112,7 +112,13 @@ const AgeProfileComponent = ({
             {petProfile.size}
           </div>
         </div>
-        <ColorProfile></ColorProfile>
+        <ColorProfile
+          changeLoader={
+            (loader) => {
+              setIsLoading(loader)
+            }
+          }
+        ></ColorProfile>
       </div>
       {isLoading ? (
         <div className="loader-block" style={{
