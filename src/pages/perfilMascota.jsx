@@ -133,10 +133,12 @@ const PerfilMascota = ({
             selectedState: "gender",
             state: data.profilePet.gender
           });
-          updatePetProfile({
-            selectedState: "whenIsLost",
-            state: data.profilePet.whenIsLost
-          });
+          if (data.profilePet.whenIsLost) {
+            updatePetProfile({
+              selectedState: "whenIsLost",
+              state: data.profilePet.whenIsLost
+            });
+          };
         } else {
           updateFailureMessagesComponent({
             state: true,
