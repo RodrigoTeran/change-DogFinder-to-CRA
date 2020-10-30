@@ -1,5 +1,4 @@
 Issues:
-  - Poner time de cuando se perdio en perfil
   - Crear el forms para mandar mascota de mi perfil:
     --> esa info se guarda en la base de datos,
     entonces la API checa con el forms los posibles matches, de acuerdo a la zona, raza, cuando se perdio, etc...

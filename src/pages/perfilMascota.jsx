@@ -13,6 +13,7 @@ import ControlMainPetProfile from "../components/PerfilMascotaComponents/Control
 import ChangeNameProfile from "../components/PerfilMascotaComponents/ChangeNameProfile";
 import InfoPetProfile from "../components/PerfilMascotaComponents/InfoPetProfile";
 import AgeProfileComponent from "../components/PerfilMascotaComponents/AgeProfileComponent";
+import MainCVComponent from "../components/PerfilMascotaComponents/ComputerVisionComponents/MainCVComponent";
 
 import {
   updateFailureMessagesComponentAction,
@@ -167,9 +168,11 @@ const PerfilMascota = ({
               <ControlMainPetProfile isMobile={isMobile}></ControlMainPetProfile>
               <InfoPetProfile></InfoPetProfile>
               <AgeProfileComponent></AgeProfileComponent>
+              <MainCVComponent></MainCVComponent>
               <DeletePerfilMascota setYesRedirectProp={() => {
                 setYesRedirect(true);
               }} getURL={getURL}></DeletePerfilMascota>
+
             </>
           ) : (
               <>
@@ -185,6 +188,7 @@ const PerfilMascota = ({
                   }} getURL={getURL}></DeletePerfilMascota>
                   <InfoPetProfile></InfoPetProfile>
                   <AgeProfileComponent></AgeProfileComponent>
+                  <MainCVComponent></MainCVComponent>
                 </div>
               </>
             )}
