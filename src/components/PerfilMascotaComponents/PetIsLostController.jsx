@@ -34,7 +34,8 @@ const PetIsLostController = ({
   const editStatusFunction = (isLostVar) => {
     setIsLoading(true);
     let body = {
-      isLost: isLostVar
+      isLost: isLostVar,
+      newDate: new Date()
     };
     fetch(`${editPetProfileStatus}/${petProfile.name}`, {
       method: "PUT",
