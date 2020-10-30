@@ -90,16 +90,52 @@ const PerfilMascota = ({
         if (data.status) { // todo bien
           setYesDataAPI(true);
           updatePetProfile({
-            name: data.profilePet.petName,
-            petProfileImage: data.profilePet.profileImage,
-            images: data.profilePet.images,
-            isLost: data.profilePet.isLost,
-            race: data.profilePet.race,
-            location: data.profilePet.location,
-            coordenates: data.profilePet.coordenates,
-            size: data.profilePet.size,
-            mainColor: data.profilePet.mainColor,
-            gender: data.profilePet.gender,
+            selectedState: "name",
+            state: data.profilePet.petName
+          });
+          updatePetProfile({
+            selectedState: "petProfileImage",
+            state: data.profilePet.profileImage
+          });
+          updatePetProfile({
+            selectedState: "petProfileImage",
+            state: data.profilePet.profileImage
+          });
+          updatePetProfile({
+            selectedState: "images",
+            state: data.profilePet.images
+          });
+          updatePetProfile({
+            selectedState: "isLost",
+            state: data.profilePet.isLost
+          });
+          updatePetProfile({
+            selectedState: "dogBreed",
+            state: data.profilePet.race
+          });
+          updatePetProfile({
+            selectedState: "location",
+            state: data.profilePet.location
+          });
+          updatePetProfile({
+            selectedState: "coordenates",
+            state: data.profilePet.coordenates
+          });
+          updatePetProfile({
+            selectedState: "size",
+            state: data.profilePet.size
+          });
+          updatePetProfile({
+            selectedState: "mainColor",
+            state: data.profilePet.mainColor
+          });
+          updatePetProfile({
+            selectedState: "gender",
+            state: data.profilePet.gender
+          });
+          updatePetProfile({
+            selectedState: "whenIsLost",
+            state: data.profilePet.whenIsLost
           });
         } else {
           updateFailureMessagesComponent({

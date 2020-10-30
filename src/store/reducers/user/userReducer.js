@@ -29,9 +29,10 @@ const initialState = {
     dogBreed: undefined,
     location: undefined,
     coordenates: undefined,
-    size: undefined, // Pito
-    mainColor: undefined, // Pito
-    gender: undefined
+    size: undefined,
+    mainColor: undefined,
+    gender: undefined,
+    whenIsLost: new Date()
   }
 };
 export default function userReducer(state = initialState, action) {
@@ -39,16 +40,8 @@ export default function userReducer(state = initialState, action) {
     return {
       ...state,
       petProfile: {
-        name: action.name,
-        petProfileImage: action.petProfileImage,
-        images: action.images,
-        isLost: action.isLost,
-        dogBreed: action.dogBreed,
-        location: action.location,
-        coordenates: action.coordenates,
-        size: action.size,
-        mainColor: action.mainColor,
-        gender: action.gender,
+        ...state.petProfile,
+        [action.selectedState]: action.state
       }
     };
   };

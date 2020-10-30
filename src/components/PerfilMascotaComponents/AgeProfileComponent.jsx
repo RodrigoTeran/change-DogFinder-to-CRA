@@ -49,16 +49,8 @@ const AgeProfileComponent = ({
       setIsLoading(false);
       if (data.status) {
         updatePetProfile({
-          name: petProfile.name,
-          petProfileImage: petProfile.petProfileImage,
-          images: petProfile.images,
-          isLost: petProfile.isLost,
-          race: petProfile.dogBreed,
-          location: petProfile.location,
-          size: newSize,
-          mainColor: petProfile.mainColor,
-          gender: petProfile.gender,
-          coordenates: petProfile.coordenates
+          selectedState: "size",
+          state: newSize
         });
         updateSuccessMessagesComponent({
           state: true,

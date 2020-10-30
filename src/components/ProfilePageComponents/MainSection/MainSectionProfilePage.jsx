@@ -47,8 +47,9 @@ const MainSectionProfilePage = ({
         </>
       ) : (
           <div>Actualmente no tienes una cuenta premium. Pulsa el botón de ser premium.</div>
-        )}
-    </div>
+        )
+      }
+    </div >
   );
 };
 

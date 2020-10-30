@@ -33,16 +33,8 @@ export const updateUserAction = (data) => {
 export const updatePetProfileAction = (data) => {
   return ({
     type: "UPDATE_PET_PROFILE",
-    name: data.name,
-    petProfileImage: data.petProfileImage,
-    images: data.images,
-    isLost: data.isLost,
-    dogBreed: data.race,
-    location: data.location,
-    coordenates: data.coordenates,
-    size: data.size,
-    mainColor: data.mainColor,
-    gender: data.gender,
+    selectedState: data.selectedState,
+    state: data.state
   });
 };
 

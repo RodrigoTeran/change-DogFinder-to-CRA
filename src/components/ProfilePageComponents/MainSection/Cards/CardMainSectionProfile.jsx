@@ -20,10 +20,20 @@ const CardMainSectionProfile = ({
   };
   const updateReduxPet = () => {
     updatePetProfile({
-      name: petName,
-      petProfileImage: profileImage,
-      images: [],
-      isLost: isLost
+      selectedState: "name",
+      state: petName
+    });
+    updatePetProfile({
+      selectedState: "petProfileImage",
+      state: profileImage
+    });
+    updatePetProfile({
+      selectedState: "images",
+      state: []
+    });
+    updatePetProfile({
+      selectedState: "isLost",
+      state: isLost
     });
   };
   useEffect(() => {

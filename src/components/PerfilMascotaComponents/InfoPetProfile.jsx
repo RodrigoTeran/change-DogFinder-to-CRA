@@ -65,16 +65,8 @@ const InfoPetProfile = ({
             description: "Se cambió la raza de su mascota con éxito"
           });
           updatePetProfile({
-            name: petProfile.name,
-            petProfileImage: petProfile.petProfileImage,
-            images: petProfile.images,
-            isLost: petProfile.isLost,
-            race: dogBreed,
-            location: petProfile.location,
-            size: petProfile.size,
-            mainColor: petProfile.mainColor,
-            gender: petProfile.gender,
-            coordenates: petProfile.coordenates
+            selectedState: "dogBreed",
+            state: dogBreed
           });
         } else {
           updateFailureMessagesComponent({
@@ -122,16 +114,8 @@ const InfoPetProfile = ({
             description: "Se cambió el género de su mascota con éxito"
           });
           updatePetProfile({
-            name: petProfile.name,
-            petProfileImage: petProfile.petProfileImage,
-            images: petProfile.images,
-            isLost: petProfile.isLost,
-            race: petProfile.dogBreed,
-            location: petProfile.location,
-            size: petProfile.size,
-            mainColor: petProfile.mainColor,
-            coordenates: petProfile.coordenates,
-            gender: dogGender
+            selectedState: "gender",
+            state: dogGender
           });
         } else {
           updateFailureMessagesComponent({

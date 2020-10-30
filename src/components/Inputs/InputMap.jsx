@@ -153,19 +153,15 @@ const InputMap = ({
               description: "Se cambió la localización de tu mascota con éxito"
             });
             updatePetProfile({
-              name: petProfile.name,
-              petProfileImage: petProfile.petProfileImage,
-              images: petProfile.images,
-              isLost: petProfile.isLost,
-              race: petProfile.dogBreed,
-              location: body.location,
-              coordenates: {
+              selectedState: "location",
+              state: body.location
+            });
+            updatePetProfile({
+              selectedState: "coordenates",
+              state: {
                 latitude: marker.lat,
                 longitude: marker.lng
-              },
-              size: petProfile.size,
-              mainColor: petProfile.mainColor,
-              gender: petProfile.gender,
+              }
             });
           } else {
             updateFailureMessagesComponent({

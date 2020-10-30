@@ -19,7 +19,8 @@ import {
 } from "../../store/reducers/user/actions";
 
 import {
-  editPetProfileStatus
+  editPetProfileStatus,
+  editPetProfileWhenIsLost
 } from "../../routes/index";
 
 const PetIsLostController = ({
@@ -54,18 +55,6 @@ const PetIsLostController = ({
           title: "Error",
           description: "No se pudo actualizar el estado de tu mascota",
         });
-        updatePetProfile({
-          name: petProfile.name,
-          petProfileImage: petProfile.petProfileImage,
-          images: petProfile.images,
-          isLost: petProfile.isLost,
-          race: petProfile.dogBreed,
-          location: petProfile.location,
-          size: petProfile.size,
-          mainColor: petProfile.mainColor,
-          gender: petProfile.gender,
-          coordenates: petProfile.coordenates
-        });
       } else {
         updateSuccessMessagesComponent({
           state: true,
@@ -73,29 +62,59 @@ const PetIsLostController = ({
           description: "Sí se pudo actualizar el estado de tu mascota",
         });
         updatePetProfile({
-          isLost: isLostVar,
-          name: petProfile.name,
-          petProfileImage: petProfile.petProfileImage,
-          images: petProfile.images,
-          race: petProfile.dogBreed,
-          location: petProfile.location,
-          size: petProfile.size,
-          mainColor: petProfile.mainColor,
-          gender: petProfile.gender,
-          coordenates: petProfile.coordenates
+          selectedState: "whenIsLost",
+          state: new Date()
+        });
+        updatePetProfile({
+          selectedState: "isLost",
+          state: isLostVar
         });
       };
     });
   };
-  const [date, setDate] = useState(new Date());
   const [heightCalendar, setHeightCalendar] = useState(0);
   const [firstAnimCalendar, setFirstAnimCalendar] = useState(false);
+
+  const editWhenIsLost = newDate => {
+    setIsLoading(true);
+    let body = {
+      newDate
+    };
+    fetch(`${editPetProfileWhenIsLost}/${petProfile.name}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": localStorage.getItem("token")
+      },
+      body: JSON.stringify(body)
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      setIsLoading(false);
+      if (!data.status) {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "No se pudo actualizar cuando se perdió tu mascota",
+        });
+      } else {
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Se cambió el perfil con éxito",
+          description: "Sí se pudo actualizar cuando se perdió tu mascota",
+        });
+      };
+    });
+  };
   useEffect(() => {
     setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
     if (heightCalendar > 0) {
       setFirstAnimCalendar(true);
     };
   });
+
   return (
     <div>
       <div className={`control-pet-profile-petislost ${isMobile ? ("column-petislost") : ("row-petislost")}`}>
@@ -135,13 +154,17 @@ const PetIsLostController = ({
         }}>
         <div className={`calendar-animation ${petProfile.isLost ? ("open") : ("")}`}>
           <div className={`calendar-title`}>
-            ¿Desde cuando esta perdida tu mascota?
+            ¿Desde cuándo esta perdida tu mascota?
           </div>
           <Calendar
             className={`calendar`}
             onChange={(date) => {
-              setDate(date)
-              setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))
+              updatePetProfile({
+                selectedState: "whenIsLost",
+                state: date
+              });
+              setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
+              editWhenIsLost(date);
             }}
             onViewChange={() => {
               setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))
@@ -149,7 +172,7 @@ const PetIsLostController = ({
             onActiveStartDateChange={() => {
               setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))
             }}
-            value={date}
+            value={new Date(petProfile.whenIsLost)}
           ></Calendar>
         </div>
       </div>

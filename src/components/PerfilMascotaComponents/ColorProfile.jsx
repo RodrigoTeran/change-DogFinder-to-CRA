@@ -48,17 +48,8 @@ const ColorProfile = ({
       changeLoader(false);
       if (data.status) {
         updatePetProfile({
-          name: petProfile.name,
-          petProfileImage: petProfile.petProfileImage,
-          images: petProfile.images,
-          isLost: petProfile.isLost,
-          race: petProfile.dogBreed,
-          location: petProfile.location,
-          size: petProfile.size,
-          gender: petProfile.gender,
-          coordenates: petProfile.coordenates,
-
-          mainColor: newColor
+          selectedState: "mainColor",
+          state: newColor
         });
         updateSuccessMessagesComponent({
           state: true,

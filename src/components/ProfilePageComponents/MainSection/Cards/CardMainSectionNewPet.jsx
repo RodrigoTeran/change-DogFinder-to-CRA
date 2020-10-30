@@ -64,10 +64,20 @@ const CardMainSectionNewPet = ({
   };
   const updateReduxPet = () => {
     updatePetProfile({
-      name: petname,
-      petProfileImage: `${defaultImage}`,
-      images: [],
-      isLost: false
+      selectedState: "name",
+      state: petname
+    });
+    updatePetProfile({
+      selectedState: "petProfileImage",
+      state: `${defaultImage}`
+    });
+    updatePetProfile({
+      selectedState: "images",
+      state: []
+    });
+    updatePetProfile({
+      selectedState: "isLost",
+      state: false
     });
   };
   return (
