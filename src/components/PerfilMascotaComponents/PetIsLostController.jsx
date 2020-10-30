@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
+import Calendar from "react-calendar";
 
 import {
   getPetProfile
 } from "../../store/reducers/user/selector";
+
+import 'react-calendar/dist/Calendar.css';
 
 import {
   updateFailureMessagesComponentAction,
@@ -84,6 +87,15 @@ const PetIsLostController = ({
       };
     });
   };
+  const [date, setDate] = useState(new Date());
+  const [heightCalendar, setHeightCalendar] = useState(0);
+  const [firstAnimCalendar, setFirstAnimCalendar] = useState(false);
+  useEffect(() => {
+    setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
+    if (heightCalendar > 0) {
+      setFirstAnimCalendar(true);
+    };
+  });
   return (
     <div>
       <div className={`control-pet-profile-petislost ${isMobile ? ("column-petislost") : ("row-petislost")}`}>
@@ -113,6 +125,32 @@ const PetIsLostController = ({
           >
             <svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm80 168c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zM152 416c-26.5 0-48-21-48-47 0-20 28.5-60.4 41.6-77.8 3.2-4.3 9.6-4.3 12.8 0C171.5 308.6 200 349 200 369c0 26-21.5 47-48 47zm16-176c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm170.2 154.2C315.8 367.4 282.9 352 248 352c-21.2 0-21.2-32 0-32 44.4 0 86.3 19.6 114.7 53.8 13.8 16.4-11.2 36.5-24.5 20.4z" /></svg>
           </ButtonWhiteRectangle>
+        </div>
+      </div>
+      <div className={`calendar-container ${firstAnimCalendar ? ("yes") : ("")} `}
+        style={{
+          height: petProfile.isLost ? (`${heightCalendar}px`) : ("0px"),
+          marginTop: petProfile.isLost ? (`20px`) : ("0px"),
+          marginBottom: petProfile.isLost ? (`20px`) : ("0px")
+        }}>
+        <div className={`calendar-animation ${petProfile.isLost ? ("open") : ("")}`}>
+          <div className={`calendar-title`}>
+            ¿Desde cuando esta perdida tu mascota?
+          </div>
+          <Calendar
+            className={`calendar`}
+            onChange={(date) => {
+              setDate(date)
+              setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))
+            }}
+            onViewChange={() => {
+              setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))
+            }}
+            onActiveStartDateChange={() => {
+              setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))
+            }}
+            value={date}
+          ></Calendar>
         </div>
       </div>
       {isLoading ? (
