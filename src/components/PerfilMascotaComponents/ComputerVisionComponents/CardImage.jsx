@@ -21,20 +21,23 @@ const CardImage = ({
 
   return (
     <>
-      <div className="computer-vision-col col-lg-3 col-md-4 col-sm-6" style={{
-        height: widthImg
-      }}>
-        <div className={`computer-vision-col-content ${typeOfCard === "addImage" ? ("computer-vision-col-content-add-image") : ("")}`}
-        title={`${typeOfCard === "addImage" ? ("Añadir imagen") : ("")}`}>
-          {typeOfCard === "addImage" ? (
+      {typeOfCard === "addImage" ? (
+        <div className="computer-vision-col-add-image">
+          <div className={`computer-vision-col-content computer-vision-col-content-add-image`} title="Añadir imagen">
             <div className="computer-vision-col-content-add-image-text">
               AÑADIR IMAGEN
-            </div>
-          ) : (<>
-            otro texto
-          </>)}
+              </div>
+          </div>
         </div>
-      </div>
+      ) : (
+          <div className="computer-vision-col col-lg-3 col-md-4 col-sm-6" style={{ height: widthImg }}>
+            <div className={`computer-vision-col-content`}>
+              <>
+                
+              </>
+            </div>
+          </div>
+        )}
     </>
   );
 };
