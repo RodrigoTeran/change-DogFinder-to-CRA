@@ -26,6 +26,7 @@ routes.editPetProfileSize = `${routes.apiDomain}/edit/size`;
 routes.editPetProfileColor = `${routes.apiDomain}/edit/color`;
 routes.editCoordenates = `${routes.apiDomain}/edit/coordenates`;
 routes.editPetProfileWhenIsLost = `${routes.apiDomain}/edit/whenIsLost`;
+routes.editPetProfileImages = `${routes.apiDomain}/edit/images`;
 
 // Stripe
 routes.postPayment = `${routes.apiDomain}/pay/service`;

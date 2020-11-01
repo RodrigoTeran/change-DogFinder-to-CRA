@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 
 const CardImage = ({
   typeOfCard,
-  changeFunction
+  changeFunction,
+  srcImage,
+  key
 }) => {
 
   useEffect(() => {
@@ -13,11 +15,20 @@ const CardImage = ({
     };
   });
   const [widthImg, setWidthImage] = useState("0px");
+  const [widthImgImg, setWidthImageImg] = useState("0px");
   const handleResize = () => {
     const img = document.querySelector(".computer-vision-col");
     var estilos = window.getComputedStyle(img, null);
     var ancho = estilos.getPropertyValue("width");
     setWidthImage(ancho);
+    handleResizeImages();
+  };
+
+  const handleResizeImages = () => {
+    const img = document.querySelector(".computer-vision-col-content");
+    var estilos = window.getComputedStyle(img, null);
+    var ancho = estilos.getPropertyValue("width");
+    setWidthImageImg(ancho);
   };
 
   return (
@@ -36,11 +47,13 @@ const CardImage = ({
           </label>
         </>
       ) : (
-          <div className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
-            <div className={`computer-vision-col-content`}>
-              <>
-                IMAGEN
-              </>
+          <div key={key} className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
+            <div className={`computer-vision-col-content`} style={{
+              backgroundImage: "url(" + srcImage + ")"
+            }}>
+              <div>
+
+              </div>
             </div>
           </div>
         )}

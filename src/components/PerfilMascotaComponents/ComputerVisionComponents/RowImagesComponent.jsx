@@ -38,10 +38,19 @@ const RowImagesComponent = ({
         </div>
       </div>
       <div className="computer-vision-row row">
-        <CardImage></CardImage>
-        <CardImage></CardImage>
-        <CardImage></CardImage>
-        <CardImage></CardImage>
+        {petProfile.images.length > 0 ? (
+          petProfile.images.map(image => {
+            return (
+              <CardImage
+                key={image.srcImage}
+                srcImage={image.srcImage}
+              ></CardImage>
+            )
+          })
+        ) : (<>
+          <CardImage
+            nothing={true}></CardImage>
+        </>)}
       </div>
     </>
   );
