@@ -7,6 +7,7 @@ const ButtonWhiteRectangle = ({
   mb,
   mt,
   width,
+  marginLeft,
   height,
   children,
   text,
@@ -25,7 +26,8 @@ const ButtonWhiteRectangle = ({
         <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad} ${redDif}`} style={{
           fontSize: fontSize || "1.2rem",
           width: width,
-          height: height
+          height: height,
+          marginLeft: marginLeft
         }}>
           <div className="buttonWhiteRectangleStyles-container">
             {children ? (
@@ -52,7 +54,8 @@ const ButtonWhiteRectangle = ({
               <button onClick={clickFunctionAnotherOne} className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad} ${redDif}`} style={{
                 fontSize: fontSize || "1.2rem",
                 width: width,
-                height: height
+                height: height,
+                marginLeft: marginLeft
               }}>
                 <div className="buttonWhiteRectangleStyles-container">
                   {children ? (
@@ -78,7 +81,8 @@ const ButtonWhiteRectangle = ({
                   <button className={`buttonWhiteRectangleStyles ${mb} ${mt} ${red} ${green} ${greenDif} ${sad} ${redDif}`} style={{
                     fontSize: fontSize || "1.2rem",
                     width: width,
-                    height: height
+                    height: height,
+                    marginLeft: marginLeft
                   }}>
                     <div className="buttonWhiteRectangleStyles-container">
                       {children ? (

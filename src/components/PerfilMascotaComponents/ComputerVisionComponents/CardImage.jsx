@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const CardImage = ({
-  typeOfCard
+  typeOfCard,
+  changeFunction
 }) => {
 
   useEffect(() => {
@@ -22,18 +23,23 @@ const CardImage = ({
   return (
     <>
       {typeOfCard === "addImage" ? (
-        <div className="computer-vision-col-add-image">
-          <div className={`computer-vision-col-content computer-vision-col-content-add-image`} title="Añadir imagen">
-            <div className="computer-vision-col-content-add-image-text">
-              AÑADIR IMAGEN
+        <>
+          <input onChange={changeFunction} type="file" name="file" id="fileNewImageXd" className="inputfile inputfileCroppr" />
+          <label htmlFor="fileNewImageXd" className="computer-vision-col-add-image" style={{
+            width: window.innerWidth < 1121 ? ("100%") : ("300px")
+          }} >
+            <div className={`computer-vision-col-content computer-vision-col-content-add-image`} title="Añadir imagen">
+              <div className="computer-vision-col-content-add-image-text">
+                AÑADIR IMAGEN
               </div>
-          </div>
-        </div>
+            </div>
+          </label>
+        </>
       ) : (
-          <div className="computer-vision-col col-lg-3 col-md-4 col-sm-6" style={{ height: widthImg }}>
+          <div className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
             <div className={`computer-vision-col-content`}>
               <>
-                
+                IMAGEN
               </>
             </div>
           </div>

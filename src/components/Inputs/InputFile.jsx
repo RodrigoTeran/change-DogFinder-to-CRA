@@ -8,7 +8,7 @@ const InputFile = ({
 }) => {
   return (
     <>
-      <input onChange={changeFunction} type="file" name="file" id="file" className="inputfile" />
+      <input onChange={changeFunction} type="file" name="file" id="file" className="inputfile inputfileImageProfile" />
       <label htmlFor="file" className="input-special"
         style={{
           width: width,

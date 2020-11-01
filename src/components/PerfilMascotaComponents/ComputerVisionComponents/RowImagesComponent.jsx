@@ -8,13 +8,16 @@ import {
 import CardImage from "./CardImage";
 
 const RowImagesComponent = ({
-  petProfile
+  petProfile,
+  changeFunction
 }) => {
   const [yesInstructions, setInstructions] = useState(false);
 
   return (
     <>
-      <CardImage typeOfCard="addImage"></CardImage>
+      <CardImage typeOfCard="addImage"
+        changeFunction={changeFunction}
+      ></CardImage>
       <div className={`image-pet-profile-instructions image-pet-profile-instructions-images ${yesInstructions ? ("open") : ("close")}`} style={{
         marginTop: "5px",
         marginBottom: yesInstructions ? ("5px") : ("20px"),
