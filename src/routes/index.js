@@ -37,6 +37,7 @@ routes.postNewPet = `${routes.apiDomain}/new/pet`;
 
 // DELETE
 routes.eraseProfile = `${routes.apiDomain}/erase/profile`;
+routes.eraseProfileImages = `${routes.apiDomain}/erase/images`;
 
 // DEFAULTS
 // Pet default image

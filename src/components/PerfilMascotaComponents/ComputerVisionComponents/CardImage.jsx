@@ -4,8 +4,10 @@ const CardImage = ({
   typeOfCard,
   changeFunction,
   srcImage,
-  key,
-  nothing
+  nothing,
+
+  handleDeleteImage,
+
 }) => {
 
   useEffect(() => {
@@ -15,16 +17,14 @@ const CardImage = ({
       window.removeEventListener("resize", handleResize);
     };
   });
+
   const [widthImg, setWidthImage] = useState("0px");
+
   const handleResize = () => {
     const img = document.querySelector(".computer-vision-col");
     var estilos = window.getComputedStyle(img, null);
     var ancho = estilos.getPropertyValue("width");
     setWidthImage(ancho);
-  };
-
-  const deleteImage = () => {
-    console.log("cd");
   };
 
   return (
@@ -45,9 +45,9 @@ const CardImage = ({
       ) : (
           <>
             {nothing ? (
-              <div key={key} className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
-                <div className={`computer-vision-col-content`}>
-                  <div className="computer-vision-col-content-button">
+              <div className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
+                <div className={`computer-vision-col-content-2`}>
+                  <div className="computer-vision-col-content-button-2">
                     <div>
                       IMAGEN
                     </div>
@@ -55,17 +55,17 @@ const CardImage = ({
                 </div>
               </div>
             ) : (
-                <div key={key} className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
+                <div className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
                   <div className={`computer-vision-col-content`} style={{
                     backgroundImage: "url(" + srcImage + ")"
                   }}>
-                    <div className="computer-vision-col-content-button" title="Eliminar Imagen" onClick={deleteImage}>
+                    <div className={`computer-vision-col-content-button`} title="Eliminar Imagen" onClick={() => { handleDeleteImage(srcImage) }}>
                       <div>
                         Eliminar
-                            </div>
+                        </div>
                       <div>
                         Imagen
-                            </div>
+                      </div>
                     </div>
                   </div>
                 </div>
