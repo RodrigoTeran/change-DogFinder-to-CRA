@@ -38,7 +38,7 @@ const RowImagesComponent = ({
         </div>
       </div>
       <div className="computer-vision-row row">
-        {petProfile.images.length > 0 ? (
+        {petProfile.images.length === 4 ? (
           petProfile.images.map(image => {
             return (
               <CardImage
@@ -48,8 +48,75 @@ const RowImagesComponent = ({
             )
           })
         ) : (<>
-          <CardImage
-            nothing={true}></CardImage>
+          {petProfile.images.length === 3 ? (
+            <>
+              {petProfile.images.map(image => {
+                return (
+                  <CardImage
+                    key={image.srcImage}
+                    srcImage={image.srcImage}
+                  ></CardImage>
+                )
+              })}
+              <CardImage
+                nothing={true}
+              ></CardImage>
+            </>
+          ) : (<>
+            {petProfile.images.length === 2 ? (
+              <>
+                {petProfile.images.map(image => {
+                  return (
+                    <CardImage
+                      key={image.srcImage}
+                      srcImage={image.srcImage}
+                    ></CardImage>
+                  )
+                })}
+                <CardImage
+                  nothing={true}
+                ></CardImage>
+                <CardImage
+                  nothing={true}
+                ></CardImage>
+              </>
+            ) : (<>
+              {petProfile.images.length === 1 ? (
+                <>
+                  {petProfile.images.map(image => {
+                    return (
+                      <CardImage
+                        key={image.srcImage}
+                        srcImage={image.srcImage}
+                      ></CardImage>
+                    )
+                  })}
+                  <CardImage
+                    nothing={true}
+                  ></CardImage>
+                  <CardImage
+                    nothing={true}
+                  ></CardImage>
+                  <CardImage
+                    nothing={true}
+                  ></CardImage>
+                </>
+              ) : (<>
+                <CardImage
+                  nothing={true}
+                ></CardImage>
+                <CardImage
+                  nothing={true}
+                ></CardImage>
+                <CardImage
+                  nothing={true}
+                ></CardImage>
+                <CardImage
+                  nothing={true}
+                ></CardImage>
+              </>)}
+            </>)}
+          </>)}
         </>)}
       </div>
     </>

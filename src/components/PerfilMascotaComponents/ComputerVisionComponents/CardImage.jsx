@@ -4,7 +4,8 @@ const CardImage = ({
   typeOfCard,
   changeFunction,
   srcImage,
-  key
+  key,
+  nothing
 }) => {
 
   useEffect(() => {
@@ -15,20 +16,15 @@ const CardImage = ({
     };
   });
   const [widthImg, setWidthImage] = useState("0px");
-  const [widthImgImg, setWidthImageImg] = useState("0px");
   const handleResize = () => {
     const img = document.querySelector(".computer-vision-col");
     var estilos = window.getComputedStyle(img, null);
     var ancho = estilos.getPropertyValue("width");
     setWidthImage(ancho);
-    handleResizeImages();
   };
 
-  const handleResizeImages = () => {
-    const img = document.querySelector(".computer-vision-col-content");
-    var estilos = window.getComputedStyle(img, null);
-    var ancho = estilos.getPropertyValue("width");
-    setWidthImageImg(ancho);
+  const deleteImage = () => {
+    console.log("cd");
   };
 
   return (
@@ -47,15 +43,34 @@ const CardImage = ({
           </label>
         </>
       ) : (
-          <div key={key} className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
-            <div className={`computer-vision-col-content`} style={{
-              backgroundImage: "url(" + srcImage + ")"
-            }}>
-              <div>
-
+          <>
+            {nothing ? (
+              <div key={key} className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
+                <div className={`computer-vision-col-content`}>
+                  <div className="computer-vision-col-content-button">
+                    <div>
+                      IMAGEN
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ) : (
+                <div key={key} className={`computer-vision-col col-lg-3 col-md-4 col-sm-6`} style={{ height: widthImg }}>
+                  <div className={`computer-vision-col-content`} style={{
+                    backgroundImage: "url(" + srcImage + ")"
+                  }}>
+                    <div className="computer-vision-col-content-button" title="Eliminar Imagen" onClick={deleteImage}>
+                      <div>
+                        Eliminar
+                            </div>
+                      <div>
+                        Imagen
+                            </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+          </>
         )}
     </>
   );

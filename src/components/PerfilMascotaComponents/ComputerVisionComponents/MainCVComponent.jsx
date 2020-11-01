@@ -7,8 +7,12 @@ import {
 
 import {
   updateFailureMessagesComponentAction,
-  updateSuccessMessagesComponentAction
+  updateSuccessMessagesComponentAction,
 } from "../../../store/reducers/layout/actions";
+
+import {
+  updatePetProfileAction
+} from "../../../store/reducers/user/actions";
 
 import {
   editPetProfileImages
@@ -20,7 +24,8 @@ import CroppImages from "./CroppImages";
 const MainCVComponent = ({
   petProfile,
   updateFailureMessagesComponent,
-  updateSuccessMessagesComponent
+  updateSuccessMessagesComponent,
+  updatePetProfile
 }) => {
 
   const [imageSrc, setImageSrc] = useState("");
@@ -80,6 +85,18 @@ const MainCVComponent = ({
                 title: "Se añadió la imagen",
                 description: `Se añadió la imagen para el reconocimiento facial con éxito`
               });
+              if (res.data.imagesArray) {
+                updatePetProfile({
+                  selectedState: "images",
+                  state: res.data.imagesArray
+                });
+              } else {
+                updateFailureMessagesComponent({
+                  state: true,
+                  title: "Error al actualizar estado",
+                  description: `Actualice la página para actualizar el estado`,
+                });
+              };
             } else if (res.data.status === "more") {
               updateFailureMessagesComponent({
                 state: true,
@@ -144,7 +161,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
-    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) }
+    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
+    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
   }
 };
 

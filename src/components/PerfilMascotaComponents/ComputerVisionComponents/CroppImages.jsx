@@ -32,7 +32,6 @@ const CroppImages = ({
   };
 
   useEffect(() => {
-    console.log(isResponse);
     if (isResponse) {
       setImageSrc()
       setFirstScroll(false);
