@@ -56,7 +56,7 @@ const HeaderProfilePage = ({
       <div className="profile-page-contact-profile">
         <div className="profile-page-contact-profile-title">
           <div>
-            Información de tu cuenta
+            Información de contacto
           </div>
         </div>
         <div className="profile-page-contact-profile-contacts-container">
