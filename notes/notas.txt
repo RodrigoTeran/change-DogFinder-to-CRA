@@ -14,3 +14,8 @@ Issues:
   - Editar la información que sale en SE PERDIÓ MI PERRO
   - Checar que información se trae de Facebook al hacer OAuth
   - Crear la venta de notificaciones
+  - Poner más bonitos los html del mail
+  - Crear cuenta de correo y de whatsapp de empresa
+  - Incluir IVA en compra
+  - Pagar impuestos xd
+  - Poner SEO en html

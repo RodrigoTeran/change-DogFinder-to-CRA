@@ -18,7 +18,10 @@ const ButtonWhiteRectangle = ({
   redDif,
   green,
   greenDif,
-  sad
+  sad,
+  backgroundColorRectangle,
+  colorText,
+  bold
 }) => {
   return (
     <>
@@ -27,7 +30,10 @@ const ButtonWhiteRectangle = ({
           fontSize: fontSize || "1.2rem",
           width: width,
           height: height,
-          marginLeft: marginLeft
+          marginLeft: marginLeft,
+          backgroundColor: backgroundColorRectangle,
+          color: colorText,
+          fontWeight: bold
         }}>
           <div className="buttonWhiteRectangleStyles-container">
             {children ? (
@@ -55,7 +61,9 @@ const ButtonWhiteRectangle = ({
                 fontSize: fontSize || "1.2rem",
                 width: width,
                 height: height,
-                marginLeft: marginLeft
+                marginLeft: marginLeft,
+                backgroundColor: backgroundColorRectangle,
+                color: colorText
               }}>
                 <div className="buttonWhiteRectangleStyles-container">
                   {children ? (
@@ -82,7 +90,9 @@ const ButtonWhiteRectangle = ({
                     fontSize: fontSize || "1.2rem",
                     width: width,
                     height: height,
-                    marginLeft: marginLeft
+                    marginLeft: marginLeft,
+                    backgroundColor: backgroundColorRectangle,
+                    color: colorText
                   }}>
                     <div className="buttonWhiteRectangleStyles-container">
                       {children ? (

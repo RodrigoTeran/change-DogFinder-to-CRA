@@ -97,3 +97,66 @@
     }
   }
 }
+.profile-page-contact-profile {
+  margin-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @media screen and (max-width: 1197px) {
+    flex-direction: column;
+  }
+  &-contacts-container {
+    width: 50%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    @media screen and (max-width: 1197px) {
+      width: 300px;
+    }
+    &-col {
+      width: calc(50% - 5px);
+      @media screen and (max-width: 1197px) {
+        width: 100%;
+        &-2 {
+          margin-top: 10px;
+        }
+      }
+      height: 100%;
+    }
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+      width: calc(50% + 130px);
+      @media screen and (max-width: 1197px) {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        height: fit-content;
+      }
+      padding: 0;
+    }
+  }
+  &-title {
+    width: 50%;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    @media screen and (max-width: 1197px) {
+      margin-bottom: 20px;
+      text-align: center;
+      width: 100%;
+    }
+    div {
+      transform: translateX(-4.5rem);
+      @media screen and (max-width: 1197px) {
+        transform: translateX(0px);
+      }
+    }
+  }
+}
