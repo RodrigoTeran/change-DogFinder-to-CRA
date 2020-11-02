@@ -44,7 +44,7 @@ const MainSectionProfilePage = ({
           <div className="main-section-profile-page-instructions">
             <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`}>
               <div className="image-pet-profile-instructions-icon">
-                <div onClick={() => { setInstructions(!yesInstructions) }} title="Información" style={{
+                <div onClick={() => { setInstructions(!yesInstructions) }} title="Instrucciones" style={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: window.innerWidth < 768 ? (yesInstructions ? ("left") : ("center")) : ("left")

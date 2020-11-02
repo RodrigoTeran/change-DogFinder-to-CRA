@@ -211,7 +211,7 @@ const MainCVComponent = ({
           marginLeft: window.innerWidth < 1121 ? (`calc(50% - 150px`) : ("0px")
         }}>
           <div className="image-pet-profile-instructions-icon">
-            <div onClick={() => { setInstructions(!yesInstructions) }} title="Información" style={{
+            <div onClick={() => { setInstructions(!yesInstructions) }} title="Instrucciones" style={{
               display: "flex",
               alignItems: "center"
             }}>
