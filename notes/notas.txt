@@ -1,4 +1,7 @@
 Issues:
+  - Arreglar estilo del div de foto de perfil y ser premium 
+    --> Para que el div siempre se vea centrado con el de abajo
+  - Hacer que el div de los buttons de contactos de perfil no se ponga en column tan rápido
   - Poner información de perfil en página de perfil
     --> Para que las personas puedan contactar a esa persona
     --> Que puedan establecer:
