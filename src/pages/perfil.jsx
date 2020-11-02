@@ -71,7 +71,7 @@ const Profile = ({
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
-  
+
   const getProfileData = () => {
     if (!yesDataAPI) {
       fetch(getProfileDataRoute, {

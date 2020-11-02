@@ -13,6 +13,29 @@
   margin-top: 30px;
   padding-top: 5px;
   text-align: center;
+  &-instructions {
+    min-height: 80px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    @media screen and (min-width: 768px) {
+      justify-content: left;
+      padding-left: calc(5% + 18px);
+    }
+    .image-pet-profile-instructions {
+      width: 300px;
+      text-align: center;
+    }
+    .image-pet-profile-instructions-text {
+      &-2 {
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          padding-left: 0px;
+        }
+      }
+      text-align: left;
+    }
+  }
 
   &-title {
     font-family: "Roboto Condensed", sans-serif;

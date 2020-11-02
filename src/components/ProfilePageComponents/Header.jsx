@@ -1,5 +1,5 @@
 // Modules
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Components
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
@@ -9,9 +9,25 @@ const HeaderProfilePage = ({
   imgId,
   isPremium
 }) => {
+  const [yesInstructions, setInstructions] = useState(false);
+  const [stateForRender, setStateForRender] = useState(false);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+  const handleResize = () => {
+    setStateForRender(!stateForRender);
+  };
   return (
     <>
       <div className="d-flex row justify-content-around align-items-center row-header-profile-page">
+        {stateForRender ? (
+          <div style={{ display: "none" }}>.</div>
+        ) : (
+            <div style={{ display: "none" }}>.</div>
+          )}
         <div style={{ fontSize: "1rem" }} className="col-lg-6 col-md-6 col-sm-10 my-3 row-header-profile-page-col">
           <div className="d-flex justify-content-center">
             <img className="rounded-circle img-fluid mr-3" src={`${imgId}`} alt={`${username}`} style={{ width: "4.5rem", height: "4.5rem" }}></img>
@@ -62,6 +78,26 @@ const HeaderProfilePage = ({
               </ButtonWhiteRectangle>
             </div>
           </div>
+        </div>
+      </div>
+      <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`} style={{
+        marginTop: "0px",
+        width: "300px",
+        marginRight: `${window.innerWidth < 768 ? ("0px") : ("auto")}`, marginLeft: `${window.innerWidth < 768 ? ("") : ("calc(5% + 20px)")}`, marginBottom: `${window.innerWidth < 768 ? ("30px") : ("0px")}`,
+      }}>
+        <div className="image-pet-profile-instructions-icon">
+          <div onClick={() => { setInstructions(!yesInstructions) }} title="Información" style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: `${
+              window.innerWidth < 768 ? (yesInstructions ? ("left") : ("center")) : ("left")
+              }`
+          }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg> Instrucciones
+            </div>
+        </div>
+        <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
+          Debes de llenar estos dos campos antes de poder poner un perfil de tu mascota como perdido o reportar a un perro desaparecido.
         </div>
       </div>
     </>
