@@ -19,3 +19,13 @@ Issues:
   - Incluir IVA en compra
   - Pagar impuestos xd
   - Poner SEO en html
+  - Que no te deje ponerlo como perdido si no has llenado todos sus datos
+    --> Completar todo, hasta las 4 imágenes de perfil
+    --> También se necesita que pongas tu información de contactos en el perfil si quieres reportarlo como perdido
+  - Cuando se haga un match:
+    --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
+    --> En tu página de perfil, el perfil de Freda va a tener otro color:
+      - Cuando le das, se va a abrir la pestaña con los datos del perro el cual se hizo match
+        - Si ese es tu perro confirma, asi ya se quita ese baner... y se deja los contactos en tu historial.
+        - Para que lo puedas consultar si no guardaste la información del que rescato a tu mascota.
+        - Se confirma también para que ya no aparezaca en el mapa... también se quita el isLost
