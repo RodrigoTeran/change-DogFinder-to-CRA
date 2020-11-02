@@ -1,1 +1,3 @@
-- Poner time de cuando se perdio en perfil
+- Que no se pueda transferir la cuenta
+- Que el mapa solo salgan los perfiles de los premium
+  --> Y que salga toda la información

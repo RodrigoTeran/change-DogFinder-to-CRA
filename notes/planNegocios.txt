@@ -1,15 +1,18 @@
------¿Qué gano yo?-----
-- Que más personas conozcan mi App
-- Ganar contactos para contactar si encontraron a un perro
+-----¿Qué gano yo al hacer b2b?-----
+- Que más personas conozcan mi Plataforma
+- Ganar contactos de empresas para crear sinergia en la solución a este problema.
 
 -----¿Qué ganan las empresas?-----
-- Que puedan ofrecer un servicio a sus clientes seguro y eficiente. Así ser mejores que su competencia.
+- Que puedan ofrecer un servicio a sus clientes seguro y eficiente. Así ser mejores que su competencia. Ya que si solo 
+se quedan con redes sociales es muy viejo e ineficiente.
 - Si no tienen un servicio de adopción establecido en la Web, pueden optar por el nuestro.
 	--> En los servicios de adopción, va a haber dos opciones "personas y empresas".
-- Al ofrecer mi servicio de contacto con las empresas, se promocionan solitas ya que voy a tener un espacio para ellas en el mapa.
+- Al ofrecer mi servicio de contacto con las empresas, se promocionan solitas ya que voy a tener un espacio para ellas en el mapa y en
+	adopción.
 	--> En el mapa va a haber dos opciones, la de veterinarias, estéticas, etc y la de los perros...
-		Al escoger la de las compañías, te muestra "las que te recomendamos", o sea las que estan afiliadas.
-		El espacio está pensado para que veas compañías que ofrecen sus servicios para tu perrito.
+		- Al escoger la de las compañías, te muestra "las que te recomendamos", o sea las que estan afiliadas.
+		- El espacio está pensado para que veas compañías que ofrecen sus servicios para tu perrito.
+		- Y además las que están en contacto con nosotros para reportar perros.
 		...Así se promocionan...
 - Se expanden a otras plataformas, mientras más presencia tenga una plataforma en la Web mejor.
 

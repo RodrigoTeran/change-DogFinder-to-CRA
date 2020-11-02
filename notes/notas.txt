@@ -1,8 +1,16 @@
 Issues:
-  - Crear el forms para mandar mascota de mi perfil:
-    --> esa info se guarda en la base de datos,
-    entonces la API checa con el forms los posibles matches, de acuerdo a la zona, raza, cuando se perdio, etc...
-    y manda esos matches a que se procesen en el API de python... luego se manda el response final
-  - Crear pagina para mandar perro perdido que no es medio
-    --> Se crea exactamente igual que en el perfil propio:
-      se manda la info a la API y se espera los responses
+  - Poner información de perfil en página de perfil
+    --> Para que las personas puedan contactar a esa persona
+    --> Que puedan establecer:
+      - Correo
+      - Número de télefono (hasta 2 números)
+  - Crear pagina para mandar perro perdido
+    --> Va a ser como un menú
+  - Crear una forma para que las empresas puedan crearse una cuenta gratis premium
+    y además que tengan funcionalidades de EMPRESA
+      --> Que puedan venderse en el mapa y en adopción
+  - Recrear el forms de Stripe Checkout
+  - Editar la información que sale en INDEX
+  - Editar la información que sale en SE PERDIÓ MI PERRO
+  - Checar que información se trae de Facebook al hacer OAuth
+  - Crear la venta de notificaciones

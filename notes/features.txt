@@ -1,4 +1,2 @@
-- Drag and Drop Files in react
 - Video Js in react
-- Fluid Image Pop Up --> Para visualizar una imagen completa
 - PWA para Google Play y para App Store
