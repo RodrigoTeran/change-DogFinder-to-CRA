@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .main-section-profile-page {
   width: 100%;
   color: #fff;
@@ -20,7 +21,7 @@
     justify-content: center;
     @media screen and (min-width: 768px) {
       justify-content: left;
-      padding-left: calc(5% + 18px);
+      padding-left: calc(5% + 19.5px);
     }
     .image-pet-profile-instructions {
       width: 300px;

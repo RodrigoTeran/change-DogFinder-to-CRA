@@ -56,7 +56,6 @@ const MainSectionProfilePage = ({
                 Crea perfiles de tu mascota(s) para poder registrar su información y ayudarte si se extravían.
               </div>
             </div>
-
           </div>
           <div className="row main-section-profile-page-cards-section">
             {profiles.length > 0 ? (
@@ -79,7 +78,9 @@ const MainSectionProfilePage = ({
           </div>
         </>
       ) : (
-          <div>Actualmente no tienes una cuenta premium. Pulsa el botón de ser premium.</div>
+          <div
+            style={{ paddingBottom: "150px" }}
+          >Actualmente no tienes una cuenta premium. Pulsa el botón de ser premium.</div>
         )
       }
     </div >
