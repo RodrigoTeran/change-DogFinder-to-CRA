@@ -59,6 +59,9 @@ const ResponsiveMenuBar = ({
         imgId: null,
         email: null,
         auth: false,
+        premium: false,
+        emailForContact: undefined,
+        numberOfTelephoneForContact: undefined
       });
       localStorage.removeItem("token");
       setYesRedirect(true);

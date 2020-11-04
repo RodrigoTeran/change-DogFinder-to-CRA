@@ -109,3 +109,21 @@ const selectorGetFirstResponseUserAPI = (state) => {
 export const getFirstResponseUserAPI = createSelector([selectorGetFirstResponseUserAPI], (getFirstResponseUserAPI) => {
   return getFirstResponseUserAPI;
 });
+
+// emailForContact
+const selectorGetEmailForContact = (state) => {
+  return state.userReducer.emailForContact;
+};
+
+export const getEmailForContact = createSelector([selectorGetEmailForContact], (getEmailForContact) => {
+  return getEmailForContact;
+});
+
+// numberOfTelephoneForContact
+const selectorGetNumberOfTelephoneForContact = (state) => {
+  return state.userReducer.numberOfTelephoneForContact;
+};
+
+export const getNumberOfTelephoneForContact = createSelector([selectorGetNumberOfTelephoneForContact], (getNumberOfTelephoneForContact) => {
+  return getNumberOfTelephoneForContact;
+});

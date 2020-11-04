@@ -26,7 +26,9 @@ export const updateUserAction = (data) => {
     imgId: data.imgId,
     auth: data.auth,
     email: data.email,
-    premium: data.premium
+    premium: data.premium,
+    emailForContact: data.emailForContact,
+    numberOfTelephoneForContact: data.numberOfTelephoneForContact
   });
 };
 

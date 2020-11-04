@@ -14,6 +14,16 @@ export const updateResponsiveMenuBarBodyOpenAction = (data) => {
   });
 };
 
+export const updateBannerProfileContactInfoAction = (data) => {
+  return ({
+    type: "UPDATE_BANNER_PROFILE_CONTACT_INFO",
+    fromWho: data.fromWho,
+    inLayout: data.inLayout,
+    okButton: data.okButton,
+    inputInfoFromBanner: data.inputInfoFromBanner
+  });
+};
+
 export const updateBannerOkCancelActionAction = (data) => {
   return ({
     type: "UPDATE_BANNER_OK_CANCEL_ACTION",

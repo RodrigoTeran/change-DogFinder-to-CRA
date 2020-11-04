@@ -79,7 +79,7 @@ const MainSectionProfilePage = ({
         </>
       ) : (
           <div
-            style={{ paddingBottom: "150px" }}
+            style={{ paddingBottom: "200px" }}
           >Actualmente no tienes una cuenta premium. Pulsa el botón de ser premium.</div>
         )
       }

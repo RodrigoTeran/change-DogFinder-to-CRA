@@ -31,10 +31,33 @@ const initialState = {
     },
     okButton: false,
     firstAnimation: false
+  },
+  bannerProfileContactInfo: {
+    isDisplayed: {
+      fromWho: undefined,
+      inLayout: false
+    },
+    okButton: false,
+    firstAnimation: false,
+    inputInfoFromBanner: undefined,
   }
 };
 
 export default function layoutReducer(state = initialState, action) {
+  if (action.type === "UPDATE_BANNER_PROFILE_CONTACT_INFO") {
+    return {
+      ...state,
+      bannerProfileContactInfo: {
+        isDisplayed: {
+          fromWho: action.fromWho,
+          inLayout: action.inLayout
+        },
+        okButton: action.okButton,
+        firstAnimation: true,
+        inputInfoFromBanner: action.inputInfoFromBanner
+      }
+    };
+  };
   if (action.type === "UPDATE_BANNER_OK_CANCEL_ACTION") {
     return {
       ...state,

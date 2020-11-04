@@ -1,5 +1,19 @@
 // Modules
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+
+import {
+  updateBannerProfileContactInfoAction
+} from "../../store/reducers/layout/actions";
+
+import {
+  getBannerProfileContactInfo
+} from "../../store/reducers/layout/selector";
+
+import {
+  getNumberOfTelephoneForContact,
+  getEmailForContact
+} from "../../store/reducers/user/selector";
 
 // Components
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
@@ -7,10 +21,56 @@ const HeaderProfilePage = ({
   username,
   email,
   imgId,
-  isPremium
+  isPremium,
+
+  bannerProfileContactInfo,
+  updateBannerProfileContactInfo,
+
+  numberOfTelephoneForContact,
+  emailForContact
 }) => {
   const [yesInstructions, setInstructions] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
+
+  useEffect(() => {
+    if (bannerProfileContactInfo.isDisplayed.fromWho === "Mail" && bannerProfileContactInfo.okButton === true) {
+      // console.log("Mail: ", bannerProfileContactInfo.inputInfoFromBanner);
+      updateBannerProfileContactInfo({
+        fromWho: bannerProfileContactInfo.isDisplayed.fromWho,
+        inLayout: false,
+        okButton: false,
+        inputInfoFromBanner: undefined
+      });
+    };
+    if (bannerProfileContactInfo.isDisplayed.fromWho === "Whatsapp" && bannerProfileContactInfo.okButton === true) {
+      // console.log("Whatsapp: ", bannerProfileContactInfo.inputInfoFromBanner);
+      updateBannerProfileContactInfo({
+        fromWho: bannerProfileContactInfo.isDisplayed.fromWho,
+        inLayout: false,
+        okButton: false,
+        inputInfoFromBanner: undefined
+      });
+    };
+  }, [bannerProfileContactInfo]);
+
+  const ProfileContactWhatsapp = () => {
+    updateBannerProfileContactInfo({
+      fromWho: "Whatsapp",
+      inLayout: true,
+      okButton: false,
+      inputInfoFromBanner: undefined
+    });
+  };
+
+  const ProfileContactMail = () => {
+    updateBannerProfileContactInfo({
+      fromWho: "Mail",
+      inLayout: true,
+      okButton: false,
+      inputInfoFromBanner: undefined
+    });
+  };
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
@@ -53,23 +113,41 @@ const HeaderProfilePage = ({
           </div>
         </div>
       </div>
+      <div className="actual-contact-info-profile-page">
+        <div className="actual-contact-info-profile-page-card">
+          <div className="actual-contact-info-profile-page-card-title">
+            Correo electrónico
+          </div>
+          <div className="actual-contact-info-profile-page-card-text">
+            {emailForContact}
+          </div>
+        </div>
+        <div className="actual-contact-info-profile-page-card">
+          <div className="actual-contact-info-profile-page-card-title">
+            Número de teléfono
+          </div>
+          <div className="actual-contact-info-profile-page-card-text">
+            {numberOfTelephoneForContact}
+          </div>
+        </div>
+      </div>
       <div className="profile-page-contact-profile">
         <div className="profile-page-contact-profile-title">
           <div>
-            Información de contacto
+            Cambiar información de contacto
           </div>
         </div>
         <div className="profile-page-contact-profile-contacts-container">
           <div className="profile-page-contact-profile-contacts-container-row">
             <div className="profile-page-contact-profile-contacts-container-col">
-              <ButtonWhiteRectangle text={`Correo electrónico`} width="100%" height="50px" fontSize="1rem" noClick={true} mt="mt-0"
+              <ButtonWhiteRectangle text={`Correo electrónico`} width="100%" height="50px" fontSize="1rem" clickFunctionAnotherOne={ProfileContactMail} mt="mt-0"
                 backgroundColorRectangle={"#0078D4"}
               >
                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" /></svg>
               </ButtonWhiteRectangle>
             </div>
             <div className="profile-page-contact-profile-contacts-container-col profile-page-contact-profile-contacts-container-col-2">
-              <ButtonWhiteRectangle text={`Número de teléfono`} width="100%" height="50px" fontSize="1rem" noClick={true} mt="mt-0"
+              <ButtonWhiteRectangle text={`Número de teléfono`} width="100%" height="50px" fontSize="1rem" clickFunctionAnotherOne={ProfileContactWhatsapp} mt="mt-0"
                 backgroundColorRectangle={"#4CED69"}
                 colorText={"#000"}
                 bold={"bold"}
@@ -103,4 +181,20 @@ const HeaderProfilePage = ({
     </>
   );
 };
-export default HeaderProfilePage;
+// Clases de REDUX
+const mapStateToProps = (state) => {
+  return {
+    bannerProfileContactInfo: getBannerProfileContactInfo(state),
+    numberOfTelephoneForContact: getNumberOfTelephoneForContact(state),
+    emailForContact: getEmailForContact(state)
+  };
+};
+
+// Acciones de REDUX
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateBannerProfileContactInfo: (data) => { dispatch(updateBannerProfileContactInfoAction(data)) }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderProfilePage);

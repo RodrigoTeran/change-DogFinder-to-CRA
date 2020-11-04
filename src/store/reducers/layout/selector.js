@@ -18,6 +18,15 @@ export const getTopMenuBar = createSelector([selectorGetTopMenuBar], (getTopMenu
   return getTopMenuBar;
 });
 
+// bannerProfileContactInfo
+const selectorGetBannerProfileContactInfo = (state) => {
+  return state.layoutReducer.bannerProfileContactInfo;
+};
+
+export const getBannerProfileContactInfo = createSelector([selectorGetBannerProfileContactInfo], (getBannerProfileContactInfo) => {
+  return getBannerProfileContactInfo;
+});
+
 // bannerOkCancelAction
 const selectorGetBannerOkCancelAction = (state) => {
   return state.layoutReducer.bannerOkCancelAction;

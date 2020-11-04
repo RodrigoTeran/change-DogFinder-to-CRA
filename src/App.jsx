@@ -22,6 +22,7 @@ import LogInCard from "./components/Cards/LogInCard";
 import FailureMessagesComponent from "./components/LayoutMessages/FailureMessagesComponent";
 import SuccessMessagesComponent from "./components/LayoutMessages/SuccessMessagesComponent";
 import BannerOkCancelAction from "./components/LayoutMessages/BannerOkCancelAction";
+import BannerProfileContactInfo from "./components/LayoutMessages/BannerProfileContactInfo";
 
 // Pages
 import Index from "./pages/index";
@@ -104,7 +105,9 @@ const App = ({
           email: data.email,
           imgId: data.profileImg,
           auth: true,
-          premium: data.premium
+          premium: data.premium,
+          emailForContact: data.emailForContact,
+          numberOfTelephoneForContact: data.numberOfTelephoneForContact
         });
         updateKeyActiveUser(data.compraActiva);
       } else {
@@ -113,7 +116,9 @@ const App = ({
           imgId: null,
           email: null,
           auth: false,
-          premium: false
+          premium: false,
+          emailForContact: undefined,
+          numberOfTelephoneForContact: undefined
         });
         updateKeyActiveUser(undefined);
       };
@@ -150,6 +155,7 @@ const App = ({
         <div className={`wall-log-in-banner ${logInActivated ? ("open") : ("")}`} onClick={closeLogIn}></div>
         <LogInCard logInActivated={logInActivated} logInFirstAnimation={logInFirstAnimation}></LogInCard>
         <BannerOkCancelAction></BannerOkCancelAction>
+        <BannerProfileContactInfo></BannerProfileContactInfo>
         <div>
           <Switch>
             <Route path="/perfil/mascota"><PerfilMascota></PerfilMascota></Route>
