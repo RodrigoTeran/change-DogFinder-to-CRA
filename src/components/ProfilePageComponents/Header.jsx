@@ -3,8 +3,14 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
-  updateBannerProfileContactInfoAction
+  updateBannerProfileContactInfoAction,
+  updateFailureMessagesComponentAction,
+  updateSuccessMessagesComponentAction
 } from "../../store/reducers/layout/actions";
+
+import {
+  checkFuckingHack
+} from "../../utils/hacking";
 
 import {
   getBannerProfileContactInfo
@@ -27,14 +33,59 @@ const HeaderProfilePage = ({
   updateBannerProfileContactInfo,
 
   numberOfTelephoneForContact,
-  emailForContact
+  emailForContact,
+
+  updateFailureMessagesComponent,
+  updateSuccessMessagesComponent
 }) => {
   const [yesInstructions, setInstructions] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
 
   useEffect(() => {
     if (bannerProfileContactInfo.isDisplayed.fromWho === "Mail" && bannerProfileContactInfo.okButton === true) {
-      // console.log("Mail: ", bannerProfileContactInfo.inputInfoFromBanner);
+      const hack = checkFuckingHack(bannerProfileContactInfo.inputInfoFromBanner, ["@", "."]);
+      let status = false;
+      if (hack) {
+        status = true;
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "Debe de introducir caracteres válidos"
+        });
+      } else if (bannerProfileContactInfo.inputInfoFromBanner === "") {
+        status = true;
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "El correo debe contener al menos 1 caracter"
+        });
+      } else {
+        let arroba = false;
+        for (var i = 0; i < bannerProfileContactInfo.inputInfoFromBanner.length; i++) {
+          if (bannerProfileContactInfo.inputInfoFromBanner[i] === "@") {
+            arroba = true;
+          };
+        };
+        if (!arroba) {
+          status = true;
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: "El correo debe de ser válido"
+          });
+        };
+      };
+
+      // El nombre debe contener al menos 1 caracter
+      if (!status) {
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Éxito",
+          description: `El correo: ${bannerProfileContactInfo.inputInfoFromBanner} se cambió con éxito`
+        });
+      };
+
+      // Al final
       updateBannerProfileContactInfo({
         fromWho: bannerProfileContactInfo.isDisplayed.fromWho,
         inLayout: false,
@@ -43,7 +94,35 @@ const HeaderProfilePage = ({
       });
     };
     if (bannerProfileContactInfo.isDisplayed.fromWho === "Whatsapp" && bannerProfileContactInfo.okButton === true) {
-      // console.log("Whatsapp: ", bannerProfileContactInfo.inputInfoFromBanner);
+
+      const hack = checkFuckingHack(bannerProfileContactInfo.inputInfoFromBanner, ["+"]);
+      let status = false;
+      if (hack) {
+        status = true;
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "Debe de introducir caracteres válidos"
+        });
+      } else if (bannerProfileContactInfo.inputInfoFromBanner === "") {
+        status = true;
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "El número debe contener al menos 1 caracter"
+        });
+      };
+
+      // El nombre debe contener al menos 1 caracter
+      if (!status) {
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Éxito",
+          description: `El número: ${bannerProfileContactInfo.inputInfoFromBanner} se cambió con éxito`
+        });
+      };
+
+      // Al final
       updateBannerProfileContactInfo({
         fromWho: bannerProfileContactInfo.isDisplayed.fromWho,
         inLayout: false,
@@ -194,7 +273,9 @@ const mapStateToProps = (state) => {
 // Acciones de REDUX
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateBannerProfileContactInfo: (data) => { dispatch(updateBannerProfileContactInfoAction(data)) }
+    updateBannerProfileContactInfo: (data) => { dispatch(updateBannerProfileContactInfoAction(data)) },
+    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
+    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) }
   };
 };
 

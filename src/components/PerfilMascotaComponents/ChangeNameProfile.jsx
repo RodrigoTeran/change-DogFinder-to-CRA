@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import {
+  checkFuckingHack
+} from "../../utils/hacking";
+
+import {
   getPetProfile
 } from "../../store/reducers/user/selector";
 
@@ -36,61 +40,14 @@ const ChangeNameProfile = ({
       newName: e.target.value
     };
   };
-  // Data Pet Profile
-  const possibleValuesForHack = [
-    "/",
-    "<",
-    ">",
-    "'",
-    '"',
-    "`",
-    "|",
-    "°",
-    "¬",
-    "?",
-    "¿",
-    "\\",
-    "@",
-    "#",
-    "&",
-    "%",
-    "(",
-    ")",
-    "¡",
-    "!",
-    "*",
-    "}",
-    "{",
-    "^",
-    "+",
-    "-",
-    ".",
-    ",",
-    ";",
-    "_",
-    "[",
-    "]",
-    "~",
-    "¨",
-    "=",
-    "´",
-  ]
-  const checkFuckingHack = () => {
-    let status = false;
-    for (var i = 0; i < possibleValuesForHack.length; i++) {
-      for (var j = 0; j < body.newName.length; j++) {
-        if (body.newName[j] === possibleValuesForHack[i]) {
-          status = true;
-        };
-      };
-    };
-    return status;
-  }
+
+
   const [isLoading, setIsLoading] = useState(false);
   const editPetNameFunction = () => {
     closeInput();
     setIsLoading(true);
-    const hack = checkFuckingHack();
+    const hack = checkFuckingHack(body.newName, []);    
+
     if (hack) {
       updateFailureMessagesComponent({
         state: true,
