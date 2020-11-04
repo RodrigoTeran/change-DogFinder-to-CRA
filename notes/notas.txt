@@ -1,9 +1,18 @@
 Issues:
+  - Las instrucciones de la página de perfil que sean de width: 50% y ya luego 250px
   - Poner información de perfil en página de perfil
     --> Para que las personas puedan contactar a esa persona
     --> Que puedan establecer:
       - Correo
-      - Número de télefono (hasta 2 números)
+      - Número de télefono
+    --> Cuando la persona cambie sus datos, mandar un correo o un mensaje a su telefono:
+      - Para verificar que es legit
+    - La info del mapa va a ser esta... cuando le mandemos notificaciones al usuario va a ser desde su cuenta, no esta info
+      Esta info es la pública
+    - Cuando una persona hace match, desde el mapa o internamente con la IA, se puede ver su info, y te mandamos mensaje.
+      Para que sepas quien ha visti tu información
+      Si quieres hacer match desde el mapa, primero tendras que llenar estos datos
+
   - Crear pagina para mandar perro perdido
     --> Va a ser como un menú
   - Crear una forma para que las empresas puedan crearse una cuenta gratis premium
