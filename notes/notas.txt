@@ -1,5 +1,5 @@
 Issues:
-  --- Las instrucciones de la página de perfil que sean de width: 50% y ya luego 250px
+  --- Poner más bonitos los html del mail
   - Poner información de perfil en página de perfil
     --> Para que las personas puedan contactar a esa persona
     --> Que puedan establecer:
@@ -23,7 +23,6 @@ Issues:
   - Editar la información que sale en SE PERDIÓ MI PERRO
   - Checar que información se trae de Facebook al hacer OAuth
   - Crear la venta de notificaciones
-  - Poner más bonitos los html del mail
   - Crear cuenta de correo y de whatsapp de empresa
   - Incluir IVA en compra
   - Pagar impuestos xd
