@@ -160,9 +160,10 @@ const HeaderProfilePage = ({
       </div>
       <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`} style={{
         marginTop: "0px",
-        width: "300px",
+        width: window.innerWidth < 768 ? ("300px") : ("50%"),
         marginRight: `${window.innerWidth < 768 ? ("0px") : ("auto")}`, marginLeft: `${window.innerWidth < 768 ? ("") : ("calc(5% + 20px)")}`, marginBottom: `${window.innerWidth < 768 ? ("30px") : ("0px")}`,
-      }}>
+      }}
+      >
         <div className="image-pet-profile-instructions-icon">
           <div onClick={() => { setInstructions(!yesInstructions) }} title="Instrucciones" style={{
             display: "flex",

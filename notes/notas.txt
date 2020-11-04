@@ -1,6 +1,5 @@
 Issues:
-  --- Poner más espacio abajo cuando en perfil no hay cards
-  - Las instrucciones de la página de perfil que sean de width: 50% y ya luego 250px
+  --- Las instrucciones de la página de perfil que sean de width: 50% y ya luego 250px
   - Poner información de perfil en página de perfil
     --> Para que las personas puedan contactar a esa persona
     --> Que puedan establecer:

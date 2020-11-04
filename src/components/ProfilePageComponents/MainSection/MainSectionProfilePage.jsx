@@ -42,7 +42,9 @@ const MainSectionProfilePage = ({
             <CardMainSectionNewPet></CardMainSectionNewPet>
           </div>
           <div className="main-section-profile-page-instructions">
-            <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`}>
+            <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`} style={{
+              width: window.innerWidth < 768 ? ("300px") : ("50%")
+            }}>
               <div className="image-pet-profile-instructions-icon">
                 <div onClick={() => { setInstructions(!yesInstructions) }} title="Instrucciones" style={{
                   display: "flex",
