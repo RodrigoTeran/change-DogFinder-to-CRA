@@ -73,7 +73,8 @@ const MainSectionProfilePage = ({
                 }
               </>
             ) : (
-                <></>
+                <div style={{ paddingBottom: "200px" }}>
+                </div>
               )}
           </div>
         </>
