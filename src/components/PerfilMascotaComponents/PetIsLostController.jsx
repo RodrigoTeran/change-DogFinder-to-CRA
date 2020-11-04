@@ -116,8 +116,10 @@ const PetIsLostController = ({
     };
   });
 
+  const [yesInstructions, setInstructions] = useState(false);
+
   return (
-    <div>
+    <div className="control-pet-profile-petislost-daddy">
       <div className={`control-pet-profile-petislost ${isMobile ? ("column-petislost") : ("row-petislost")}`}>
         <div className={`control-pet-profile-petislost-h1 ${isMobile ? ("column-h1") : ("row-h1")}`}>
           Estado de tu mascota
@@ -184,10 +186,22 @@ const PetIsLostController = ({
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" /></svg>
         </div>
       ) : (<></>)}
-      <div className={`control-pet-profile-petislost-label ${isMobile ? ("column-label") : ("row-label")}`}>
-        Es importante para nosotros saber si necesitas que busquemos a tu mascota. Actualiza su estado para avisarle a nuestra Inteligencia Artificial si la intenta buscar o no.
+      <div className={`control-pet-profile-petislost-label ${yesInstructions ? ("open") : ("close")}`}>
+        <div>
+          <div onClick={() => { setInstructions(!yesInstructions) }} title="Información" style={{
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+            width: "250px"
+          }} className="control-pet-profile-petislost-label-info">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg> Información
+          </div>
+          <div className={`control-pet-profile-petislost-label-text ${yesInstructions ? ("open") : ("close")}`}>
+            Es importante para nosotros saber si necesitas que busquemos a tu mascota. Actualiza su estado para avisarle a nuestra Inteligencia Artificial si la intenta buscar o no.
+          </div>
+        </div>
       </div>
-    </div >
+    </div>
   );
 };
 

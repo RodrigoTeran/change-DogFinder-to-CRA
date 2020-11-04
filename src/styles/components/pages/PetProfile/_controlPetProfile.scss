@@ -5,6 +5,10 @@
   justify-content: flex-start;
   align-items: center;
   &-petislost {
+    &-daddy {
+      width: 100%;
+      max-width: 1123px;
+    }
     display: flex;
     width: 100%;
     &.column-petislost {
@@ -38,16 +42,63 @@
     }
     &-label {
       width: 100%;
-      padding-top: 20px;
-      color: rgb(219, 219, 219);
-      &.column-label {
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
+      padding-top: 0px;
+      min-height: 30px;
+      &-info {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: 250px;
       }
-      &.row-label {
-        text-align: left;
-        padding-right: calc((30% - 175px) / 2);
+      svg {
+        fill: #fff;
+        width: 25px;
+        height: 25px;
+        transition: ease-in-out 0.5s;
+        margin-right: 10px;
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            fill: var(--tertiary-color-light);
+            transform: scale(1.1);
+            transition: ease-in-out 0.5s;
+          }
+        }
+      }
+      &.open {
+        height: 100%;
+        transition: ease-in-out 0.5s;
+      }
+      &.close {
+        height: 0;
+        transition: ease-in-out 0.5s;
+      }
+      &-text {
+        height: fit-content;
+        color: rgb(219, 219, 219);
+        width: 50%;
+        margin-top: 5px;
+        display: flex;
+        flex-direction: column;
+        &.open {
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+          transition: ease-in-out 0.5s;
+        }
+        &.close {
+          clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+          transition: ease-in-out 0.5s;
+        }
+      }
+      @media screen and (max-width: 1121px) {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: -25px;
+        min-height: 60px;
+
+        &-text {
+          padding-bottom: 35px;
+          width: 250px;
+        }
       }
     }
 
