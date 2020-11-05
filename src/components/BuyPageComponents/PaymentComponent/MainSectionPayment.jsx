@@ -13,6 +13,10 @@ import { APP_NAME, STRIPE_KEY } from "../../../utils/config";
 // Routes
 import { postPayment, postKeyPayment } from "../../../routes/index";
 
+import {
+  checkFuckingHack
+} from "../../../utils/hacking"
+
 // Acciones
 import {
   updateLogInFirstAnimationAction,
@@ -92,47 +96,56 @@ const MainSectionPayment = ({
 
   // ------------------------------------------------- Mandar KEY
   const sendKeyPaymentAPI = () => {
-    setIsLoading(true);
-    const body = {
-      key: valueKey
-    };
-    const headers = {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "token": localStorage.getItem("token")
-    };
-    return fetch(postKeyPayment, {
-      method: "POST",
-      headers: headers,
-      credentials: "include",
-      body: JSON.stringify(body)
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      setIsLoading(false);
-      if (data.status === "Success") {
-        // Pago exitoso
-        updateSuccessMessagesComponent({
-          state: true,
-          title: "Pago exitoso",
-          description: "Se ha realizado el pago exitosamente.",
-        });
-        setRedirectPaymentSuccess(true);
-        updateKeyActiveUser(undefined);
-      } else if (data.status === "Key bad") { // Key bad
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error con la clave",
-          description: "La clave de acceso ya expiró, o no coincide con ninguna cuenta activa. Vuelva a intentar.",
-        });
-      } else { // Failure
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error",
-          description: "Se ha producido un error con la compra. Vuelva a intentar.",
-        });
+    const hack = checkFuckingHack(valueKey, []);
+    if (hack) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Debe de introducir caracteres válidos"
+      });
+    } else {
+      setIsLoading(true);
+      const body = {
+        key: valueKey
       };
-    });
+      const headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": localStorage.getItem("token")
+      };
+      return fetch(postKeyPayment, {
+        method: "POST",
+        headers: headers,
+        credentials: "include",
+        body: JSON.stringify(body)
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        setIsLoading(false);
+        if (data.status === "Success") {
+          // Pago exitoso
+          updateSuccessMessagesComponent({
+            state: true,
+            title: "Pago exitoso",
+            description: "Se ha realizado el pago exitosamente.",
+          });
+          setRedirectPaymentSuccess(true);
+          updateKeyActiveUser(undefined);
+        } else if (data.status === "Key bad") { // Key bad
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error con la clave",
+            description: "La clave de acceso ya expiró, o no coincide con ninguna cuenta activa. Vuelva a intentar.",
+          });
+        } else { // Failure
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: "Se ha producido un error con la compra. Vuelva a intentar.",
+          });
+        };
+      });
+    };
   };
   return (
     <div className="purchase-page-payment">

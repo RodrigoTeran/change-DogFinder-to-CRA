@@ -55,13 +55,36 @@ const ResponsiveMenuBar = ({
       }
     }).then(() => {
       updateUser({
-        username: null,
-        imgId: null,
-        email: null,
-        auth: false,
-        premium: false,
-        emailForContact: undefined,
-        numberOfTelephoneForContact: undefined
+        selectedState: "username",
+        state: null
+      });
+      updateUser({
+        selectedState: "email",
+        state: null
+      });
+      updateUser({
+        selectedState: "imgId",
+        state: null
+      });
+      updateUser({
+        selectedState: "auth",
+        state: false
+      });
+      updateUser({
+        selectedState: "premium",
+        state: false
+      });
+      updateUser({
+        selectedState: "emailForContact",
+        state: undefined
+      });
+      updateUser({
+        selectedState: "numberOfTelephoneForContact",
+        state: undefined
+      });
+      updateUser({
+        selectedState: "emailForContactActiveKey",
+        state: false
       });
       localStorage.removeItem("token");
       setYesRedirect(true);

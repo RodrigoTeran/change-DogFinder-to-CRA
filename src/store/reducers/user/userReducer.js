@@ -7,6 +7,7 @@ const initialState = {
   premium: false,
   emailForContact: undefined,
   numberOfTelephoneForContact: undefined,
+  emailForContactActiveKey: undefined,
 
   // Saber si ya llego response de /user
   firstResponseUserAPI: false,
@@ -50,13 +51,7 @@ export default function userReducer(state = initialState, action) {
   if (action.type === "UPDATE_USER") {
     return {
       ...state,
-      username: action.username,
-      imgId: action.imgId,
-      auth: action.auth,
-      email: action.email,
-      premium: action.premium,
-      emailForContact: action.emailForContact,
-      numberOfTelephoneForContact: action.numberOfTelephoneForContact
+      [action.selectedState]: action.state
     };
   };
   if (action.type === "UPDATE_KEY_ACTIVE_USER") {

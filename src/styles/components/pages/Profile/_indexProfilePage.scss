@@ -227,13 +227,13 @@
     background-color: rgba(35, 35, 35, 1);
     width: 290px;
     padding-top: 10px;
-    transition: ease-in-out .3s;
+    transition: ease-in-out 0.3s;
     padding-bottom: 10px;
     border-radius: 10px;
     @media (hover: hover) and (pointer: fine) {
-      &:hover{
+      &:hover {
         background-color: rgba(25, 25, 25, 1);
-        transition: ease-in-out .3s;
+        transition: ease-in-out 0.3s;
       }
     }
     @media screen and (max-width: 768px) {
@@ -250,6 +250,72 @@
       color: var(--tertiary-color-light);
       font-weight: bold;
       font-size: 1.2rem;
+    }
+  }
+}
+
+.banner-email-contact-key-input {
+  width: 90%;
+  padding-left: 20px;
+  transition: ease-in-out 0.3s;
+  opacity: 1;
+  @media screen and (max-width: 768px) {
+    width: 280px;
+    padding-left: 0px;
+  }
+  &.open {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    transition: ease-in-out 0.3s;
+    opacity: 1;
+    height: fit-content;
+  }
+  &.close {
+    opacity: 0;
+    height: 0px;
+    transition: height ease-in-out 0.3s, visibility ease-in-out 0.3s;
+    visibility: hidden;
+  }
+  &-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    @media screen and (max-width: 768px) {
+      text-align: center;
+      margin-top: 0px;
+    }
+  }
+  &-info {
+    color: #dbdbdb;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    @media screen and (max-width: 768px) {
+      text-align: center;
+    }
+  }
+  &-input-container {
+    margin-top: 5px;
+    display: flex;
+    &-2 {
+      @media screen and (max-width: 768px) {
+        margin-top: 15px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+    input {
+      width: 280px;
+      height: 50px;
+      background-color: rgba(85, 85, 85, 1);
+      font-size: 1.5rem;
+      color: #ffffff;
+      text-align: center;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 }

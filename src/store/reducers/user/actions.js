@@ -22,13 +22,8 @@ export const updateKeyActiveUserAction = (data) => {
 export const updateUserAction = (data) => {
   return ({
     type: "UPDATE_USER",
-    username: data.username,
-    imgId: data.imgId,
-    auth: data.auth,
-    email: data.email,
-    premium: data.premium,
-    emailForContact: data.emailForContact,
-    numberOfTelephoneForContact: data.numberOfTelephoneForContact
+    selectedState: data.selectedState,
+    state: data.state
   });
 };
 

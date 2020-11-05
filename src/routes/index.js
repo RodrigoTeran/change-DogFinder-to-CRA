@@ -28,6 +28,9 @@ routes.editCoordenates = `${routes.apiDomain}/edit/coordenates`;
 routes.editPetProfileWhenIsLost = `${routes.apiDomain}/edit/whenIsLost`;
 routes.editPetProfileImages = `${routes.apiDomain}/edit/images`;
 
+routes.editKeyForMailForContactUser = `${routes.apiDomain}/edit/key/mail`;
+routes.editMailForContactUser = `${routes.apiDomain}/edit/mail/contact`;
+
 // Stripe
 routes.postPayment = `${routes.apiDomain}/pay/service`;
 routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;

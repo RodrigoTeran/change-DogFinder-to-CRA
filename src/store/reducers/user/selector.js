@@ -127,3 +127,12 @@ const selectorGetNumberOfTelephoneForContact = (state) => {
 export const getNumberOfTelephoneForContact = createSelector([selectorGetNumberOfTelephoneForContact], (getNumberOfTelephoneForContact) => {
   return getNumberOfTelephoneForContact;
 });
+
+// emailForContactActiveKey
+const selectorGetEmailForContactActiveKey = (state) => {
+  return state.userReducer.emailForContactActiveKey;
+};
+
+export const getEmailForContactActiveKey = createSelector([selectorGetEmailForContactActiveKey], (getEmailForContactActiveKey) => {
+  return getEmailForContactActiveKey;
+});

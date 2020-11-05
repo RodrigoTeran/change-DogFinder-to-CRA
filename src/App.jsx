@@ -101,24 +101,70 @@ const App = ({
       updateFirstResponseAPI();
       if (data.username) {
         updateUser({
-          username: data.username,
-          email: data.email,
-          imgId: data.profileImg,
-          auth: true,
-          premium: data.premium,
-          emailForContact: data.emailForContact,
-          numberOfTelephoneForContact: data.numberOfTelephoneForContact
+          selectedState: "username",
+          state: data.username
+        });
+        updateUser({
+          selectedState: "email",
+          state: data.email
+        });
+        updateUser({
+          selectedState: "imgId",
+          state: data.profileImg
+        });
+        updateUser({
+          selectedState: "auth",
+          state: true
+        });
+        updateUser({
+          selectedState: "premium",
+          state: data.premium
+        });
+        updateUser({
+          selectedState: "emailForContact",
+          state: data.emailForContact
+        });
+        updateUser({
+          selectedState: "numberOfTelephoneForContact",
+          state: data.numberOfTelephoneForContact
+        });
+        updateUser({
+          selectedState: "emailForContactActiveKey",
+          state: data.emailForContactActiveKey
         });
         updateKeyActiveUser(data.compraActiva);
       } else {
         updateUser({
-          username: null,
-          imgId: null,
-          email: null,
-          auth: false,
-          premium: false,
-          emailForContact: undefined,
-          numberOfTelephoneForContact: undefined
+          selectedState: "username",
+          state: null
+        });
+        updateUser({
+          selectedState: "email",
+          state: null
+        });
+        updateUser({
+          selectedState: "imgId",
+          state: null
+        });
+        updateUser({
+          selectedState: "auth",
+          state: false
+        });
+        updateUser({
+          selectedState: "premium",
+          state: false
+        });
+        updateUser({
+          selectedState: "emailForContact",
+          state: undefined
+        });
+        updateUser({
+          selectedState: "numberOfTelephoneForContact",
+          state: undefined
+        });
+        updateUser({
+          selectedState: "emailForContactActiveKey",
+          state: false
         });
         updateKeyActiveUser(undefined);
       };
