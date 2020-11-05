@@ -1,5 +1,4 @@
 Issues:
-  --- Se evaula la información de los contactos del perfil
   - Poner información de perfil en página de perfil
     --> Para que las personas puedan contactar a esa persona
     --> Que puedan establecer:
