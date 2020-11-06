@@ -45,7 +45,7 @@
 
 // Fonts
 @import "fonts/robotoCondensed";
-@import 'fonts/ubuntu';
+@import "fonts/ubuntu";
 
 * {
   font-family: Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Cantarell, "Open Sans",
@@ -244,4 +244,13 @@ button {
       padding-bottom: 10px;
     }
   }
+}
+
+input,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border-style: none;
 }

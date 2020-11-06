@@ -1,4 +1,8 @@
 Issues:
+  --- Recrear el forms de Stripe Checkout
+  - Poner acepto todos los términos y condiciones en la compra
+  - Incluir IVA en compra
+
   - Poner información de perfil en página de perfil
     --> Para que las personas puedan contactar a esa persona
     --> Que puedan establecer:
@@ -11,24 +15,25 @@ Issues:
     - Cuando una persona hace match, desde el mapa o internamente con la IA, se puede ver su info, y te mandamos mensaje.
       Para que sepas quien ha visti tu información
       Si quieres hacer match desde el mapa, primero tendras que llenar estos datos
+    - Que no te deje ponerlo como perdido si no has llenado todos sus datos
+      --> Completar todo, hasta las 4 imágenes de perfil
+      --> También se necesita que pongas tu información de contactos en el perfil si quieres reportarlo como perdido
 
   - Crear pagina para mandar perro perdido
     --> Va a ser como un menú
+
   - Crear una forma para que las empresas puedan crearse una cuenta gratis premium
     y además que tengan funcionalidades de EMPRESA
       --> Que puedan venderse en el mapa y en adopción
-  - Recrear el forms de Stripe Checkout
+
   - Editar la información que sale en INDEX
   - Editar la información que sale en SE PERDIÓ MI PERRO
   - Checar que información se trae de Facebook al hacer OAuth
   - Crear la ventana de notificaciones
   - Crear cuenta de correo y de whatsapp de empresa
-  - Incluir IVA en compra
   - Pagar impuestos xd
   - Poner SEO en html
-  - Que no te deje ponerlo como perdido si no has llenado todos sus datos
-    --> Completar todo, hasta las 4 imágenes de perfil
-    --> También se necesita que pongas tu información de contactos en el perfil si quieres reportarlo como perdido
+
   - Cuando se haga un match:
     --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
     --> En tu página de perfil, el perfil de Freda va a tener otro color:
