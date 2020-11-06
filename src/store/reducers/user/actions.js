@@ -49,8 +49,9 @@ export const updateLogInFirstAnimationAction = (data) => {
   });
 };
 
-export const updateFirstResponseAPIAction = () => {
+export const updateFirstResponseAPIAction = (data) => {
   return ({
-    type: "UPDATE_FIRST_RESPONSE_API"
+    type: "UPDATE_FIRST_RESPONSE_API",
+    state: data
   });
 };

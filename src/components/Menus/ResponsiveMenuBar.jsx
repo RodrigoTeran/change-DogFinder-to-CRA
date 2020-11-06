@@ -14,7 +14,8 @@ import {
 import {
   updateLoginAction,
   updateLogInFirstAnimationAction,
-  updateUserAction
+  updateUserAction,
+  updateFirstResponseAPIAction
 } from "../../store/reducers/user/actions";
 
 // Routes
@@ -37,7 +38,9 @@ const ResponsiveMenuBar = ({
   updateResponsiveMenuBarBodyOpen,
   updateTopMenuBarActivated,
   updateLines,
-  updateUser
+  updateUser,
+
+  updateFirstResponseAPI
 }) => {
   const iniciarSesion = () => {
     updateLogInFirstAnimation(true);
@@ -45,6 +48,7 @@ const ResponsiveMenuBar = ({
   };
   const [yesRedirect, setYesRedirect] = useState(false);
   const logoutWithFetch = () => {
+    updateFirstResponseAPI(false);
     fetch(logout, {
       method: "GET",
       credentials: "include",
@@ -54,6 +58,7 @@ const ResponsiveMenuBar = ({
         "token": localStorage.getItem("token")
       }
     }).then(() => {
+      updateFirstResponseAPI(true);
       updateUser({
         selectedState: "username",
         state: null
@@ -229,6 +234,7 @@ const mapDispatchToProps = (dispatch) => {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
     updateLines: (data) => { dispatch(updateLinesAction(data)) },
     updateUser: (data) => { dispatch(updateUserAction(data)) },
+    updateFirstResponseAPI: (data) => { dispatch(updateFirstResponseAPIAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ResponsiveMenuBar);

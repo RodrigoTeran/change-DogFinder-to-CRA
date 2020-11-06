@@ -98,7 +98,7 @@ const App = ({
     }).then(res => {
       return res.json();
     }).then(data => {
-      updateFirstResponseAPI();
+      updateFirstResponseAPI(true);
       if (data.username) {
         updateUser({
           selectedState: "username",
@@ -252,7 +252,7 @@ const mapDispatchToProps = (dispatch) => {
     updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
     updateLines: (data) => { dispatch(updateLinesAction(data)) },
     updateUser: (data) => { dispatch(updateUserAction(data)) },
-    updateFirstResponseAPI: () => { dispatch(updateFirstResponseAPIAction()) },
+    updateFirstResponseAPI: (data) => { dispatch(updateFirstResponseAPIAction(data)) },
     updateKeyActiveUser: (data) => { dispatch(updateKeyActiveUserAction(data)) },
   };
 };

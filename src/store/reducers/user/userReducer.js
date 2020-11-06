@@ -69,7 +69,7 @@ export default function userReducer(state = initialState, action) {
   if (action.type === "UPDATE_FIRST_RESPONSE_API") {
     return {
       ...state,
-      firstResponseUserAPI: true
+      firstResponseUserAPI: action.state
     };
   };
   if (action.type === "UPDATE_LOGIN") {
