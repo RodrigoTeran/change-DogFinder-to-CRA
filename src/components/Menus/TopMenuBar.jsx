@@ -126,18 +126,22 @@ const Menubar = ({
     var name = username;
     var usernameForMenuBar = "";
     const det = 7;
-    for (var i = 0; i <= name.length; i++) {
-      if (i <= det - 1) {
-        usernameForMenuBar += name.charAt(i);
-      } else {
-        break;
+    try {
+      for (var i = 0; i <= name.length; i++) {
+        if (i <= det - 1) {
+          usernameForMenuBar += name.charAt(i);
+        } else {
+          break;
+        };
       };
-    };
-    if (name.length > det) {
-      return (usernameForMenuBar + "...");
-    } else {
-      return (usernameForMenuBar);
-    };
+      if (name.length > det) {
+        return (usernameForMenuBar + "...");
+      } else {
+        return (usernameForMenuBar);
+      };
+    } catch{
+      return (<></>);
+    }
   };
   return (
     <>
