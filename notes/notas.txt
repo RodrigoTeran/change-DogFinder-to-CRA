@@ -1,6 +1,5 @@
 Issues:
-  --- Quitar el "Pagar una cuenta Premium de por vida" cuando ya es premium xd
-  - Poner acepto todos los términos y condiciones en la compra
+  --- Poner acepto todos los términos y condiciones en la compra
   - Incluir IVA en compra
 
   - Poner información de perfil en página de perfil

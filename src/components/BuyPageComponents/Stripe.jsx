@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
+import { Link } from "react-router-dom";
 
 import { STRIPE_KEY } from "../../utils/config";
 
@@ -99,6 +100,8 @@ const CheckoutForm = ({
   const [error, setError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [terminosCondiciones, setTerminosCondiciones] = useState(false);
+  const [terminosCondicionesRegañar, setTerminosCondicionesRegañar] = useState(false);
   const [billingDetails, setBillingDetails] = useState({
     email: '',
     phone: '',
@@ -108,41 +111,43 @@ const CheckoutForm = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-
-    if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
-      return;
-    }
-
-
-    if (error) {
-      elements.getElement('card').focus();
-      return;
-    }
-
-
-    if (cardComplete) {
-      setProcessing(true);
-    }
-
-
-    const payload = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardElement),
-      billing_details: billingDetails,
-    });
-
-
-    setProcessing(false);
-
-
-    if (payload.error) {
-      setError(payload.error);
+    if (!terminosCondiciones) {
+      setTerminosCondicionesRegañar(true);
     } else {
-      makePayment(payload.paymentMethod);
-    }
+      if (!stripe || !elements) {
+        // Stripe.js has not loaded yet. Make sure to disable
+        // form submission until Stripe.js has loaded.
+        return;
+      }
+
+
+      if (error) {
+        elements.getElement('card').focus();
+        return;
+      }
+
+
+      if (cardComplete) {
+        setProcessing(true);
+      }
+
+
+      const payload = await stripe.createPaymentMethod({
+        type: 'card',
+        card: elements.getElement(CardElement),
+        billing_details: billingDetails,
+      });
+
+
+      setProcessing(false);
+
+
+      if (payload.error) {
+        setError(payload.error);
+      } else {
+        makePayment(payload.paymentMethod);
+      };
+    };
   };
 
   return (
@@ -194,9 +199,26 @@ const CheckoutForm = ({
         />
       </fieldset>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
+      <div className="terminos-condiciones-acepto-container">
+        <div>
+          <input onChange={() => {
+            setTerminosCondicionesRegañar(false);
+            setTerminosCondiciones(!terminosCondiciones)
+          }} type="checkbox" name="Acepto" id="checkbox-stripe-terminos-condiciones" value="Acepto" />
+          <label htmlFor="checkbox-stripe-terminos-condiciones">Acepto los términos y condiciones</label>
+        </div>
+      </div>
+      {terminosCondicionesRegañar ? (
+        <div className="terminos-condiciones-acepto-container-regaño">
+          Debes de aceptar los términos y condiciones
+          <br />
+          <Link to="/terminos" className="terminos-condiciones-acepto-container-regaño-link" title="Ir a Términos y Condiciones" style={{ cursor: "pointer" }}>
+            Ir a Términos y Condiciones
+          </Link>
+        </div>) : (<></>)}
       <SubmitButton processing={processing} error={error} disabled={!stripe}>
         Pagar $500 mexicanos
-        </SubmitButton>
+      </SubmitButton>
     </form>
   );
 };
