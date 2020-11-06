@@ -1,5 +1,5 @@
 Issues:
-  --- Recrear el forms de Stripe Checkout
+  --- Quitar el "Pagar una cuenta Premium de por vida" cuando ya es premium xd
   - Poner acepto todos los términos y condiciones en la compra
   - Incluir IVA en compra
 
