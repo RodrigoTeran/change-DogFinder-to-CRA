@@ -50,13 +50,19 @@ const PetIsLostController = ({
       return res.json();
     }).then(data => {
       setIsLoading(false);
-      if (!data.status) {
+      if (data.status === "false") {
         updateFailureMessagesComponent({
           state: true,
           title: "Error",
           description: "No se pudo actualizar el estado de tu mascota",
         });
-      } else {
+      } else if (data.status === "faltan") {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Faltan cosas por editar",
+          description: data.text,
+        });
+      } else if (data.status === "true") {
         updateSuccessMessagesComponent({
           state: true,
           title: "Se cambió el estado con éxito",
