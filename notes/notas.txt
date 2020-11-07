@@ -1,5 +1,4 @@
 Issues:
-  --- Poder volver a realizar la compra y mandar el correo si no le llego el token al usuario
   - Incluir IVA en compra
   - Poner información de perfil en página de perfil
     --> Para que las personas puedan contactar a esa persona

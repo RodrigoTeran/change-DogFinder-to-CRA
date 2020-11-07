@@ -14,7 +14,10 @@ import {
 
 import {
   editKeyForMailForContactUser,
-  editMailForContactUser
+  editMailForContactUser,
+
+  editKeyForTelephoneForContactUser,
+  editTelephoneForContactUser
 } from "../../routes/index";
 
 import {
@@ -28,7 +31,8 @@ import {
 import {
   getNumberOfTelephoneForContact,
   getEmailForContact,
-  getEmailForContactActiveKey
+  getEmailForContactActiveKey,
+  getTelephoneForContactActiveKey
 } from "../../store/reducers/user/selector";
 
 // Components
@@ -49,6 +53,7 @@ const HeaderProfilePage = ({
   updateSuccessMessagesComponent,
 
   emailForContactActiveKey,
+  telephoneForContactActiveKey,
 
   updateUser
 }) => {
@@ -57,9 +62,14 @@ const HeaderProfilePage = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const [valueInputMailKey, setValueInputMailKey] = useState("");
+  const [valueInputTelephoneKey, setValueInputTelephoneKey] = useState("");
 
   const onChangeInputKeyMail = e => {
     setValueInputMailKey(e.target.value);
+  };
+
+  const onChangeInputKeyTelephone = e => {
+    setValueInputTelephoneKey(e.target.value);
   };
 
   const editMailForContact = () => {
@@ -119,6 +129,63 @@ const HeaderProfilePage = ({
     };
   };
 
+  const editTelephoneForContact = () => {
+    const hack = checkFuckingHack(valueInputTelephoneKey, []);
+    if (hack) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Debe de introducir caracteres válidos"
+      });
+    } else {
+      setIsLoading(true);
+      const body = {
+        key: valueInputTelephoneKey
+      };
+      fetch(editTelephoneForContactUser, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "token": localStorage.getItem("token")
+        },
+        body: JSON.stringify(body)
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        setIsLoading(false);
+        if (data.status === "true") {
+          updateSuccessMessagesComponent({
+            state: true,
+            title: "Éxito",
+            description: `Se editó el teléfono de contacto público`
+          });
+          updateUser({
+            selectedState: "numberOfTelephoneForContact",
+            state: data.newTelephone
+          });
+          updateUser({
+            selectedState: "telephoneForContactActiveKey",
+            state: false
+          });
+        } else if (data.status === "expiro") {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: "La clave ya expiró o no coincide. Vuelva a intentarlo o envie de nuevo el teléfono"
+          });
+        } else {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: "La clave no coincide"
+          });
+        };
+      });
+    };
+  };
+
   const editKeyForMail = (email) => {
     setIsLoading(true);
     const body = {
@@ -152,6 +219,44 @@ const HeaderProfilePage = ({
           state: true,
           title: "Error",
           description: "El correo no es válido, puede ser que lo hayas escrito mal"
+        });
+      };
+    });
+  };
+
+  const editKeyForTelephone = (telephone) => {
+    setIsLoading(true);
+    const body = {
+      telephone
+    };
+    fetch(editKeyForTelephoneForContactUser, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": localStorage.getItem("token")
+      },
+      body: JSON.stringify(body)
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      setIsLoading(false);
+      if (data.status === "true") {
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Éxito",
+          description: `Se envió al teléfono: ${telephone}, la clave para verificar que este teléfono es suyo`
+        });
+        updateUser({
+          selectedState: "telephoneForContactActiveKey",
+          state: true
+        });
+      } else {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "El teléfono no es válido, puede ser que lo hayas escrito mal"
         });
       };
     });
@@ -227,11 +332,7 @@ const HeaderProfilePage = ({
 
       // El nombre debe contener al menos 1 caracter
       if (!status) {
-        updateSuccessMessagesComponent({
-          state: true,
-          title: "Éxito",
-          description: `El número: ${bannerProfileContactInfo.inputInfoFromBanner} se cambió con éxito`
-        });
+        editKeyForTelephone(bannerProfileContactInfo.inputInfoFromBanner)
       };
 
       // Al final
@@ -391,6 +492,27 @@ const HeaderProfilePage = ({
           </div>
         </div>
       </div>
+      <div className={`banner-email-contact-key-input ${telephoneForContactActiveKey ? ("open") : ("close")}`}>
+        <div className="banner-email-contact-key-input-title">
+          Clave para verificar autenticidad de número de teléfono
+          </div>
+        <div className="banner-email-contact-key-input-info">
+          Introduce la clave que te llego al teléfono. Si no te ha llegado el mensaje, lo más probable es que lo hayas escrito mal. Si es así, solo vuelve a mandarlo.
+        </div>
+        <div className="banner-email-contact-key-input-input-container">
+          <div>
+            <input onChange={onChangeInputKeyTelephone} type="text" maxLength={10} />
+          </div>
+          <div className="banner-email-contact-key-input-input-container-2">
+            <ButtonWhiteRectangle text={`Enviar`} width="280px" height="50px" fontSize="1rem" clickFunctionAnotherOne={editTelephoneForContact} mt="mt-0"
+              backgroundColorRectangle={"#000000"}
+            >
+              <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" /></svg>
+            </ButtonWhiteRectangle>
+          </div>
+        </div>
+      </div>
+
       {isLoading ? (
         <div className="loader-block" style={{
           paddingTop: "30px"
@@ -407,7 +529,8 @@ const mapStateToProps = (state) => {
     bannerProfileContactInfo: getBannerProfileContactInfo(state),
     numberOfTelephoneForContact: getNumberOfTelephoneForContact(state),
     emailForContact: getEmailForContact(state),
-    emailForContactActiveKey: getEmailForContactActiveKey(state)
+    emailForContactActiveKey: getEmailForContactActiveKey(state),
+    telephoneForContactActiveKey: getTelephoneForContactActiveKey(state)
   };
 };
 
