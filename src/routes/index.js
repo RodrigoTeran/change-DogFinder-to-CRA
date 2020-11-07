@@ -27,20 +27,18 @@ routes.editPetProfileColor = `${routes.apiDomain}/edit/color`;
 routes.editCoordenates = `${routes.apiDomain}/edit/coordenates`;
 routes.editPetProfileWhenIsLost = `${routes.apiDomain}/edit/whenIsLost`;
 routes.editPetProfileImages = `${routes.apiDomain}/edit/images`;
-
 routes.editKeyForMailForContactUser = `${routes.apiDomain}/edit/key/mail`;
 routes.editMailForContactUser = `${routes.apiDomain}/edit/mail/contact`;
 
-// Stripe
-routes.postPayment = `${routes.apiDomain}/pay/service`;
-routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
-
 // POST
 routes.postNewPet = `${routes.apiDomain}/new/pet`;
+routes.postPayment = `${routes.apiDomain}/pay/service`;
+routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
 
 // DELETE
 routes.eraseProfile = `${routes.apiDomain}/erase/profile`;
 routes.eraseProfileImages = `${routes.apiDomain}/erase/images`;
+routes.eraseKeyPaymentFromAPI = `${routes.apiDomain}/pay/erase/key/stripe`;
 
 // DEFAULTS
 // Pet default image

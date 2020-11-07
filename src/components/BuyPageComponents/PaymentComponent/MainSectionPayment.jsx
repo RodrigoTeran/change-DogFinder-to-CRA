@@ -12,7 +12,7 @@ import { APP_NAME } from "../../../utils/config";
 import Stripe from "../Stripe";
 
 // Routes
-import { postPayment, postKeyPayment } from "../../../routes/index";
+import { postPayment, postKeyPayment, eraseKeyPaymentFromAPI } from "../../../routes/index";
 
 import {
   checkFuckingHack
@@ -87,6 +87,25 @@ const MainSectionPayment = ({
         });
         updateKeyActiveUser(undefined);
       };
+    });
+  };
+
+  const deleteKeyFromAPI = () => {
+    setIsLoading(true);
+    const headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "token": localStorage.getItem("token")
+    };
+    return fetch(eraseKeyPaymentFromAPI, {
+      method: "DELETE",
+      headers: headers,
+      credentials: "include"
+    }).then(res => {
+      return res.json();
+    }).then(_data => {
+      setIsLoading(false);
+      updateKeyActiveUser(undefined);
     });
   };
   const [valueKey, setValueKey] = useState("");
@@ -174,12 +193,22 @@ const MainSectionPayment = ({
                     {keyActiveUser ? (
                       <>
                         <div className="input-key-pay">
+                          <div className="input-key-pay-title">
+                            Poner clave para finalizar pago
+                          </div>
                           <div className="input-key-pay-h1">
-                            Introduzca la clave que mandamos a {keyActiveUser}
+                            *Introduzca la clave que mandamos a {keyActiveUser}
                           </div>
                           <div>
                             <input onChange={changeInputKey} maxLength="10" className="input-key-pay-input" type="text" />
                             <button onClick={sendKeyPaymentAPI} className="input-key-pay-button">Enviar</button>
+                          </div>
+                          <div className="input-key-pay-h2">
+                            Si no le llego el correo vuelva a pagar y asegúrese de poner el correo bien escrito. No se le va a cobrar dos veces. El cargo
+                            solo se va a hacer una vez.
+                          </div>
+                          <div>
+                            <button onClick={deleteKeyFromAPI} className="input-key-pay-button">Volver a pagar</button>
                           </div>
                         </div>
                       </>
