@@ -154,7 +154,8 @@ const InputMap = ({
             updateSuccessMessagesComponent({
               state: true,
               title: "Se cambió la localización",
-              description: "Se cambió la localización de tu mascota con éxito"
+              description: petProfile.isPetProfile ? ("Se cambió la localización de tu mascota con éxito") :
+                ("Se cambió la localización del perrito con éxito")
             });
             updatePetProfile({
               selectedState: "location",
@@ -171,7 +172,8 @@ const InputMap = ({
             updateFailureMessagesComponent({
               state: true,
               title: "Error",
-              description: "No se pudo cambiar la localización de tu mascota"
+              description: petProfile.isPetProfile ? ("No se pudo cambiar la localización de tu mascota") :
+                ("No se pudo cambiar la localización del perrito")
             });
           };
         });
@@ -278,7 +280,9 @@ const InputMap = ({
                   }}
                 >
                   <div style={{ color: "#000" }}>
-                    <h2>Tu mascota</h2>
+                    <h2>
+                      {`${petProfile.isPetProfile ? (`Tu mascota`) : (`Perrito Extraviado`)}`}
+                    </h2>
                     <div>
                       {petProfile.name}
                     </div>

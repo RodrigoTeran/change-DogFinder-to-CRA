@@ -1,7 +1,10 @@
 Issues:
-  - Falta estilizar mejor los messages dependiendo de cual tipo de perfil es
+  --- Falta estilizar mejor los messages dependiendo de cual tipo de perfil es
+  --- Falta de ortografía: "encontardo"
+  --- Arreglar el texto en perfil mascota components para ambos casos
   - Incluir más funcionalidad en la página principal de encontré un perro
   - Falta poner el WhenIsLost component en perro encontrado
+  - Cuando se cambie la imagen de perfil que no hay Redirect
   - Falta incluir el guardar reporte de perro
   - Incluir IVA en compra
   - Crear pagina para mandar perro perdido

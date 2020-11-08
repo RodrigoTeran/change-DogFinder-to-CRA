@@ -58,13 +58,13 @@ const ColorProfile = ({
         updateSuccessMessagesComponent({
           state: true,
           title: "Se ha cambiado el color",
-          description: "Se ha cambiado el color principal de tu mascota con éxito",
+          description: petProfile.isPetProfile ? ("Se ha cambiado el color principal de tu mascota con éxito") : ("Se ha cambiado el color principal del perro con éxito"),
         });
       } else {
         updateFailureMessagesComponent({
           state: true,
           title: "Error",
-          description: "No se ha podido cambiar el color principal de tu mascota",
+          description: "No se ha podido cambiar el color principal",
         });
       };
     });

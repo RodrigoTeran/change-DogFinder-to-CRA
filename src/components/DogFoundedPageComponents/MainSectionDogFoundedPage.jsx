@@ -17,7 +17,7 @@ const MainSectionDogFoundedPage = ({
   return (
     <div className="main-section-profile-page">
       <div className="main-section-profile-page-title" style={{ marginTop: "30px" }}>
-        PERROS ENCONTRADOS POR TI
+        Perros encontrados por ti
       </div>
       <div>
         <CardMainSectionNewPet

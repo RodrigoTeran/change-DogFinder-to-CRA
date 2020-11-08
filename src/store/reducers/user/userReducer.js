@@ -47,6 +47,7 @@ const initialState = {
 /*
 
 ${petProfile.isPetProfile ? (``):(``)}
+petProfile.isPetProfile ? (``):(``)
 {`${petProfile.isPetProfile ? (`/perfil`) : (`/registro/mascota/encontrada`)}`}
 
 */

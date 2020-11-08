@@ -226,8 +226,9 @@ const MainCVComponent = ({
           <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`} style={{
             marginBottom: "0px",
           }}>
-            Sube una imagen específicamente del rostro de tu mascota. Puedes subir hasta 4 imágenes.
-        </div>
+            {`${petProfile.isPetProfile ? (`Sube una imagen específicamente del rostro de tu mascota. Puedes subir hasta 4 imágenes.`) :
+              (`Sube una imagen específicamente del rostro del perro que hayas encontrado. Puedes subir hasta 4 imágenes.`)}`}
+          </div>
         </div>
         <div className="computer-vision-row row">
           {petProfile.images.length === 4 ? (

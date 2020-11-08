@@ -89,7 +89,7 @@ const DeletePerfilMascota = ({
       <div className={`pet-profile-page-delete`}>
         {window.innerWidth < 1121 ? (<></>) : (
           <div className={`pet-profile-page-delete-info`}>
-            Información de tu mascota
+            {`${petProfile.isPetProfile ? (`Información de tu mascota`) : (`Informacíon del perro extraviado`)}`}
           </div>
         )}
         <ButtonWhiteRectangle text="Borrar Perfil"

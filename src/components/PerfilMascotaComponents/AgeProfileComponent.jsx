@@ -59,13 +59,13 @@ const AgeProfileComponent = ({
         updateSuccessMessagesComponent({
           state: true,
           title: "Se ha cambiado la edad",
-          description: "Se ha cambiado la edad de tu mascota con éxito",
+          description: petProfile.isPetProfile ? ("Se ha cambiado la edad de tu mascota con éxito") : ("Se ha cambiado la edad del perro con éxito"),
         });
       } else {
         updateFailureMessagesComponent({
           state: true,
           title: "Error",
-          description: "No se ha podido cambiar la edad de tu mascota",
+          description: petProfile.isPetProfile ? ("No se ha podido cambiar la edad de tu mascota") : ("No se ha podido cambiar la edad del perro"),
         });
       };
     });
