@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import InputFile from "../Inputs/InputFile";
-import { Redirect } from "react-router-dom";
 import axios from 'axios';
 
 import {
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction
 } from "../../store/reducers/layout/actions";
+
+import {
+  updatePetProfileAction
+} from "../../store/reducers/user/actions";
 
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
 
@@ -28,7 +31,8 @@ const ChangeImageProfile = ({
   updateFailureMessagesComponent,
   getURL,
   updateSuccessMessagesComponent,
-  petProfile
+  petProfile,
+  updatePetProfile
 }) => {
   const [srcImage, setSrcImage] = useState("");
   const [ImageInput, setImageInput] = useState(undefined);
@@ -59,7 +63,6 @@ const ChangeImageProfile = ({
       });
     };
   };
-  const [yesRedirect, setYesRedirect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmitInput = () => {
     setIsLoading(true);
@@ -73,16 +76,22 @@ const ChangeImageProfile = ({
       }
     })
       .then(res => {
+        setIsLoading(false);
         if (res.data.status) {
-          setIsLoading(false);
-          setYesRedirect(true);
+          updatePetProfile({
+            selectedState: "petProfileImage",
+            state: res.data.srcImage
+          });
+          setSrcImageYes(false);
+          setSrcImage("");
+          document.querySelector(".inputfileImageProfile").value = "";
+          window.scroll({ top: 0, left: 0, behavior: "smooth" });
           updateSuccessMessagesComponent({
             state: true,
             title: "Se cambió la imagen",
             description: `Se cambió la imagen con éxito`
           });
         } else {
-          setIsLoading(false);
           updateFailureMessagesComponent({
             state: true,
             title: "Error al enviar la imagen",
@@ -94,7 +103,6 @@ const ChangeImageProfile = ({
   const [yesInstructions, setInstructions] = useState(false);
   return (
     <div>
-      {yesRedirect ? (<Redirect to={`${petProfile.isPetProfile ? (`/perfil`) : (`/registro/mascota/encontrada`)}`}></Redirect>) : (<></>)}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <InputFile
           width="250px"
@@ -175,7 +183,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
-    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) }
+    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
+    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ChangeImageProfile);
