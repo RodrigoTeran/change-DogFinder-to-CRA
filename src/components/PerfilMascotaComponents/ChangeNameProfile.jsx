@@ -20,6 +20,10 @@ import {
   editPetName
 } from "../../routes/index";
 
+import {
+  editPetsDogFoundedName
+} from "../../routes/indexDogFounded";
+
 const ChangeNameProfile = ({
   petProfile,
   updateFailureMessagesComponent,
@@ -46,7 +50,7 @@ const ChangeNameProfile = ({
   const editPetNameFunction = () => {
     closeInput();
     setIsLoading(true);
-    const hack = checkFuckingHack(body.newName, []);    
+    const hack = checkFuckingHack(body.newName, []);
 
     if (hack) {
       updateFailureMessagesComponent({
@@ -64,7 +68,7 @@ const ChangeNameProfile = ({
         });
         setIsLoading(false);
       } else {
-        fetch(`${editPetName}/${petProfile.name}`, {
+        fetch(`${petProfile.isPetProfile ? (`${editPetName}/${petProfile.name}`) : (`${editPetsDogFoundedName}/${petProfile.name}`)}`, {
           method: "PUT",
           credentials: "include",
           headers: {
@@ -98,7 +102,7 @@ const ChangeNameProfile = ({
   const [yesRedirect, setYesRedirect] = useState(false);
   return (
     <>
-      {yesRedirect ? (<Redirect to="/perfil"></Redirect>) : (<></>)}
+      {yesRedirect ? (<Redirect to={`${petProfile.isPetProfile ? (`/perfil`) : (`/registro/mascota/encontrada`)}`}></Redirect>) : (<></>)}
       <InputTextComponent
         closeInput={closeInput}
         closeStyle={!isInputActivated}

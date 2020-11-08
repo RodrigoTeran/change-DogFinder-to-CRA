@@ -55,6 +55,15 @@ export const getProfiles = createSelector([selectorGetProfiles], (getProfiles) =
   return getProfiles;
 });
 
+// profilesDogFounded
+const selectorGetProfilesDogFounded = (state) => {
+  return state.userReducer.profilesDogFounded;
+};
+
+export const getProfilesDogFounded = createSelector([selectorGetProfilesDogFounded], (getProfilesDogFounded) => {
+  return getProfilesDogFounded;
+});
+
 
 // username
 const selectorGetUsername = (state) => {

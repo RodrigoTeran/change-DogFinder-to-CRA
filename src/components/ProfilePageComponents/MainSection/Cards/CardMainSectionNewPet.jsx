@@ -8,6 +8,10 @@ import {
   defaultImage
 } from "../../../../routes/index";
 
+import {
+  createProfileDogFounded
+} from "../../../../routes/indexDogFounded";
+
 // Acciones
 import {
   updatePetProfileAction
@@ -21,12 +25,13 @@ import {
 const CardMainSectionNewPet = ({
   updatePetProfile,
   updateFailureMessagesComponent,
-  updateSuccessMessagesComponent
+  updateSuccessMessagesComponent,
+  isDogFounded
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const getProfileData = () => {
     setIsLoading(true);
-    fetch(postNewPet, {
+    fetch(isDogFounded ? (createProfileDogFounded) : (postNewPet), {
       method: "POST",
       credentials: "include",
       headers: {
@@ -45,21 +50,22 @@ const CardMainSectionNewPet = ({
         updateFailureMessagesComponent({
           state: true,
           title: "Error",
-          description: "No se pudo crear el perfil",
+          description: isDogFounded ? ("No se pudo crear un reporte de mascota perdida") : ("No se pudo crear el perfil")
         });
       };
     });
   };
   const [yesRedirect, setYesRedirect] = useState(false);
   const [petname, setPetname] = useState(false);
+
   const urlNameFunction = (petNameParametro) => {
     const newString = petNameParametro.replace(/ /g, "-");
     setPetname(newString);
     setYesRedirect(true);
     updateSuccessMessagesComponent({
       state: true,
-      title: "Perfil creado",
-      description: "Se creó un nuevo perfil con éxito",
+      title: isDogFounded ? ("Reporte de mascota perdida creado") : ("Perfil creado"),
+      description: isDogFounded ? ("Se creó un nuevo reporte de mascota perdida con éxito") : ("Se creó un nuevo perfil con éxito")
     });
   };
   const updateReduxPet = () => {
@@ -79,13 +85,17 @@ const CardMainSectionNewPet = ({
       selectedState: "isLost",
       state: false
     });
+    updatePetProfile({
+      selectedState: "isPetProfile",
+      state: isDogFounded ? (false) : (true)
+    });
   };
   return (
     <>
-      {yesRedirect ? (<Redirect to={`/perfil/mascota/${petname}`}></Redirect>) : (<></>)}
+      {yesRedirect ? (<Redirect to={`${isDogFounded ? (`/perro/encontrado/${petname}`) : (`/perfil/mascota/${petname}`)}`}></Redirect>) : (<></>)}
       <div className="card-main-section-profile" onClick={getProfileData} style={{ width: "300px", marginLeft: "calc(50% - 150px)" }}>
-        <div className="card-main-section-profile-content-2" style={{ height: "50px", backgroundColor: "var(--tertiary-color)" }} title="Nuevo Perfil">
-          Nuevo Perfil
+        <div className="card-main-section-profile-content-2" style={{ height: "50px", backgroundColor: "var(--tertiary-color)" }} title={`${isDogFounded ? ("Reportar mascota encontrada") : ("Nuevo Perfil")}`}>
+          {isDogFounded ? ("Reportar mascota encontrada") : ("Nuevo Perfil")}
         </div>
       </div>
       {isLoading ? (

@@ -34,6 +34,11 @@ import {
   eraseProfileImages
 } from "../../../routes/index";
 
+import {
+  deletePetProfileDogFoundedImageFromImages,
+  editProfileDogFoundedImages
+} from "../../../routes/indexDogFounded";
+
 const MainCVComponent = ({
   petProfile,
   updateFailureMessagesComponent,
@@ -57,13 +62,12 @@ const MainCVComponent = ({
     };
   }, [bannerOkCancelAction]);
 
-
   const deleteImageReal = () => {
     setIsLoading(true);
     const body = {
       srcImage: srcImage
     };
-    fetch(`${eraseProfileImages}/${petProfile.name}`, {
+    fetch(`${petProfile.isPetProfile ? (`${eraseProfileImages}/${petProfile.name}`) : (`${deletePetProfileDogFoundedImageFromImages}/${petProfile.name}`)}`, {
       method: "DELETE",
       credentials: "include",
       headers: {
@@ -151,7 +155,7 @@ const MainCVComponent = ({
       .then(blob => {
         const file = new File([blob], "File name", { type: "image/png" })
         data.append("file", file);
-        axios.put(`${editPetProfileImages}/${petProfile.name}`, data, {
+        axios.put(`${petProfile.isPetProfile ? (`${editPetProfileImages}/${petProfile.name}`) : (`${editProfileDogFoundedImages}/${petProfile.name}`)}`, data, {
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",

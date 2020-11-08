@@ -12,7 +12,8 @@ const CardMainSectionProfile = ({
   petName,
   profileImage,
   updatePetProfile,
-  isLost
+  isLost,
+  isPetProfile
 }) => {
   const urlNameFunction = (petNameParametro) => {
     const newString = petNameParametro.replace(/ /g, "-");
@@ -33,8 +34,13 @@ const CardMainSectionProfile = ({
     });
     updatePetProfile({
       selectedState: "isLost",
-      state: isLost
+      state: isPetProfile ? (isLost) : (false)
     });
+    updatePetProfile({
+      selectedState: "isPetProfile",
+      state: isPetProfile
+    });
+
   };
   useEffect(() => {
     handleResize();
@@ -53,7 +59,7 @@ const CardMainSectionProfile = ({
   };
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 card-main-section-profile card-main-section-profile-profiles" onClick={updateReduxPet}>
-      <Link to={`/perfil/mascota/${urlNameFunction(petName)}`}>
+      <Link to={`${isPetProfile ? (`/perfil/mascota/${urlNameFunction(petName)}`) : (`/perro/encontrado/${urlNameFunction(petName)}`)}`}>
         <div className="card-main-section-profile-content">
           <div style={{
             backgroundImage: "url(" + profileImage + ")",

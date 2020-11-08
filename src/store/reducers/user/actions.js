@@ -42,6 +42,13 @@ export const updateProfilesAction = (data) => {
   });
 };
 
+export const updateProfilesDogFoundedAction = (data) => {
+  return ({
+    type: "UPDATE_PROFILES_DOG_FOUNDED",
+    profilesDogFounded: data,
+  });
+};
+
 export const updateLogInFirstAnimationAction = (data) => {
   return ({
     type: "UPDATE_LOGIN_FIRST_ANIMATION",

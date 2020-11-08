@@ -2,4 +2,40 @@
   width: 100%;
   color: #ffffff;
   margin-top: 100px;
+  .main-section-profile-page-cards-section {
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 10%;
+  }
+  .main-section-profile-page-title {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  &-actual {
+    padding-top: 50px;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-size: 1rem;
+    padding-bottom: 50px;
+  }
+  &-header {
+    &-thanks {
+      font-size: 1.1rem;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-family: "Roboto Condensed", sans-serif;
+    }
+    &-h1,
+    &-subtitle {
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 2rem;
+      font-weight: bold;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    &-subtitle {
+      margin-top: 50px;
+    }
+  }
 }

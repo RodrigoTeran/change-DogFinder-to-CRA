@@ -24,6 +24,11 @@ import {
   editPetProfileGender
 } from "../../routes/index";
 
+import {
+  editPetProfileDogFoundedBreed,
+  editPetProfileDogFoundedGender
+} from "../../routes/indexDogFounded";
+
 const InfoPetProfile = ({
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
@@ -45,7 +50,7 @@ const InfoPetProfile = ({
       });
       setIsLoading(false);
     } else {
-      fetch(`${editPetProfileRace}/${petProfile.name}`, {
+      fetch(`${petProfile.isPetProfile ? (`${editPetProfileRace}/${petProfile.name}`) : (`${editPetProfileDogFoundedBreed}/${petProfile.name}`)}`, {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -94,7 +99,7 @@ const InfoPetProfile = ({
       });
       setIsLoading(false);
     } else {
-      fetch(`${editPetProfileGender}/${petProfile.name}`, {
+      fetch(`${petProfile.isPetProfile ? (`${editPetProfileGender}/${petProfile.name}`) : (`${editPetProfileDogFoundedGender}/${petProfile.name}`)}`, {
         method: "PUT",
         credentials: "include",
         headers: {

@@ -76,7 +76,7 @@ const BannerProfileContactInfo = ({
                   Información de contacto por Whatsapp
                 </div>
                 <div style={{ marginTop: "20px" }}>
-                  Escribe tu número de teléfono que quieras para que las personas te puedan contactar por este medio.
+                  Escribe tu número de teléfono que quieras para que las personas te puedan contactar por este medio. Incluir LADA.
                 </div>
                 <div className="input-banner-contact-info-lada-container">
                   <input maxLength={13} onChange={onChangeInput} type="text" className="input-banner-contact-info" />

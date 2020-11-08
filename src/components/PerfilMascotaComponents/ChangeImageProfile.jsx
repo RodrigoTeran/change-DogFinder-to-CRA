@@ -11,14 +11,24 @@ import {
 } from "../../store/reducers/layout/actions";
 
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
+
 import {
   editPetProfileImage
 } from "../../routes/index";
 
+import {
+  getPetProfile
+} from "../../store/reducers/user/selector";
+
+import {
+  editProfileDogFoundedImagePet
+} from "../../routes/indexDogFounded";
+
 const ChangeImageProfile = ({
   updateFailureMessagesComponent,
   getURL,
-  updateSuccessMessagesComponent
+  updateSuccessMessagesComponent,
+  petProfile
 }) => {
   const [srcImage, setSrcImage] = useState("");
   const [ImageInput, setImageInput] = useState(undefined);
@@ -55,7 +65,7 @@ const ChangeImageProfile = ({
     setIsLoading(true);
     const data = new FormData();
     data.append("file", ImageInput);
-    axios.put(`${editPetProfileImage}/${getURL()}`, data, {
+    axios.put(`${petProfile.isPetProfile ? (`${editPetProfileImage}/${getURL()}`) : (`${editProfileDogFoundedImagePet}/${getURL()}`)}`, data, {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -84,7 +94,7 @@ const ChangeImageProfile = ({
   const [yesInstructions, setInstructions] = useState(false);
   return (
     <div>
-      {yesRedirect ? (<Redirect to="/perfil"></Redirect>) : (<></>)}
+      {yesRedirect ? (<Redirect to={`${petProfile.isPetProfile ? (`/perfil`) : (`/registro/mascota/encontrada`)}`}></Redirect>) : (<></>)}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <InputFile
           width="250px"
@@ -156,7 +166,9 @@ const ChangeImageProfile = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    petProfile: getPetProfile(state)
+  };
 };
 
 // Acciones de REDUX

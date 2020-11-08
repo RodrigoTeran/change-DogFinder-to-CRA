@@ -18,8 +18,11 @@ const initialState = {
   logInActivated: false,
   webp: true,
 
-  // Profiles
+  // Own Profiles
   profiles: [],
+
+  // Profiles Dogs Founded
+  profilesDogFounded: [],
 
   // Key Active
   keyActiveUser: undefined,
@@ -36,9 +39,17 @@ const initialState = {
     size: undefined,
     mainColor: undefined,
     gender: undefined,
-    whenIsLost: new Date()
+    whenIsLost: new Date(),
+
+    isPetProfile: false, // TRUE = perfil, FALSE = encontre perro
   }
 };
+/*
+
+${petProfile.isPetProfile ? (``):(``)}
+{`${petProfile.isPetProfile ? (`/perfil`) : (`/registro/mascota/encontrada`)}`}
+
+*/
 export default function userReducer(state = initialState, action) {
   if (action.type === "UPDATE_PET_PROFILE") {
     return {
@@ -65,6 +76,12 @@ export default function userReducer(state = initialState, action) {
     return {
       ...state,
       profiles: action.profiles,
+    };
+  };
+  if (action.type === "UPDATE_PROFILES_DOG_FOUNDED") {
+    return {
+      ...state,
+      profilesDogFounded: action.profilesDogFounded,
     };
   };
   if (action.type === "UPDATE_FIRST_RESPONSE_API") {

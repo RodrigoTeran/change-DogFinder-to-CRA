@@ -20,6 +20,10 @@ import {
   editPetProfileSize
 } from "../../routes/index";
 
+import {
+  editPetProfileDogFoundedSize
+} from "../../routes/indexDogFounded";
+
 const AgeProfileComponent = ({
   petProfile,
   updatePetProfile,
@@ -34,7 +38,7 @@ const AgeProfileComponent = ({
     const body = {
       newSize
     };
-    fetch(`${editPetProfileSize}/${petProfile.name}`, {
+    fetch(`${petProfile.isPetProfile ? (`${editPetProfileSize}/${petProfile.name}`) : (`${editPetProfileDogFoundedSize}/${petProfile.name}`)}`, {
       method: "PUT",
       credentials: "include",
       headers: {

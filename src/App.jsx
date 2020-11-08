@@ -205,6 +205,7 @@ const App = ({
         <div>
           <Switch>
             <Route path="/perfil/mascota"><PerfilMascota></PerfilMascota></Route>
+            <Route path="/perro/encontrado"><PerfilMascota></PerfilMascota></Route>
             <Route path="/perfil/"><Profile></Profile></Route>
             <Route path="/adopcion"><Adpotion></Adpotion></Route>
             <Route path="/comprar"><Buy></Buy></Route>

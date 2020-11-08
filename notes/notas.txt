@@ -1,23 +1,16 @@
 Issues:
+  - Falta estilizar mejor los messages dependiendo de cual tipo de perfil es
+  - Incluir más funcionalidad en la página principal de encontré un perro
+  - Falta poner el WhenIsLost component en perro encontrado
+  - Falta incluir el guardar reporte de perro
   - Incluir IVA en compra
-  - Poner información de perfil en página de perfil
-    --> Para que las personas puedan contactar a esa persona
-    --> Que puedan establecer:
-      - Correo
-      - Número de télefono
-    --> Cuando la persona cambie sus datos, mandar un correo o un mensaje a su telefono:
-      - Para verificar que es legit
-    - La info del mapa va a ser esta... cuando le mandemos notificaciones al usuario va a ser desde su cuenta, no esta info
-      Esta info es la pública
-    - Cuando una persona hace match, desde el mapa o internamente con la IA, se puede ver su info, y te mandamos mensaje.
-      Para que sepas quien ha visti tu información
-      Si quieres hacer match desde el mapa, primero tendras que llenar estos datos
-    - Que no te deje ponerlo como perdido si no has llenado todos sus datos
-      --> Completar todo, hasta las 4 imágenes de perfil
-      --> También se necesita que pongas tu información de contactos en el perfil si quieres reportarlo como perdido
-
   - Crear pagina para mandar perro perdido
     --> Va a ser como un menú
+    - Se van ir guardando los datos como se van introduciendo.
+      - Al final va haber un botón de enviar perfil a la Inteligencia Artificial (para que se vea mono).
+      - Entonces ahi es cuando se evalua si falta algo.
+      - Cada perfil se va a poder eliminar y editar después y siempre tendrás que darle a enviar perfil 
+        cada vez que edites.
 
   - Crear una forma para que las empresas puedan crearse una cuenta gratis premium
     y además que tengan funcionalidades de EMPRESA

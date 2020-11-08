@@ -34,6 +34,10 @@ import {
   getpetProfileDataRoute
 } from "../routes/index";
 
+import {
+  getPetProfileDogFoundedProvider
+} from "../routes/indexDogFounded";
+
 import PerfilMascotaHeader from "../components/PerfilMascotaComponents/PerfilMascotaHeader";
 
 const PerfilMascota = ({
@@ -66,7 +70,7 @@ const PerfilMascota = ({
   const getURL = () => {
     if (!petProfile.name || petProfile.name === "") {
       const pathName = location.pathname;
-      const mascotaStringFeo = pathName.substr(16, pathName.length - 1);
+      const mascotaStringFeo = pathName.substr(petProfile.isPetProfile ? (16) : (18), pathName.length - 1);
       const mascota = mascotaStringFeo.replace(/-/gi, " ");
       return mascota;
     } else {
@@ -77,7 +81,7 @@ const PerfilMascota = ({
   // Data Pet Profile
   const getPetProfileDataFunction = () => {
     if (!yesDataAPI) {
-      fetch(`${getpetProfileDataRoute}/${getURL()}`, {
+      fetch(`${petProfile.isPetProfile ? (`${getpetProfileDataRoute}/${getURL()}`) : (`${getPetProfileDogFoundedProvider}/${getURL()}`)}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -91,12 +95,12 @@ const PerfilMascota = ({
         if (data.status) { // todo bien
           setYesDataAPI(true);
           updatePetProfile({
-            selectedState: "name",
-            state: data.profilePet.petName
+            selectedState: "isPetProfile",
+            state: data.isPetProfile
           });
           updatePetProfile({
-            selectedState: "petProfileImage",
-            state: data.profilePet.profileImage
+            selectedState: "name",
+            state: data.profilePet.petName
           });
           updatePetProfile({
             selectedState: "petProfileImage",
@@ -108,7 +112,7 @@ const PerfilMascota = ({
           });
           updatePetProfile({
             selectedState: "isLost",
-            state: data.profilePet.isLost
+            state: petProfile.isPetProfile ? (data.profilePet.isLost) : (false)
           });
           updatePetProfile({
             selectedState: "dogBreed",

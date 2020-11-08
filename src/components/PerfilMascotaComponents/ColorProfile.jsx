@@ -19,6 +19,10 @@ import {
   editPetProfileColor
 } from "../../routes/index";
 
+import {
+  editPetProfileDogFoundedColor
+} from "../../routes/indexDogFounded";
+
 const ColorProfile = ({
   petProfile,
   isWebp,
@@ -33,7 +37,7 @@ const ColorProfile = ({
     const body = {
       newColor
     };
-    fetch(`${editPetProfileColor}/${petProfile.name}`, {
+    fetch(`${petProfile.isPetProfile ? (`${editPetProfileColor}/${petProfile.name}`) : (`${editPetProfileDogFoundedColor}/${petProfile.name}`)}`, {
       method: "PUT",
       credentials: "include",
       headers: {

@@ -5,9 +5,17 @@ import {
   eraseProfile
 } from "../../routes/index";
 import {
+  deletePetDogFounded
+} from "../../routes/indexDogFounded";
+import {
   updateSuccessMessagesComponentAction,
-  updateBannerOkCancelActionAction
+  updateBannerOkCancelActionAction,
+  updateFailureMessagesComponentAction
 } from "../../store/reducers/layout/actions";
+
+import {
+  getPetProfile
+} from "../../store/reducers/user/selector";
 
 import {
   getBannerOkCancelAction
@@ -23,7 +31,10 @@ const DeletePerfilMascota = ({
   setYesRedirectProp,
 
   updateBannerOkCancelAction,
-  bannerOkCancelAction
+  updateFailureMessagesComponent,
+  bannerOkCancelAction,
+
+  petProfile
 }) => {
   useEffect(() => {
     if (bannerOkCancelAction.isDisplayed.fromWho === TEXT_WANT_DELETE_PET_PROFILE && bannerOkCancelAction.okButton === true) {
@@ -38,7 +49,7 @@ const DeletePerfilMascota = ({
   const [isLoading, setIsLoading] = useState(false);
   const eraseProfileFunctionYes = () => {
     setIsLoading(true);
-    fetch(`${eraseProfile}/${getURL()}`, {
+    fetch(`${petProfile.isPetProfile ? (`${eraseProfile}/${getURL()}`) : (`${deletePetDogFounded}/${getURL()}`)}`, {
       method: "DELETE",
       credentials: "include",
       headers: {
@@ -50,12 +61,20 @@ const DeletePerfilMascota = ({
       return res.json();
     }).then(data => {
       setIsLoading(false);
-      updateSuccessMessagesComponent({
-        state: true,
-        title: "Se borro el perfil",
-        description: `Se borro el perfil con éxito`,
-      })
-      setYesRedirectProp();
+      if (data.msg === "msg") {
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Se borro el perfil",
+          description: `Se borro el perfil con éxito`,
+        })
+        setYesRedirectProp();
+      } else {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: `No se pudo borrar el perfil`,
+        })
+      }
     });
   };
   const eraseProfileFunction = () => {
@@ -97,7 +116,8 @@ const DeletePerfilMascota = ({
 // Clases de REDUX
 const mapStateToProps = (state) => {
   return {
-    bannerOkCancelAction: getBannerOkCancelAction(state)
+    bannerOkCancelAction: getBannerOkCancelAction(state),
+    petProfile: getPetProfile(state)
   };
 };
 
@@ -105,7 +125,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
-    updateBannerOkCancelAction: (data) => { dispatch(updateBannerOkCancelActionAction(data)) }
+    updateBannerOkCancelAction: (data) => { dispatch(updateBannerOkCancelActionAction(data)) },
+    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DeletePerfilMascota);

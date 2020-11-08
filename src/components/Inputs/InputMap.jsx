@@ -42,6 +42,10 @@ import {
   editCoordenates
 } from "../../routes/index";
 
+import {
+  editPetProfileDogFoundedCoordenates
+} from "../../routes/indexDogFounded";
+
 function getUrlForReverseGeoCoding(LAT, LNG) {
   let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${LAT},${LNG}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
   return url;
@@ -132,7 +136,7 @@ const InputMap = ({
           longitude: marker.lng,
           location: data.results[0].formatted_address
         };
-        fetch(`${editCoordenates}/${petProfile.name}`, {
+        fetch(`${petProfile.isPetProfile ? (`${editCoordenates}/${petProfile.name}`) : (`${editPetProfileDogFoundedCoordenates}/${petProfile.name}`)}`, {
           method: "PUT",
           credentials: "include",
           headers: {
@@ -145,8 +149,8 @@ const InputMap = ({
           return res.json();
         }).then(data => {
           setIsLoading(false);
+          closeFunction();
           if (data.status) { // todo bien
-            closeFunction();
             updateSuccessMessagesComponent({
               state: true,
               title: "Se cambió la localización",

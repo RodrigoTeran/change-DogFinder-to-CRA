@@ -34,7 +34,7 @@ const MainSectionProfilePage = ({
           <div style={{ display: "none" }}>.</div>
         )}
       <div className="main-section-profile-page-title">
-        PERFILES
+        MASCOTAS
       </div>
       {isPremium ? (
         <>
@@ -69,6 +69,7 @@ const MainSectionProfilePage = ({
                       key={profile.profileId}
                       profileImage={profile.profileImage}
                       isLost={profile.isLost}
+                      isPetProfile={true}
                     ></CardMainSectionProfile>
                   )
                 })

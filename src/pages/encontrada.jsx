@@ -11,8 +11,15 @@ import { getUsername } from "../store/reducers/user/selector";
 // Configuraciones
 import { APP_NAME } from "../utils/config";
 
+import {
+  updateProfilesDogFoundedAction
+} from "../store/reducers/user/actions";
+
 // Routes
 import { getFoundDogDataRoute } from "../routes/index";
+
+import HeaderDogFoundedPage from "../components/DogFoundedPageComponents/HeaderDogFoundedPage";
+import MainSectionDogFoundedPage from "../components/DogFoundedPageComponents/MainSectionDogFoundedPage";
 
 // Acciones
 import {
@@ -25,6 +32,7 @@ import FooterLayout from "../components/FooterLayout";
 const DogFounded = ({
   username,
   updateTopMenuBarActivated,
+  updateProfilesDogFounded
 }) => {
   // -----------------------Hooks-----------------------
   useEffect(() => {
@@ -33,22 +41,30 @@ const DogFounded = ({
   });
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
+  const [yesDataAPI, setYesDataAPI] = useState(false);
+
   const getFoundDogData = () => {
-    fetch(getFoundDogDataRoute, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": localStorage.getItem("token")
-      }
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      if (!data.username) {
-        setYesRedirect(true);
-      };
-    });
+    if (!yesDataAPI) {
+      fetch(getFoundDogDataRoute, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "token": localStorage.getItem("token")
+        }
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        if (!data.username) {
+          // No auth
+          setYesRedirect(true);
+        } else {
+          updateProfilesDogFounded(data.profilesDogFounded);
+          setYesDataAPI(true);
+        };
+      });
+    };
   };
   return (
     <>
@@ -57,9 +73,10 @@ const DogFounded = ({
         <meta name="description" content={`Sección para que ${username} registre una mascota perdida en ${APP_NAME}`} />
       </Helmet>
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
-      {username ? (
+      {yesDataAPI ? (
         <div className={`dog-founded-page text-center space-footer-bottom`}>
-          Sección para que {username} registre a un perro perdido que encontró
+          <HeaderDogFoundedPage></HeaderDogFoundedPage>
+          <MainSectionDogFoundedPage></MainSectionDogFoundedPage>
         </div>
       ) : (
           <div className="loader-pages">
@@ -81,7 +98,8 @@ const mapStateToProps = (state) => {
 // Acciones de REDUX
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) }
+    updateTopMenuBarActivated: (data) => { dispatch(updateTopMenuBarActivatedAction(data)) },
+    updateProfilesDogFounded: (data) => { dispatch(updateProfilesDogFoundedAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DogFounded);
