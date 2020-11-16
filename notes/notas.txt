@@ -1,9 +1,6 @@
 Issues:
-  --- Cuando se cambie la imagen de perfil que no hay Redirect
-  - Incluir más funcionalidad en la página principal de encontré un perro
   - Falta poner el WhenIsLost component en perro encontrado
   - Falta incluir el guardar reporte de perro
-  - Incluir IVA en compra
   - Crear pagina para mandar perro perdido
     --> Va a ser como un menú
     - Se van ir guardando los datos como se van introduciendo.
@@ -11,6 +8,9 @@ Issues:
       - Entonces ahi es cuando se evalua si falta algo.
       - Cada perfil se va a poder eliminar y editar después y siempre tendrás que darle a enviar perfil 
         cada vez que edites.
+
+  - Incluir IVA en compra
+  - Incluir más funcionalidad en la página principal de encontré un perro
 
   - Crear una forma para que las empresas puedan crearse una cuenta gratis premium
     y además que tengan funcionalidades de EMPRESA
