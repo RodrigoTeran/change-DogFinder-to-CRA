@@ -44,13 +44,7 @@ const initialState = {
     isPetProfile: false, // TRUE = perfil, FALSE = encontre perro
   }
 };
-/*
 
-${petProfile.isPetProfile ? (``):(``)}
-petProfile.isPetProfile ? (``):(``)
-{`${petProfile.isPetProfile ? (`/perfil`) : (`/registro/mascota/encontrada`)}`}
-
-*/
 export default function userReducer(state = initialState, action) {
   if (action.type === "UPDATE_PET_PROFILE") {
     return {

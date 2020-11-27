@@ -1,3 +1,6 @@
 - Que no se pueda transferir la cuenta
 - Que el mapa solo salgan los perfiles de los premium
   --> Y que salga toda la información
+- Que en el mapa:
+  - Los perfiles premium puedan saber cuales perros se pusieron como encontrados
+  - Los NO premium solo podran ver los perdidos

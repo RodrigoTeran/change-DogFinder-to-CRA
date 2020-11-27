@@ -4,19 +4,18 @@ import PetIsLostController from "./PetIsLostController";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 
-/*import {
+import {
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction
-} from "../../store/reducers/layout/actions";*/
+} from "../../store/reducers/layout/actions";
 
 import {
   updatePetProfileAction
 } from "../../store/reducers/user/actions";
 
-/*import {
-  editPetProfileStatus,
-  editPetProfileWhenIsLost
-} from "../../routes/index";*/
+import {
+  editPetProfileDogFoundedWhenIsLost
+} from "../../routes/indexDogFounded";
 
 import {
   getPetProfile
@@ -24,7 +23,10 @@ import {
 
 const ControlMainPetProfile = ({
   isMobile,
-  petProfile
+  petProfile,
+  updateSuccessMessagesComponent,
+  updateFailureMessagesComponent,
+  updatePetProfile
 }) => {
   const [heightCalendar, setHeightCalendar] = useState(0);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -36,6 +38,49 @@ const ControlMainPetProfile = ({
       setFirstAnimCalendar(true);
     };
   });
+  const editWhenIsLost = newDate => {
+    setIsLoading(true);
+    const body = {
+      newDate
+    };
+    fetch(`${editPetProfileDogFoundedWhenIsLost}/${petProfile.name}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": localStorage.getItem("token")
+      },
+      body: JSON.stringify(body)
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      setIsLoading(false);
+      if (data.status === "true") {
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Se cambió la fecha",
+          description: "Se cambió la fecha con éxito"
+        });
+        updatePetProfile({
+          selectedState: "whenIsLost",
+          state: newDate
+        });
+      } else if (data.status === "noPosible") {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "La fecha no es posible. Debe de ser una fecha actual o pasada."
+        });
+      } else {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "No se pudo cambiar la fecha"
+        });
+      };
+    });
+  }
   return (
     <>
       {petProfile.isPetProfile ? (
@@ -68,12 +113,8 @@ const ControlMainPetProfile = ({
                 <Calendar
                   className={`calendar`}
                   onChange={(date) => {
-                    /*updatePetProfile({
-                      selectedState: "whenIsLost",
-                      state: date
-                    });*/
                     setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
-                    //editWhenIsLost(date);
+                    editWhenIsLost(date);
                   }}
                   onViewChange={() => {
                     setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))
@@ -106,4 +147,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ControlMainPetProfile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
+    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
+    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ControlMainPetProfile);

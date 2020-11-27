@@ -100,17 +100,27 @@ const PetIsLostController = ({
       return res.json();
     }).then(data => {
       setIsLoading(false);
-      if (!data.status) {
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error",
-          description: "No se pudo actualizar cuando se perdió tu mascota",
-        });
-      } else {
+      if (data.status === "true") {
         updateSuccessMessagesComponent({
           state: true,
           title: "Se cambió el perfil con éxito",
           description: "Sí se pudo actualizar cuando se perdió tu mascota",
+        });
+        updatePetProfile({
+          selectedState: "whenIsLost",
+          state: newDate
+        });
+      } else if (data.status === "noPosible") {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "La fecha no es posible. Debe de ser una fecha actual o pasada."
+        });
+      } else {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: "No se pudo actualizar cuando se perdió tu mascota",
         });
       };
     });
@@ -168,10 +178,6 @@ const PetIsLostController = ({
           <Calendar
             className={`calendar`}
             onChange={(date) => {
-              updatePetProfile({
-                selectedState: "whenIsLost",
-                state: date
-              });
               setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
               editWhenIsLost(date);
             }}
