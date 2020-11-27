@@ -1,4 +1,3 @@
 - Video Js in react
 - PWA para Google Play y para App Store
 - Cambiar las default images de Fredita
-- Poner un default image de perfil

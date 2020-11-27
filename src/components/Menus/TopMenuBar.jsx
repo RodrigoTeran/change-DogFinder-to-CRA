@@ -9,7 +9,8 @@ import {
   getAuth,
   getImgId,
   getUsername,
-  getFirstResponseUserAPI
+  getFirstResponseUserAPI,
+  getWebp
 } from "../../store/reducers/user/selector";
 
 // Routes
@@ -49,8 +50,8 @@ const Menubar = ({
   updateLines,
   updateLogInFirstAnimation,
   updateUser,
-
-  updateFirstResponseAPI
+  updateFirstResponseAPI,
+  isWebp
 }) => {
   const operateResponsiveMenuBar = (action, actionReverse) => {
     // Abrir
@@ -230,7 +231,14 @@ const Menubar = ({
                 <li className="ml-3" style={{ marginRight: "20px" }}>
                   <Link to="/perfil" title={`${username}`} style={{ cursor: "pointer" }}>
                     <div className="Top-menu-bar-image-profile">
-                      <img src={`${imgId}`} alt="Perfil" className="rounded-circle img-fluid mr-2"></img>
+                      <img
+                        src={`${imgId}`}
+                        onError={() => {
+                          updateUser({
+                            selectedState: "imgId",
+                            state: isWebp ? ("/Images/user.webp") : ("/Images/user.png")
+                          });
+                        }} alt="Perfil" className="rounded-circle img-fluid mr-2"></img>
                       <span>
                         {getNameForMenuBar()}
                       </span>
@@ -269,7 +277,8 @@ const mapStateToProps = (state) => {
     auth: getAuth(state),
     imgId: getImgId(state),
     username: getUsername(state),
-    firstResponseUserAPI: getFirstResponseUserAPI(state)
+    firstResponseUserAPI: getFirstResponseUserAPI(state),
+    isWebp: getWebp(state)
   };
 };
 

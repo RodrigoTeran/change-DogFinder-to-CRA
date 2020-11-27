@@ -1,5 +1,5 @@
 Issues:
-  --- Falta poner el WhenIsLost component en perro encontrado
+  --- Poner un default image de perfil
   - Falta incluir el guardar reporte de perro
   - Crear pagina para mandar perro perdido
     --> Va a ser como un menú
