@@ -69,20 +69,19 @@ const PerfilMascota = ({
   };
 
   const getURL = () => {
-    if (!petProfile.name || petProfile.name === "") {
-      const pathName = location.pathname;
-      const mascotaStringFeo = pathName.substr(petProfile.isPetProfile ? (16) : (18), pathName.length - 1);
-      const mascota = mascotaStringFeo.replace(/-/gi, " ");
-      return mascota;
-    } else {
-      return petProfile.name;
-    };
+    const pathName = location.pathname;
+    const isPetProfileXd = pathName[4];
+    const mascotaStringFeo = pathName.substr(isPetProfileXd === "f" ? (16) : (18), pathName.length - 1);
+    const mascota = mascotaStringFeo.replace(/-/gi, " ");
+    return mascota;
   };
 
   // Data Pet Profile
   const getPetProfileDataFunction = () => {
+    const pathName = location.pathname;
+    const isPetProfileXd = pathName[4];
     if (!yesDataAPI) {
-      fetch(`${petProfile.isPetProfile ? (`${getpetProfileDataRoute}/${getURL()}`) : (`${getPetProfileDogFoundedProvider}/${getURL()}`)}`, {
+      fetch(`${isPetProfileXd === "f" ? (`${getpetProfileDataRoute}/${getURL()}`) : (`${getPetProfileDogFoundedProvider}/${getURL()}`)}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -113,7 +112,7 @@ const PerfilMascota = ({
           });
           updatePetProfile({
             selectedState: "isLost",
-            state: petProfile.isPetProfile ? (data.profilePet.isLost) : (false)
+            state: isPetProfileXd === "f" ? (data.profilePet.isLost) : (false)
           });
           updatePetProfile({
             selectedState: "dogBreed",

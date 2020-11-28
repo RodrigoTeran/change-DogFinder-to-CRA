@@ -1,4 +1,6 @@
 Issues:
+  --- Cambiar el get fetch de los perfiles por URL
+  - El dog Founded tenga default WhenIsLost
   - Falta incluir el registrar reporte de perro
     --- Frontend
   - Crear pagina para mandar perro perdido
