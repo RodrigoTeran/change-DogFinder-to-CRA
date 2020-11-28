@@ -14,6 +14,7 @@ import ChangeNameProfile from "../components/PerfilMascotaComponents/ChangeNameP
 import InfoPetProfile from "../components/PerfilMascotaComponents/InfoPetProfile";
 import AgeProfileComponent from "../components/PerfilMascotaComponents/AgeProfileComponent";
 import MainCVComponent from "../components/PerfilMascotaComponents/ComputerVisionComponents/MainCVComponent";
+import RegisterDog from "../components/PerfilMascotaComponents/SpecificDogFounded/RegisterDog";
 
 import {
   updateFailureMessagesComponentAction,
@@ -176,7 +177,11 @@ const PerfilMascota = ({
               <DeletePerfilMascota setYesRedirectProp={() => {
                 setYesRedirect(true);
               }} getURL={getURL}></DeletePerfilMascota>
-
+              {petProfile.isPetProfile ? (<></>) :
+                (
+                  <RegisterDog></RegisterDog>
+                )
+              }
             </>
           ) : (
               <>
@@ -193,6 +198,11 @@ const PerfilMascota = ({
                   <InfoPetProfile></InfoPetProfile>
                   <AgeProfileComponent></AgeProfileComponent>
                   <MainCVComponent></MainCVComponent>
+                  {petProfile.isPetProfile ? (<></>) :
+                    (
+                      <RegisterDog></RegisterDog>
+                    )
+                  }
                 </div>
               </>
             )}

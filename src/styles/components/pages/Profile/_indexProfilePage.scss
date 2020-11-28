@@ -7,6 +7,25 @@
   flex-direction: column;
   align-items: center;
 }
+.image-pet-profile-instructions-text-ul {
+  &.close {
+    height: 30px;
+    transition-property: height;
+    transition-delay: .5s;
+    transition-duration: .1s;
+    transition-timing-function: ease-in-out;
+  }
+  &.open {
+    height: 150px;
+    @media screen and (max-width: 1121px){
+      height: 170px;
+    }
+    transition-property: height;
+    transition-delay: 0s;
+    transition-duration: .1s;
+    transition-timing-function: ease-in-out;
+  }
+}
 
 .main-section-profile-page {
   width: 100%;
@@ -78,6 +97,57 @@
       background-color: #fff;
       opacity: 0.03;
     }
+    &-svg {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      z-index: 2;
+      &-2 {
+        position: absolute;
+        bottom: 55px;
+        right: 5px;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        z-index: 3;
+        background-color: #fff;
+        @media (pointer: coarse) {
+          background-color: rgb(254, 254, 254);
+        }
+        border-radius: 5px;
+        color: #000000;
+        font-size: 0.9rem;
+        text-align: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          right: 22.5px;
+          width: 0px;
+          height: 0px;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 10px solid #fff;
+          z-index: 4;
+        }
+        &.open {
+          transition: ease-in-out 0.3s;
+        }
+        &.close {
+          visibility: hidden;
+          opacity: 0;
+          transition: ease-in-out 0.3s;
+        }
+      }
+      svg {
+        fill: #fff;
+        width: 25px;
+        height: 25px;
+      }
+    }
+
     @media (hover: hover) and (pointer: fine) {
       &:hover {
         &::before,
@@ -113,6 +183,7 @@
       content: "";
       position: absolute;
       transition: ease-in-out 0.15s;
+      z-index: 1;
     }
     &::before {
       left: 0;

@@ -132,6 +132,10 @@ const App = ({
           selectedState: "emailForContactActiveKey",
           state: data.emailForContactActiveKey
         });
+        updateUser({
+          selectedState: "telephoneForContactActiveKey",
+          state: data.numberForContactActiveKey
+        });
         updateKeyActiveUser(data.compraActiva);
       } else {
         updateUser({

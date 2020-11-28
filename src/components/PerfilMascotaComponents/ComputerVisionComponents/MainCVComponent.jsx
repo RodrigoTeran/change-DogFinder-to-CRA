@@ -211,9 +211,10 @@ const MainCVComponent = ({
         ></CardImage>
         <div className={`image-pet-profile-instructions image-pet-profile-instructions-images ${yesInstructions ? ("open") : ("close")}`} style={{
           marginTop: "10px",
-          marginBottom: yesInstructions ? ("5px") : ("25px"),
+          minHeight: "20px",
           marginLeft: window.innerWidth < 1121 ? (`calc(50% - 150px`) : ("0px"),
-          width: window.innerWidth < 1121 ? (`300px`) : ("50%")
+          width: window.innerWidth < 1121 ? (`300px`) : ("50%"),
+          marginBottom: "0px"
         }}>
           <div className="image-pet-profile-instructions-icon">
             <div onClick={() => { setInstructions(!yesInstructions) }} title="Instrucciones" style={{

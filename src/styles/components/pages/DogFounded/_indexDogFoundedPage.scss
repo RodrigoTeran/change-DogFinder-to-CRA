@@ -63,3 +63,25 @@
     }
   }
 }
+.register-dog-founded-component {
+  width: 95%;
+  margin-top: 20px;
+  max-width: 1045px;
+  &-h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  &-button {
+    margin-top: 20px;
+  }
+  @media screen and (max-width: 1121px) {
+    width: 100%;
+    margin-top: 50px;
+    &-h1 {
+      text-align: center;
+    }
+    &-button {
+      margin-left: calc(50% - 150px);
+    }
+  }
+}

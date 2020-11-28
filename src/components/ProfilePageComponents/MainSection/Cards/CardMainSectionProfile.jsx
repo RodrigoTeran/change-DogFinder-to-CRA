@@ -51,16 +51,48 @@ const CardMainSectionProfile = ({
   });
   const [widthImg, setWidthImage] = useState("0px");
   const handleResize = () => {
+    handlePointerCoarse();
     const img = document.querySelector(".card-main-section-profile-profiles");
     var estilos = window.getComputedStyle(img, null);
     var ancho = estilos.getPropertyValue("width");
     var ancho90Width = parseInt(ancho) * .8;
     setWidthImage(ancho90Width);
   };
+
+  const handlePointerCoarse = () => {
+    try {
+      let element = document.querySelector(".card-main-section-profile-content-svg-2");
+      let elementStyle = window.getComputedStyle(element);
+      let elementColor = elementStyle.getPropertyValue("background-color");
+      if (elementColor === "rgb(254, 254, 254)") {
+        setIsCoarse(true);
+        setDatos(true);
+      } else {
+        setIsCoarse(false);
+      };
+    } catch{ };
+  };
+
+  const [datos, setDatos] = useState(false);
+  const [isCoarse, setIsCoarse] = useState(false);
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 card-main-section-profile card-main-section-profile-profiles" onClick={updateReduxPet}>
-      <Link to={`${isPetProfile ? (`/perfil/mascota/${urlNameFunction(petName)}`) : (`/perro/encontrado/${urlNameFunction(petName)}`)}`}>
+      <Link to={`${isPetProfile ? (`/perfil/mascota/${urlNameFunction(petName)}`) : (`${isCoarse ? (`/perro/encontrado/${urlNameFunction(petName)}`) : (
+        datos ? ("/registro/mascota/encontrada") : (`/perro/encontrado/${urlNameFunction(petName)}`)
+      )}`)}`}>
         <div className="card-main-section-profile-content">
+          {isPetProfile ? (<></>) : (
+            <>
+              <div className="card-main-section-profile-content-svg" onMouseOver={() => { setDatos(true) }} onMouseOut={() => { setDatos(false) }}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z" /></svg>
+              </div>
+              <div className={`card-main-section-profile-content-svg-2 ${datos ? ("open") : ("close")}`}
+                onMouseOver={() => { setDatos((true)) }} onMouseOut={() => { setDatos(false) }}
+              >
+                Faltan datos por llenar
+              </div>
+            </>
+          )}
           <div style={{
             backgroundImage: "url(" + profileImage + ")",
             width: "90%",
@@ -71,12 +103,12 @@ const CardMainSectionProfile = ({
           <div style={{
             marginTop: "20px",
             marginBottom: "20px",
-            paddingLeft: "10px",
-            paddingRight: "10px"
+            paddingLeft: isPetProfile ? ("10px") : ("40px"),
+            paddingRight: isPetProfile ? ("10px") : ("40px"),
           }}>{petName}</div>
         </div>
       </Link>
-    </div>
+    </div >
   );
 };
 

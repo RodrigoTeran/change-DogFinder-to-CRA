@@ -1,6 +1,6 @@
 Issues:
-  --- Poner un default image de perfil
-  - Falta incluir el guardar reporte de perro
+  - Falta incluir el registrar reporte de perro
+    --- Frontend
   - Crear pagina para mandar perro perdido
     --> Va a ser como un menú
     - Se van ir guardando los datos como se van introduciendo.
@@ -27,7 +27,9 @@ Issues:
   - Cuando se haga un match:
     --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
     --> En tu página de perfil, el perfil de Freda va a tener otro color:
-      - Cuando le das, se va a abrir la pestaña con los datos del perro el cual se hizo match
-        - Si ese es tu perro confirma, asi ya se quita ese baner... y se deja los contactos en tu historial.
-        - Para que lo puedas consultar si no guardaste la información del que rescato a tu mascota.
+      - Cuando le das, te va a llevar a la página de notificaciones...
+        - Si ese es tu perro confirma, ponte en contacto con esa persona, y en la página de notificaciones se va a quedar en el historial...
+          - Para que lo puedas consultar si no guardaste la información del que rescato a tu mascota.
         - Se confirma también para que ya no aparezaca en el mapa... también se quita el isLost
+        - Si no era tu perro
+          - Le das en "nel" y aun asi se gurada en el historial

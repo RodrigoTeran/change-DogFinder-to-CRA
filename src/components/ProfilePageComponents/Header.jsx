@@ -477,7 +477,7 @@ const HeaderProfilePage = ({
           Clave para verificar autenticidad de correo
           </div>
         <div className="banner-email-contact-key-input-info">
-          Introduce la clave que te llego al correo. Si no te ha llegado el correo, lo más probable es que lo hayas escrito mal. Si es así, solo vuelve a mandarlo.
+          Introduce la clave que te llego al correo. Si no te ha llegado el correo, lo más probable es que lo hayas escrito mal. Si es así, solo vuelve a mandarlo. La clave expira en 10 minutos.
         </div>
         <div className="banner-email-contact-key-input-input-container">
           <div>
@@ -487,7 +487,7 @@ const HeaderProfilePage = ({
             <ButtonWhiteRectangle text={`Enviar`} width="280px" height="50px" fontSize="1rem" clickFunctionAnotherOne={editMailForContact} mt="mt-0"
               backgroundColorRectangle={"#000000"}
             >
-              <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" /></svg>
+              <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M568.482 177.448L424.479 313.433C409.3 327.768 384 317.14 384 295.985v-71.963c-144.575.97-205.566 35.113-164.775 171.353 4.483 14.973-12.846 26.567-25.006 17.33C155.252 383.105 120 326.488 120 269.339c0-143.937 117.599-172.5 264-173.312V24.012c0-21.174 25.317-31.768 40.479-17.448l144.003 135.988c10.02 9.463 10.028 25.425 0 34.896zM384 379.128V448H64V128h50.916a11.99 11.99 0 0 0 8.648-3.693c14.953-15.568 32.237-27.89 51.014-37.676C185.708 80.83 181.584 64 169.033 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48v-88.806c0-8.288-8.197-14.066-16.011-11.302a71.83 71.83 0 0 1-34.189 3.377c-7.27-1.046-13.8 4.514-13.8 11.859z" /></svg>
             </ButtonWhiteRectangle>
           </div>
         </div>
@@ -495,9 +495,9 @@ const HeaderProfilePage = ({
       <div className={`banner-email-contact-key-input ${telephoneForContactActiveKey ? ("open") : ("close")}`}>
         <div className="banner-email-contact-key-input-title">
           Clave para verificar autenticidad de número de teléfono
-          </div>
+        </div>
         <div className="banner-email-contact-key-input-info">
-          Introduce la clave que te llego al teléfono. Si no te ha llegado el mensaje, lo más probable es que lo hayas escrito mal. Si es así, solo vuelve a mandarlo.
+          Introduce la clave que te llego al teléfono. Si no te ha llegado el mensaje, lo más probable es que lo hayas escrito mal. Si es así, solo vuelve a mandarlo. La clave expira en 10 minutos.
         </div>
         <div className="banner-email-contact-key-input-input-container">
           <div>
@@ -507,7 +507,7 @@ const HeaderProfilePage = ({
             <ButtonWhiteRectangle text={`Enviar`} width="280px" height="50px" fontSize="1rem" clickFunctionAnotherOne={editTelephoneForContact} mt="mt-0"
               backgroundColorRectangle={"#000000"}
             >
-              <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" /></svg>
+              <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M568.482 177.448L424.479 313.433C409.3 327.768 384 317.14 384 295.985v-71.963c-144.575.97-205.566 35.113-164.775 171.353 4.483 14.973-12.846 26.567-25.006 17.33C155.252 383.105 120 326.488 120 269.339c0-143.937 117.599-172.5 264-173.312V24.012c0-21.174 25.317-31.768 40.479-17.448l144.003 135.988c10.02 9.463 10.028 25.425 0 34.896zM384 379.128V448H64V128h50.916a11.99 11.99 0 0 0 8.648-3.693c14.953-15.568 32.237-27.89 51.014-37.676C185.708 80.83 181.584 64 169.033 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48v-88.806c0-8.288-8.197-14.066-16.011-11.302a71.83 71.83 0 0 1-34.189 3.377c-7.27-1.046-13.8 4.514-13.8 11.859z" /></svg>
             </ButtonWhiteRectangle>
           </div>
         </div>

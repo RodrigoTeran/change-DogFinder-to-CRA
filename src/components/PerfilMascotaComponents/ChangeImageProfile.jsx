@@ -123,6 +123,10 @@ const ChangeImageProfile = ({
           </div>
           <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
             Esta imagen es solo de perfil, no se va a tomar en cuenta para su análisis.
+            <br />
+            <br />
+            Esta imagen sirve para ponerse pública en el mapa.
+            Es el "rostro" del perfil, asi que no debe de ser una foto muy detallada... solo con que se vea al perro.
           </div>
         </div>
         {srcImageYes ? (
