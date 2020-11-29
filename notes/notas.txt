@@ -1,27 +1,43 @@
 Issues:
-  --- Crear pagina para mandar perro perdido
-    --> Va a ser como un menú
-    - Se van ir guardando los datos como se van introduciendo.
-      - Al final va haber un botón de enviar perfil a la Inteligencia Artificial (para que se vea mono).
-      - Entonces ahi es cuando se evalua si falta algo.
-      - Cada perfil se va a poder eliminar y editar después y siempre tendrás que darle a enviar perfil 
-        cada vez que edites.
+  - Crear página de mapa
+    - Va a tener dos columnas
+      - primera columnad (left col-3)
+        - Va a aparecer la información del perfil que le diste click en el mapa
+        - si un usuario ve que hay un match
+          - va haber un boton de hacer match, y solo asi el podra ver la informacion de tu contacto
+            - te va a pedir que tengas tu propia info de contacto si quieres hacer match
+              - esto siempre se pide si tu subes a un perro encontrado
+                pero si no has subido nada y ya viste el match... te lo va a pedir desde aqui
+          - entonces si alguien ve tu info de contacto, tu te vas a enterar de quien fue...
+            - esto para que no todas las personas publicas vean tu info de contacto. si alguien la ve,
+            tu sabras quien fue y te notificaran que se hizo match, tanto ese usuario como la plataforma
+        - si es una empresa
+          - solo va a aparecer la informacion de la empresa
+      - segunda columna (right col-9)
+        - va a ser el mapa
+          - vas a poder desplazarte
+          - va a estar el input de arriba como siempre
+        - en la parte de arriba de esta columnad va a haber estos cuadros
+          - ver mis propios perfiles (premium)
+          - ver perros encontrados (premium)
+          - ver perros perdidos
+          - ver organizaciones
+            - aqui se podran ver perros encontrados (premium)
+            - y perros perdidos
+          - ver propios perros encontrados
 
   - Incluir IVA en compra
   - Incluir más funcionalidad en la página principal de encontré un perro
-
   - Crear una forma para que las empresas puedan crearse una cuenta gratis premium
     y además que tengan funcionalidades de EMPRESA
       --> Que puedan venderse en el mapa y en adopción
-
   - Editar la información que sale en INDEX
   - Editar la información que sale en SE PERDIÓ MI PERRO
   - Checar que información se trae de Facebook al hacer OAuth
-  - Crear la ventana de notificaciones
+  - Crear la página de notificaciones
   - Crear cuenta de correo y de whatsapp de empresa
-  - Pagar impuestos xd
+  - Checar lo de los impuestos
   - Poner SEO en html
-
   - Cuando se haga un match:
     --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
     --> En tu página de perfil, el perfil de Freda va a tener otro color:
