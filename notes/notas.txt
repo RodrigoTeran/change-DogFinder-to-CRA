@@ -1,7 +1,9 @@
 Issues:
+  --- Estilizar texto "registrado" dentro del perfil dog founded
   - Crear página de mapa
     - Va a tener dos columnas
-      - primera columnad (left col-3)
+      - primera columna (left col-3)
+        - Al principio van a salir las instrucciones de como usar el mapa
         - Va a aparecer la información del perfil que le diste click en el mapa
         - si un usuario ve que hay un match
           - va haber un boton de hacer match, y solo asi el podra ver la informacion de tu contacto

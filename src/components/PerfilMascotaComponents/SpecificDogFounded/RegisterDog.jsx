@@ -25,7 +25,6 @@ const RegisterDog = ({
   updateSuccessMessagesComponent
 }) => {
   const [yesInstructions, setInstructions] = useState(false);
-
   const registerDogFounded = () => {
     fetch(`${editProfileDogFoundedRegistration}/${petProfile.name}`, {
       method: "PUT",
@@ -91,7 +90,9 @@ const RegisterDog = ({
           width: window.innerWidth < 1121 ? (`300px`) : ("90%"),
         }}>
         <div className="image-pet-profile-instructions-icon">
-          <div onClick={() => { setInstructions(!yesInstructions) }} title="Información" style={{
+          <div onClick={() => {
+            setInstructions(!yesInstructions)
+          }} title="Información" style={{
             display: "flex",
             alignItems: "center"
           }}>
@@ -99,51 +100,70 @@ const RegisterDog = ({
             </div>
         </div>
         <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
-          Cuando termines de llenar los campos requeridos:
-          <ul className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text-ul`}>
-            <li>
-              ¿Cuándo encontraste a esta mascota?
+          <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text-ul`}>
+            Cuando termines de llenar los campos requeridos:
+                <ul>
+              <li>
+                ¿Cuándo encontraste a esta mascota?
+                  </li>
+              <li>
+                Raza
+                  </li>
+              <li>
+                ¿Dónde lo hallaste?
+                  </li>
+              <li>
+                Género
+                  </li>
+              <li>
+                Color principal
+                  </li>
+              <li>
+                Edad
             </li>
-            <li>
-              Raza
+              <li>
+                Imágenes para el reconocimiento facial ( las 4 imágenes )
             </li>
-            <li>
-              ¿Dónde lo hallaste?
+              <li>
+                Tu correo electrónico de contacto
             </li>
-            <li>
-              Género
+              <li>
+                Tu número de teléfono de contacto
             </li>
-            <li>
-              Color principal
-            </li>
-            <li>
-              Edad
-            </li>
-            <li>
-              Imágenes para el reconocimiento facial ( las 4 imágenes )
-            </li>
-            <li>
-              Tu correo electrónico de contacto
-            </li>
-            <li>
-              Tu número de teléfono de contacto
-            </li>
-          </ul>
-          Podrás reportar este perfil como terminado, para que ahora sí empezemos a encontrar a su dueño.
-          <br />
-          No podemos empezar si no están todos los datos. Es importante también tener tu correo y número, ya que
-          si se encuentra al dueño, este no podrá contactarse contigo; estos los puedes llenar en la página de tu perfil.
-          <br />
-          <br />
-          <span style={{ fontWeight: "bold" }}>Nota: </span> Podrás hacer cambios después, y ya no tendrás que dar click en "registrar perfil" cada vez que hagas cambios
+            </ul>
+            Podrás reportar este perfil como terminado, para que ahora sí empezemos a encontrar a su dueño.
+            <br />
+            No podemos empezar si no están todos los datos. Es importante también tener tu correo y número, ya que
+            si se encuentra al dueño, este no podrá contactarse contigo; estos los puedes llenar en la página de tu perfil.
+            <br />
+            <br />
+            <span style={{ fontWeight: "bold" }}>Nota: </span> Podrás hacer cambios después, y ya no tendrás que dar click en "registrar perfil" cada vez que hagas cambios
+          </div>
         </div>
       </div>
-      <div>
-        {petProfile.isRegistered === 2 ? (<>Registrado</>) : (<>No Registrado</>)}
-      </div>
-      <div className="card-main-section-profile register-dog-founded-component-button" onClick={registerDogFounded} style={{ width: "300px" }}>
-        <div className="card-main-section-profile-content-2" style={{ height: "50px", backgroundColor: "var(--tertiary-color)" }} title="Registrar reporte de perro">
-          Registrar perro
+      <div className="register-dog-founded-component-row">
+        <div className="register-dog-founded-component-row-col-1">
+          <div className="card-main-section-profile register-dog-founded-component-button" onClick={registerDogFounded} style={{ width: "300px" }}>
+            <div className="card-main-section-profile-content-2" style={{
+              height: "50px", backgroundColor: "var(--tertiary-color)",
+              marginTop: "0px",
+              marginBottom: "0px"
+            }} title="Registrar reporte de perro">
+              Registrar perro
+            </div>
+          </div>
+        </div>
+        <div className="register-dog-founded-component-row-col-2">
+          <div className="register-dog-founded-component-row-col-2-text">
+            {petProfile.isRegistered === 2 ? (<>Registrado</>) : (<>No registrado</>)}
+          </div>
+          <div className="register-dog-founded-component-row-col-2-svg">
+            {petProfile.isRegistered === 2 ? (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z" /></svg>
+            ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM96 424c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm0-96c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm0-96c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm96-192c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm128 368c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16z" /></svg>
+              )}
+          </div>
         </div>
       </div>
     </div>

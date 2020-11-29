@@ -8,17 +8,18 @@
   align-items: center;
 }
 .image-pet-profile-instructions-text-ul {
+  overflow: hidden;
   &.close {
-    height: 30px;
+    height: 0px;
     transition-property: height;
     transition-delay: .5s;
     transition-duration: .1s;
     transition-timing-function: ease-in-out;
   }
   &.open {
-    height: 195px;
+    height: 380px;
     @media screen and (max-width: 1121px){
-      height: 220px;
+      height: 580px;
     }
     transition-property: height;
     transition-delay: 0s;
