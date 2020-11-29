@@ -7,7 +7,8 @@ const CardImage = ({
   nothing,
 
   handleDeleteImage,
-
+  randomId,
+  nowSRCImage
 }) => {
 
   useEffect(() => {
@@ -59,13 +60,16 @@ const CardImage = ({
                   <div className={`computer-vision-col-content`} style={{
                     backgroundImage: "url(" + srcImage + ")"
                   }}>
-                    <div className={`computer-vision-col-content-button`} title="Eliminar Imagen" onClick={() => { handleDeleteImage(srcImage) }}>
-                      <div>
-                        Eliminar
+                    <div style={{ cursor: "pointer" }} className={`computer-vision-col-content-button`} title="Eliminar Imagen" onClick={() => nowSRCImage(srcImage)}>
+                      <input onChange={handleDeleteImage} type="file" name="file" id={randomId} className="inputfile inputfileCroppr" />
+                      <label htmlFor={randomId} style={{ cursor: "pointer" }}>
+                        <div>
+                          Cambiar
                         </div>
-                      <div>
-                        Imagen
-                      </div>
+                        <div>
+                          Imagen
+                        </div>
+                      </label>
                     </div>
                   </div>
                 </div>

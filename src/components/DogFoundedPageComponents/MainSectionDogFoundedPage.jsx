@@ -34,6 +34,7 @@ const MainSectionDogFoundedPage = ({
                   key={profile.profileId}
                   profileImage={profile.profileImage}
                   isPetProfile={false}
+                  isFinished={profile.isFinished}
                 ></CardMainSectionProfile>
               )
             })

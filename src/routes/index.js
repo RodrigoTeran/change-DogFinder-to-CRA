@@ -39,7 +39,6 @@ routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
 
 // DELETE
 routes.eraseProfile = `${routes.apiDomain}/erase/profile`;
-routes.eraseProfileImages = `${routes.apiDomain}/erase/images`;
 routes.eraseKeyPaymentFromAPI = `${routes.apiDomain}/pay/erase/key/stripe`;
 
 // DEFAULTS

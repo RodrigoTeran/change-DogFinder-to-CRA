@@ -16,9 +16,9 @@
     transition-timing-function: ease-in-out;
   }
   &.open {
-    height: 150px;
+    height: 195px;
     @media screen and (max-width: 1121px){
-      height: 170px;
+      height: 220px;
     }
     transition-property: height;
     transition-delay: 0s;

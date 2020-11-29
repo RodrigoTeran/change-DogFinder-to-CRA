@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from 'axios';
 import {
@@ -10,7 +10,6 @@ import {
 } from "../../../store/reducers/user/actions";
 
 import {
-  updateBannerOkCancelActionAction,
   updateSuccessMessagesComponentAction,
   updateFailureMessagesComponentAction
 } from "../../../store/reducers/layout/actions";
@@ -21,14 +20,6 @@ import {
 
 import CardImage from "./CardImage"
 import CroppImages from "./CroppImages";
-
-import {
-  TEXT_WANT_DELETE_PET_PROFILE_IMAGE
-} from "../../../utils/textForBannerOkCancelAction";
-
-import {
-  getBannerOkCancelAction
-} from "../../../store/reducers/layout/selector";
 
 import {
   eraseProfileImages
@@ -43,71 +34,11 @@ const MainCVComponent = ({
   petProfile,
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
-  updatePetProfile,
-
-  updateBannerOkCancelAction,
-  bannerOkCancelAction,
+  updatePetProfile
 }) => {
 
   // CARD IMAGE
-  const [srcImage, setSrcImage] = useState("");
-  useEffect(() => {
-    if (bannerOkCancelAction.isDisplayed.fromWho === TEXT_WANT_DELETE_PET_PROFILE_IMAGE && bannerOkCancelAction.okButton === true) {
-      deleteImageReal();
-      updateBannerOkCancelAction({
-        fromWho: TEXT_WANT_DELETE_PET_PROFILE_IMAGE,
-        inLayout: false,
-        okButton: false
-      });
-    };
-  }, [bannerOkCancelAction]);
-
-  const deleteImageReal = () => {
-    setIsLoading(true);
-    const body = {
-      srcImage: srcImage
-    };
-    fetch(`${petProfile.isPetProfile ? (`${eraseProfileImages}/${petProfile.name}`) : (`${deletePetProfileDogFoundedImageFromImages}/${petProfile.name}`)}`, {
-      method: "DELETE",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": localStorage.getItem("token")
-      },
-      body: JSON.stringify(body)
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      setIsLoading(false);
-      if (data.status === "true") {
-        updateSuccessMessagesComponent({
-          state: true,
-          title: "Se eliminó la imagen",
-          description: "Se eliminó la imagen con éxito",
-        });
-        updatePetProfile({
-          selectedState: "images",
-          state: data.imagesArray
-        });
-      } else {
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error",
-          description: "No se pudo eliminar la imagen",
-        });
-      };
-    });
-  };
-
-  const deleteImage = () => {
-    updateBannerOkCancelAction({
-      fromWho: TEXT_WANT_DELETE_PET_PROFILE_IMAGE,
-      inLayout: true,
-      okButton: false
-    });
-  };
-
+  const [srcImageToDelete, setSrcImageToDelete] = useState("no");
   const [imageSrc, setImageSrc] = useState("");
   const [srcImageYes, setSrcImageYes] = useState(false);
   const [yesInstructions, setInstructions] = useState(false);
@@ -117,8 +48,7 @@ const MainCVComponent = ({
   const [isResponse, setIsResponse] = useState(false);
 
   const handleDeleteImage = (srcImage) => {
-    setSrcImage(srcImage);
-    deleteImage();
+    setSrcImageToDelete(srcImage);
   };
 
   const changeFunction = e => {
@@ -134,11 +64,15 @@ const MainCVComponent = ({
         });
         setSrcImageYes(false);
         setImageSrc("");
+        setSrcImageToDelete("no");
       } else {
         setImageSrc(urlImage);
         setSrcImageYes(true);
       };
-    } catch{
+    } catch {
+      setSrcImageYes(false);
+      setImageSrc("");
+      setSrcImageToDelete("no");
       updateFailureMessagesComponent({
         state: true,
         title: "Error al cargar",
@@ -155,13 +89,16 @@ const MainCVComponent = ({
       .then(blob => {
         const file = new File([blob], "File name", { type: "image/png" })
         data.append("file", file);
-        axios.put(`${petProfile.isPetProfile ? (`${editPetProfileImages}/${petProfile.name}`) : (`${editProfileDogFoundedImages}/${petProfile.name}`)}`, data, {
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "token": localStorage.getItem("token")
-          }
-        })
+        axios.put(`${petProfile.isPetProfile ? (`${editPetProfileImages}/${petProfile.name}`) : (`${editProfileDogFoundedImages}/${petProfile.name}`)}`,
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "token": localStorage.getItem("token"),
+              "srcImageToDelete": srcImageToDelete
+            }
+          })
           .then(res => {
             setIsLoading(false);
             setIsResponse(true);
@@ -236,19 +173,27 @@ const MainCVComponent = ({
             <>
               <CardImage
                 srcImage={petProfile.images[0].srcImage}
-                handleDeleteImage={handleDeleteImage}
+                handleDeleteImage={changeFunction}
+                nowSRCImage={handleDeleteImage}
+                randomId={"dsvbsdvjsk"}
               ></CardImage>
               <CardImage
                 srcImage={petProfile.images[1].srcImage}
-                handleDeleteImage={handleDeleteImage}
+                handleDeleteImage={changeFunction}
+                nowSRCImage={handleDeleteImage}
+                randomId={"jbsjsdjdv"}
               ></CardImage>
               <CardImage
                 srcImage={petProfile.images[2].srcImage}
-                handleDeleteImage={handleDeleteImage}
+                handleDeleteImage={changeFunction}
+                nowSRCImage={handleDeleteImage}
+                randomId={"ijgsbdsbdsjks"}
               ></CardImage>
               <CardImage
                 srcImage={petProfile.images[3].srcImage}
-                handleDeleteImage={handleDeleteImage}
+                handleDeleteImage={changeFunction}
+                nowSRCImage={handleDeleteImage}
+                randomId={"kogarnjdsjndsbnk"}
               ></CardImage>
             </>
           )
@@ -257,15 +202,21 @@ const MainCVComponent = ({
                 <>
                   <CardImage
                     srcImage={petProfile.images[0].srcImage}
-                    handleDeleteImage={handleDeleteImage}
+                    handleDeleteImage={changeFunction}
+                    nowSRCImage={handleDeleteImage}
+                    randomId={"kgsdkbkjsdvkjsd"}
                   ></CardImage>
                   <CardImage
                     srcImage={petProfile.images[1].srcImage}
-                    handleDeleteImage={handleDeleteImage}
+                    handleDeleteImage={changeFunction}
+                    nowSRCImage={handleDeleteImage}
+                    randomId={"lskndlxcklsd"}
                   ></CardImage>
                   <CardImage
                     srcImage={petProfile.images[2].srcImage}
-                    handleDeleteImage={handleDeleteImage}
+                    handleDeleteImage={changeFunction}
+                    nowSRCImage={handleDeleteImage}
+                    randomId={"jbdvcjxjxckxc"}
                   ></CardImage>
                   <CardImage
                     nothing={true}
@@ -276,11 +227,15 @@ const MainCVComponent = ({
                   <>
                     <CardImage
                       srcImage={petProfile.images[0].srcImage}
-                      handleDeleteImage={handleDeleteImage}
+                      handleDeleteImage={changeFunction}
+                      nowSRCImage={handleDeleteImage}
+                      randomId={"rhkuoodssa"}
                     ></CardImage>
                     <CardImage
                       srcImage={petProfile.images[1].srcImage}
-                      handleDeleteImage={handleDeleteImage}
+                      handleDeleteImage={changeFunction}
+                      nowSRCImage={handleDeleteImage}
+                      randomId={"8273gibdusidsv"}
                     ></CardImage>
                     <CardImage
                       nothing={true}
@@ -294,7 +249,9 @@ const MainCVComponent = ({
                     <>
                       <CardImage
                         srcImage={petProfile.images[0].srcImage}
-                        handleDeleteImage={handleDeleteImage}
+                        handleDeleteImage={changeFunction}
+                        nowSRCImage={handleDeleteImage}
+                        randomId={"hreuibe28iuviw"}
                       ></CardImage>
                       <CardImage
                         nothing={true}
@@ -338,6 +295,7 @@ const MainCVComponent = ({
 
           isResponse={isResponse}
           setIsResponse={setIsResponse}
+          setSrcImageToDelete={setSrcImageToDelete}
         ></CroppImages>
         {isLoading ? (
           <div className="loader-block" style={{
@@ -355,8 +313,7 @@ const MainCVComponent = ({
 // Clases de REDUX
 const mapStateToProps = (state) => {
   return {
-    petProfile: getPetProfile(state),
-    bannerOkCancelAction: getBannerOkCancelAction(state),
+    petProfile: getPetProfile(state)
   };
 };
 
@@ -364,8 +321,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
     updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
-    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) },
-    updateBannerOkCancelAction: (data) => { dispatch(updateBannerOkCancelActionAction(data)) }
+    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
   }
 };
 

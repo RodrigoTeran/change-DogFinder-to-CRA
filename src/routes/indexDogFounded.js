@@ -19,11 +19,11 @@ routes.editPetProfileDogFoundedSize = `${routes.apiDomain}/edit/dogFounded/size`
 routes.editPetProfileDogFoundedColor = `${routes.apiDomain}/edit/dogFounded/color`;
 routes.editPetProfileDogFoundedWhenIsLost = `${routes.apiDomain}/edit/dogFounded/whenIsLost`;
 routes.editProfileDogFoundedImages = `${routes.apiDomain}/edit/dogFounded/images`;
+routes.editProfileDogFoundedRegistration = `${routes.apiDomain}/edit/dogFounded/registered`;
 
 
 // DELETE
 routes.deletePetDogFounded = `${routes.apiDomain}/erase/profile/dogFounded`;
-routes.deletePetProfileDogFoundedImageFromImages = `${routes.apiDomain}/erase/images/dogFounded`;
 
 
 module.exports = routes;

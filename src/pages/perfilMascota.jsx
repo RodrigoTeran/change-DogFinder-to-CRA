@@ -126,6 +126,12 @@ const PerfilMascota = ({
             selectedState: "coordenates",
             state: data.profilePet.coordenates
           });
+          if (isPetProfileXd !== "f") {
+            updatePetProfile({
+              selectedState: "isRegistered",
+              state: data.profilePet.isRegistered
+            });
+          };
           updatePetProfile({
             selectedState: "size",
             state: data.profilePet.size

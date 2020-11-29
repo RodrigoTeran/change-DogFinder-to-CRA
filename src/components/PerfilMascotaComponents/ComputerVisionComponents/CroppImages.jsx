@@ -13,7 +13,8 @@ const CroppImages = ({
   imageDestination,
 
   isResponse,
-  setIsResponse
+  setIsResponse,
+  setSrcImageToDelete
 }) => {
   const [firstScroll, setFirstScroll] = useState(false);
 
@@ -84,7 +85,8 @@ const CroppImages = ({
               mt="mt-3"
               red="redColor"
               clickFunctionAnotherOne={() => {
-                setImageSrc()
+                setImageSrc();
+                setSrcImageToDelete("no");
                 setFirstScroll(false);
               }}
             >

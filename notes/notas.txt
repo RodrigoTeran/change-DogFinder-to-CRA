@@ -1,9 +1,5 @@
 Issues:
-  --- Cambiar el get fetch de los perfiles por URL
-  - El dog Founded tenga default WhenIsLost
-  - Falta incluir el registrar reporte de perro
-    --- Frontend
-  - Crear pagina para mandar perro perdido
+  --- Crear pagina para mandar perro perdido
     --> Va a ser como un menú
     - Se van ir guardando los datos como se van introduciendo.
       - Al final va haber un botón de enviar perfil a la Inteligencia Artificial (para que se vea mono).
