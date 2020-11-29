@@ -1,5 +1,4 @@
 Issues:
-  --- Estilizar texto "registrado" dentro del perfil dog founded
   - Crear página de mapa
     - Va a tener dos columnas
       - primera columna (left col-3)
