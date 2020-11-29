@@ -21,6 +21,8 @@ import {
 
 // -----------------------Componentes-----------------------
 import FooterLayout from "../components/FooterLayout";
+import LeftColumnMapPage from "../components/MapPage/LeftColumnMapPage";
+import RightColumnMapPage from "../components/MapPage/RightColumnMapPage";
 
 const Map = ({
   username,
@@ -30,7 +32,7 @@ const Map = ({
   useEffect(() => {
     getMapData();
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  });
+  }, []);
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
   const getMapData = () => {
@@ -59,7 +61,8 @@ const Map = ({
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {username ? (
         <div className={`map-page text-center space-footer-bottom`}>
-          Sección de mapa para {username}
+          <LeftColumnMapPage></LeftColumnMapPage>
+          <RightColumnMapPage></RightColumnMapPage>
         </div>
       ) : (
           <div className="loader-pages">

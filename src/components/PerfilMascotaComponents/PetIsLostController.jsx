@@ -130,7 +130,7 @@ const PetIsLostController = ({
     if (heightCalendar > 0) {
       setFirstAnimCalendar(true);
     };
-  });
+  }, [heightCalendar]);
 
   const [yesInstructions, setInstructions] = useState(false);
 

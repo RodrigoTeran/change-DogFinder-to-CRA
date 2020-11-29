@@ -33,7 +33,7 @@ const Purchase = ({
       setFirstScroll(true);
     };
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  });
+  }, [firstScroll]);
   // -----------------------Funciones-----------------------
   return (
     <>

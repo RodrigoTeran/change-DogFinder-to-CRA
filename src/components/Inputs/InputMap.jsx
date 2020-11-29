@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 
 import {
   GoogleMap,
-  useLoadScript,
   Marker,
-  InfoWindow
+  InfoWindow,
 } from "@react-google-maps/api";
 
 import {
@@ -190,11 +189,6 @@ const InputMap = ({
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(18);
   }, []);
-
-  const { } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries
-  });
 
   return (
     <>

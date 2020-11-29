@@ -153,7 +153,7 @@ const Index = ({
 			window.removeEventListener("resize", handleResize);
 			window.removeEventListener("scroll", handleScroll);
 		};
-	});
+	}, [firstScroll]);
 
 	// -----------------------Funciones-----------------------
 	const handleResize = () => {

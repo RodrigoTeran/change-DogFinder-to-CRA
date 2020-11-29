@@ -22,11 +22,6 @@ import CardImage from "./CardImage"
 import CroppImages from "./CroppImages";
 
 import {
-  eraseProfileImages
-} from "../../../routes/index";
-
-import {
-  deletePetProfileDogFoundedImageFromImages,
   editProfileDogFoundedImages
 } from "../../../routes/indexDogFounded";
 

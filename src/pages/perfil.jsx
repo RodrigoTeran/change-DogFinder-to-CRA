@@ -67,7 +67,7 @@ const Profile = ({
     } catch { };
     getProfileData();
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  });
+  }, [firstScroll]);
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);

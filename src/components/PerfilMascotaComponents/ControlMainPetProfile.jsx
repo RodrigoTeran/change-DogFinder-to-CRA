@@ -37,7 +37,7 @@ const ControlMainPetProfile = ({
     if (heightCalendar > 0) {
       setFirstAnimCalendar(true);
     };
-  });
+  }, [heightCalendar]);
   const editWhenIsLost = newDate => {
     setIsLoading(true);
     const body = {
