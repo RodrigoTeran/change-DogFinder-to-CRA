@@ -18,6 +18,12 @@
   }
   &.open {
     height: 380px;
+    @media screen and (max-width: 1370px){
+      height: 400px;
+    }
+    @media screen and (max-width: 1250px){
+      height: 420px;
+    }    
     @media screen and (max-width: 1121px){
       height: 580px;
     }

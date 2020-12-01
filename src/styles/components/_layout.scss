@@ -54,7 +54,9 @@
 
 .wall-log-in-banner {
   position: fixed;
-  z-index: 1031;
+  z-index: 10310;
+  top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 1);
   opacity: 0;
   width: 0%;
@@ -149,7 +151,7 @@
   position: fixed;
   opacity: 0;
   background-color: var(--tertiary-color);
-  z-index: 1032;
+  z-index: 10320;
   border-radius: 10px 10px 15px 15px;
   top: calc(50% - 200px);
   left: calc(50% - 140px);

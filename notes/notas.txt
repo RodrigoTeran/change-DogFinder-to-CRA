@@ -1,7 +1,7 @@
 Issues:
-  --- Poner mismo color responsive menu bar al body
-  --- Hacer que el calendario haga resize en la primera carga
-  --- Los z-indexes de las images de los perfiles que no interfieran con el responsive menu bar
+  --- El texto de las instrucciones del dogFounded checar cuando otras tamaños se pone mejor
+  --- arreglar z-index wall-login-banner
+
   - Crear forma para registrar empresa
     - poner esto en la index y en la contact page
     - la empresa me contacta
