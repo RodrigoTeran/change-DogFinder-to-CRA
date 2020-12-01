@@ -1,5 +1,51 @@
 Issues:
+  --- Poner mismo color responsive menu bar al body
+  --- Hacer que el calendario haga resize en la primera carga
+  --- Los z-indexes de las images de los perfiles que no interfieran con el responsive menu bar
+  - Crear forma para registrar empresa
+    - poner esto en la index y en la contact page
+    - la empresa me contacta
+      - verifico que sí sea LEGIT
+        - si sí es LEGIT, entonces yo voy a mongoDB Atlas y creo un documento...
+          - lo único que yo pongo es el codigoIdentificador y el codigo de descuento
+          - les doy el codigoIdentificador a la empresa
+          - los admin de la empresa ponen ese código en la página de perfil...
+          y se registran en el Schema de su compañia... desde ahi van a poder llenar toda la informacion restante
+          - ahi tambien les paso el codigo de descuento y cuantas personas en ese mes lo han usado...
+      - si quieren registrar a un perro perdido... les da el codigo de descuento a la persona que lo perdido
+      - si quieren registrar a un perro encontrado ya lo descrbibi mas arriba
+
+      - si quieren subir perros encontrados... ya van a tener que tener sus datos terminados de empresa, solo esos, no los del usuario,
+      si el usuario admin quiere subir perro perdido, solo se van a requerir los suyos... no los datos de contacto de la empresa
+      
+  - Crear lo del codigo de descuento con stripe
   - Crear página de mapa
+    - implementacion del mapa:
+      - falta poner el "set in my own position"
+      - falta poner un loader en el mapa
+      - cuando se haga el primer loading "al entrar a la página"
+        - antes de hacer cualquier fetch, se ve si en Redux el array correspondiente esta vacio o no... no aplica para "cargar mas perfiles"
+        si tiene valores, no se hace fetch, y se pinta esa info
+          - se va a hacer un fetch con peticion a los perfiles "perdidos" : default 
+            y de body va a llevar un objeto con las coordenadas
+              - en la API entregamos los perfiles perdidos que estan mas cerca de acuerdo a las coordenadas
+              - entregamos un array de objetos con esta informacion:
+                {
+                  lat:
+                  lng:
+                  profileImage:
+                  _id:
+                }
+                el id para poder identificarlo cuando se de click en el y haga un request al API sobre su informacion faltante
+          - cuando se haga un cambio en la visualizacion del mapa
+            - se hace lo mismo... se pone en loading, y se hace el request pero ahora a otra URL y con las coordenadas del center del mapa...
+              ya que el usuario se pudo haber cambiado de posicion
+          - cuando el usuario se cambie de posicion, va haber un boton que diga "cargar mas perfiles" y se hace otra vez el request, pero con la posicion
+            del center del mapa
+            - para no perder los datos que se acaban de cargar:
+              - todo se va a ir guardanro en redux
+              van a ser 7 arrays donde va a estar toda la informacion... asi si se va de la pestaña, ahi esta todo...
+
     - Va a tener dos columnas
       - primera columna (left col-3)
         - Al principio van a salir las instrucciones de como usar el mapa
@@ -21,24 +67,21 @@ Issues:
         - en la parte de arriba de esta columnad va a haber estos cuadros
           - ver mis propios perfiles (premium)
           - ver perros encontrados (premium)
-          - ver perros perdidos
+          - ver perros perdidos (default)
           - ver organizaciones
             - aqui se podran ver perros encontrados (premium)
-            - y perros perdidos
+            - e info de la organización
           - ver propios perros encontrados
 
   - Incluir IVA en compra
-  - Incluir más funcionalidad en la página principal de encontré un perro
-  - Crear una forma para que las empresas puedan crearse una cuenta gratis premium
-    y además que tengan funcionalidades de EMPRESA
-      --> Que puedan venderse en el mapa y en adopción
   - Editar la información que sale en INDEX
   - Editar la información que sale en SE PERDIÓ MI PERRO
   - Checar que información se trae de Facebook al hacer OAuth
-  - Crear la página de notificaciones
   - Crear cuenta de correo y de whatsapp de empresa
   - Checar lo de los impuestos
   - Poner SEO en html
+  - Crear la página de notificaciones
+    - que ahi salgan los matches con la info del otro usuario
   - Cuando se haga un match:
     --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
     --> En tu página de perfil, el perfil de Freda va a tener otro color:
@@ -48,3 +91,7 @@ Issues:
         - Se confirma también para que ya no aparezaca en el mapa... también se quita el isLost
         - Si no era tu perro
           - Le das en "nel" y aun asi se gurada en el historial
+  - Crear la página de adopcion
+    - que puedas poner y tambien adoptar
+    - lo unico que se pide es que estes registrado con tus datos
+      - o sea no es exclusivo premium

@@ -29,10 +29,15 @@ const Map = ({
   updateTopMenuBarActivated,
 }) => {
   // -----------------------Hooks-----------------------
+  const [firstScroll, setFirstScroll] = useState(false);
   useEffect(() => {
+    if (!firstScroll) {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+      setFirstScroll(true);
+    };
     getMapData();
     updateTopMenuBarActivated(true); // Para que el topMenuBar siempre esté con color
-  }, []);
+  }, [firstScroll]);
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
   const getMapData = () => {

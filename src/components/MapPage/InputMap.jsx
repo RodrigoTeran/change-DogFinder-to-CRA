@@ -2,7 +2,9 @@ import React, { useState, useCallback, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
-  GoogleMap
+  GoogleMap,
+  // Marker,
+  // InfoWindow,
 } from "@react-google-maps/api";
 
 import usePlacesAutocomplete, {
@@ -36,7 +38,10 @@ const InputMap = ({
   petProfile
 }) => {
 
-  const [actualCoordenates, setActualCoordenates] = useState({});
+  const [actualCoordenates, setActualCoordenates] = useState({
+    lat: 0,
+    lng: 0
+  });
 
   useEffect(() => {
     getActualCoordenates();

@@ -49,7 +49,6 @@ function getUrlForReverseGeoCoding(LAT, LNG) {
   let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${LAT},${LNG}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
   return url;
 };
-const libraries = ["places"];
 const mapContainerStyle = {
   width: "100vw",
   height: "100vh",
@@ -257,6 +256,12 @@ const InputMap = ({
                   position={{
                     lat: marker.lat,
                     lng: marker.lng,
+                  }}
+                  icon={{
+                    url: petProfile.petProfileImage,
+                    scaledSize: new window.google.maps.Size(40, 40),
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(20, 20)
                   }}
                   onClick={() => {
                     setSelected(true);

@@ -125,12 +125,18 @@ const PetIsLostController = ({
       };
     });
   };
+  const [counter, setCounter] = useState(0);
   useEffect(() => {
-    setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
     if (heightCalendar > 0) {
       setFirstAnimCalendar(true);
+      if (counter < 50) {
+        setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
+        setCounter(counter + 1);
+      };
+    } else {
+      setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
     };
-  }, [heightCalendar]);
+  }, [heightCalendar, counter]);
 
   const [yesInstructions, setInstructions] = useState(false);
 
