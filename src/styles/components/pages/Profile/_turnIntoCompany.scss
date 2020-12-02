@@ -28,3 +28,56 @@
     }
   }
 }
+.edit-company-info-container {
+  margin-top: 30px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(90% - 35px);
+  @media screen and (max-width: 768px) {
+    width: calc(90%);
+  }
+}
+.change-view-company-and-user {
+  margin-top: 30px;
+  width: calc(90% - 35px);
+  @media screen and (max-width: 768px) {
+    width: calc(90%);
+  }
+  display: flex;
+  &-line {
+    width: calc(90% - 35px);
+    @media screen and (max-width: 768px) {
+      width: calc(90%);
+    }
+    height: 5px;
+    background-color: #232323;
+  }
+  &-COMPANY,
+  &-USER {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #232323;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: var(--tertiary-color);
+        transform: translateY(-5px) ;
+        transition: ease-in-out 0.3s;
+      }
+    }
+    svg {
+      fill: #fff;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &-USER {
+    margin-left: 10px;
+  }
+}

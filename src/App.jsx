@@ -8,6 +8,9 @@ import { isWebpSupported } from "react-image-webp/dist/utils";
 
 // Routes
 import { getUser } from "./routes/index";
+import {
+  updateUserCompanyAction
+} from "./store/reducers/company/actions";
 
 // Selectores
 import {
@@ -66,7 +69,8 @@ const App = ({
   updateLines,
   updateUser,
   updateFirstResponseAPI,
-  updateKeyActiveUser
+  updateKeyActiveUser,
+  updateUserCompany
 }) => {
   useEffect(() => {
     getUserData();
@@ -137,6 +141,12 @@ const App = ({
           state: data.numberForContactActiveKey
         });
         updateKeyActiveUser(data.compraActiva);
+
+        // COMPANY
+        updateUserCompany({
+          selectedState: "userCompany",
+          state: data.isUserInCompany
+        });
       } else {
         updateUser({
           selectedState: "username",
@@ -171,6 +181,12 @@ const App = ({
           state: false
         });
         updateKeyActiveUser(undefined);
+
+        // COMPANY
+        updateUserCompany({
+          selectedState: "userCompany",
+          state: undefined
+        });
       };
     });
   };
@@ -259,6 +275,7 @@ const mapDispatchToProps = (dispatch) => {
     updateUser: (data) => { dispatch(updateUserAction(data)) },
     updateFirstResponseAPI: (data) => { dispatch(updateFirstResponseAPIAction(data)) },
     updateKeyActiveUser: (data) => { dispatch(updateKeyActiveUserAction(data)) },
+    updateUserCompany: (data) => { dispatch(updateUserCompanyAction(data)) }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

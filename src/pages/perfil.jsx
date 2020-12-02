@@ -31,6 +31,7 @@ import HeaderProfilePage from "../components/ProfilePageComponents/Header";
 import FooterLayout from "../components/FooterLayout";
 import MainSectionProfilePage from "../components/ProfilePageComponents/MainSection/MainSectionProfilePage";
 import { useLocation } from "react-router-dom";
+import ChangeViewProfilePage from "../components/ProfilePageComponents/ChangeViewProfilePage";
 
 const Profile = ({
   username,
@@ -72,6 +73,8 @@ const Profile = ({
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
 
+  const [isViewOnCompany, setIsViewOnCompany] = useState(false);
+
   const getProfileData = () => {
     if (!yesDataAPI) {
       fetch(getProfileDataRoute, {
@@ -103,8 +106,16 @@ const Profile = ({
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {yesDataAPI ? (
         <div className={`profile-page space-footer-bottom`}>
-          <HeaderProfilePage isPremium={premium} username={username} email={email} imgId={imgId}></HeaderProfilePage>
-          <MainSectionProfilePage isPremium={premium}></MainSectionProfilePage>
+          <HeaderProfilePage
+            isViewOnCompany={isViewOnCompany}
+            isPremium={premium} username={username} email={email} imgId={imgId}>
+            <ChangeViewProfilePage
+              setIsViewOnCompany={setIsViewOnCompany}
+            ></ChangeViewProfilePage>
+          </HeaderProfilePage>
+          <MainSectionProfilePage
+            isViewOnCompany={isViewOnCompany}
+            isPremium={premium}></MainSectionProfilePage>
         </div>
       ) : (
           <div className="loader-pages">
