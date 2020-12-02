@@ -28,17 +28,6 @@
     }
   }
 }
-.edit-company-info-container {
-  margin-top: 30px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: calc(90% - 35px);
-  @media screen and (max-width: 768px) {
-    width: calc(90%);
-  }
-}
 .change-view-company-and-user {
   margin-top: 30px;
   width: calc(90% - 35px);
@@ -79,5 +68,26 @@
   }
   &-USER {
     margin-left: 10px;
+  }
+}
+
+.edit-company-info-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  width: calc(90% - 35px);
+  &-title{
+    margin-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  @media screen and (max-width: 768px) {
+    width: calc(90%);
   }
 }

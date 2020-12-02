@@ -64,7 +64,7 @@ const MainSectionProfilePage = ({
                     </div>
                   </div>
                   <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
-                    Crea perfiles de tu mascota(s) para poder registrar su información y ayudarte si se extravían.
+                    Crea perfiles de tu(s) mascota(s) para poder registrar su información y ayudarte si se extravían.
                     </div>
                 </div>
               </div>
@@ -130,7 +130,7 @@ const MainSectionProfilePage = ({
                         </div>
                           </div>
                           <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
-                            Crea perfiles de tu mascota(s) para poder registrar su información y ayudarte si se extravían.
+                            Crea perfiles de tu(s) mascota(s) para poder registrar su información y ayudarte si se extravían.
                         </div>
                         </div>
                       </div>
