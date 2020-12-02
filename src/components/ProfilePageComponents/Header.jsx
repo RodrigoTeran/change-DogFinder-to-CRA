@@ -58,6 +58,7 @@ const HeaderProfilePage = ({
   updateUser
 }) => {
   const [yesInstructions, setInstructions] = useState(false);
+  const [yesInstructions2, setInstructions2] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -421,6 +422,42 @@ const HeaderProfilePage = ({
           <div className="actual-contact-info-profile-page-card-text">
             {numberOfTelephoneForContact}
           </div>
+        </div>
+      </div>
+      <div className="turn-into-company-container">
+        <div className="turn-into-company-container-input">
+          <input maxLength="15" type="text" />
+        </div>
+        <ButtonWhiteRectangle
+          backgroundColorRectangle="#232323"
+          text={` Registrarse en una empresa`} width="295px" height="50px" fontSize="1rem" clickFunctionAnotherOne={() => {
+
+
+          }} mt="mt-0">
+          <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M128 96c26.5 0 48-21.5 48-48S154.5 0 128 0 80 21.5 80 48s21.5 48 48 48zm384 0c26.5 0 48-21.5 48-48S538.5 0 512 0s-48 21.5-48 48 21.5 48 48 48zm125.7 372.1l-44-110-41.1 46.4-2 18.2 27.7 69.2c5 12.5 17 20.1 29.7 20.1 4 0 8-.7 11.9-2.3 16.4-6.6 24.4-25.2 17.8-41.6zm-34.2-209.8L585 178.1c-4.6-20-18.6-36.8-37.5-44.9-18.5-8-39-6.7-56.1 3.3-22.7 13.4-39.7 34.5-48.1 59.4L432 229.8 416 240v-96c0-8.8-7.2-16-16-16H240c-8.8 0-16 7.2-16 16v96l-16.1-10.2-11.3-33.9c-8.3-25-25.4-46-48.1-59.4-17.2-10-37.6-11.3-56.1-3.3-18.9 8.1-32.9 24.9-37.5 44.9l-18.4 80.2c-4.6 20 .7 41.2 14.4 56.7l67.2 75.9 10.1 92.6C130 499.8 143.8 512 160 512c1.2 0 2.3-.1 3.5-.2 17.6-1.9 30.2-17.7 28.3-35.3l-10.1-92.8c-1.5-13-6.9-25.1-15.6-35l-43.3-49 17.6-70.3 6.8 20.4c4.1 12.5 11.9 23.4 24.5 32.6l51.1 32.5c4.6 2.9 12.1 4.6 17.2 5h160c5.1-.4 12.6-2.1 17.2-5l51.1-32.5c12.6-9.2 20.4-20 24.5-32.6l6.8-20.4 17.6 70.3-43.3 49c-8.7 9.9-14.1 22-15.6 35l-10.1 92.8c-1.9 17.6 10.8 33.4 28.3 35.3 1.2.1 2.3.2 3.5.2 16.1 0 30-12.1 31.8-28.5l10.1-92.6 67.2-75.9c13.6-15.5 19-36.7 14.4-56.7zM46.3 358.1l-44 110c-6.6 16.4 1.4 35 17.8 41.6 16.8 6.6 35.1-1.7 41.6-17.8l27.7-69.2-2-18.2-41.1-46.4z" /></svg>
+        </ButtonWhiteRectangle>
+      </div>
+      <div className={`image-pet-profile-instructions ${yesInstructions2 ? ("open") : ("close")}`} style={{
+        marginTop: "20px",
+        width: window.innerWidth < 768 ? ("300px") : ("50%"),
+        marginRight: `${window.innerWidth < 768 ? ("0px") : ("auto")}`, marginLeft: `${window.innerWidth < 768 ? ("") : ("calc(5% + 20px)")}`, marginBottom: `${window.innerWidth < 768 ? ("30px") : ("20px")}`,
+      }}
+      >
+        <div className="image-pet-profile-instructions-icon">
+          <div onClick={() => { setInstructions2(!yesInstructions2) }} title="Información" style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: `${
+              window.innerWidth < 768 ? (yesInstructions2 ? ("left") : ("center")) : ("left")
+              }`
+          }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg> Información
+            </div>
+        </div>
+        <div className={`${yesInstructions2 ? ("open") : ("close")} image-pet-profile-instructions-text`}>
+          Si es empleado de una organización, veterinaria, estética canina u otra empresa afiliada a la plataforma contacte con su empresa para obtener el código de su organización
+          y así registrarse como usuario en la plataforma de tal empresa. Si usted quiere registrar a su empresa en la plataforma para gozar de los beneficios
+          únicos como códigos de descuento a sus clientes, un lugar único en el mapa y adopción. En la página de "contáctanos" nos puede mandar un correo.
         </div>
       </div>
       <div className="profile-page-contact-profile">

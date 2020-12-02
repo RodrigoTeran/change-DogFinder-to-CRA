@@ -1,7 +1,4 @@
 Issues:
-  --- El texto de las instrucciones del dogFounded checar cuando otras tamaños se pone mejor
-  --- arreglar z-index wall-login-banner
-
   - Crear forma para registrar empresa
     - poner esto en la index y en la contact page
     - la empresa me contacta
