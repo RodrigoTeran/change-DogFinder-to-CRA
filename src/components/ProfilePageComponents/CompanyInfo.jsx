@@ -4,6 +4,9 @@ import {
   getUserCompany
 } from "../../store/reducers/company/selector";
 
+import ChangeLogoCompany from "./CompanyMethods/ChangeLogoCompany";
+import ChangeNameCompany from "./CompanyMethods/ChangeNameCompany";
+
 const CompanyInfo = ({
   userCompany
 }) => {
@@ -49,6 +52,18 @@ const CompanyInfo = ({
           Aquí puedes ver y editar la información de tu empresa. Esta información saldrá en el mapa y en la página de adopción para que las personas conozcan mejor tu empresa.
           Si se necesita subir a la plataforma un perro perdido que encontraron o un perro que dan en adopción, al igual como si fuera un cliente normal, deben de tener llenos los
           espacios de correo y número de teléfono, para garantizar que las personas los puedan contactar cuando se requiera.
+        </div>
+      </div>
+      <div className="edit-company-info-container-2">
+        <div className="edit-company-info-container-2-column-left">
+          <ChangeLogoCompany
+            userCompany={userCompany}
+          ></ChangeLogoCompany>
+        </div>
+        <div className="edit-company-info-container-2-column-right">
+          <ChangeNameCompany
+          userCompany={userCompany}
+          ></ChangeNameCompany>
         </div>
       </div>
     </div>
