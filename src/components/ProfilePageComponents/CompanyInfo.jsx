@@ -6,6 +6,7 @@ import {
 
 import ChangeLogoCompany from "./CompanyMethods/ChangeLogoCompany";
 import ChangeNameCompany from "./CompanyMethods/ChangeNameCompany";
+import ChangeWebPageCompany from "./CompanyMethods/ChangeWebPageCompany";
 
 const CompanyInfo = ({
   userCompany
@@ -62,8 +63,11 @@ const CompanyInfo = ({
         </div>
         <div className="edit-company-info-container-2-column-right">
           <ChangeNameCompany
-          userCompany={userCompany}
+            userCompany={userCompany}
           ></ChangeNameCompany>
+          <ChangeWebPageCompany
+            userCompany={userCompany}
+          ></ChangeWebPageCompany>
         </div>
       </div>
     </div>

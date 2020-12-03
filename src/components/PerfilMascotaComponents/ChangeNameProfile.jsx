@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import {
-  checkFuckingHack
+  checkFuckingHack,
+  checkHackInBlankSpaces
 } from "../../utils/hacking";
 
 import {
@@ -51,12 +52,20 @@ const ChangeNameProfile = ({
     closeInput();
     setIsLoading(true);
     const hack = checkFuckingHack(body.newName, []);
+    const hackSPaces = checkHackInBlankSpaces(body.newName);
 
     if (hack) {
       updateFailureMessagesComponent({
         state: true,
         title: "Error al cambiar el nombre",
         description: `Debe de introducir caracteres válidos`,
+      });
+      setIsLoading(false);
+    } else if (hackSPaces) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error al cambiar el nombre",
+        description: `No ponga muchos espacios en blanco seguidos o al principio`,
       });
       setIsLoading(false);
     } else {
