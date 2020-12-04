@@ -24,10 +24,7 @@ const ChangeDescriptionCompany = ({
       }}>
         Describe brevemente tu compañía, para que los usuarios te puedan conocer mejor.
       </div>
-      <textarea id="textarea-company-description" onChange={(e) => {
-        if (e.target.value.length >= 901) {
-          document.querySelector("#textarea-company-description").value = e.target.value.slice(0, 900);
-        };
+      <textarea maxLength={900} id="textarea-company-description" onChange={(e) => {
         setTotalCharacters(e.target.value.length);
         setHasChanged(true);
       }} defaultValue={userCompany.informationCompania}
