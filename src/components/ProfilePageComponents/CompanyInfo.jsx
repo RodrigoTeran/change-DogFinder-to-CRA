@@ -9,6 +9,7 @@ import ChangeNameCompany from "./CompanyMethods/ChangeNameCompany";
 import ChangeWebPageCompany from "./CompanyMethods/ChangeWebPageCompany";
 import ChangeLocationCompany from "./CompanyMethods/ChangeLocationCompany";
 import CredentialsCompany from "./CompanyMethods/CredentialsCompany";
+import ChangeDescriptionCompany from "./CompanyMethods/ChangeDescriptionCompany";
 
 const CompanyInfo = ({
   userCompany
@@ -35,7 +36,7 @@ const CompanyInfo = ({
         INFORMACIÓN EMPRESA
       </div>
       <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`} style={{
-        marginTop: window.innerWidth < 768 ? ("10px") : ("0px"),
+        marginTop: window.innerWidth < 768 ? ("30px") : ("40px"),
         width: window.innerWidth < 768 ? ("300px") : ("50%"),
         marginRight: `${window.innerWidth < 768 ? ("0px") : ("auto")}`, marginLeft: window.innerWidth < 768 ? ("0px") : ("2px"), marginBottom: `${window.innerWidth < 768 ? ("30px") : ("0px")}`,
       }}
@@ -75,6 +76,9 @@ const CompanyInfo = ({
           <CredentialsCompany
             userCompany={userCompany}
           ></CredentialsCompany>
+          <ChangeDescriptionCompany
+          userCompany={userCompany}
+          ></ChangeDescriptionCompany>
         </div>
       </div>
     </div>

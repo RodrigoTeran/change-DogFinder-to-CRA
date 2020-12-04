@@ -1,0 +1,46 @@
+.change-description-textarea-company {
+  width: 100%;
+  margin-left: 0px;
+  &-numberChar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      height: 50px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    margin-left: calc(50% - 150px);
+  }
+  &-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+  &-hasChanged {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      margin-top: 20px;
+      height: 110px;
+    }
+  }
+  textarea {
+    width: 100%;
+    resize: none;
+    outline: none;
+    background-color: rgba(32, 32, 32, 1);
+    font-size: 1rem;
+    color: #fff;
+    border: 3px solid rgba(30, 30, 30, 1);
+  }
+}
