@@ -330,8 +330,44 @@ const HeaderProfilePage = ({
             description: `Se registró correctamente en la compañía`
           });
           updateUserCompany({
-            selectedState: "userCompany",
-            state: data.companyInfo
+            selectedState: "name",
+            state: data.companyInfo.name
+          });
+          updateUserCompany({
+            selectedState: "location",
+            state: data.companyInfo.location
+          });
+          updateUserCompany({
+            selectedState: "coordenates",
+            state: data.companyInfo.coordenates
+          });
+          updateUserCompany({
+            selectedState: "webPage",
+            state: data.companyInfo.webPage
+          });
+          updateUserCompany({
+            selectedState: "logo",
+            state: data.companyInfo.logo
+          });
+          updateUserCompany({
+            selectedState: "informationCompania",
+            state: data.companyInfo.informationCompania
+          });
+          updateUserCompany({
+            selectedState: "codigoDescuento",
+            state: data.companyInfo.codigoDescuento
+          });
+          updateUserCompany({
+            selectedState: "usersQueUsaronElCodigoDeDescuento",
+            state: data.companyInfo.usersQueUsaronElCodigoDeDescuento
+          });
+          updateUserCompany({
+            selectedState: "correoCompania",
+            state: data.companyInfo.correoCompania
+          });
+          updateUserCompany({
+            selectedState: "numeroTelefonoCompania",
+            state: data.companyInfo.numeroTelefonoCompania
           });
         } else if (data.status === "yaEstaConOtra") { // ya esta en otra
           updateFailureMessagesComponent({
@@ -493,7 +529,7 @@ const HeaderProfilePage = ({
             Correo electrónico
           </div>
           <div className="actual-contact-info-profile-page-card-text">
-            {userCompany ? (
+            {userCompany.name ? (
               <>
                 {isViewOnCompany ? (
                   <>
@@ -517,7 +553,7 @@ const HeaderProfilePage = ({
             Número de teléfono
           </div>
           <div className="actual-contact-info-profile-page-card-text">
-            {userCompany ? (
+            {userCompany.name ? (
               <>
                 {isViewOnCompany ? (
                   <>
@@ -538,7 +574,7 @@ const HeaderProfilePage = ({
         </div>
       </div>
       {children}
-      {!userCompany ? (<>
+      {!userCompany.name ? (<>
         <div className="turn-into-company-container">
           <div className="turn-into-company-container-input">
             <input maxLength="15" type="text" onChange={onChangeInputForCompanyRegister} />
@@ -566,8 +602,7 @@ const HeaderProfilePage = ({
             <div onClick={() => { setInstructions2(!yesInstructions2) }} title="Información" style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: `${
-                window.innerWidth < 768 ? (yesInstructions2 ? ("left") : ("center")) : ("left")
+              justifyContent: `${window.innerWidth < 768 ? (yesInstructions2 ? ("left") : ("center")) : ("left")
                 }`
             }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg> Información
@@ -583,7 +618,7 @@ const HeaderProfilePage = ({
       <div className="profile-page-contact-profile">
         <div className="profile-page-contact-profile-title">
           <div>
-            {isViewOnCompany && userCompany ? (
+            {isViewOnCompany && userCompany.name ? (
               <>
                 Cambiar información de contacto de empresa
               </>
@@ -625,15 +660,14 @@ const HeaderProfilePage = ({
           <div onClick={() => { setInstructions(!yesInstructions) }} title="Instrucciones" style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: `${
-              window.innerWidth < 768 ? (yesInstructions ? ("left") : ("center")) : ("left")
+            justifyContent: `${window.innerWidth < 768 ? (yesInstructions ? ("left") : ("center")) : ("left")
               }`
           }}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg> Instrucciones
         </div>
         </div>
         <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
-          {isViewOnCompany && userCompany ? (
+          {isViewOnCompany && userCompany.name ? (
             <>
               Debes de llenar estos dos campos antes de poder reportar a un perro desaparecido en tu organización. Estos datos los van a poder ver las personas
               cuando te intenten contactar, y te saldrá una notificación. Es decir, cuando alguien vea tus datos de contacto, se te notificará de inmediato para
@@ -697,7 +731,7 @@ const HeaderProfilePage = ({
         </div>
       ) : (<></>)}
 
-      {isViewOnCompany && userCompany ? (
+      {isViewOnCompany && userCompany.name ? (
         <CompanyInfo></CompanyInfo>
       ) : (
           <>

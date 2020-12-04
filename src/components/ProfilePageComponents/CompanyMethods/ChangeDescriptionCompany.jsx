@@ -7,16 +7,26 @@ const ChangeDescriptionCompany = ({
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [hasChanged, setHasChanged] = useState(false);
   useEffect(() => {
-    setTotalCharacters(userCompany.informationCompania.length);
+    try {
+      setTotalCharacters(userCompany.informationCompania.length);
+    } catch {
+
+    };
   }, []);
   return (
     <div className="change-description-textarea-company">
       <div className="change-description-textarea-company-title">
         Descripción de tu compañía
       </div>
+      <div style={{
+        marginBottom: "10px",
+        color: "rgba(200, 200, 200, 1)"
+      }}>
+        Describe brevemente tu compañía, para que los usuarios te puedan conocer mejor.
+      </div>
       <textarea id="textarea-company-description" onChange={(e) => {
         if (e.target.value.length >= 901) {
-          document.querySelector("#textarea-company-description").value = e.target.value.slice(0, 899);
+          document.querySelector("#textarea-company-description").value = e.target.value.slice(0, 900);
         };
         setTotalCharacters(e.target.value.length);
         setHasChanged(true);

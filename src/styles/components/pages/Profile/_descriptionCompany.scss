@@ -21,6 +21,9 @@
     font-weight: bold;
     margin-top: 50px;
     margin-bottom: 10px;
+    @media screen and (max-width: 768px) {
+      text-align: center;
+    }
   }
   &-hasChanged {
     width: 100%;
@@ -41,6 +44,7 @@
     background-color: rgba(32, 32, 32, 1);
     font-size: 1rem;
     color: #fff;
-    border: 3px solid rgba(30, 30, 30, 1);
+    border: none;
+    padding: 5px;
   }
 }

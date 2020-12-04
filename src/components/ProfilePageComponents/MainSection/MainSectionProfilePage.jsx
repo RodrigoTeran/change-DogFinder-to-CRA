@@ -35,7 +35,7 @@ const MainSectionProfilePage = ({
   };
   return (
     <>
-      {!userCompany ? (
+      {!userCompany.name ? (
         <div className="main-section-profile-page">
           {stateForRender ? (
             <div style={{ display: "none" }}>.</div>

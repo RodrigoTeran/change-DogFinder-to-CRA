@@ -141,12 +141,90 @@ const App = ({
           state: data.numberForContactActiveKey
         });
         updateKeyActiveUser(data.compraActiva);
-
         // COMPANY
-        updateUserCompany({
-          selectedState: "userCompany",
-          state: data.isUserInCompany
-        });
+        try {
+          updateUserCompany({
+            selectedState: "name",
+            state: data.isUserInCompany.name
+          });
+          updateUserCompany({
+            selectedState: "location",
+            state: data.isUserInCompany.location
+          });
+          updateUserCompany({
+            selectedState: "coordenates",
+            state: data.isUserInCompany.coordenates
+          });
+          updateUserCompany({
+            selectedState: "webPage",
+            state: data.isUserInCompany.webPage
+          });
+          updateUserCompany({
+            selectedState: "logo",
+            state: data.isUserInCompany.logo
+          });
+          updateUserCompany({
+            selectedState: "informationCompania",
+            state: data.isUserInCompany.informationCompania
+          });
+          updateUserCompany({
+            selectedState: "codigoDescuento",
+            state: data.isUserInCompany.codigoDescuento
+          });
+          updateUserCompany({
+            selectedState: "usersQueUsaronElCodigoDeDescuento",
+            state: data.isUserInCompany.usersQueUsaronElCodigoDeDescuento
+          });
+          updateUserCompany({
+            selectedState: "correoCompania",
+            state: data.isUserInCompany.correoCompania
+          });
+          updateUserCompany({
+            selectedState: "numeroTelefonoCompania",
+            state: data.isUserInCompany.numeroTelefonoCompania
+          });
+        } catch {
+          updateUserCompany({
+            selectedState: "name",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "location",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "coordenates",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "webPage",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "logo",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "informationCompania",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "codigoDescuento",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "usersQueUsaronElCodigoDeDescuento",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "correoCompania",
+            state: undefined
+          });
+          updateUserCompany({
+            selectedState: "numeroTelefonoCompania",
+            state: undefined
+          });
+        };
       } else {
         updateUser({
           selectedState: "username",
@@ -184,7 +262,43 @@ const App = ({
 
         // COMPANY
         updateUserCompany({
-          selectedState: "userCompany",
+          selectedState: "name",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "location",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "coordenates",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "webPage",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "logo",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "informationCompania",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "codigoDescuento",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "usersQueUsaronElCodigoDeDescuento",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "correoCompania",
+          state: undefined
+        });
+        updateUserCompany({
+          selectedState: "numeroTelefonoCompania",
           state: undefined
         });
       };

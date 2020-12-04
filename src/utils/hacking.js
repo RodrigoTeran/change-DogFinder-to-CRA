@@ -34,7 +34,8 @@ const possibleValuesForHack = [
   "~",
   "¨",
   "=",
-  "´"
+  "´",
+  ":"
 ]
 
 export const checkFuckingHack = (elementString, elementsAvailable) => {

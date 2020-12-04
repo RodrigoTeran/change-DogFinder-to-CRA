@@ -11,7 +11,7 @@ const ChangeViewProfilePage = ({
 }) => {
   return (
     <>
-      {!userCompany ? (
+      {!userCompany.name ? (
         <></>
       ) : (
           <>
