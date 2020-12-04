@@ -38,6 +38,7 @@ const ChangeNameCompany = ({
   const [isLoading, setIsLoading] = useState(false);
   const changeNameFetch = () => {
     setIsInputActivated(false);
+    setIsLoading(true);
     const hack = checkFuckingHack(body.newNameCompany, []);
     const hackSPaces = checkHackInBlankSpaces(body.newNameCompany);
     if (hack) {

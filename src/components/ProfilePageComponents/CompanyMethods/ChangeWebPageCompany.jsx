@@ -38,6 +38,7 @@ const ChangeWebPageCompany = ({
   const [isLoading, setIsLoading] = useState(false);
   const changeWebPageFetch = () => {
     setIsInputActivated(false);
+    setIsLoading(true);
     const hack = checkFuckingHack(body.newWebPageCompany, [
       "/",
       ".",
