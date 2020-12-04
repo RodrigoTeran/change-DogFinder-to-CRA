@@ -35,6 +35,14 @@ import {
 } from "../../routes/index";
 
 import {
+  editCompanyEmail,
+  editCompanyEmailWithToken,
+
+  editCompanyTelephone,
+  editCompanyTelephoneWithToken
+} from "../../routes/company";
+
+import {
   checkFuckingHack
 } from "../../utils/hacking";
 
@@ -108,47 +116,64 @@ const HeaderProfilePage = ({
       const body = {
         key: valueInputMailKey
       };
-      fetch(editMailForContactUser, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "token": localStorage.getItem("token")
-        },
-        body: JSON.stringify(body)
-      }).then(res => {
-        return res.json();
-      }).then(data => {
-        setIsLoading(false);
-        if (data.status === "true") {
-          updateSuccessMessagesComponent({
-            state: true,
-            title: "Éxito",
-            description: `Se editó el correo de contacto público`
-          });
-          updateUser({
-            selectedState: "emailForContact",
-            state: data.newEmail
-          });
-          updateUser({
-            selectedState: "emailForContactActiveKey",
-            state: false
-          });
-        } else if (data.status === "expiro") {
-          updateFailureMessagesComponent({
-            state: true,
-            title: "Error",
-            description: "La clave ya expiró o no coincide. Vuelva a intentarlo o envie de nuevo el correo"
-          });
-        } else {
-          updateFailureMessagesComponent({
-            state: true,
-            title: "Error",
-            description: "La clave no coincide"
-          });
-        };
-      });
+      fetch(
+        isViewOnCompany && userCompany.name ? (
+          editCompanyEmailWithToken
+        ) : (
+            editMailForContactUser
+          )
+        , {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "token": localStorage.getItem("token")
+          },
+          body: JSON.stringify(body)
+        }).then(res => {
+          return res.json();
+        }).then(data => {
+          setIsLoading(false);
+          if (data.status === "true") {
+            updateSuccessMessagesComponent({
+              state: true,
+              title: "Éxito",
+              description: `Se editó el correo de contacto público`
+            });
+            if (isViewOnCompany && userCompany.name) {
+              updateUserCompany({
+                selectedState: "correoCompaniaEspacioParaKey",
+                state: false
+              });
+              updateUserCompany({
+                selectedState: "correoCompania",
+                state: data.newEmail
+              });
+            } else {
+              updateUser({
+                selectedState: "emailForContact",
+                state: data.newEmail
+              });
+              updateUser({
+                selectedState: "emailForContactActiveKey",
+                state: false
+              });
+            };
+          } else if (data.status === "expiro") {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error",
+              description: "La clave ya expiró o no coincide. Vuelva a intentarlo o envie de nuevo el correo"
+            });
+          } else {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error",
+              description: "La clave no coincide"
+            });
+          };
+        });
     };
   };
 
@@ -165,7 +190,79 @@ const HeaderProfilePage = ({
       const body = {
         key: valueInputTelephoneKey
       };
-      fetch(editTelephoneForContactUser, {
+      fetch(
+        isViewOnCompany && userCompany.name ? (
+          editCompanyTelephoneWithToken
+        ) : (
+            editTelephoneForContactUser
+          )
+        , {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "token": localStorage.getItem("token")
+          },
+          body: JSON.stringify(body)
+        }).then(res => {
+          return res.json();
+        }).then(data => {
+          setIsLoading(false);
+          if (data.status === "true") {
+            updateSuccessMessagesComponent({
+              state: true,
+              title: "Éxito",
+              description: `Se editó el teléfono de contacto público`
+            });
+            if (isViewOnCompany && userCompany.name) {
+              updateUserCompany({
+                selectedState: "numeroCompaniaEspacioParaKey",
+                state: false
+              });
+              updateUserCompany({
+                selectedState: "numeroTelefonoCompania",
+                state: data.newTelephone
+              });
+            } else {
+              updateUser({
+                selectedState: "numberOfTelephoneForContact",
+                state: data.newTelephone
+              });
+              updateUser({
+                selectedState: "telephoneForContactActiveKey",
+                state: false
+              });
+            };
+          } else if (data.status === "expiro") {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error",
+              description: "La clave ya expiró o no coincide. Vuelva a intentarlo o envie de nuevo el teléfono"
+            });
+          } else {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error",
+              description: "La clave no coincide"
+            });
+          };
+        });
+    };
+  };
+
+  const editKeyForMail = (email) => {
+    setIsLoading(true);
+    const body = {
+      email
+    };
+    fetch(
+      isViewOnCompany && userCompany.name ? (
+        editCompanyEmail
+      ) : (
+          editKeyForMailForContactUser
+        )
+      , {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -182,69 +279,27 @@ const HeaderProfilePage = ({
           updateSuccessMessagesComponent({
             state: true,
             title: "Éxito",
-            description: `Se editó el teléfono de contacto público`
+            description: `Se envió al correo: ${bannerProfileContactInfo.inputInfoFromBanner}, la clave para verificar que este correo es suyo`
           });
-          updateUser({
-            selectedState: "numberOfTelephoneForContact",
-            state: data.newTelephone
-          });
-          updateUser({
-            selectedState: "telephoneForContactActiveKey",
-            state: false
-          });
-        } else if (data.status === "expiro") {
-          updateFailureMessagesComponent({
-            state: true,
-            title: "Error",
-            description: "La clave ya expiró o no coincide. Vuelva a intentarlo o envie de nuevo el teléfono"
-          });
+          if (isViewOnCompany && userCompany.name) {
+            updateUserCompany({
+              selectedState: "correoCompaniaEspacioParaKey",
+              state: true
+            });
+          } else {
+            updateUser({
+              selectedState: "emailForContactActiveKey",
+              state: true
+            });
+          };
         } else {
           updateFailureMessagesComponent({
             state: true,
             title: "Error",
-            description: "La clave no coincide"
+            description: "El correo no es válido, puede ser que lo hayas escrito mal"
           });
         };
       });
-    };
-  };
-
-  const editKeyForMail = (email) => {
-    setIsLoading(true);
-    const body = {
-      email
-    };
-    fetch(editKeyForMailForContactUser, {
-      method: "PUT",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": localStorage.getItem("token")
-      },
-      body: JSON.stringify(body)
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      setIsLoading(false);
-      if (data.status === "true") {
-        updateSuccessMessagesComponent({
-          state: true,
-          title: "Éxito",
-          description: `Se envió al correo: ${bannerProfileContactInfo.inputInfoFromBanner}, la clave para verificar que este correo es suyo`
-        });
-        updateUser({
-          selectedState: "emailForContactActiveKey",
-          state: true
-        });
-      } else {
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error",
-          description: "El correo no es válido, puede ser que lo hayas escrito mal"
-        });
-      };
-    });
   };
 
   const editKeyForTelephone = (telephone) => {
@@ -252,7 +307,12 @@ const HeaderProfilePage = ({
     const body = {
       telephone
     };
-    fetch(editKeyForTelephoneForContactUser, {
+    fetch(
+      isViewOnCompany && userCompany.name ? (
+        editCompanyTelephone
+      ) : (
+          editKeyForTelephoneForContactUser
+        ), {
       method: "PUT",
       credentials: "include",
       headers: {
@@ -271,10 +331,17 @@ const HeaderProfilePage = ({
           title: "Éxito",
           description: `Se envió al teléfono: ${telephone}, la clave para verificar que este teléfono es suyo`
         });
-        updateUser({
-          selectedState: "telephoneForContactActiveKey",
-          state: true
-        });
+        if (isViewOnCompany && userCompany.name) {
+          updateUserCompany({
+            selectedState: "numeroCompaniaEspacioParaKey",
+            state: true
+          });
+        } else {
+          updateUser({
+            selectedState: "telephoneForContactActiveKey",
+            state: true
+          });
+        };
       } else {
         updateFailureMessagesComponent({
           state: true,
@@ -682,7 +749,12 @@ const HeaderProfilePage = ({
             )}
         </div>
       </div>
-      <div className={`banner-email-contact-key-input ${emailForContactActiveKey ? ("open") : ("close")}`}>
+      <div className={`banner-email-contact-key-input ${isViewOnCompany && userCompany.name ? (
+        userCompany.correoCompaniaEspacioParaKey ? ("open") : ("close")
+      ) : (
+          emailForContactActiveKey ? ("open") : ("close")
+        )
+        }`}>
         <div className="banner-email-contact-key-input-title">
           Clave para verificar autenticidad de correo
         </div>
@@ -702,7 +774,12 @@ const HeaderProfilePage = ({
           </div>
         </div>
       </div>
-      <div className={`banner-email-contact-key-input ${telephoneForContactActiveKey ? ("open") : ("close")}`}>
+      <div className={`banner-email-contact-key-input ${isViewOnCompany && userCompany.name ? (
+        userCompany.numeroCompaniaEspacioParaKey ? ("open") : ("close")
+      ) : (
+          telephoneForContactActiveKey ? ("open") : ("close")
+        )
+        }`}>
         <div className="banner-email-contact-key-input-title">
           Clave para verificar autenticidad de número de teléfono
                     </div>

@@ -147,6 +147,18 @@ const App = ({
             selectedState: "name",
             state: data.isUserInCompany.name
           });
+
+
+          updateUserCompany({
+            selectedState: "correoCompaniaEspacioParaKey",
+            state: data.isUserInCompany.keyEmailCompany
+          });
+          updateUserCompany({
+            selectedState: "numeroCompaniaEspacioParaKey",
+            state: data.isUserInCompany.keyNumberCompany
+          });
+
+
           updateUserCompany({
             selectedState: "location",
             state: data.isUserInCompany.location
@@ -187,6 +199,14 @@ const App = ({
           updateUserCompany({
             selectedState: "name",
             state: undefined
+          });
+          updateUserCompany({
+            selectedState: "correoCompaniaEspacioParaKey",
+            state: false
+          });
+          updateUserCompany({
+            selectedState: "numeroCompaniaEspacioParaKey",
+            state: false
           });
           updateUserCompany({
             selectedState: "location",
@@ -268,6 +288,14 @@ const App = ({
         updateUserCompany({
           selectedState: "location",
           state: undefined
+        });
+        updateUserCompany({
+          selectedState: "correoCompaniaEspacioParaKey",
+          state: false
+        });
+        updateUserCompany({
+          selectedState: "numeroCompaniaEspacioParaKey",
+          state: false
         });
         updateUserCompany({
           selectedState: "coordenates",

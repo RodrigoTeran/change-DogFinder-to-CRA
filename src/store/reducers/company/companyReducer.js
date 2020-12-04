@@ -9,7 +9,10 @@ const initialState = {
     codigoDescuento: undefined,
     usersQueUsaronElCodigoDeDescuento: undefined,
     correoCompania: undefined,
-    numeroTelefonoCompania: undefined
+    numeroTelefonoCompania: undefined,
+
+    correoCompaniaEspacioParaKey: false,
+    numeroCompaniaEspacioParaKey: false
   },
 };
 
