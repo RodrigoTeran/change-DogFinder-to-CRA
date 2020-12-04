@@ -8,6 +8,7 @@ import ChangeLogoCompany from "./CompanyMethods/ChangeLogoCompany";
 import ChangeNameCompany from "./CompanyMethods/ChangeNameCompany";
 import ChangeWebPageCompany from "./CompanyMethods/ChangeWebPageCompany";
 import ChangeLocationCompany from "./CompanyMethods/ChangeLocationCompany";
+import CredentialsCompany from "./CompanyMethods/CredentialsCompany";
 
 const CompanyInfo = ({
   userCompany
@@ -31,7 +32,7 @@ const CompanyInfo = ({
           <div style={{ display: "none" }}>.</div>
         )}
       <div className="edit-company-info-container-title">
-        INFORMACIÓN DE LA EMPRESA
+        INFORMACIÓN EMPRESA
       </div>
       <div className={`image-pet-profile-instructions ${yesInstructions ? ("open") : ("close")}`} style={{
         marginTop: window.innerWidth < 768 ? ("10px") : ("0px"),
@@ -71,6 +72,9 @@ const CompanyInfo = ({
           <ChangeLocationCompany
             userCompany={userCompany}
           ></ChangeLocationCompany>
+          <CredentialsCompany
+            userCompany={userCompany}
+          ></CredentialsCompany>
         </div>
       </div>
     </div>

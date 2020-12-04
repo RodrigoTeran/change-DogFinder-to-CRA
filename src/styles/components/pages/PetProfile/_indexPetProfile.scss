@@ -150,6 +150,18 @@
       height: 0;
       transition: ease-in-out 0.5s;
     }
+    &-2 {
+      &.open {
+        height: 200px;
+        @media screen and (max-width: 1275px) {
+          height: 250px;
+        }
+        @media screen and (max-width: 1050px) {
+          height: 420px;
+        }
+        transition: ease-in-out 0.5s;
+      }
+    }
     &-icon {
       cursor: pointer;
       svg {
@@ -176,6 +188,7 @@
       }
       &.close {
         clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+        visibility: hidden;
         transition: ease-in-out 0.5s;
       }
     }

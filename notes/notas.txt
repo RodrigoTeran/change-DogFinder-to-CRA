@@ -1,5 +1,4 @@
 Issues:
-  --- Que cuando no seas premium el espacio de perfil en blanco no sea tan grande
   - Crear forma para registrar empresa
     - poner esto en la index y en la contact page
     - la empresa me contacta
