@@ -145,7 +145,7 @@ const Menubar = ({
       } else {
         return (usernameForMenuBar);
       };
-    } catch{
+    } catch {
       return (<></>);
     }
   };
@@ -176,15 +176,11 @@ const Menubar = ({
                     <div onClick={iniciarSesion} style={{ cursor: "pointer" }} className="link-after-effect" title="Encontré a un perro">ENCONTRÉ A UN PERRO</div>
                   )}
               </li>
-              {auth ? (
-                <li className="mr-3">
-                  <Link to="/mapa" className="link-after-effect" title="Mapa" style={{ cursor: "pointer" }}>
-                    MAPA
-                  </Link>
-                </li>
-              ) : (
-                  <></>
-                )}
+              <li className="mr-3">
+                <Link to="/mapa" className="link-after-effect" title="Mapa" style={{ cursor: "pointer" }}>
+                  MAPA
+                </Link>
+              </li>
             </ul>
             <ul className={`navbar-nav ml-auto`} style={{
               paddingRight: auth ? ("80px") : ("0px"),

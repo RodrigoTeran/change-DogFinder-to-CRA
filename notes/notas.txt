@@ -1,5 +1,4 @@
 Issues:
-  --- Checar que cuando este el loading ya no se le pueda dar al boton muchas veces
   - Crear página de mapa
     - implementacion del mapa:
       - falta poner el "set in my own position"

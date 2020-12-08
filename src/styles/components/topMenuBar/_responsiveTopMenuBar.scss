@@ -45,6 +45,9 @@
       align-items: center;
 
       &-svgs{
+        width: 55%;
+        display: flex;
+        justify-content: space-around;
         svg {
           width: 8vw;
           height: 8vw;
