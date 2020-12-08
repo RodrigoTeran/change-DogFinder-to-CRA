@@ -51,7 +51,9 @@ const CompanyInfo = ({
   const [yesRedirect, setYesRedirect] = useState(false);
   useEffect(() => {
     if (bannerOkCancelAction.isDisplayed.fromWho === TEXT_WANT_GET_OUT_COMPANY && bannerOkCancelAction.okButton === true) {
-      getOutOfBeingASlave();
+      if (!isLoading) {
+        getOutOfBeingASlave();
+      };
       updateBannerOkCancelAction({
         fromWho: TEXT_WANT_GET_OUT_COMPANY,
         inLayout: false,

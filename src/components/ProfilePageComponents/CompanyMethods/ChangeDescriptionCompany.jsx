@@ -132,8 +132,10 @@ const ChangeDescriptionCompany = ({
             height="50px"
             mt="mt-0"
             clickFunctionAnotherOne={() => {
-              changeInfoCompany();
-            }}
+              if (!isLoading) {
+                changeInfoCompany();
+              };
+            }} 
           ></ButtonWhiteRectangle>
           <ButtonWhiteRectangle
             text="Cancelar cambios"

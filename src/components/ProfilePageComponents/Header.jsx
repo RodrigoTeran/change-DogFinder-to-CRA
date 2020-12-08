@@ -484,7 +484,9 @@ const HeaderProfilePage = ({
 
       // El nombre debe contener al menos 1 caracter
       if (!status) {
-        editKeyForMail(bannerProfileContactInfo.inputInfoFromBanner)
+        if (!isLoading && !isLoading2) {
+          editKeyForMail(bannerProfileContactInfo.inputInfoFromBanner)
+        };
       };
 
       // Al final
@@ -517,7 +519,9 @@ const HeaderProfilePage = ({
 
       // El nombre debe contener al menos 1 caracter
       if (!status) {
-        editKeyForTelephone(bannerProfileContactInfo.inputInfoFromBanner)
+        if (!isLoading && !isLoading2) {
+          editKeyForTelephone(bannerProfileContactInfo.inputInfoFromBanner)
+        };
       };
 
       // Al final
@@ -648,7 +652,13 @@ const HeaderProfilePage = ({
           </div>
           <ButtonWhiteRectangle
             backgroundColorRectangle="#232323"
-            text={` Registrarse en una empresa`} width="295px" height="50px" fontSize="1rem" clickFunctionAnotherOne={postNewUserInCompany} mt="mt-0">
+            text={` Registrarse en una empresa`} width="295px" height="50px" fontSize="1rem" clickFunctionAnotherOne={
+              () => {
+                if (!isLoading && !isLoading2) {
+                  postNewUserInCompany();
+                };
+              }
+            } mt="mt-0">
             <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M128 96c26.5 0 48-21.5 48-48S154.5 0 128 0 80 21.5 80 48s21.5 48 48 48zm384 0c26.5 0 48-21.5 48-48S538.5 0 512 0s-48 21.5-48 48 21.5 48 48 48zm125.7 372.1l-44-110-41.1 46.4-2 18.2 27.7 69.2c5 12.5 17 20.1 29.7 20.1 4 0 8-.7 11.9-2.3 16.4-6.6 24.4-25.2 17.8-41.6zm-34.2-209.8L585 178.1c-4.6-20-18.6-36.8-37.5-44.9-18.5-8-39-6.7-56.1 3.3-22.7 13.4-39.7 34.5-48.1 59.4L432 229.8 416 240v-96c0-8.8-7.2-16-16-16H240c-8.8 0-16 7.2-16 16v96l-16.1-10.2-11.3-33.9c-8.3-25-25.4-46-48.1-59.4-17.2-10-37.6-11.3-56.1-3.3-18.9 8.1-32.9 24.9-37.5 44.9l-18.4 80.2c-4.6 20 .7 41.2 14.4 56.7l67.2 75.9 10.1 92.6C130 499.8 143.8 512 160 512c1.2 0 2.3-.1 3.5-.2 17.6-1.9 30.2-17.7 28.3-35.3l-10.1-92.8c-1.5-13-6.9-25.1-15.6-35l-43.3-49 17.6-70.3 6.8 20.4c4.1 12.5 11.9 23.4 24.5 32.6l51.1 32.5c4.6 2.9 12.1 4.6 17.2 5h160c5.1-.4 12.6-2.1 17.2-5l51.1-32.5c12.6-9.2 20.4-20 24.5-32.6l6.8-20.4 17.6 70.3-43.3 49c-8.7 9.9-14.1 22-15.6 35l-10.1 92.8c-1.9 17.6 10.8 33.4 28.3 35.3 1.2.1 2.3.2 3.5.2 16.1 0 30-12.1 31.8-28.5l10.1-92.6 67.2-75.9c13.6-15.5 19-36.7 14.4-56.7zM46.3 358.1l-44 110c-6.6 16.4 1.4 35 17.8 41.6 16.8 6.6 35.1-1.7 41.6-17.8l27.7-69.2-2-18.2-41.1-46.4z" /></svg>
           </ButtonWhiteRectangle>
         </div>
@@ -766,7 +776,13 @@ const HeaderProfilePage = ({
             <input onChange={onChangeInputKeyMail} type="text" maxLength={10} />
           </div>
           <div className="banner-email-contact-key-input-input-container-2">
-            <ButtonWhiteRectangle text={`Enviar`} width="280px" height="50px" fontSize="1rem" clickFunctionAnotherOne={editMailForContact} mt="mt-0"
+            <ButtonWhiteRectangle text={`Enviar`} width="280px" height="50px" fontSize="1rem" clickFunctionAnotherOne={
+              () => {
+                if (!isLoading && !isLoading2) {
+                  editMailForContact();
+                };
+              }
+            } mt="mt-0"
               backgroundColorRectangle={"#000000"}
             >
               <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M568.482 177.448L424.479 313.433C409.3 327.768 384 317.14 384 295.985v-71.963c-144.575.97-205.566 35.113-164.775 171.353 4.483 14.973-12.846 26.567-25.006 17.33C155.252 383.105 120 326.488 120 269.339c0-143.937 117.599-172.5 264-173.312V24.012c0-21.174 25.317-31.768 40.479-17.448l144.003 135.988c10.02 9.463 10.028 25.425 0 34.896zM384 379.128V448H64V128h50.916a11.99 11.99 0 0 0 8.648-3.693c14.953-15.568 32.237-27.89 51.014-37.676C185.708 80.83 181.584 64 169.033 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48v-88.806c0-8.288-8.197-14.066-16.011-11.302a71.83 71.83 0 0 1-34.189 3.377c-7.27-1.046-13.8 4.514-13.8 11.859z" /></svg>
@@ -791,7 +807,13 @@ const HeaderProfilePage = ({
             <input onChange={onChangeInputKeyTelephone} type="text" maxLength={10} />
           </div>
           <div className="banner-email-contact-key-input-input-container-2">
-            <ButtonWhiteRectangle text={`Enviar`} width="280px" height="50px" fontSize="1rem" clickFunctionAnotherOne={editTelephoneForContact} mt="mt-0"
+            <ButtonWhiteRectangle text={`Enviar`} width="280px" height="50px" fontSize="1rem" clickFunctionAnotherOne={
+              () => {
+                if (!isLoading && !isLoading2) {
+                  editTelephoneForContact();
+                };
+              }
+            } mt="mt-0"
               backgroundColorRectangle={"#000000"}
             >
               <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M568.482 177.448L424.479 313.433C409.3 327.768 384 317.14 384 295.985v-71.963c-144.575.97-205.566 35.113-164.775 171.353 4.483 14.973-12.846 26.567-25.006 17.33C155.252 383.105 120 326.488 120 269.339c0-143.937 117.599-172.5 264-173.312V24.012c0-21.174 25.317-31.768 40.479-17.448l144.003 135.988c10.02 9.463 10.028 25.425 0 34.896zM384 379.128V448H64V128h50.916a11.99 11.99 0 0 0 8.648-3.693c14.953-15.568 32.237-27.89 51.014-37.676C185.708 80.83 181.584 64 169.033 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48v-88.806c0-8.288-8.197-14.066-16.011-11.302a71.83 71.83 0 0 1-34.189 3.377c-7.27-1.046-13.8 4.514-13.8 11.859z" /></svg>

@@ -147,7 +147,11 @@ const RegisterDog = ({
       </div>
       <div className="register-dog-founded-component-row">
         <div className="register-dog-founded-component-row-col-1">
-          <div className="card-main-section-profile register-dog-founded-component-button" onClick={registerDogFounded} style={{ width: "300px" }}>
+          <div className="card-main-section-profile register-dog-founded-component-button" onClick={() => {
+            if (!isLoading) {
+              registerDogFounded();
+            };
+          }} style={{ width: "300px" }}>
             <div className="card-main-section-profile-content-2" style={{
               height: "50px", backgroundColor: "var(--tertiary-color)",
               marginTop: "0px",

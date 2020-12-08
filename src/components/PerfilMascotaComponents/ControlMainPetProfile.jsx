@@ -115,7 +115,9 @@ const ControlMainPetProfile = ({
                   className={`calendar`}
                   onChange={(date) => {
                     setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)));
-                    editWhenIsLost(date);
+                    if (!isLoading) {
+                      editWhenIsLost(date);
+                    };
                   }}
                   onViewChange={() => {
                     setHeightCalendar(parseInt(document.querySelector(".calendar").clientHeight) + (window.innerWidth < 1121 ? (75) : (45)))

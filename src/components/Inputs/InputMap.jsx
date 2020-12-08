@@ -209,7 +209,9 @@ const InputMap = ({
               </div>
             ) : (<></>)}
             <button className="map-input-fixed-button-finish" onClick={() => {
-              changeCoordenates();
+              if (!isLoading) {
+                changeCoordenates();
+              };
             }}>
               Guardar cambios
             </button>

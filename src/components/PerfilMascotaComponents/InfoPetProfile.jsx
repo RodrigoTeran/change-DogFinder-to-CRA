@@ -146,7 +146,9 @@ const InfoPetProfile = ({
         }}
         isInputActivated={isInputActivatedDogBreed}
         sendFunction={(dog) => {
-          changeDogBreed(dog)
+          if (!isLoading) {
+            changeDogBreed(dog)
+          };
         }}
         initialDATA={dogBreeds}
       >
@@ -159,7 +161,9 @@ const InfoPetProfile = ({
         }}
         isInputActivated={isInputActivatedDogGender}
         sendFunction={(dogGender) => {
-          changeDogGender(dogGender);
+          if (!isLoading) {
+            changeDogGender(dogGender);
+          };
         }}
         initialDATA={["Macho", "Hembra"]}
       >

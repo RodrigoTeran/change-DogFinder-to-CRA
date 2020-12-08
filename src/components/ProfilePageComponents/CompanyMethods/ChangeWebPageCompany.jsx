@@ -111,7 +111,11 @@ const ChangeWebPageCompany = ({
         closeStyle={!isInputActivated}
         maxLenghtInput={50}
         onChangeFunction={changeInput}
-        clickFunction={changeWebPageFetch}
+        clickFunction={() => {
+          if (!isLoading) {
+            changeWebPageFetch();
+          };
+        }}
       >
         <div className="input-layout-text-title">
           Escribe la página web de la compañía

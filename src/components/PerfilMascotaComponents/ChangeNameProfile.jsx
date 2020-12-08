@@ -119,7 +119,11 @@ const ChangeNameProfile = ({
         closeStyle={!isInputActivated}
         maxLenghtInput={20}
         onChangeFunction={changeInput}
-        clickFunction={editPetNameFunction}
+        clickFunction={() => {
+          if (!isLoading) {
+            editPetNameFunction();
+          };
+        }}
       >
         <div className="input-layout-text-title">
           {`${petProfile.isPetProfile ? (`Escribe el nuevo nombre de tu mascota`) : (`Escribe el nuevo apodo del perro perdido`)}`}

@@ -73,7 +73,7 @@ const Profile = ({
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
 
-  const [isViewOnCompany, setIsViewOnCompany] = useState(true);
+  const [isViewOnCompany, setIsViewOnCompany] = useState(false);
 
   const getProfileData = () => {
     if (!yesDataAPI) {

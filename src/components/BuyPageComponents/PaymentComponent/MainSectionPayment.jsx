@@ -201,14 +201,22 @@ const MainSectionPayment = ({
                           </div>
                           <div>
                             <input onChange={changeInputKey} maxLength="10" className="input-key-pay-input" type="text" />
-                            <button onClick={sendKeyPaymentAPI} className="input-key-pay-button">Enviar</button>
+                            <button onClick={() => {
+                              if (!isLoading) {
+                                sendKeyPaymentAPI();
+                              };
+                            }} className="input-key-pay-button">Enviar</button>
                           </div>
                           <div className="input-key-pay-h2">
                             Si no le llego el correo vuelva a pagar y asegúrese de poner el correo bien escrito. No se le va a cobrar dos veces. El cargo
                             solo se va a hacer una vez.
                           </div>
                           <div>
-                            <button onClick={deleteKeyFromAPI} className="input-key-pay-button">Volver a pagar</button>
+                            <button onClick={() => {
+                              if (!isLoading) {
+                                deleteKeyFromAPI();
+                              };
+                            }} className="input-key-pay-button">Volver a pagar</button>
                           </div>
                         </div>
                       </>

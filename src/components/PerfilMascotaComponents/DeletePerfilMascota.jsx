@@ -38,7 +38,9 @@ const DeletePerfilMascota = ({
 }) => {
   useEffect(() => {
     if (bannerOkCancelAction.isDisplayed.fromWho === TEXT_WANT_DELETE_PET_PROFILE && bannerOkCancelAction.okButton === true) {
-      eraseProfileFunctionYes();
+      if (!isLoading) {
+        eraseProfileFunctionYes();
+      };
       updateBannerOkCancelAction({
         fromWho: TEXT_WANT_DELETE_PET_PROFILE,
         inLayout: false,

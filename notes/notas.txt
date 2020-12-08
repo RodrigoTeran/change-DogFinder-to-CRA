@@ -1,30 +1,5 @@
 Issues:
-  - checar pagos por Stripe
-  - Checar que cuando este el loading ya no se le pueda dar al boton muchas veces
-  --- Crear forma para registrar empresa
-    - poner esto en la index y en la contact page
-    - la empresa me contacta
-      - verifico que sí sea LEGIT
-        - si sí es LEGIT, entonces yo voy a mongoDB Atlas y creo un documento...
-          - lo único que yo pongo es el codigoIdentificador y el codigo de descuento
-          - les doy el codigoIdentificador a la empresa
-          - los admin de la empresa ponen ese código en la página de perfil...
-          y se registran en el Schema de su compañia... desde ahi van a poder llenar toda la informacion restante
-          - ahi tambien les paso el codigo de descuento y cuantas personas en ese mes lo han usado...
-      - si quieren registrar a un perro perdido... les da el codigo de descuento a la persona que lo perdido
-      - si quieren registrar a un perro encontrado ya lo descrbibi mas arriba
-
-      - si quieren subir perros encontrados... ya van a tener que tener sus datos terminados de empresa, solo esos, no los del usuario,
-      si el usuario admin quiere subir perro perdido, solo se van a requerir los suyos... no los datos de contacto de la empresa
-
-    - si un empleado de la comañia se quiere salir esta bien
-      - antes cuando se conectaba le llegaban todos los perfiles de la compañia, ahora la van a salir
-      los que esten afiliados a el y... y... que no esten en compañia
-    - cada vez que se intenta modificar un perfil... se va a checar que si es perfil de compañia... el usuario
-    este registrado en la misma compañia
-    - que un usuario que ya esta en una empresa tambien pueda registrar a un perro pero por su cuenta
-      
-  - Crear lo del codigo de descuento con stripe
+  --- Checar que cuando este el loading ya no se le pueda dar al boton muchas veces
   - Crear página de mapa
     - implementacion del mapa:
       - falta poner el "set in my own position"
@@ -79,7 +54,10 @@ Issues:
             - e info de la organización
           - ver propios perros encontrados
 
-  - Incluir IVA en compra
+  - Stripe:
+    - Incluir IVA en compra
+    - Crear lo del codigo de descuento con stripe
+    - checar pagos por Stripe
   - Editar la información que sale en INDEX
   - Editar la información que sale en SE PERDIÓ MI PERRO
   - Checar que información se trae de Facebook al hacer OAuth

@@ -105,7 +105,11 @@ const CardMainSectionNewPet = ({
   return (
     <>
       {yesRedirect ? (<Redirect to={`${isDogFounded ? (`/perro/encontrado/${petname}`) : (`/perfil/mascota/${petname}`)}`}></Redirect>) : (<></>)}
-      <div className="card-main-section-profile" onClick={getProfileData} style={{ width: "300px", marginLeft: "calc(50% - 150px)" }}>
+      <div className="card-main-section-profile" onClick={() => {
+        if (!isLoading) {
+          getProfileData();
+        };
+      }} style={{ width: "300px", marginLeft: "calc(50% - 150px)" }}>
         <div className="card-main-section-profile-content-2" style={{ height: "50px", backgroundColor: "var(--tertiary-color)" }} title={`${isDogFounded ? ("Reportar mascota encontrada") : ("Nuevo Perfil")}`}>
           {isDogFounded ? ("Reportar mascota encontrada") : ("Nuevo Perfil")}
         </div>

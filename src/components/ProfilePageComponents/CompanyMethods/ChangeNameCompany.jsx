@@ -105,7 +105,11 @@ const ChangeNameCompany = ({
         closeStyle={!isInputActivated}
         maxLenghtInput={20}
         onChangeFunction={changeInput}
-        clickFunction={changeNameFetch}
+        clickFunction={() => {
+          if (!isLoading) {
+            changeNameFetch();
+          };
+        }}
       >
         <div className="input-layout-text-title">
           Escribe el nuevo nombre de la compañía

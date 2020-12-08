@@ -285,7 +285,11 @@ const MainCVComponent = ({
             document.querySelector(".inputfileCroppr").value = "";
           }}
           srcImageYes={srcImageYes}
-          onSubmitInput={onSubmitInput}
+          onSubmitInput={() => {
+            if (!isLoading) {
+              onSubmitInput();
+            };
+          }}
           setImageDestination={setImageDestination}
           imageDestination={imageDestination}
 
