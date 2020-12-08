@@ -28,7 +28,8 @@
   &-block,
   &-menubar,
   &-pages,
-  &-entirePage {
+  &-entirePage,
+  &-mapRightColumn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,7 +50,17 @@
     top: 0;
     left: 0;
     background-color: #000000;
-    opacity: .5;
+    opacity: 0.5;
+  }
+  &-mapRightColumn {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: 2;
   }
   &-menubar {
     position: fixed;
