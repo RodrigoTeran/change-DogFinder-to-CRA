@@ -60,7 +60,7 @@ const CardImage = ({
                   <div className={`computer-vision-col-content`} style={{
                     backgroundImage: "url(" + srcImage + ")"
                   }}>
-                    <div style={{ cursor: "pointer" }} className={`computer-vision-col-content-button`} title="Eliminar Imagen" onClick={() => nowSRCImage(srcImage)}>
+                    <div style={{ cursor: "pointer" }} className={`computer-vision-col-content-button`} title="Cambiar Imagen" onClick={() => nowSRCImage(srcImage)}>
                       <input onChange={handleDeleteImage} type="file" name="file" id={randomId} className="inputfile inputfileCroppr" />
                       <label htmlFor={randomId} style={{ cursor: "pointer" }}>
                         <div>

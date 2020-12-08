@@ -14,7 +14,9 @@ const CardMainSectionProfile = ({
   updatePetProfile,
   isLost,
   isPetProfile,
-  isFinished
+  isFinished,
+
+  isFromCompany
 }) => {
   const urlNameFunction = (petNameParametro) => {
     const newString = petNameParametro.replace(/ /g, "-");
@@ -32,6 +34,10 @@ const CardMainSectionProfile = ({
     updatePetProfile({
       selectedState: "images",
       state: []
+    });
+    updatePetProfile({
+      selectedState: "isPetFromCompany",
+      state: isFromCompany
     });
     updatePetProfile({
       selectedState: "isLost",

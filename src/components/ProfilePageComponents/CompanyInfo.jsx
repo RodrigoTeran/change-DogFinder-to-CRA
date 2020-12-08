@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   getUserCompany
 } from "../../store/reducers/company/selector";
+import { Redirect } from "react-router-dom";
 
 import ChangeLogoCompany from "./CompanyMethods/ChangeLogoCompany";
 import ChangeNameCompany from "./CompanyMethods/ChangeNameCompany";
@@ -10,9 +11,33 @@ import ChangeWebPageCompany from "./CompanyMethods/ChangeWebPageCompany";
 import ChangeLocationCompany from "./CompanyMethods/ChangeLocationCompany";
 import CredentialsCompany from "./CompanyMethods/CredentialsCompany";
 import ChangeDescriptionCompany from "./CompanyMethods/ChangeDescriptionCompany";
+import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
+
+import {
+  updateBannerOkCancelActionAction,
+  updateFailureMessagesComponentAction,
+  updateSuccessMessagesComponentAction
+} from "../../store/reducers/layout/actions";
+
+import {
+  getBannerOkCancelAction
+} from "../../store/reducers/layout/selector";
+
+import {
+  TEXT_WANT_GET_OUT_COMPANY
+} from "../../utils/textForBannerOkCancelAction";
+
+import {
+  deleteUserFromCompany
+} from "../../routes/company";
 
 const CompanyInfo = ({
-  userCompany
+  userCompany,
+
+  updateBannerOkCancelAction,
+  updateFailureMessagesComponent,
+  updateSuccessMessagesComponent,
+  bannerOkCancelAction
 }) => {
   const [yesInstructions, setInstructions] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
@@ -22,11 +47,61 @@ const CompanyInfo = ({
       window.removeEventListener("resize", handleResize);
     };
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [yesRedirect, setYesRedirect] = useState(false);
+  useEffect(() => {
+    if (bannerOkCancelAction.isDisplayed.fromWho === TEXT_WANT_GET_OUT_COMPANY && bannerOkCancelAction.okButton === true) {
+      getOutOfBeingASlave();
+      updateBannerOkCancelAction({
+        fromWho: TEXT_WANT_GET_OUT_COMPANY,
+        inLayout: false,
+        okButton: false
+      });
+    };
+  }, [bannerOkCancelAction])
   const handleResize = () => {
     setStateForRender(!stateForRender);
   };
+  const eraseUserFromCompanyFunction = () => {
+    updateBannerOkCancelAction({
+      fromWho: TEXT_WANT_GET_OUT_COMPANY,
+      inLayout: true,
+      okButton: false
+    });
+  };
+  const getOutOfBeingASlave = () => {
+    setIsLoading(true);
+    fetch(deleteUserFromCompany, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": localStorage.getItem("token")
+      }
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      setIsLoading(false);
+      if (data.status === "true") {
+        updateSuccessMessagesComponent({
+          state: true,
+          title: "Éxito",
+          description: `Se salió de la empresa`,
+        });
+        setYesRedirect(true);
+      } else {
+        updateFailureMessagesComponent({
+          state: true,
+          title: "Error",
+          description: `No se pudo ejecutar la acción con éxito`,
+        });
+      };
+    });
+  };
   return (
     <div className="edit-company-info-container">
+      {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {stateForRender ? (
         <div style={{ display: "none" }}>.</div>
       ) : (
@@ -77,8 +152,31 @@ const CompanyInfo = ({
             userCompany={userCompany}
           ></CredentialsCompany>
           <ChangeDescriptionCompany
-          userCompany={userCompany}
+            userCompany={userCompany}
           ></ChangeDescriptionCompany>
+          <div style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: window.innerWidth < 1050 ? ("center") : ("left")
+
+          }}>
+            <ButtonWhiteRectangle text="Salir de la empresa"
+              width={window.innerWidth < 1050 ? ("300px") : ("250px")}
+              height="50px"
+              mt="mt-5"
+              red="redColor"
+              clickFunctionAnotherOne={eraseUserFromCompanyFunction}
+            >
+              <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" /></svg>
+            </ButtonWhiteRectangle>
+          </div>
+          {isLoading ? (
+            <div className="loader-block" style={{
+              paddingTop: "80px"
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" /></svg>
+            </div>
+          ) : (<></>)}
         </div>
       </div>
     </div>
@@ -88,7 +186,16 @@ const CompanyInfo = ({
 // Clases de REDUX
 const mapStateToProps = (state) => {
   return {
-    userCompany: getUserCompany(state)
+    userCompany: getUserCompany(state),
+    bannerOkCancelAction: getBannerOkCancelAction(state),
   };
 };
-export default connect(mapStateToProps)(CompanyInfo);
+
+const mapDispatchToProps = (disptach) => {
+  return {
+    updateBannerOkCancelAction: (data) => { disptach(updateBannerOkCancelActionAction(data)) },
+    updateFailureMessagesComponent: (data) => { disptach(updateFailureMessagesComponentAction(data)) },
+    updateSuccessMessagesComponent: (data) => { disptach(updateSuccessMessagesComponentAction(data)) }
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyInfo);

@@ -91,7 +91,8 @@ const MainCVComponent = ({
               "Content-Type": "application/json",
               "Accept": "application/json",
               "token": localStorage.getItem("token"),
-              "srcImageToDelete": srcImageToDelete
+              "srcImageToDelete": srcImageToDelete,
+              "isPetFromCompany": petProfile.isPetFromCompany ? (true) : (false)
             }
           })
           .then(res => {

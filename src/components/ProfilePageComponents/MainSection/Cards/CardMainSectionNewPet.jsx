@@ -22,11 +22,18 @@ import {
   updateSuccessMessagesComponentAction
 } from "../../../../store/reducers/layout/actions";
 
+import {
+  getUserCompany
+} from "../../../../store/reducers/company/selector";
+
 const CardMainSectionNewPet = ({
   updatePetProfile,
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
-  isDogFounded
+  isDogFounded,
+
+  isViewOnCompany,
+  userCompany
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const getProfileData = () => {
@@ -37,8 +44,9 @@ const CardMainSectionNewPet = ({
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "token": localStorage.getItem("token")
-      }
+        "token": localStorage.getItem("token"),
+        "isPetFromCompany": isViewOnCompany && userCompany.name ? (true) : (false)
+      },
     }).then(res => {
       return res.json();
     }).then(data => {
@@ -78,6 +86,10 @@ const CardMainSectionNewPet = ({
       state: `${defaultImage}`
     });
     updatePetProfile({
+      selectedState: "isPetFromCompany",
+      state: isViewOnCompany && userCompany.name ? (true) : (false)
+    });
+    updatePetProfile({
       selectedState: "images",
       state: []
     });
@@ -111,7 +123,9 @@ const CardMainSectionNewPet = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    userCompany: getUserCompany(state)
+  };
 };
 
 // Acciones de REDUX

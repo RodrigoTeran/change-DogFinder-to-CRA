@@ -42,7 +42,9 @@ const initialState = {
     whenIsLost: new Date(),
 
     isPetProfile: false, // TRUE = perfil, FALSE = encontre perro
-    isRegistered: undefined
+    isRegistered: undefined,
+
+    isPetFromCompany: false
   }
 };
 

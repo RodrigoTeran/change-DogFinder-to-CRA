@@ -43,7 +43,8 @@ const ColorProfile = ({
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "token": localStorage.getItem("token")
+        "token": localStorage.getItem("token"),
+        "isPetFromCompany": petProfile.isPetFromCompany ? (true) : (false)
       },
       body: JSON.stringify(body)
     }).then(res => {

@@ -20,6 +20,7 @@ import { getFoundDogDataRoute } from "../routes/index";
 
 import HeaderDogFoundedPage from "../components/DogFoundedPageComponents/HeaderDogFoundedPage";
 import MainSectionDogFoundedPage from "../components/DogFoundedPageComponents/MainSectionDogFoundedPage";
+import ChangeViewDogFoundedPage from "../components/DogFoundedPageComponents/ChangeViewDogFoundedPage";
 
 // Acciones
 import {
@@ -42,6 +43,8 @@ const DogFounded = ({
   // -----------------------Funciones-----------------------
   const [yesRedirect, setYesRedirect] = useState(false);
   const [yesDataAPI, setYesDataAPI] = useState(false);
+
+  const [isViewOnCompany, setIsViewOnCompany] = useState(false);
 
   const getFoundDogData = () => {
     if (!yesDataAPI) {
@@ -75,8 +78,15 @@ const DogFounded = ({
       {yesRedirect ? (<Redirect to="/"></Redirect>) : (<></>)}
       {yesDataAPI ? (
         <div className={`dog-founded-page text-center space-footer-bottom`}>
-          <HeaderDogFoundedPage></HeaderDogFoundedPage>
-          <MainSectionDogFoundedPage></MainSectionDogFoundedPage>
+          <HeaderDogFoundedPage
+            isViewOnCompany={isViewOnCompany}
+          ></HeaderDogFoundedPage>
+          <ChangeViewDogFoundedPage
+            setIsViewOnCompany={setIsViewOnCompany}
+          ></ChangeViewDogFoundedPage>
+          <MainSectionDogFoundedPage
+            isViewOnCompany={isViewOnCompany}
+          ></MainSectionDogFoundedPage>
         </div>
       ) : (
           <div className="loader-pages">

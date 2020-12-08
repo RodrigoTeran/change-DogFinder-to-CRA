@@ -17,4 +17,7 @@ routes.editCompanyEmailWithToken = `${routes.apiDomain}/company/edit/emailWithTo
 routes.editCompanyTelephone = `${routes.apiDomain}/company/edit/telephone`;
 routes.editCompanyTelephoneWithToken = `${routes.apiDomain}/company/edit/telephoneWithToken`;
 
+// DELETE
+routes.deleteUserFromCompany = `${routes.apiDomain}/company/delete/userInCompany`;
+
 module.exports = routes;

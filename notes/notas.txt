@@ -1,5 +1,7 @@
 Issues:
-  - Crear forma para registrar empresa
+  - checar pagos por Stripe
+  - Checar que cuando este el loading ya no se le pueda dar al boton muchas veces
+  --- Crear forma para registrar empresa
     - poner esto en la index y en la contact page
     - la empresa me contacta
       - verifico que sí sea LEGIT

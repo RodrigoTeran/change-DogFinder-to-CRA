@@ -87,7 +87,8 @@ const PerfilMascota = ({
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          "token": localStorage.getItem("token")
+          "token": localStorage.getItem("token"),
+          "isPetFromCompany": petProfile.isPetFromCompany ? (true) : (false)
         }
       }).then(res => {
         return res.json();
@@ -135,6 +136,10 @@ const PerfilMascota = ({
           updatePetProfile({
             selectedState: "size",
             state: data.profilePet.size
+          });
+          updatePetProfile({
+            selectedState: "isPetFromCompany",
+            state: data.profilePet.isPetFromCompany
           });
           updatePetProfile({
             selectedState: "mainColor",
