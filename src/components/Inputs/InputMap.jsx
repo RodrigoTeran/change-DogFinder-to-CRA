@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 
 import {
   GoogleMap,
-  Marker,
-  InfoWindow,
+  OverlayView
 } from "@react-google-maps/api";
 
 import {
@@ -106,7 +105,6 @@ const InputMap = ({
   };
 
   const [marker, setMarker] = useState({});
-  const [selected, setSelected] = useState(false);
   const [userWantsAddMarker, setUserWantsAddMarker] = useState(false);
 
 
@@ -178,6 +176,11 @@ const InputMap = ({
         });
       });
   };
+
+  const getPixelPositionOffset = (width, height) => ({
+    x: -(width / 2),
+    y: -(height + 10)
+  });
 
   const mapRef = useRef();
   const onMapload = useCallback((map) => {
@@ -254,41 +257,22 @@ const InputMap = ({
               onLoad={onMapload}
             >
               {marker.lat ? (
-                <Marker
+                <OverlayView
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                   position={{
                     lat: marker.lat,
-                    lng: marker.lng,
+                    lng: marker.lng
                   }}
-                  icon={{
-                    url: petProfile.petProfileImage,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(20, 20)
-                  }}
-                  onClick={() => {
-                    setSelected(true);
-                  }}
-                ></Marker>
-              ) : (<></>)}
-              {selected ? (<>
-                <InfoWindow
-                  position={{
-                    lat: marker.lat,
-                    lng: marker.lng,
-                  }}
-                  onCloseClick={() => {
-                    setSelected(false);
-                  }}
+                  getPixelPositionOffset={getPixelPositionOffset}
                 >
-                  <div style={{ color: "#000" }}>
-                    <h2>
-                      {`${petProfile.isPetProfile ? (`Tu mascota`) : (`Perrito Extraviado`)}`}
-                    </h2>
-                    <div>
-                      {petProfile.name}
+                  <div className="custom-marker-map">
+                    <div className="custom-marker-map-image" style={{
+                      backgroundImage: "url(" + petProfile.petProfileImage + ")"
+                    }}>
                     </div>
                   </div>
-                </InfoWindow></>) : (<></>)}
+                </OverlayView>
+              ) : (<></>)}
             </GoogleMap>
           </>
         ) : (<></>)}

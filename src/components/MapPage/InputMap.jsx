@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 
 import {
   GoogleMap,
-  Marker,
-  InfoWindow
+  OverlayView
 } from "@react-google-maps/api";
 
 import {
@@ -137,6 +136,11 @@ const InputMap = ({
     };
   };
 
+  const getPixelPositionOffset = (width, height) => ({
+    x: -(width / 2),
+    y: -(height + 10)
+  });
+
   const stablishDataOfArraysInMapForRefresh = () => {
     setIsNeededToLoad(false);
     if (whichViewIsActive === "globalCompanies") {
@@ -224,16 +228,6 @@ const InputMap = ({
   }, []);
 
   const [isNeededToLoad, setIsNeededToLoad] = useState(false);
-
-  const [infoWindowData, setInfoWindowData] = useState({
-    selected: false,
-    position: {
-      lat: 0,
-      lng: 0,
-    },
-    image: ""
-  });
-
   return (
     <div className="map-page-right">
       {isLoading ? (
@@ -349,22 +343,22 @@ const InputMap = ({
             {/*ownPremiumProfiles*/}
             {ownPremiumProfiles.arrayOfInformation.map(profile => {
               return (
-                <Marker
-                  key={profile.id}
+                <OverlayView
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                   position={{
                     lat: profile.coordenates.lat,
                     lng: profile.coordenates.lng
                   }}
-                  icon={{
-                    url: profile.image,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(20, 20)
-                  }}
-                  onClick={() => {
-                    // hacer algo aqui
-                  }}
-                ></Marker>
+                  key={profile.id}
+                  getPixelPositionOffset={getPixelPositionOffset}
+                >
+                  <div className="custom-marker-map">
+                    <div className="custom-marker-map-image" style={{
+                      backgroundImage: "url(" + profile.image + ")"
+                    }}>
+                    </div>
+                  </div>
+                </OverlayView>
               )
             })}
           </>
@@ -373,42 +367,22 @@ const InputMap = ({
             {/*globalPremiumProfiles*/}
             {globalPremiumProfiles.arrayOfInformation.map(profile => {
               return (
-                <Marker
-                  onMouseOver={() => {
-                    setInfoWindowData({
-                      selected: true,
-                      position: {
-                        lat: profile.coordenates.lat,
-                        lng: profile.coordenates.lng,
-                      },
-                      image: profile.image
-                    })
-                  }}
-                  onMouseOut={() => {
-                    setInfoWindowData({
-                      selected: false,
-                      position: {
-                        lat: 0,
-                        lng: 0,
-                      },
-                      image: ""
-                    });
-                  }}
-                  key={profile.id}
+                <OverlayView
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                   position={{
                     lat: profile.coordenates.lat,
                     lng: profile.coordenates.lng
                   }}
-                  icon={{
-                    url: profile.image,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(20, 20)
-                  }}
-                  onClick={() => {
-                    // hacer algo aqui
-                  }}
-                ></Marker>
+                  key={profile.id}
+                  getPixelPositionOffset={getPixelPositionOffset}
+                >
+                  <div className="custom-marker-map">
+                    <div className="custom-marker-map-image" style={{
+                      backgroundImage: "url(" + profile.image + ")"
+                    }}>
+                    </div>
+                  </div>
+                </OverlayView>
               )
             })}
           </>
@@ -417,22 +391,22 @@ const InputMap = ({
             {/*globalDogsFounded*/}
             {globalDogsFounded.arrayOfInformation.map(profile => {
               return (
-                <Marker
-                  key={profile.id}
+                <OverlayView
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                   position={{
                     lat: profile.coordenates.lat,
                     lng: profile.coordenates.lng
                   }}
-                  icon={{
-                    url: profile.image,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(20, 20)
-                  }}
-                  onClick={() => {
-                    // hacer algo aqui
-                  }}
-                ></Marker>
+                  key={profile.id}
+                  getPixelPositionOffset={getPixelPositionOffset}
+                >
+                  <div className="custom-marker-map">
+                    <div className="custom-marker-map-image" style={{
+                      backgroundImage: "url(" + profile.image + ")"
+                    }}>
+                    </div>
+                  </div>
+                </OverlayView>
               )
             })}
           </>
@@ -441,22 +415,22 @@ const InputMap = ({
             {/*ownDogsFounded*/}
             {ownDogsFounded.arrayOfInformation.map(profile => {
               return (
-                <Marker
-                  key={profile.id}
+                <OverlayView
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                   position={{
                     lat: profile.coordenates.lat,
                     lng: profile.coordenates.lng
                   }}
-                  icon={{
-                    url: profile.image,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(20, 20)
-                  }}
-                  onClick={() => {
-                    // hacer algo aqui
-                  }}
-                ></Marker>
+                  key={profile.id}
+                  getPixelPositionOffset={getPixelPositionOffset}
+                >
+                  <div className="custom-marker-map">
+                    <div className="custom-marker-map-image" style={{
+                      backgroundImage: "url(" + profile.image + ")"
+                    }}>
+                    </div>
+                  </div>
+                </OverlayView>
               )
             })}
           </>
@@ -465,58 +439,28 @@ const InputMap = ({
             {/*globalCompanies*/}
             {globalCompanies.arrayOfInformation.map(profile => {
               return (
-                <Marker
-                  key={profile.id}
+                <OverlayView
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                   position={{
                     lat: profile.coordenates.lat,
                     lng: profile.coordenates.lng
                   }}
-                  icon={{
-                    url: profile.image,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(20, 20)
-                  }}
-                  onClick={() => {
-                    // hacer algo aqui
-                  }}
-                ></Marker>
+                  key={profile.id}
+                  getPixelPositionOffset={getPixelPositionOffset}
+                >
+                  <div className="custom-marker-map">
+                    <div className="custom-marker-map-image" style={{
+                      backgroundImage: "url(" + profile.image + ")"
+                    }}>
+                    </div>
+                  </div>
+                </OverlayView>
               )
             })}
           </>
         ) : (
             <></>
           )))))}
-        {infoWindowData.selected ? (<>
-          <InfoWindow
-            position={{
-              lat: infoWindowData.position.lat,
-              lng: infoWindowData.position.lng
-            }}
-            options={{ pixelOffset: new window.google.maps.Size(0, -20) }}
-            onCloseClick={() => {
-              setInfoWindowData({
-                selected: false,
-                position: {
-                  lat: 0,
-                  lng: 0,
-                },
-                image: ""
-              });
-            }}
-          >
-            <div style={{
-              backgroundImage: "url(" + infoWindowData.image + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              width: "100px",
-              height: "100px"
-            }}>
-              {petProfile.name}
-            </div>
-          </InfoWindow></>) : (<></>)}
-
       </GoogleMap>
     </div>
   );
