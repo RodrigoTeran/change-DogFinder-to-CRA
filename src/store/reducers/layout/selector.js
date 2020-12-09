@@ -36,6 +36,15 @@ export const getBannerOkCancelAction = createSelector([selectorGetBannerOkCancel
   return getBannerOkCancelAction;
 });
 
+// bannerRedirectWithLink
+const selectorGetBannerRedirectWithLink = (state) => {
+  return state.layoutReducer.bannerRedirectWithLink;
+};
+
+export const getBannerRedirectWithLink = createSelector([selectorGetBannerRedirectWithLink], (getBannerRedirectWithLink) => {
+  return getBannerRedirectWithLink;
+});
+
 // lines
 const selectorGetLines = (state) => {
   return state.layoutReducer.lines;

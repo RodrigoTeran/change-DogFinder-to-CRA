@@ -324,7 +324,13 @@
   justify-content: center;
   align-items: center;
   background-color: #232323;
+  padding: 0;
   &-instructions {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &-text {
       position: absolute;
       height: 50px;
@@ -340,24 +346,25 @@
       transform: scaleX(0);
       transform-origin: left;
       visibility: hidden;
-      transition: ease-in-out .3s;
+      transition: ease-in-out 0.3s;
     }
     @media (hover: hover) and (pointer: fine) {
-      &:hover{
-        .charge-again-info-map-instructions-text{
+      &:hover {
+        .charge-again-info-map-instructions-text {
           transform-origin: left;
           opacity: 1;
           transform: scaleX(1);
           visibility: visible;
-          transition: ease-in-out .3s;
+          transition: ease-in-out 0.3s;
         }
       }
     }
   }
   svg {
-    fill: #FFF;
+    fill: #fff;
     cursor: pointer;
     width: 60%;
     height: 60%;
+    margin: 0;
   }
 }

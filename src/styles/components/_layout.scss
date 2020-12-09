@@ -80,6 +80,8 @@
     opacity: 0;
     width: 0%;
     height: 0%;
+    top: 0;
+    left: 0;
 
     transition: height 0.01s ease-in-out 0.25s, width 0.01s ease-in-out 0.25s, opacity ease-in-out 0.25s;
 
@@ -591,13 +593,13 @@
     &.open {
       opacity: 1;
       visibility: visible;
-      transition: 0.3s ease-in-out .75s;
+      transition: 0.3s ease-in-out 0.75s;
     }
   }
   &-container {
     width: 100%;
     &.yes {
-      transition: ease-in-out .75s;
+      transition: ease-in-out 0.75s;
     }
   }
 }

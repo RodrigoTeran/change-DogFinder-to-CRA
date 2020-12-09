@@ -40,10 +40,29 @@ const initialState = {
     okButton: false,
     firstAnimation: false,
     inputInfoFromBanner: undefined,
+  },
+  bannerRedirectWithLink: {
+    isDisplayed: {
+      fromWho: undefined,
+      inLayout: false
+    },
+    firstAnimation: false
   }
 };
 
 export default function layoutReducer(state = initialState, action) {
+  if (action.type === "UPDATE_BANNER_REDIRECT_WITH_LINK") {
+    return {
+      ...state,
+      bannerRedirectWithLink: {
+        isDisplayed: {
+          fromWho: action.fromWho,
+          inLayout: action.inLayout
+        },
+        firstAnimation: true
+      }
+    };
+  };
   if (action.type === "UPDATE_BANNER_PROFILE_CONTACT_INFO") {
     return {
       ...state,

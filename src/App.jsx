@@ -26,6 +26,7 @@ import FailureMessagesComponent from "./components/LayoutMessages/FailureMessage
 import SuccessMessagesComponent from "./components/LayoutMessages/SuccessMessagesComponent";
 import BannerOkCancelAction from "./components/LayoutMessages/BannerOkCancelAction";
 import BannerProfileContactInfo from "./components/LayoutMessages/BannerProfileContactInfo";
+import BannerRedirectWithLink from "./components/LayoutMessages/BannerRedirectWithLink";
 
 // Pages
 import Index from "./pages/index";
@@ -364,6 +365,7 @@ const App = ({
         <LogInCard logInActivated={logInActivated} logInFirstAnimation={logInFirstAnimation}></LogInCard>
         <BannerOkCancelAction></BannerOkCancelAction>
         <BannerProfileContactInfo></BannerProfileContactInfo>
+        <BannerRedirectWithLink></BannerRedirectWithLink>
         <div>
           <Switch>
             <Route path="/perfil/mascota"><PerfilMascota></PerfilMascota></Route>

@@ -33,6 +33,14 @@ export const updateBannerOkCancelActionAction = (data) => {
   });
 };
 
+export const updateBannerRedirectWithLinkAction = (data) => {
+  return ({
+    type: "UPDATE_BANNER_REDIRECT_WITH_LINK",
+    fromWho: data.fromWho,
+    inLayout: data.inLayout
+  });
+};
+
 export const updateTopMenuBarActivatedAction = (data) => {
   return ({
     type: "UPDATE_TOP_MENU_BAR_ACTIVATED_CLASS",

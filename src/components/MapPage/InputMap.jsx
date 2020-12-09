@@ -3,15 +3,25 @@ import { connect } from "react-redux";
 
 import {
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from "@react-google-maps/api";
+
+import {
+  TEXT_WANT_SEE_OWN_PREMIUM_PROFILES
+} from "../../utils/textForBannerOkCancelAction";
 
 import {
   updateMapArraysAction
 } from "../../store/reducers/company/actions";
 
 import {
-  getUsername
+  updateBannerRedirectWithLinkAction
+} from "../../store/reducers/layout/actions";
+
+import {
+  getUsername,
+  getPremium
 } from "../../store/reducers/user/selector";
 
 import {
@@ -70,7 +80,10 @@ const InputMap = ({
   updateMapArrays,
   username,
   updateLogin,
-  updateLogInFirstAnimation
+  updateLogInFirstAnimation,
+
+  updateBannerRedirectWithLink,
+  premium
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentZoom, setCurrentZoom] = useState(12);
@@ -82,12 +95,7 @@ const InputMap = ({
     lng: 0
   });
 
-  // Establecer la información
   useEffect(() => {
-    /*
-    una solo vez al principio...
-    y cuando se active por botones
-    */
     if (actualCoordenates.lat !== 0 && !firstSuccessfulLoad) {
       setFirstSuccessfulLoad(true);
       stablishDataOfArraysInMap();
@@ -217,6 +225,15 @@ const InputMap = ({
 
   const [isNeededToLoad, setIsNeededToLoad] = useState(false);
 
+  const [infoWindowData, setInfoWindowData] = useState({
+    selected: false,
+    position: {
+      lat: 0,
+      lng: 0,
+    },
+    image: ""
+  });
+
   return (
     <div className="map-page-right">
       {isLoading ? (
@@ -267,6 +284,13 @@ const InputMap = ({
           if (!username) {
             updateLogInFirstAnimation(true);
             updateLogin(true);
+          } else if (!premium) {
+            updateBannerRedirectWithLink({
+              fromWho: TEXT_WANT_SEE_OWN_PREMIUM_PROFILES,
+              inLayout: true
+            });
+          } else {
+            // se hace el fetch
           };
         }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M336 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM144 32h96c8.8 0 16 7.2 16 16s-7.2 16-16 16h-96c-8.8 0-16-7.2-16-16s7.2-16 16-16zm48 128c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zm112 236.8c0 10.6-10 19.2-22.4 19.2H102.4C90 416 80 407.4 80 396.8v-19.2c0-31.8 30.1-57.6 67.2-57.6h5c12.3 5.1 25.7 8 39.8 8s27.6-2.9 39.8-8h5c37.1 0 67.2 25.8 67.2 57.6v19.2z" /></svg> Ver mis propios perfiles
@@ -318,7 +342,6 @@ const InputMap = ({
         onZoomChanged={onZoom}
         onCenterChanged={() => {
           setIsNeededToLoad(true);
-          console.log("xd")
         }}
       >
         {whichViewIsActive === "ownPremiumProfiles" ? (
@@ -351,6 +374,26 @@ const InputMap = ({
             {globalPremiumProfiles.arrayOfInformation.map(profile => {
               return (
                 <Marker
+                  onMouseOver={() => {
+                    setInfoWindowData({
+                      selected: true,
+                      position: {
+                        lat: profile.coordenates.lat,
+                        lng: profile.coordenates.lng,
+                      },
+                      image: profile.image
+                    })
+                  }}
+                  onMouseOut={() => {
+                    setInfoWindowData({
+                      selected: false,
+                      position: {
+                        lat: 0,
+                        lng: 0,
+                      },
+                      image: ""
+                    });
+                  }}
                   key={profile.id}
                   position={{
                     lat: profile.coordenates.lat,
@@ -444,6 +487,36 @@ const InputMap = ({
         ) : (
             <></>
           )))))}
+        {infoWindowData.selected ? (<>
+          <InfoWindow
+            position={{
+              lat: infoWindowData.position.lat,
+              lng: infoWindowData.position.lng
+            }}
+            options={{ pixelOffset: new window.google.maps.Size(0, -20) }}
+            onCloseClick={() => {
+              setInfoWindowData({
+                selected: false,
+                position: {
+                  lat: 0,
+                  lng: 0,
+                },
+                image: ""
+              });
+            }}
+          >
+            <div style={{
+              backgroundImage: "url(" + infoWindowData.image + ")",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              width: "100px",
+              height: "100px"
+            }}>
+              {petProfile.name}
+            </div>
+          </InfoWindow></>) : (<></>)}
+
       </GoogleMap>
     </div>
   );
@@ -522,7 +595,8 @@ const mapStateToProps = (state) => {
     ownDogsFounded: getOwnDogsFounded(state),
     ownPremiumProfiles: getOwnPremiumProfiles(state),
 
-    username: getUsername(state)
+    username: getUsername(state),
+    premium: getPremium(state)
   };
 };
 
@@ -531,6 +605,7 @@ const mapDispatchToProps = (dispatch) => {
     updateMapArrays: (data) => { dispatch(updateMapArraysAction(data)) },
     updateLogin: (data) => { dispatch(updateLoginAction(data)) },
     updateLogInFirstAnimation: (data) => { dispatch(updateLogInFirstAnimationAction(data)) },
+    updateBannerRedirectWithLink: (data) => { dispatch(updateBannerRedirectWithLinkAction(data)) }
   }
 };
 
