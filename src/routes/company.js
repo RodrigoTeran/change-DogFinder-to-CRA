@@ -3,6 +3,13 @@ const routes = {}
 // Config api domain
 routes.apiDomain = process.env.REACT_APP_API_DOMAIN;
 
+// GET
+routes.getOwnPremiumProfilesRoute = `${routes.apiDomain}/company/data/ownPremiumProfiles`;
+routes.getGlobalPremiumProfilesRoute = `${routes.apiDomain}/company/data/globalPremiumProfiles`;
+routes.getGlobalDogsFoundedRoute = `${routes.apiDomain}/company/data/globalDogsFounded`;
+routes.getOwnDogsFoundedRoute = `${routes.apiDomain}/company/data/ownDogsFounded`;
+routes.getGlobalCompaniesRoute = `${routes.apiDomain}/company/data/globalCompanies`;
+
 // POST
 routes.postUserInCompany = `${routes.apiDomain}/company/user/register`;
 

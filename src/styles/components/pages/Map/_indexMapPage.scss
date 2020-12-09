@@ -10,7 +10,7 @@
     height: 100%;
     overflow-y: scroll;
     padding-top: 10px;
-    background-color: rgba(35, 35, 35, 1);
+    background-color: #191919;
 
     /*
       Temporal
@@ -245,14 +245,14 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    transition: ease-in-out .5s;
+    transition: ease-in-out 0.5s;
     &.open {
       left: 0px;
-      transition: ease-in-out .5s;
+      transition: ease-in-out 0.5s;
     }
     &.close {
       left: -250px;
-      transition: ease-in-out .5s;
+      transition: ease-in-out 0.5s;
     }
     &-giant-button {
       height: 100%;
@@ -277,11 +277,11 @@
         height: 35px;
         &.open {
           transform: rotateY(180deg);
-          transition: ease-in-out .5s;
+          transition: ease-in-out 0.5s;
         }
         &.close {
           transform: rotateY(0deg);
-          transition: ease-in-out .5s;
+          transition: ease-in-out 0.5s;
         }
       }
     }
@@ -289,11 +289,19 @@
       background-color: #232323;
       color: #fff;
       border: none;
+      display: flex;
+      justify-content: flex-start;
       padding: 10px;
       width: 250px;
       padding-top: 15px;
       padding-bottom: 15px;
       transition: ease-in-out 0.3s;
+      svg {
+        fill: #fff;
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+      }
       @media (hover: hover) and (pointer: fine) {
         &:hover {
           background-color: var(--tertiary-color-light);
@@ -301,5 +309,55 @@
         }
       }
     }
+  }
+}
+
+.charge-again-info-map {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  bottom: 285px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+  &-instructions {
+    &-text {
+      position: absolute;
+      height: 50px;
+      cursor: pointer;
+      width: 150px;
+      left: 100%;
+      top: 0;
+      background-color: #232323;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      visibility: hidden;
+      transition: ease-in-out .3s;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover{
+        .charge-again-info-map-instructions-text{
+          transform-origin: left;
+          opacity: 1;
+          transform: scaleX(1);
+          visibility: visible;
+          transition: ease-in-out .3s;
+        }
+      }
+    }
+  }
+  svg {
+    fill: #FFF;
+    cursor: pointer;
+    width: 60%;
+    height: 60%;
   }
 }
