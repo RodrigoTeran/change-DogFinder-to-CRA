@@ -45,3 +45,19 @@
     height: 100%;
   }
 }
+.which-view-active-map-page {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 125px);
+  z-index: 1;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1.2rem;
+  background-color: rgba(22, 22, 22, 0.24);
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+}
