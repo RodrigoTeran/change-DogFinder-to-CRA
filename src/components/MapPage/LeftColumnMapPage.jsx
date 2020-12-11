@@ -67,8 +67,48 @@ const LeftColumnMapPage = ({
           </div>
         ) : (
             actualViewData === "Company" ? (
-              <>
-              </>
+              <div className="map-page-left-premiumProfile">
+                <div className="map-page-left-premiumProfile-info">
+                  Compañía
+                </div>
+                <div className="map-page-left-premiumProfile-profileImage">
+                  Logo:
+                <img src={companyDataLeftPage.logo} alt="Logo compañía" />
+                </div>
+                <div className="map-page-left-premiumProfile-title">
+                  Información sobre esta compañía:
+                </div>
+                <div className="map-page-left-premiumProfile-images-row2">
+                  <div className="map-page-left-premiumProfile-name">
+                    Nombre: <span>{companyDataLeftPage.name === "No se ha establecido" ? ("-----") : (companyDataLeftPage.name)}</span>
+                  </div>
+                  <div className="map-page-left-premiumProfile-whenIsLost">
+                    Página Web: 
+                    
+                    {
+                      companyDataLeftPage.webPage === "No se ha establecido" ? (
+                        <span>-----</span>
+                      ) :(
+                        <a href={companyDataLeftPage.webPage} style={{
+                          textDecoration: "underline",
+                          color:"#aef1f3",
+                          fontWeight: "normal"
+                        }}>{companyDataLeftPage.webPage}</a>
+                      )
+                    }
+                  </div>
+                </div>
+                <div className="map-page-left-premiumProfile-location">
+                  Localización: <span>{companyDataLeftPage.location === "No se ha establecido" ? ("-----") : (companyDataLeftPage.location)}</span>
+                </div>
+                <div className="map-page-left-premiumProfile-images-row2">
+                  <div className="map-page-left-premiumProfile-age" style={{
+                    width: "calc(100% - 20px)"
+                  }}>
+                    Descripción de la companía: <span>{companyDataLeftPage.descriptionCompany === "No se ha establecido" ? ("-----") : (companyDataLeftPage.descriptionCompany)}</span>
+                  </div>
+                </div>
+              </div>
             ) : (
                 actualViewData === "CompanyProfile" ? (
                   <>
