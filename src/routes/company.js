@@ -10,6 +10,8 @@ routes.getGlobalDogsFoundedRoute = `${routes.apiDomain}/company/data/globalDogsF
 routes.getOwnDogsFoundedRoute = `${routes.apiDomain}/company/data/ownDogsFounded`;
 routes.getGlobalCompaniesRoute = `${routes.apiDomain}/company/data/globalCompanies`;
 
+routes.getDataMapLeftProvider = `${routes.apiDomain}/company/data/leftMapPageProvider`;
+
 // POST
 routes.postUserInCompany = `${routes.apiDomain}/company/user/register`;
 

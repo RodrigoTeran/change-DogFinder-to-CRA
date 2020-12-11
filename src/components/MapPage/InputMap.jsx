@@ -1,7 +1,3 @@
-/*
-  el refresh no se hace cuando son own profiles...
-*/
-
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 
@@ -23,6 +19,18 @@ import {
 } from "../../store/reducers/layout/actions";
 
 import {
+  getCompanyDataLeftPage,
+  getProfileDogFoundedDataLeftPage,
+  getProfilePremiumDataLeftPage
+} from "../../store/reducers/leftDataMapPage/selector";
+import {
+  updateActualCompanyDataLeftPageAction,
+  updateActualProfileDogFoundedDataLeftPageAction,
+  updateActualProfilePremiumDataLeftPageAction,
+  updateActualViewDataLeftPageAction
+} from "../../store/reducers/leftDataMapPage/actions";
+
+import {
   getUsername,
   getPremium
 } from "../../store/reducers/user/selector";
@@ -37,7 +45,9 @@ import {
   getGlobalCompaniesRoute,
   getGlobalDogsFoundedRoute,
   getOwnDogsFoundedRoute,
-  getOwnPremiumProfilesRoute
+  getOwnPremiumProfilesRoute,
+
+  getDataMapLeftProvider
 } from "../../routes/company";
 
 import {
@@ -90,7 +100,17 @@ const InputMap = ({
   updateLogInFirstAnimation,
 
   updateBannerRedirectWithLink,
-  premium
+  premium,
+
+  // selectores
+  companyDataLeftPage,
+  profileDogFoundedDataLeftPage,
+  profilePremiumDataLeftPage,
+  // acciones
+  updateActualCompanyDataLeftPage,
+  updateActualProfileDogFoundedDataLeftPage,
+  updateActualProfilePremiumDataLeftPage,
+  updateActualViewDataLeftPage
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentZoom, setCurrentZoom] = useState(12);
@@ -101,6 +121,121 @@ const InputMap = ({
     lat: 0,
     lng: 0
   });
+
+  const checkIfNeedToFecthInfo = (typeOfObject, idOfObject) => {
+    if (typeOfObject === "Company") {
+      if (companyDataLeftPage["idProfile"]) {
+        if (companyDataLeftPage["idProfile"] === idOfObject) {
+          updateActualViewDataLeftPage(typeOfObject);
+        } else {
+          fetchInformationForLeftColumnMapPage(
+            typeOfObject,
+            idOfObject
+          );
+        };
+      } else {
+        fetchInformationForLeftColumnMapPage(
+          typeOfObject,
+          idOfObject
+        );
+      };
+    } else if (typeOfObject === "Profile") {
+      if (profilePremiumDataLeftPage["idProfile"]) {
+        if (profilePremiumDataLeftPage["idProfile"] === idOfObject) {
+          updateActualViewDataLeftPage(typeOfObject);
+        } else {
+          fetchInformationForLeftColumnMapPage(
+            typeOfObject,
+            idOfObject
+          );
+        };
+      } else {
+        fetchInformationForLeftColumnMapPage(
+          typeOfObject,
+          idOfObject
+        );
+      };
+    } else if (typeOfObject === "ProfileDogFounded") {
+      if (profileDogFoundedDataLeftPage["idProfile"]) {
+        if (profileDogFoundedDataLeftPage["idProfile"] === idOfObject) {
+          updateActualViewDataLeftPage(typeOfObject);
+        } else {
+          fetchInformationForLeftColumnMapPage(
+            typeOfObject,
+            idOfObject
+          );
+        };
+      } else {
+        fetchInformationForLeftColumnMapPage(
+          typeOfObject,
+          idOfObject
+        );
+      };
+    };
+  };
+
+  const fetchInformationForLeftColumnMapPage = (typeOfObject, idOfObject) => {
+    updateActualViewDataLeftPage("Loading"); // left page
+    setIsLoading(true); // mapa
+    const body = {
+      idOfObject,
+      typeOfObject
+    };
+    fetch(getDataMapLeftProvider, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "token": localStorage.getItem("token")
+      },
+      body: JSON.stringify(body)
+    }).then(res => {
+      return res.json();
+    }).then(data => {
+      setIsLoading(false); // mapa
+      updateActualViewDataLeftPage(typeOfObject); // left page
+      if (data.status) {
+        if (typeOfObject === "Company") {
+          updateActualCompanyDataLeftPage({
+            name: data.information.name,
+            webPage: data.information.webPage,
+            location: data.information.location,
+            descriptionCompany: data.information.descriptionCompany,
+            logo: data.information.logo,
+            idProfile: data.information.idProfile,
+            arrayProfilesDogFounded: data.information.arrayProfilesDogFounded
+          });
+        } else if (typeOfObject === "Profile") {
+          updateActualProfilePremiumDataLeftPage({
+            name: data.information.name,
+            whenIsLost: data.information.whenIsLost,
+            breed: data.information.breed,
+            location: data.information.location,
+            gender: data.information.gender,
+            age: data.information.age,
+            color: data.information.color,
+            imagesCV: data.information.imagesCV,
+            idProfile: data.information.idProfile,
+            profileImage: data.information.profileImage
+          });
+        } else if (typeOfObject === "ProfileDogFounded") {
+          updateActualProfileDogFoundedDataLeftPage({
+            name: data.information.name,
+            whenIsFounded: data.information.whenIsFounded,
+            breed: data.information.breed,
+            location: data.information.location,
+            gender: data.information.gender,
+            age: data.information.age,
+            color: data.information.color,
+            imagesCV: data.information.imagesCV,
+            idProfile: data.information.idProfile,
+            profileImage: data.information.profileImage
+          });
+        };
+      };
+    });
+  };
 
   useEffect(() => {
     if (actualCoordenates.lat !== 0 && !firstSuccessfulLoad) {
@@ -519,11 +654,6 @@ const InputMap = ({
           if (!username) {
             updateLogInFirstAnimation(true);
             updateLogin(true);
-          } else if (!premium) {
-            updateBannerRedirectWithLink({
-              fromWho: TEXT_WANT_SEE_OWN_PREMIUM_PROFILES,
-              inLayout: true
-            });
           } else {
             setWhichViewIsActive("globalDogsFounded");
             stablishDataOfArraysInMap("globalDogsFounded");
@@ -621,7 +751,12 @@ const InputMap = ({
                   key={profile.id}
                   getPixelPositionOffset={getPixelPositionOffset}
                 >
-                  <div className="custom-marker-map">
+                  <div className="custom-marker-map" onClick={() => {
+                    checkIfNeedToFecthInfo(
+                      profile.typeOfData,
+                      profile.id
+                    );
+                  }}>
                     <div className="custom-marker-map-image" style={{
                       backgroundImage: "url(" + profile.image + ")"
                     }}>
@@ -645,7 +780,12 @@ const InputMap = ({
                   key={profile.id}
                   getPixelPositionOffset={getPixelPositionOffset}
                 >
-                  <div className="custom-marker-map">
+                  <div className="custom-marker-map" onClick={() => {
+                    checkIfNeedToFecthInfo(
+                      profile.typeOfData,
+                      profile.id
+                    );
+                  }}>
                     <div className="custom-marker-map-image" style={{
                       backgroundImage: "url(" + profile.image + ")"
                     }}>
@@ -669,7 +809,12 @@ const InputMap = ({
                   key={profile.id}
                   getPixelPositionOffset={getPixelPositionOffset}
                 >
-                  <div className="custom-marker-map">
+                  <div className="custom-marker-map" onClick={() => {
+                    checkIfNeedToFecthInfo(
+                      profile.typeOfData,
+                      profile.id
+                    );
+                  }}>
                     <div className="custom-marker-map-image" style={{
                       backgroundImage: "url(" + profile.image + ")"
                     }}>
@@ -693,7 +838,12 @@ const InputMap = ({
                   key={profile.id}
                   getPixelPositionOffset={getPixelPositionOffset}
                 >
-                  <div className="custom-marker-map">
+                  <div className="custom-marker-map" onClick={() => {
+                    checkIfNeedToFecthInfo(
+                      profile.typeOfData,
+                      profile.id
+                    );
+                  }}>
                     <div className="custom-marker-map-image" style={{
                       backgroundImage: "url(" + profile.image + ")"
                     }}>
@@ -717,7 +867,12 @@ const InputMap = ({
                   key={profile.id}
                   getPixelPositionOffset={getPixelPositionOffset}
                 >
-                  <div className="custom-marker-map">
+                  <div className="custom-marker-map" onClick={() => {
+                    checkIfNeedToFecthInfo(
+                      profile.typeOfData,
+                      profile.id
+                    );
+                  }}>
                     <div className="custom-marker-map-image" style={{
                       backgroundImage: "url(" + profile.image + ")"
                     }}>
@@ -809,7 +964,11 @@ const mapStateToProps = (state) => {
     ownPremiumProfiles: getOwnPremiumProfiles(state),
 
     username: getUsername(state),
-    premium: getPremium(state)
+    premium: getPremium(state),
+
+    companyDataLeftPage: getCompanyDataLeftPage(state),
+    profileDogFoundedDataLeftPage: getProfileDogFoundedDataLeftPage(state),
+    profilePremiumDataLeftPage: getProfilePremiumDataLeftPage(state)
   };
 };
 
@@ -818,7 +977,12 @@ const mapDispatchToProps = (dispatch) => {
     updateMapArrays: (data) => { dispatch(updateMapArraysAction(data)) },
     updateLogin: (data) => { dispatch(updateLoginAction(data)) },
     updateLogInFirstAnimation: (data) => { dispatch(updateLogInFirstAnimationAction(data)) },
-    updateBannerRedirectWithLink: (data) => { dispatch(updateBannerRedirectWithLinkAction(data)) }
+    updateBannerRedirectWithLink: (data) => { dispatch(updateBannerRedirectWithLinkAction(data)) },
+
+    updateActualCompanyDataLeftPage: (data) => { dispatch(updateActualCompanyDataLeftPageAction(data)) },
+    updateActualProfileDogFoundedDataLeftPage: (data) => { dispatch(updateActualProfileDogFoundedDataLeftPageAction(data)) },
+    updateActualProfilePremiumDataLeftPage: (data) => { dispatch(updateActualProfilePremiumDataLeftPageAction(data)) },
+    updateActualViewDataLeftPage: (data) => { dispatch(updateActualViewDataLeftPageAction(data)) }
   }
 };
 

@@ -30,6 +30,10 @@ Issues:
       - primera columna (left col-3)
         - Al principio van a salir las instrucciones de como usar el mapa
         - Va a aparecer la información del perfil que le diste click en el mapa
+        - Cuando le des click a una foto en el mapa primero checa por id si ya lo tenemos en REDUX...
+          -> Si ya lo tenemos pues se pone el view en el Left column
+          -> Si no se hace el fetch
+
         - si un usuario ve que hay un match
           - va haber un boton de hacer match, y solo asi el podra ver la informacion de tu contacto
             - te va a pedir que tengas tu propia info de contacto si quieres hacer match
@@ -52,6 +56,9 @@ Issues:
             - aqui se podran ver perros encontrados (premium)
             - e info de la organización
           - ver propios perros encontrados
+
+
+
 
   - Stripe:
     - Incluir IVA en compra

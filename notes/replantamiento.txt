@@ -4,3 +4,11 @@
 - Que en el mapa:
   - Los perfiles premium puedan saber cuales perros se pusieron como encontrados
   - Los NO premium solo podran ver los perdidos
+
+- Replantamiento humanista:
+  -> Que en el mapa esté disponible toda, toooda la información...
+  -> Entonces al premium la plataforma le ofrece:
+    -> Que nuestra IA busque en nuetsra plataforma
+    -> Que nuestra IA busque en las redes sociales
+    -> Que hagamos publicaciones en redes sociales
+    -> Que contactemos a las organizaciones y que te pongan en prioridad uno
