@@ -76,12 +76,15 @@ const LeftColumnMapPage = ({
                 ) : (
                     actualViewData === "Profile" ? (
                       <div className="map-page-left-premiumProfile">
+                        <div className="map-page-left-premiumProfile-info">
+                          Mascota perdida
+                        </div>
                         <div className="map-page-left-premiumProfile-profileImage">
                           Imagen de perfil:
                           <img src={profilePremiumDataLeftPage.profileImage} alt="Imagen de Perfil" />
                         </div>
                         <div className="map-page-left-premiumProfile-title">
-                          Información sobre esta mascota:
+                          Información sobre esta mascota perdida:
                         </div>
                         <div className="map-page-left-premiumProfile-images-row2">
                           <div className="map-page-left-premiumProfile-name">
@@ -134,8 +137,66 @@ const LeftColumnMapPage = ({
                       </div>
                     ) : (
                         actualViewData === "ProfileDogFounded" ? (
-                          <>
-                          </>
+                          <div className="map-page-left-premiumProfile">
+                            <div className="map-page-left-premiumProfile-info">
+                              Mascota encontrada
+                            </div>
+                            <div className="map-page-left-premiumProfile-profileImage">
+                              Imagen de perfil:
+                            <img src={profileDogFoundedDataLeftPage.profileImage} alt="Imagen de Perfil" />
+                            </div>
+                            <div className="map-page-left-premiumProfile-title">
+                              Información sobre esta mascota encontrada:
+                          </div>
+                            <div className="map-page-left-premiumProfile-images-row2">
+                              <div className="map-page-left-premiumProfile-name">
+                                Apodo: <span>{profileDogFoundedDataLeftPage.name}</span>
+                              </div>
+                              <div className="map-page-left-premiumProfile-whenIsLost">
+                                Cuándo se encontró: <span>{formatDate(profileDogFoundedDataLeftPage.whenIsFounded)}</span>
+                              </div>
+                            </div>
+                            <div className="map-page-left-premiumProfile-images-row2">
+                              <div className="map-page-left-premiumProfile-breed">
+                                Raza: <span>{profileDogFoundedDataLeftPage.breed}</span>
+                              </div>
+                              <div className="map-page-left-premiumProfile-gender">
+                                Género: <span>{profileDogFoundedDataLeftPage.gender}</span>
+                              </div>
+                            </div>
+                            <div className="map-page-left-premiumProfile-location">
+                              Localización: <span>{profileDogFoundedDataLeftPage.location}</span>
+                            </div>
+                            <div className="map-page-left-premiumProfile-images-row2">
+                              <div className="map-page-left-premiumProfile-age">
+                                Edad: <span>{profileDogFoundedDataLeftPage.age}</span>
+                              </div>
+                              <div className="map-page-left-premiumProfile-color">
+                                Color principal: <span>{profileDogFoundedDataLeftPage.color}</span>
+                              </div>
+                            </div>
+                            <div className="map-page-left-premiumProfile-images">
+                              Imágenes de reconocimiento facial:
+                            <div className="map-page-left-premiumProfile-images-row">
+                                {profileDogFoundedDataLeftPage.imagesCV.map((image, index) => {
+                                  if (index < 2) {
+                                    return (
+                                      <img key={image.srcImage} src={image.srcImage} alt={`Imagen de ${profileDogFoundedDataLeftPage.name}`} />
+                                    )
+                                  }
+                                })}
+                              </div>
+                              <div className="map-page-left-premiumProfile-images-row">
+                                {profileDogFoundedDataLeftPage.imagesCV.map((image, index) => {
+                                  if (index > 1) {
+                                    return (
+                                      <img key={image.srcImage} src={image.srcImage} alt={`Imagen de ${profileDogFoundedDataLeftPage.name}`} />
+                                    )
+                                  }
+                                })}
+                              </div>
+                            </div>
+                          </div>
                         ) : (
                             <>
                               {/*Loading*/}

@@ -2,7 +2,6 @@
   width: 30vw;
   height: 100%;
   overflow-y: scroll;
-  padding-top: 10px;
   padding-bottom: 30px;
   background-color: #191919;
   min-height: 200px;
@@ -12,7 +11,8 @@
     font-weight: bold;
     width: 100%;
     justify-content: center;
-    svg{
+    align-items: flex-start;
+    svg {
       margin-right: 10px;
     }
   }
@@ -47,12 +47,44 @@
     font-weight: bold;
     &-title {
       width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
       text-align: center;
       margin-bottom: 10px;
       margin-top: 10px;
       font-weight: bold;
       font-size: 1.2rem;
       color: #fff;
+    }
+    &-info {
+      color: #fff;
+      background-color: rgb(40, 40, 40);
+      font-weight: normal;
+      padding-right: 80px;
+      padding-left: 20px;
+      height: 29px;
+      position: relative;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      transition: ease-in-out 0.3s;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: rgb(59, 59, 59);
+          transition: ease-in-out 0.3s;
+        }
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 0px;
+        height: 0px;
+        border-right: 15px solid #191919;
+        border-top: 14.5px solid transparent;
+        border-bottom: 14.5px solid transparent;
+        z-index: 1;
+      }
     }
     &-profileImage {
       color: #fff;
@@ -87,7 +119,7 @@
     &-color {
       margin-left: 15px;
       text-align: left;
-      background-color: rgb(32, 32, 32);
+      background-color: rgb(31, 31, 31);
       padding: 10px;
       display: flex;
       flex-direction: column;
@@ -103,25 +135,25 @@
       }
     }
     &-name {
-      width: 35%;
+      width: 50%;
     }
     &-whenIsLost {
-      width: 65%;
+      width: 50%;
     }
     &-breed {
-      width: 50%;
+      width: 65%;
     }
     &-location {
       width: calc(100% - 20px);
     }
     &-gender {
-      width: 50%;
+      width: 35%;
     }
     &-age {
-      width: 40%;
+      width: 45%;
     }
     &-color {
-      width: 60%;
+      width: 55%;
     }
     &-images {
       margin-top: 10px;
