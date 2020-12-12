@@ -44,7 +44,6 @@
     align-items: flex-start;
     font-size: 1.2rem;
     color: #fac3c3;
-    font-weight: bold;
     &-title {
       width: 100%;
       padding-left: 15px;
@@ -109,6 +108,13 @@
     span {
       color: #fff;
       font-weight: normal;
+      font-size: 0.9rem;
+    }
+    a {
+      color: rgb(199, 225, 243);
+      font-weight: normal;
+      font-size: 0.9rem;
+      text-decoration: underline;
     }
     &-name,
     &-whenIsLost,
@@ -187,15 +193,100 @@
         width: 45%;
         margin-top: 5px;
         border-radius: 5px;
+        position: relative;
+        transition: ease-in-out 0.3s;
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 30px 100px -50px rgb(255, 255, 255);
+            transition: ease-in-out 0.3s;
+          }
+        }
       }
     }
   }
-  &-company {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.2rem;
+  &-companyArray {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
     font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    &-profile {
+      width: 100%;
+      font-weight: normal;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      background-color: rgb(31, 31, 31);
+      margin-top: 15px;
+      cursor: pointer;
+      position: relative;
+      &::before,
+      &::after {
+        content: "";
+        cursor: pointer;
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0.1;
+        transition: ease-in-out 0.3s;
+        background-color: #fff;
+        z-index: 1;
+      }
+      &::before {
+        top: 0;
+        left: 0;
+      }
+      &::after {
+        bottom: 0;
+        right: 0;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          &::before,
+          &::after {
+            transition: ease-in-out 0.3s;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      &-column,
+      &-column2 {
+        width: 100px;
+        min-height: 100px;
+        word-break: break-all;
+        display: flex;
+        text-align: left;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+        color: #fac3c3;
+        font-size: 1.2rem;
+        span {
+          font-weight: normal;
+          font-size: 0.9rem;
+          color: #fff;
+        }
+      }
+      &-column{
+        align-self: center;
+      }
+      &-column2 {
+        width: 100%;
+        padding: 10px;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+      }
+    }
   }
   @media screen and (max-width: 1121px) {
     height: fit-content;

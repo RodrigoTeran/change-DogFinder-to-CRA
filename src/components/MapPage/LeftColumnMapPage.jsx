@@ -89,11 +89,7 @@ const LeftColumnMapPage = ({
                       companyDataLeftPage.webPage === "No se ha establecido" ? (
                         <span>-----</span>
                       ) :(
-                        <a href={companyDataLeftPage.webPage} style={{
-                          textDecoration: "underline",
-                          color:"#aef1f3",
-                          fontWeight: "normal"
-                        }}>{companyDataLeftPage.webPage}</a>
+                        <a target="blank" href={companyDataLeftPage.webPage}>{companyDataLeftPage.webPage}</a>
                       )
                     }
                   </div>
@@ -107,6 +103,43 @@ const LeftColumnMapPage = ({
                   }}>
                     Descripción de la companía: <span>{companyDataLeftPage.descriptionCompany === "No se ha establecido" ? ("-----") : (companyDataLeftPage.descriptionCompany)}</span>
                   </div>
+                </div>
+                <div className="map-page-left-companyArray">
+                  Perros rescatados por la empresa:
+                  {companyDataLeftPage.arrayProfilesDogFounded.length > 0 ? (
+                    <>
+                    <div style={{
+                      fontWeight: "normal",
+                      fontSize: ".9rem",
+                      color: "#DDD",
+                      marginBottom: "30px"
+                    }}>
+                      dale click para ver más información...
+                    </div>
+                    {companyDataLeftPage.arrayProfilesDogFounded.map((profile) => {
+                    return(
+                      <div key={profile.idProfile} className="map-page-left-companyArray-profile">
+                        <div className="map-page-left-companyArray-profile-column">
+                          <img src={profile.profileImage} alt="Imagen de Perfil"/>
+                        </div>
+                        <div className="map-page-left-companyArray-profile-column2">
+                          <div>
+                            Cuándo se encontró: <span>{formatDate(profile.whenIsFounded)}</span>
+                          </div>
+                          <div>
+                            Raza: <span>{profile.breed}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )})}
+                    </>
+                  ):(
+                    <div style={{marginTop: "10px", fontWeight: "normal",
+                    fontSize: ".9rem",
+                    color: "#DDD"}}>
+                      -----
+                    </div>
+                  )}
                 </div>
               </div>
             ) : (
