@@ -5,6 +5,33 @@
   padding-bottom: 30px;
   background-color: #191919;
   min-height: 200px;
+  &-volver {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-bottom: 15px;
+    margin-left: 5px;
+    transition: ease-in-out 0.3s;
+    svg {
+      transition: ease-in-out 0.3s;
+      fill: #fff;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: #fac3c3;
+        transition: ease-in-out 0.3s;
+        svg {
+          fill: #fac3c3;;
+          transition: ease-in-out 0.3s;
+        }
+      }
+    }
+  }
   &-h1 {
     display: flex;
     font-size: 1.5rem;
@@ -274,7 +301,7 @@
           color: #fff;
         }
       }
-      &-column{
+      &-column {
         align-self: center;
       }
       &-column2 {
