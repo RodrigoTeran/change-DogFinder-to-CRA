@@ -7,8 +7,6 @@ import {
   getPetProfile
 } from "../../store/reducers/user/selector";
 
-import 'react-calendar/dist/Calendar.css';
-
 import {
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction

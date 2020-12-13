@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PetIsLostController from "./PetIsLostController";
 import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
 
 import {
   updateFailureMessagesComponentAction,
@@ -107,7 +106,7 @@ const ControlMainPetProfile = ({
             <div className={`calendar-container div-calendar-pet-founded-2 ${firstAnimCalendar ? ("yes") : ("")} `}
               style={{
                 height: isCalendarOpen ? (`${heightCalendar - parseInt(window.innerWidth <= 1120 ? (50) : (25))}px`) : ("0px"),
-                marginTop: isCalendarOpen ? ("20px") : ("0px"),
+                marginTop: isCalendarOpen ? (`${window.innerWidth <= 1120 ? ("20px") : ("0px")}`) : ("0px"),
                 marginBottom: isCalendarOpen ? ("20px") : ("0px"),
               }}>
               <div className={`calendar-animation ${isCalendarOpen ? ("open") : ("")}`}>

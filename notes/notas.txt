@@ -1,65 +1,13 @@
 Issues:
-  - Crear página de mapa
-    - implementacion del mapa:
-      - falta poner el "set in my own position"
-      - falta poner un loader en el mapa
-      - cuando se haga el primer loading "al entrar a la página"
-        - antes de hacer cualquier fetch, se ve si en Redux el array correspondiente esta vacio o no... no aplica para "cargar mas perfiles"
-        si tiene valores, no se hace fetch, y se pinta esa info
-          - se va a hacer un fetch con peticion a los perfiles "perdidos" : default 
-            y de body va a llevar un objeto con las coordenadas
-              - en la API entregamos los perfiles perdidos que estan mas cerca de acuerdo a las coordenadas
-              - entregamos un array de objetos con esta informacion:
-                {
-                  lat:
-                  lng:
-                  profileImage:
-                  _id:
-                }
-                el id para poder identificarlo cuando se de click en el y haga un request al API sobre su informacion faltante
-          - cuando se haga un cambio en la visualizacion del mapa
-            - se hace lo mismo... se pone en loading, y se hace el request pero ahora a otra URL y con las coordenadas del center del mapa...
-              ya que el usuario se pudo haber cambiado de posicion
-          - cuando el usuario se cambie de posicion, va haber un boton que diga "cargar mas perfiles" y se hace otra vez el request, pero con la posicion
-            del center del mapa
-            - para no perder los datos que se acaban de cargar:
-              - todo se va a ir guardanro en redux
-              van a ser 7 arrays donde va a estar toda la informacion... asi si se va de la pestaña, ahi esta todo...
-
-    - Va a tener dos columnas
-      - primera columna (left col-3)
-        - Al principio van a salir las instrucciones de como usar el mapa
-        - Va a aparecer la información del perfil que le diste click en el mapa
-        - Cuando le des click a una foto en el mapa primero checa por id si ya lo tenemos en REDUX...
-          -> Si ya lo tenemos pues se pone el view en el Left column
-          -> Si no se hace el fetch
-
-        - si un usuario ve que hay un match
-          - va haber un boton de hacer match, y solo asi el podra ver la informacion de tu contacto
-            - te va a pedir que tengas tu propia info de contacto si quieres hacer match
-              - esto siempre se pide si tu subes a un perro encontrado
-                pero si no has subido nada y ya viste el match... te lo va a pedir desde aqui
-          - entonces si alguien ve tu info de contacto, tu te vas a enterar de quien fue...
-            - esto para que no todas las personas publicas vean tu info de contacto. si alguien la ve,
-            tu sabras quien fue y te notificaran que se hizo match, tanto ese usuario como la plataforma
-        - si es una empresa
-          - solo va a aparecer la informacion de la empresa
-      - segunda columna (right col-9)
-        - va a ser el mapa
-          - vas a poder desplazarte
-          - va a estar el input de arriba como siempre
-        - en la parte de arriba de esta columnad va a haber estos cuadros
-          - ver mis propios perfiles (premium)
-          - ver perros encontrados (premium)
-          - ver perros perdidos (default)
-          - ver organizaciones
-            - aqui se podran ver perros encontrados (premium)
-            - e info de la organización
-          - ver propios perros encontrados
-
-
-
-
+  - Cuando se haga un match:
+    --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
+    --> En tu página de perfil, el perfil de Freda va a tener otro color:
+      - Cuando le das, te va a llevar a la página de notificaciones...
+        - Si ese es tu perro confirma, ponte en contacto con esa persona, y en la página de notificaciones se va a quedar en el historial...
+          - Para que lo puedas consultar si no guardaste la información del que rescato a tu mascota.
+        - Se confirma también para que ya no aparezaca en el mapa... también se quita el isLost
+        - Si no era tu perro
+          - Le das en "nel" y aun asi se gurada en el historial
   - Stripe:
     - Incluir IVA en compra
     - Crear lo del codigo de descuento con stripe
@@ -72,15 +20,6 @@ Issues:
   - Poner SEO en html
   - Crear la página de notificaciones
     - que ahi salgan los matches con la info del otro usuario
-  - Cuando se haga un match:
-    --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
-    --> En tu página de perfil, el perfil de Freda va a tener otro color:
-      - Cuando le das, te va a llevar a la página de notificaciones...
-        - Si ese es tu perro confirma, ponte en contacto con esa persona, y en la página de notificaciones se va a quedar en el historial...
-          - Para que lo puedas consultar si no guardaste la información del que rescato a tu mascota.
-        - Se confirma también para que ya no aparezaca en el mapa... también se quita el isLost
-        - Si no era tu perro
-          - Le das en "nel" y aun asi se gurada en el historial
   - Crear la página de adopcion
     - que puedas poner y tambien adoptar
     - lo unico que se pide es que estes registrado con tus datos
