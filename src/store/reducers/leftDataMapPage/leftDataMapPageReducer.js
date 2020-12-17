@@ -3,9 +3,9 @@ const initialState = {
   /*
     6 posibles estados:
     -> Company         YA
-    -> CompanyProfile
-    -> Profile         YA
-    -> ProfileDogFounded         YA
+    ---> CompanyProfile
+    ---> Profile         YA
+    ---> ProfileDogFounded         YA
     -> Nothing         YA
     -> Loading         YA
   */

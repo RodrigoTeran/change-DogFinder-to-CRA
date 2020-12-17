@@ -7,6 +7,7 @@ import indexPageReducer from "./indexPage/indexPageReducer";
 import layoutReducer from "./layout/layoutReducer";
 import companyReducer from "./company/companyReducer";
 import leftDataMapPageReducer from "./leftDataMapPage/leftDataMapPageReducer";
+import jarvisReducer from "./jarvis/jarvisReducer";
 
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
   indexPageReducer,
   layoutReducer,
   companyReducer,
-  leftDataMapPageReducer
+  leftDataMapPageReducer,
+  jarvisReducer
 });
