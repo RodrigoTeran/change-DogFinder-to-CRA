@@ -291,7 +291,7 @@ const Menubar = ({
                     title="Notificaciones"
                   >
                     <Link
-                      to="/"
+                      to="/notificaciones"
                       className="link-after-effect"
                       style={{ cursor: "pointer" }}
                     >

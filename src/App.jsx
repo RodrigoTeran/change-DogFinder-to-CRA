@@ -38,6 +38,7 @@ import Questions from "./pages/preguntas";
 import Terms from "./pages/terminos";
 import DogFounded from "./pages/encontrada";
 import PerfilMascota from "./pages/perfilMascota";
+import Notifications from "./pages/notificaciones";
 
 // Acciones
 import {
@@ -75,7 +76,7 @@ const App = ({
   updateFirstResponseAPI,
   updateKeyActiveUser,
   updateUserCompany,
-  updatePushJarvisInfo
+  updatePushJarvisInfo,
 }) => {
   useEffect(() => {
     getUserData();
@@ -111,7 +112,6 @@ const App = ({
         return res.json();
       })
       .then((data) => {
-        updateFirstResponseAPI(true);
         if (data.username) {
           updatePushJarvisInfo(data.arrayJarvisesWithInfo);
           updateUser({
@@ -339,6 +339,7 @@ const App = ({
             state: undefined,
           });
         }
+        updateFirstResponseAPI(true);
       });
   };
   const resizeTopLayoutBodyContainer = () => {
@@ -404,6 +405,9 @@ const App = ({
             </Route>
             <Route path="/comprar">
               <Buy></Buy>
+            </Route>
+            <Route path="/notificaciones">
+              <Notifications></Notifications>
             </Route>
             <Route path="/contactanos">
               <ContactUs></ContactUs>
@@ -491,8 +495,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(updateUserCompanyAction(data));
     },
     updatePushJarvisInfo: (data) => {
-      dispatch(updatePushJarvisInfoAction(data))
-    }
+      dispatch(updatePushJarvisInfoAction(data));
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);
