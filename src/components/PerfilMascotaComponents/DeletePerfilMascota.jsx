@@ -74,6 +74,12 @@ const DeletePerfilMascota = ({
             description: `Se borro el perfil con éxito`,
           });
           setYesRedirectProp();
+        } else if (data.msg === "noSePuede") {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: `No se puede borrar el perfil ya que tienes una notifiación relacionada con este perfil. Cuando elimines la notificación podrás borrar este perfil.`,
+          });
         } else {
           updateFailureMessagesComponent({
             state: true,
