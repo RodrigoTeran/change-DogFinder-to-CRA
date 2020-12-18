@@ -108,6 +108,7 @@ const Profile = ({
         <div className={`profile-page space-footer-bottom`}>
           <HeaderProfilePage
             isViewOnCompany={isViewOnCompany}
+            setIsViewOnCompany={setIsViewOnCompany}
             isPremium={premium} username={username} email={email} imgId={imgId}>
             <ChangeViewProfilePage
               setIsViewOnCompany={setIsViewOnCompany}

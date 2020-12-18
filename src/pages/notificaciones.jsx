@@ -19,6 +19,7 @@ import { updateTopMenuBarActivatedAction } from "../store/reducers/layout/action
 
 // Components
 import FooterLayout from "../components/FooterLayout";
+import HeaderNotificaciones from "../components/NotificationsPageComponents/HeaderNotificaciones";
 
 const Notifications = ({
   auth,
@@ -58,7 +59,9 @@ const Notifications = ({
       {yesRedirect ? <Redirect to="/"></Redirect> : <></>}
       {firstResponseUserAPI ? (
         <>
-          <div className={`notifications-page space-footer-bottom`}>NOTIFÍCAME XD</div>
+          <div className={`notifications-page space-footer-bottom`}>
+            <HeaderNotificaciones></HeaderNotificaciones>
+          </div>
         </>
       ) : (
         <div className="loader-pages">
