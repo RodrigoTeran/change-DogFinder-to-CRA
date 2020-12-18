@@ -22,7 +22,10 @@ import {
   updateLogInFirstAnimationAction,
   updateLoginAction,
 } from "../../store/reducers/user/actions";
-import { updateFailureMessagesComponentAction } from "../../store/reducers/layout/actions";
+import {
+  updateFailureMessagesComponentAction,
+  updateSuccessMessagesComponentAction,
+} from "../../store/reducers/layout/actions";
 import { createMatchJarvis } from "../../routes/jarvisRoutes";
 
 const MatchComponent = ({
@@ -36,6 +39,7 @@ const MatchComponent = ({
   updateLogin,
   textButton,
   updateFailureMessagesComponent,
+  updateSuccessMessagesComponent,
 
   typeProfile,
   idProfile,
@@ -76,6 +80,11 @@ const MatchComponent = ({
         }
         if (data.status === "true") {
           updatePushJarvisInfo(data.jarvisInfo);
+          updateSuccessMessagesComponent({
+            state: true,
+            title: "Se conectó",
+            description: "Se conectó al perfil exitósamente.",
+          });
         } else if (data.status === "mismo") {
           updateFailureMessagesComponent({
             state: true,
@@ -110,16 +119,10 @@ const MatchComponent = ({
       updateLogInFirstAnimation(true);
       updateLogin(true);
     } else {
-      var email = undefined;
-      var tel = undefined;
       var siEmpresa = false;
       if (companyXd && textButton === "Encontré a esta perro") {
-        email = userCompany.correoCompania;
-        tel = userCompany.numeroTelefonoCompania;
         siEmpresa = true;
       } else {
-        email = emailForContact;
-        tel = numberOfTelephoneForContact;
         siEmpresa = false;
       }
       if (
@@ -202,6 +205,7 @@ const LeftColumnMapPage = ({
   updateLogInFirstAnimation,
   updateLogin,
   updateFailureMessagesComponent,
+  updateSuccessMessagesComponent,
 
   // BANNER
   userCompany,
@@ -489,6 +493,7 @@ const LeftColumnMapPage = ({
             updateActualViewDataLeftPage={updateActualViewDataLeftPage}
             userCompany={userCompany}
             updatePushJarvisInfo={updatePushJarvisInfo}
+            updateSuccessMessagesComponent={updateSuccessMessagesComponent}
           ></MatchComponent>
         </>
       ) : actualViewData === "ProfileDogFounded" ||
@@ -602,6 +607,7 @@ const LeftColumnMapPage = ({
             updateActualViewDataLeftPage={updateActualViewDataLeftPage}
             userCompany={userCompany}
             updatePushJarvisInfo={updatePushJarvisInfo}
+            updateSuccessMessagesComponent={updateSuccessMessagesComponent}
           ></MatchComponent>
         </>
       ) : (
@@ -656,6 +662,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePushJarvisInfo: (data) => {
       dispatch(updatePushJarvisInfoAction(data));
+    },
+    updateSuccessMessagesComponent: (data) => {
+      dispatch(updateSuccessMessagesComponentAction(data));
     },
   };
 };

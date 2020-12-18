@@ -1,6 +1,5 @@
 Issues:
   - Cuando se haga un match:
-    --> Te va a llegar la notificación a tu número de Whatsapp, a correo y en la plataforma
     --> En tu página de perfil, el perfil de Freda va a tener otro color:
       - Cuando le das, te va a llevar a la página de notificaciones...
         - Si ese es tu perro confirma, ponte en contacto con esa persona, y en la página de notificaciones se va a quedar en el historial...
