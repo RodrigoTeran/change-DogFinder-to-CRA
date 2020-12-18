@@ -56,7 +56,7 @@
         left: 0px;
         @media screen and (max-width: 1121px) {
           width: 270px;
-          left: 0;
+          left: calc(100vw - 270px);
         }
         input {
           padding: 0.5rem;
