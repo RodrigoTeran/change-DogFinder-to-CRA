@@ -34,6 +34,7 @@
       align-items: center;
       svg {
         fill: #ffffff;
+        transition: ease-in-out 0.3s;
       }
     }
     &-span {

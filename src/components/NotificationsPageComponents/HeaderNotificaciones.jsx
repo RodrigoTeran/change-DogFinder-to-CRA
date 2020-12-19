@@ -3,30 +3,74 @@ import { connect } from "react-redux";
 
 import { getJarvises } from "../../store/reducers/jarvis/selector";
 import { getUserCompany } from "../../store/reducers/company/selector";
+
 import MainSectionNotificacionesPage from "./MainSectionNotificacionesPage";
 
 const HeaderNotificaciones = ({ jarvises, userCompany }) => {
-  const [isManual, setIsManual] = useState(false); // se pone primero IA
-  const [howManyManual, setHowManyManual] = useState(undefined);
-  const [howManyIA, setHowManyIA] = useState(undefined);
+  // IA
+  const [howManyIAUser, setHowManyIAUser] = useState([]);
+  const [howManyIACompany, setHowManyIACompany] = useState([]);
+
+  // Manual
+  const [howManyManualUser, setHowManyManualUser] = useState([]);
+  const [howManyManualCompany, setHowManyManualCompany] = useState([]);
+
+  // User
+  const [howManyUser, setHowManyUser] = useState([]);
+
+  // Company
+  const [howManyCompany, setHowManyCompany] = useState([]);
+
+  // Modos
+  const [isUser, setIsUser] = useState(true); // User
+  const [isIA, setIsIA] = useState(true); // IA
+
   useEffect(() => {
-    var artesanal = 0;
-    var ia = 0;
+    var artesanalUser = [];
+    var artesanalCompany = [];
+
+    var iaUser = [];
+    var iaCompany = [];
+
+    var user = [];
+    var company = [];
+
+    // User y Company
     for (var i = 0; i < jarvises.length; i++) {
-      if (jarvises[i].artesanal) {
-        artesanal += 1;
+      if (
+        jarvises[i].typeFounder === "Company" &&
+        jarvises[i].myRelationWithJarvis === "founder"
+      ) {
+        company.push(i);
       } else {
-        ia += 1;
+        user.push(i);
       }
     }
-    if (ia > 9) {
-      ia = "+9";
+
+    // IAUser y ArtesanalUser
+    for (var i = 0; i < user.length; i++) {
+      if (jarvises[user[i]].artesanal) {
+        artesanalUser.push(user[i]);
+      } else {
+        iaUser.push(user[i]);
+      }
     }
-    if (artesanal > 9) {
-      artesanal = "+9";
+
+    // IACompany y ArtesanalCompany
+    for (var i = 0; i < company.length; i++) {
+      if (jarvises[company[i]].artesanal) {
+        artesanalCompany.push(company[i]);
+      } else {
+        iaCompany.push(company[i]);
+      }
     }
-    setHowManyManual(artesanal);
-    setHowManyIA(ia);
+
+    setHowManyIAUser(iaUser);
+    setHowManyIACompany(iaCompany);
+    setHowManyManualUser(artesanalUser);
+    setHowManyManualCompany(artesanalCompany);
+    setHowManyUser(user);
+    setHowManyCompany(company);
   }, [jarvises]);
   return (
     <div className="notifications-page-header">
@@ -60,40 +104,50 @@ const HeaderNotificaciones = ({ jarvises, userCompany }) => {
       <div className="notifications-page-header-manualOrIA-containerButtons">
         <div className="notifications-page-header-manualOrIA-containerButtons-inside">
           <div
-            className="notifications-page-header-manualOrIA-containerButtons-COMPANY"
-            title="Notificaciones por IA"
+            className={`${
+              userCompany.name
+                ? "notifications-page-header-manualOrIA-containerButtons-COMPANY-hover"
+                : "notifications-page-header-manualOrIA-containerButtons-COMPANY-noHOVER"
+            }`}
+            title="Notificaciones de Compañía"
             onClick={() => {
-              setIsManual(false);
+              if (userCompany.name) {
+                setIsUser(false);
+              }
             }}
           >
-            Notificaciones por IA
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-              <path d="M512.1 191l-8.2 14.3c-3 5.3-9.4 7.5-15.1 5.4-11.8-4.4-22.6-10.7-32.1-18.6-4.6-3.8-5.8-10.5-2.8-15.7l8.2-14.3c-6.9-8-12.3-17.3-15.9-27.4h-16.5c-6 0-11.2-4.3-12.2-10.3-2-12-2.1-24.6 0-37.1 1-6 6.2-10.4 12.2-10.4h16.5c3.6-10.1 9-19.4 15.9-27.4l-8.2-14.3c-3-5.2-1.9-11.9 2.8-15.7 9.5-7.9 20.4-14.2 32.1-18.6 5.7-2.1 12.1.1 15.1 5.4l8.2 14.3c10.5-1.9 21.2-1.9 31.7 0L552 6.3c3-5.3 9.4-7.5 15.1-5.4 11.8 4.4 22.6 10.7 32.1 18.6 4.6 3.8 5.8 10.5 2.8 15.7l-8.2 14.3c6.9 8 12.3 17.3 15.9 27.4h16.5c6 0 11.2 4.3 12.2 10.3 2 12 2.1 24.6 0 37.1-1 6-6.2 10.4-12.2 10.4h-16.5c-3.6 10.1-9 19.4-15.9 27.4l8.2 14.3c3 5.2 1.9 11.9-2.8 15.7-9.5 7.9-20.4 14.2-32.1 18.6-5.7 2.1-12.1-.1-15.1-5.4l-8.2-14.3c-10.4 1.9-21.2 1.9-31.7 0zm-10.5-58.8c38.5 29.6 82.4-14.3 52.8-52.8-38.5-29.7-82.4 14.3-52.8 52.8zM386.3 286.1l33.7 16.8c10.1 5.8 14.5 18.1 10.5 29.1-8.9 24.2-26.4 46.4-42.6 65.8-7.4 8.9-20.2 11.1-30.3 5.3l-29.1-16.8c-16 13.7-34.6 24.6-54.9 31.7v33.6c0 11.6-8.3 21.6-19.7 23.6-24.6 4.2-50.4 4.4-75.9 0-11.5-2-20-11.9-20-23.6V418c-20.3-7.2-38.9-18-54.9-31.7L74 403c-10 5.8-22.9 3.6-30.3-5.3-16.2-19.4-33.3-41.6-42.2-65.7-4-10.9.4-23.2 10.5-29.1l33.3-16.8c-3.9-20.9-3.9-42.4 0-63.4L12 205.8c-10.1-5.8-14.6-18.1-10.5-29 8.9-24.2 26-46.4 42.2-65.8 7.4-8.9 20.2-11.1 30.3-5.3l29.1 16.8c16-13.7 34.6-24.6 54.9-31.7V57.1c0-11.5 8.2-21.5 19.6-23.5 24.6-4.2 50.5-4.4 76-.1 11.5 2 20 11.9 20 23.6v33.6c20.3 7.2 38.9 18 54.9 31.7l29.1-16.8c10-5.8 22.9-3.6 30.3 5.3 16.2 19.4 33.2 41.6 42.1 65.8 4 10.9.1 23.2-10 29.1l-33.7 16.8c3.9 21 3.9 42.5 0 63.5zm-117.6 21.1c59.2-77-28.7-164.9-105.7-105.7-59.2 77 28.7 164.9 105.7 105.7zm243.4 182.7l-8.2 14.3c-3 5.3-9.4 7.5-15.1 5.4-11.8-4.4-22.6-10.7-32.1-18.6-4.6-3.8-5.8-10.5-2.8-15.7l8.2-14.3c-6.9-8-12.3-17.3-15.9-27.4h-16.5c-6 0-11.2-4.3-12.2-10.3-2-12-2.1-24.6 0-37.1 1-6 6.2-10.4 12.2-10.4h16.5c3.6-10.1 9-19.4 15.9-27.4l-8.2-14.3c-3-5.2-1.9-11.9 2.8-15.7 9.5-7.9 20.4-14.2 32.1-18.6 5.7-2.1 12.1.1 15.1 5.4l8.2 14.3c10.5-1.9 21.2-1.9 31.7 0l8.2-14.3c3-5.3 9.4-7.5 15.1-5.4 11.8 4.4 22.6 10.7 32.1 18.6 4.6 3.8 5.8 10.5 2.8 15.7l-8.2 14.3c6.9 8 12.3 17.3 15.9 27.4h16.5c6 0 11.2 4.3 12.2 10.3 2 12 2.1 24.6 0 37.1-1 6-6.2 10.4-12.2 10.4h-16.5c-3.6 10.1-9 19.4-15.9 27.4l8.2 14.3c3 5.2 1.9 11.9-2.8 15.7-9.5 7.9-20.4 14.2-32.1 18.6-5.7 2.1-12.1-.1-15.1-5.4l-8.2-14.3c-10.4 1.9-21.2 1.9-31.7 0zM501.6 431c38.5 29.6 82.4-14.3 52.8-52.8-38.5-29.6-82.4 14.3-52.8 52.8z" />
+              <path d="M128 96c26.5 0 48-21.5 48-48S154.5 0 128 0 80 21.5 80 48s21.5 48 48 48zm384 0c26.5 0 48-21.5 48-48S538.5 0 512 0s-48 21.5-48 48 21.5 48 48 48zm125.7 372.1l-44-110-41.1 46.4-2 18.2 27.7 69.2c5 12.5 17 20.1 29.7 20.1 4 0 8-.7 11.9-2.3 16.4-6.6 24.4-25.2 17.8-41.6zm-34.2-209.8L585 178.1c-4.6-20-18.6-36.8-37.5-44.9-18.5-8-39-6.7-56.1 3.3-22.7 13.4-39.7 34.5-48.1 59.4L432 229.8 416 240v-96c0-8.8-7.2-16-16-16H240c-8.8 0-16 7.2-16 16v96l-16.1-10.2-11.3-33.9c-8.3-25-25.4-46-48.1-59.4-17.2-10-37.6-11.3-56.1-3.3-18.9 8.1-32.9 24.9-37.5 44.9l-18.4 80.2c-4.6 20 .7 41.2 14.4 56.7l67.2 75.9 10.1 92.6C130 499.8 143.8 512 160 512c1.2 0 2.3-.1 3.5-.2 17.6-1.9 30.2-17.7 28.3-35.3l-10.1-92.8c-1.5-13-6.9-25.1-15.6-35l-43.3-49 17.6-70.3 6.8 20.4c4.1 12.5 11.9 23.4 24.5 32.6l51.1 32.5c4.6 2.9 12.1 4.6 17.2 5h160c5.1-.4 12.6-2.1 17.2-5l51.1-32.5c12.6-9.2 20.4-20 24.5-32.6l6.8-20.4 17.6 70.3-43.3 49c-8.7 9.9-14.1 22-15.6 35l-10.1 92.8c-1.9 17.6 10.8 33.4 28.3 35.3 1.2.1 2.3.2 3.5.2 16.1 0 30-12.1 31.8-28.5l10.1-92.6 67.2-75.9c13.6-15.5 19-36.7 14.4-56.7zM46.3 358.1l-44 110c-6.6 16.4 1.4 35 17.8 41.6 16.8 6.6 35.1-1.7 41.6-17.8l27.7-69.2-2-18.2-41.1-46.4z" />
             </svg>
             <div className="notifications-page-header-manualOrIA-containerButtons-COMPANY-cantidad">
-              {howManyIA}
+              {howManyCompany.length > 9 ? "+9" : howManyCompany.length}
             </div>
           </div>
           <div
             className="notifications-page-header-manualOrIA-containerButtons-USER"
-            title="Notificaciones de usuarios"
+            title="Notificaciones de mi Perfil"
             onClick={() => {
-              setIsManual(true);
+              setIsUser(true);
             }}
           >
-            Notificaciones de usuarios
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-              <path d="M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" />
             </svg>
             <div className="notifications-page-header-manualOrIA-containerButtons-USER-cantidad">
-              {howManyManual}
+              {howManyUser.length > 9 ? "+9" : howManyUser.length}
             </div>
           </div>
         </div>
         <div className="notifications-page-header-manualOrIA-containerButtons-line"></div>
       </div>
       <MainSectionNotificacionesPage
-        isManual={isManual}
+        isIA={isIA}
+        isUser={isUser}
+        howManyIAUser={howManyIAUser}
+        howManyIACompany={howManyIACompany}
+        howManyManualUser={howManyManualUser}
+        howManyManualCompany={howManyManualCompany}
+        setIsIA={setIsIA}
       ></MainSectionNotificacionesPage>
     </div>
   );
