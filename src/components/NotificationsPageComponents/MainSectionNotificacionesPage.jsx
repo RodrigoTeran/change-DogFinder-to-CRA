@@ -1,15 +1,143 @@
 import React, { useState } from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
 
+const ColYesJarvis = ({ howManyManualUser, jarvises }) => {
+  const formatDate = (date) => {
+    const PrototypeDate = new Date(date);
+    const day = PrototypeDate.getDate();
+    const month = PrototypeDate.getMonth() + 1;
+    const year = PrototypeDate.getFullYear();
+    const superResult = String(day) + "/" + String(month) + "/" + String(year);
+    return superResult;
+  };
+  return (
+    <>
+      {howManyManualUser.map((jarvisIndex) => {
+        if (jarvises[jarvisIndex].myRelationWithJarvis === "owner") {
+          if (jarvises[jarvisIndex].isInOwnerLayout) {
+            if (jarvises[jarvisIndex].artesanal) {
+              // ARTESANAL, por lo tanto no se usa (premiumProfile)
+              return (
+                <div
+                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
+                  key={jarvisIndex}
+                >
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-1">
+                    {jarvises[jarvisIndex].myRelationWithJarvis === "owner"
+                      ? `${
+                          jarvises[jarvisIndex].typeProfile === "Premium"
+                            ? "Encontraron a tu perro"
+                            : "Encontraste a tu perro en el mapa"
+                        }`
+                      : `${
+                          jarvises[jarvisIndex].typeProfile === "Premium"
+                            ? "Encontraste a este perro"
+                            : "Alguien reporto a este perro como suyo en el mapa"
+                        }`}
+                  </div>
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-2">
+                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
+                      <img
+                        src={jarvises[jarvisIndex].profile.profileImage}
+                        alt="Imagen de Perfil"
+                      />
+                    </div>
+                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
+                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-name">
+                          <span>
+                            {jarvises[jarvisIndex].typeProfile === "Premium"
+                              ? "Nombre: "
+                              : "Apodo: "}
+                          </span>
+                          {jarvises[jarvisIndex].profile.petName}
+                        </div>
+                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-date">
+                          <span>
+                            {jarvises[jarvisIndex].typeProfile === "Premium"
+                              ? "¿Cuándo se perdió?: "
+                              : "¿Cuándo se encontró?:"}
+                          </span>
+                          {formatDate(jarvises[jarvisIndex].profile.whenIsLost)}
+                        </div>
+                      </div>
+
+                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-race">
+                          <span>Raza:</span>
+                          {jarvises[jarvisIndex].profile.race}
+                        </div>
+                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-gender">
+                          <span>Género:</span>
+                          {jarvises[jarvisIndex].profile.gender}
+                        </div>
+                      </div>
+
+                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-age">
+                          <span>Edad:</span>
+                          {jarvises[jarvisIndex].profile.size}
+                        </div>
+                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-color">
+                          <span>Color Principal:</span>
+                          {jarvises[jarvisIndex].profile.mainColor}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            } else {
+              // NO ARTESANAL
+              return <></>;
+            }
+          } else {
+            return <></>;
+          }
+        } else {
+          if (jarvises[jarvisIndex].isInFounderLayout) {
+            if (jarvises[jarvisIndex].artesanal) {
+              // ARTESANAL, por lo tanto no se usa (premiumProfile)
+              return (
+                <div
+                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
+                  key={jarvisIndex}
+                >
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
+                    <img
+                      src={jarvises[jarvisIndex].profile.profileImage}
+                      alt="Imagen de Perfil"
+                    />
+                  </div>
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
+                    {jarvises[jarvisIndex].profile.petName}
+                  </div>
+                </div>
+              );
+            } else {
+              // NO ARTESANAL
+              return <></>;
+            }
+          } else {
+            return <></>;
+          }
+        }
+      })}
+    </>
+  );
+};
+
 const ColYes = ({ viewManualUser, children }) => {
+  const altoCol2Compu = 500;
+  const altoCol2Cel = 1000;
   return (
     <div
       className="main-section-notificaciones-page-container-col-2-yes"
       style={{
         transform: `${
           window.innerWidth < 1350
-            ? `translateY(-${viewManualUser * 510}px)`
-            : `translateY(-${viewManualUser * 310}px)`
+            ? `translateY(-${viewManualUser * (altoCol2Cel - 90)}px)`
+            : `translateY(-${viewManualUser * (altoCol2Compu - 90)}px)`
         }`,
       }}
     >
@@ -215,61 +343,10 @@ const MainSectionNotificacionesPage = ({
                         setViewManualUser={setViewManualUser}
                       ></ArrowUP>
                       <ColYes viewManualUser={viewManualUser}>
-                        {howManyManualUser.map((jarvisIndex) => {
-                          // ARTESANAL, por lo tanto no se usa (premiumProfile)
-                          if (
-                            jarvises[jarvisIndex].myRelationWithJarvis ===
-                            "owner"
-                          ) {
-                            if (jarvises[jarvisIndex].isInOwnerLayout) {
-                              return (
-                                <div
-                                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
-                                  key={jarvisIndex}
-                                >
-                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
-                                    <img
-                                      src={
-                                        jarvises[jarvisIndex].profile
-                                          .profileImage
-                                      }
-                                      alt="Imagen de Perfil"
-                                    />
-                                  </div>
-                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
-                                    {jarvises[jarvisIndex].profile.petName}
-                                  </div>
-                                </div>
-                              );
-                            } else {
-                              return <></>;
-                            }
-                          } else {
-                            if (jarvises[jarvisIndex].isInFounderLayout) {
-                              return (
-                                <div
-                                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
-                                  key={jarvisIndex}
-                                >
-                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
-                                    <img
-                                      src={
-                                        jarvises[jarvisIndex].profile
-                                          .profileImage
-                                      }
-                                      alt="Imagen de Perfil"
-                                    />
-                                  </div>
-                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
-                                    {jarvises[jarvisIndex].profile.petName}
-                                  </div>
-                                </div>
-                              );
-                            } else {
-                              return <></>;
-                            }
-                          }
-                        })}
+                        <ColYesJarvis
+                          howManyManualUser={howManyManualUser}
+                          jarvises={jarvises}
+                        ></ColYesJarvis>
                       </ColYes>
                       <ArrowDOWN
                         howManyManualUser={howManyManualUser}
