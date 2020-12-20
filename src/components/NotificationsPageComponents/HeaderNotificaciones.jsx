@@ -148,6 +148,7 @@ const HeaderNotificaciones = ({ jarvises, userCompany }) => {
         howManyManualUser={howManyManualUser}
         howManyManualCompany={howManyManualCompany}
         setIsIA={setIsIA}
+        jarvises={jarvises}
       ></MainSectionNotificacionesPage>
     </div>
   );

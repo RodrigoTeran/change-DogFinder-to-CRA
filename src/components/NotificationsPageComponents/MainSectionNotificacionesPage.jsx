@@ -1,5 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
+
+const ColYes = ({ viewManualUser, children }) => {
+  return (
+    <div
+      className="main-section-notificaciones-page-container-col-2-yes"
+      style={{
+        transform: `${
+          window.innerWidth < 1350
+            ? `translateY(-${viewManualUser * 510}px)`
+            : `translateY(-${viewManualUser * 310}px)`
+        }`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+const ArrowUP = ({ viewManualUser, setViewManualUser }) => {
+  return (
+    <div
+      className="main-section-notificaciones-page-container-col-2-arrowUP"
+      onClick={() => {
+        if (viewManualUser > 0) {
+          setViewManualUser(viewManualUser - 1);
+        }
+      }}
+      style={{
+        cursor: viewManualUser > 0 ? "pointer" : "default",
+      }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z" />
+      </svg>
+    </div>
+  );
+};
+
+const ArrowDOWN = ({
+  howManyManualUser,
+  viewManualUser,
+  setViewManualUser,
+}) => {
+  return (
+    <div
+      className="main-section-notificaciones-page-container-col-2-arrowDOWN"
+      onClick={() => {
+        if (viewManualUser < howManyManualUser.length - 1) {
+          setViewManualUser(viewManualUser + 1);
+        }
+      }}
+      style={{
+        cursor:
+          viewManualUser < howManyManualUser.length - 1 ? "pointer" : "default",
+      }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" />
+      </svg>
+    </div>
+  );
+};
 
 const MainSectionNotificacionesPage = ({
   isIA,
@@ -9,7 +71,12 @@ const MainSectionNotificacionesPage = ({
   howManyManualUser,
   howManyManualCompany,
   setIsIA,
+  jarvises,
 }) => {
+  const [viewManualUser, setViewManualUser] = useState(0);
+  const [viewManualCompany, setViewManualCompany] = useState(0);
+  const [viewIAUser, setViewIAUser] = useState(0);
+  const [viewIACompany, setViewIACompany] = useState(0);
   return (
     <div className="main-section-notificaciones-page">
       <div className="main-section-notificaciones-page-h1">
@@ -120,9 +187,130 @@ const MainSectionNotificacionesPage = ({
         </div>
         <div className="main-section-notificaciones-page-container-col-2">
           {isUser ? (
-            <>{isIA ? <>Mi perfil IA</> : <>Mi perfil manual</>}</>
+            <>
+              {isIA ? (
+                <>
+                  {howManyIAUser.length === 0 ? (
+                    <div className="main-section-notificaciones-page-container-col-2-nothing">
+                      No tienes notificaciones hechas por nuestra IA de tu
+                      perfil
+                    </div>
+                  ) : (
+                    <div className="main-section-notificaciones-page-container-col-2-yes">
+                      rumba
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  {howManyManualUser.length === 0 ? (
+                    <div className="main-section-notificaciones-page-container-col-2-nothing">
+                      No tienes notificaciones hechas por las personas de tu
+                      perfil
+                    </div>
+                  ) : (
+                    <>
+                      <ArrowUP
+                        viewManualUser={viewManualUser}
+                        setViewManualUser={setViewManualUser}
+                      ></ArrowUP>
+                      <ColYes viewManualUser={viewManualUser}>
+                        {howManyManualUser.map((jarvisIndex) => {
+                          // ARTESANAL, por lo tanto no se usa (premiumProfile)
+                          if (
+                            jarvises[jarvisIndex].myRelationWithJarvis ===
+                            "owner"
+                          ) {
+                            if (jarvises[jarvisIndex].isInOwnerLayout) {
+                              return (
+                                <div
+                                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
+                                  key={jarvisIndex}
+                                >
+                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
+                                    <img
+                                      src={
+                                        jarvises[jarvisIndex].profile
+                                          .profileImage
+                                      }
+                                      alt="Imagen de Perfil"
+                                    />
+                                  </div>
+                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
+                                    {jarvises[jarvisIndex].profile.petName}
+                                  </div>
+                                </div>
+                              );
+                            } else {
+                              return <></>;
+                            }
+                          } else {
+                            if (jarvises[jarvisIndex].isInFounderLayout) {
+                              return (
+                                <div
+                                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
+                                  key={jarvisIndex}
+                                >
+                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
+                                    <img
+                                      src={
+                                        jarvises[jarvisIndex].profile
+                                          .profileImage
+                                      }
+                                      alt="Imagen de Perfil"
+                                    />
+                                  </div>
+                                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
+                                    {jarvises[jarvisIndex].profile.petName}
+                                  </div>
+                                </div>
+                              );
+                            } else {
+                              return <></>;
+                            }
+                          }
+                        })}
+                      </ColYes>
+                      <ArrowDOWN
+                        howManyManualUser={howManyManualUser}
+                        viewManualUser={viewManualUser}
+                        setViewManualUser={setViewManualUser}
+                      ></ArrowDOWN>
+                    </>
+                  )}
+                </>
+              )}
+            </>
           ) : (
-            <>{isIA ? <>Compañía IA</> : <>Compañía manual</>}</>
+            <>
+              {isIA ? (
+                <>
+                  {howManyIACompany.length === 0 ? (
+                    <div className="main-section-notificaciones-page-container-col-2-nothing">
+                      No tienes notificaciones hechas por nuestra IA de tu
+                      compañía
+                    </div>
+                  ) : (
+                    <div className="main-section-notificaciones-page-container-col-2-yes">
+                      rumba
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  {howManyManualCompany.length === 0 ? (
+                    <div className="main-section-notificaciones-page-container-col-2-nothing">
+                      No tienes notificaciones hechas por las personas de tu
+                      compañía
+                    </div>
+                  ) : (
+                    <div className="main-section-notificaciones-page-container-col-2-yes">
+                      rumba
+                    </div>
+                  )}
+                </>
+              )}
+            </>
           )}
         </div>
       </div>
