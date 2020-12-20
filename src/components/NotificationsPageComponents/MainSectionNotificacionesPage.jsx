@@ -26,12 +26,12 @@ const ColYesJarvis = ({ howManyManualUser, jarvises }) => {
                     {jarvises[jarvisIndex].myRelationWithJarvis === "owner"
                       ? `${
                           jarvises[jarvisIndex].typeProfile === "Premium"
-                            ? "Encontraron a tu perro"
+                            ? "Encontraron a tu perro en el mapa"
                             : "Encontraste a tu perro en el mapa"
                         }`
                       : `${
                           jarvises[jarvisIndex].typeProfile === "Premium"
-                            ? "Encontraste a este perro"
+                            ? "Encontraste a este perro en el mapa"
                             : "Alguien reporto a este perro como suyo en el mapa"
                         }`}
                   </div>
@@ -85,6 +85,23 @@ const ColYesJarvis = ({ howManyManualUser, jarvises }) => {
                       </div>
                     </div>
                   </div>
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-3">
+                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                      <div
+                        className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-row-3-location"
+                        style={{
+                          width: "100%",
+                        }}
+                      >
+                        <span>
+                          {jarvises[jarvisIndex].typeProfile === "Premium"
+                            ? "¿En dónde se perdió?: "
+                            : "¿En dónde se encontró?:"}
+                        </span>
+                        {jarvises[jarvisIndex].profile.location}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               );
             } else {
@@ -128,8 +145,8 @@ const ColYesJarvis = ({ howManyManualUser, jarvises }) => {
 };
 
 const ColYes = ({ viewManualUser, children }) => {
-  const altoCol2Compu = 500;
-  const altoCol2Cel = 1000;
+  const altoCol2Compu = 700;
+  const altoCol2Cel = 1200;
   return (
     <div
       className="main-section-notificaciones-page-container-col-2-yes"
@@ -205,6 +222,7 @@ const MainSectionNotificacionesPage = ({
   const [viewManualCompany, setViewManualCompany] = useState(0);
   const [viewIAUser, setViewIAUser] = useState(0);
   const [viewIACompany, setViewIACompany] = useState(0);
+  const altoCol2Compu = 250;
   return (
     <div className="main-section-notificaciones-page">
       <div className="main-section-notificaciones-page-h1">
@@ -312,84 +330,111 @@ const MainSectionNotificacionesPage = ({
               </ButtonWhiteRectangle>
             </div>
           </div>
+          <div className="main-section-notificaciones-page-container-col-1-h2">
+            {isIA ? "Por Inteligencia Artificial" : "Por usuarios"}
+          </div>
         </div>
-        <div className="main-section-notificaciones-page-container-col-2">
-          {isUser ? (
-            <>
-              {isIA ? (
-                <>
-                  {howManyIAUser.length === 0 ? (
+        {isUser ? (
+          <>
+            {isIA ? (
+              <>
+                {howManyIAUser.length === 0 ? (
+                  <div
+                    className="main-section-notificaciones-page-container-col-2"
+                    style={{ height: `${altoCol2Compu}px` }}
+                  >
                     <div className="main-section-notificaciones-page-container-col-2-nothing">
                       No tienes notificaciones hechas por nuestra IA de tu
                       perfil
                     </div>
-                  ) : (
+                  </div>
+                ) : (
+                  <div className="main-section-notificaciones-page-container-col-2">
                     <div className="main-section-notificaciones-page-container-col-2-yes">
                       rumba
                     </div>
-                  )}
-                </>
-              ) : (
-                <>
-                  {howManyManualUser.length === 0 ? (
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {howManyManualUser.length === 0 ? (
+                  <div
+                    className="main-section-notificaciones-page-container-col-2"
+                    style={{ height: `${altoCol2Compu}px` }}
+                  >
                     <div className="main-section-notificaciones-page-container-col-2-nothing">
                       No tienes notificaciones hechas por las personas de tu
                       perfil
                     </div>
-                  ) : (
-                    <>
-                      <ArrowUP
-                        viewManualUser={viewManualUser}
-                        setViewManualUser={setViewManualUser}
-                      ></ArrowUP>
-                      <ColYes viewManualUser={viewManualUser}>
-                        <ColYesJarvis
-                          howManyManualUser={howManyManualUser}
-                          jarvises={jarvises}
-                        ></ColYesJarvis>
-                      </ColYes>
-                      <ArrowDOWN
+                  </div>
+                ) : (
+                  <div className="main-section-notificaciones-page-container-col-2">
+                    <ArrowUP
+                      viewManualUser={viewManualUser}
+                      setViewManualUser={setViewManualUser}
+                    ></ArrowUP>
+                    <ColYes viewManualUser={viewManualUser}>
+                      <ColYesJarvis
                         howManyManualUser={howManyManualUser}
-                        viewManualUser={viewManualUser}
-                        setViewManualUser={setViewManualUser}
-                      ></ArrowDOWN>
-                    </>
-                  )}
-                </>
-              )}
-            </>
-          ) : (
-            <>
-              {isIA ? (
-                <>
-                  {howManyIACompany.length === 0 ? (
+                        jarvises={jarvises}
+                      ></ColYesJarvis>
+                    </ColYes>
+                    <ArrowDOWN
+                      howManyManualUser={howManyManualUser}
+                      viewManualUser={viewManualUser}
+                      setViewManualUser={setViewManualUser}
+                    ></ArrowDOWN>
+                  </div>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {isIA ? (
+              <>
+                {howManyIACompany.length === 0 ? (
+                  <div
+                    className="main-section-notificaciones-page-container-col-2"
+                    style={{ height: `${altoCol2Compu}px` }}
+                  >
                     <div className="main-section-notificaciones-page-container-col-2-nothing">
                       No tienes notificaciones hechas por nuestra IA de tu
                       compañía
                     </div>
-                  ) : (
+                  </div>
+                ) : (
+                  <div className="main-section-notificaciones-page-container-col-2">
                     <div className="main-section-notificaciones-page-container-col-2-yes">
                       rumba
                     </div>
-                  )}
-                </>
-              ) : (
-                <>
-                  {howManyManualCompany.length === 0 ? (
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {howManyManualCompany.length === 0 ? (
+                  <div
+                    className="main-section-notificaciones-page-container-col-2"
+                    style={{ height: `${altoCol2Compu}px` }}
+                  >
                     <div className="main-section-notificaciones-page-container-col-2-nothing">
                       No tienes notificaciones hechas por las personas de tu
                       compañía
                     </div>
-                  ) : (
+                  </div>
+                ) : (
+                  <div className="main-section-notificaciones-page-container-col-2">
                     <div className="main-section-notificaciones-page-container-col-2-yes">
                       rumba
                     </div>
-                  )}
-                </>
-              )}
-            </>
-          )}
-        </div>
+                  </div>
+                )}
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

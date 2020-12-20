@@ -1,12 +1,12 @@
 :root {
-  --alto-col-2-compu: 500px;
-  --alto-col-2-cel: 1000px;
+  --alto-col-2-compu: 700px;
+  --alto-col-2-cel: 1200px;
 }
 .main-section-notificaciones-page {
   width: 80%;
   margin-left: 10%;
   margin-top: 40px;
-  min-height: 450px;
+  min-height: 250px;
   &-h1 {
     font-size: 1.5rem;
     text-align: center;
@@ -15,7 +15,7 @@
   &-container {
     width: 100%;
     margin-top: 30px;
-    min-height: 280px;
+    min-height: 250px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -25,7 +25,7 @@
     }
     &-hr {
       background-color: #232323;
-      height: var(--alto-col-2-compu);
+      height: 250px;
       width: 3px;
       position: absolute;
       top: 0;
@@ -46,9 +46,23 @@
         text-align: center;
         font-weight: bold;
         margin-bottom: 5px;
-        margin-left: -7.5%;
+        width: 85%;
         @media screen and (max-width: 1350px) {
-          margin-left: 0;
+          width: 100%;
+        }
+      }
+      &-h2 {
+        font-size: 1.1rem;
+        margin-top: 25px;
+        text-align: center;
+        margin-bottom: 5px;
+        width: 85%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: rgba(28, 28, 28, 1);
+        border-radius: 5px;
+        @media screen and (max-width: 1350px) {
+          width: 300px;
         }
       }
       &-buttons {
@@ -156,7 +170,8 @@
           align-items: center;
           flex-direction: column;
           &-row-2,
-          &-row-1 {
+          &-row-1,
+          &-row-3 {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -176,6 +191,12 @@
             font-size: 1.5rem;
             font-weight: bold;
             font-family: "Roboto Condensed", sans-serif;
+          }
+          &-row-3 {
+            &-location{
+              max-height: 100px;
+              overflow: hidden;
+            }
           }
 
           &-profileImage {
@@ -206,12 +227,6 @@
               height: fit-content;
               width: 100%;
               padding-left: 0px;
-            }
-            span {
-              margin-right: 5px;
-              color: var(--tertiary-color-light);
-              color: #fac3c3;
-              font-size: 1.1rem;
             }
             &-container {
               background-color: rgb(40, 40, 40);
@@ -252,6 +267,12 @@
                 }
               }
               &-super {
+                span {
+                  margin-right: 5px;
+                  color: var(--tertiary-color-light);
+                  color: #fac3c3;
+                  font-size: 1.1rem;
+                }
                 width: 100%;
                 margin-bottom: 10px;
                 // background-color: coral;
