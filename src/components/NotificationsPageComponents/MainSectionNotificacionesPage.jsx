@@ -31,7 +31,7 @@ const ImageInBigView = ({ imgSrc, setYes, yes }) => {
 };
 
 const ColYesJarvis = ({
-  howManyManualUser,
+  theRequiredJarvisArray,
   jarvises,
 
   setImgSrc,
@@ -47,203 +47,342 @@ const ColYesJarvis = ({
   };
   return (
     <>
-      {howManyManualUser.map((jarvisIndex) => {
-        if (jarvises[jarvisIndex].myRelationWithJarvis === "owner") {
-          if (jarvises[jarvisIndex].isInOwnerLayout) {
-            if (jarvises[jarvisIndex].artesanal) {
-              // ARTESANAL, por lo tanto no se usa (premiumProfile)
-              return (
-                <div
-                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
-                  key={jarvisIndex}
-                >
-                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-1">
-                    {jarvises[jarvisIndex].myRelationWithJarvis === "owner"
-                      ? `${
-                          jarvises[jarvisIndex].typeProfile === "Premium"
-                            ? "Encontraron a tu perro en el mapa"
-                            : "Encontraste a tu perro en el mapa"
-                        }`
-                      : `${
-                          jarvises[jarvisIndex].typeProfile === "Premium"
-                            ? "Encontraste a este perro en el mapa"
-                            : "Alguien reporto a este perro como suyo en el mapa"
-                        }`}
-                  </div>
-                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-2">
-                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
-                      <img
-                        src={jarvises[jarvisIndex].profile.profileImage}
-                        alt="Imagen de Perfil"
-                      />
-                    </div>
-                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
-                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
-                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-name">
-                          <span>
-                            {jarvises[jarvisIndex].typeProfile === "Premium"
-                              ? "Nombre: "
-                              : "Apodo: "}
-                          </span>
-                          {jarvises[jarvisIndex].profile.petName}
-                        </div>
-                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-date">
-                          <span>
-                            {jarvises[jarvisIndex].typeProfile === "Premium"
-                              ? "¿Cuándo se perdió?: "
-                              : "¿Cuándo se encontró?:"}
-                          </span>
-                          {formatDate(jarvises[jarvisIndex].profile.whenIsLost)}
-                        </div>
-                      </div>
+      {theRequiredJarvisArray.map((jarvisIndex) => {
+        var titulo = undefined;
+        var apodoOName = undefined;
+        var cuandoSeEncontroOCuandoSePerdio = undefined;
+        var enDondeSeEncontroOEnDondeSePerdio = undefined;
+        var quienLaHalloODeQuienEs = undefined;
+        var ownerOrFounder = undefined;
+        var profileObject = undefined;
 
-                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
-                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-race">
-                          <span>Raza:</span>
-                          {jarvises[jarvisIndex].profile.race}
-                        </div>
-                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-gender">
-                          <span>Género:</span>
-                          {jarvises[jarvisIndex].profile.gender}
-                        </div>
-                      </div>
-
-                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
-                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-age">
-                          <span>Edad:</span>
-                          {jarvises[jarvisIndex].profile.size}
-                        </div>
-                        <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-color">
-                          <span>Color Principal:</span>
-                          {jarvises[jarvisIndex].profile.mainColor}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-3">
-                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
-                      <div
-                        className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-row-3-location"
-                        style={{
-                          width: "100%",
-                        }}
-                      >
-                        <span>
-                          {jarvises[jarvisIndex].typeProfile === "Premium"
-                            ? "¿En dónde se perdió?: "
-                            : "¿En dónde se encontró?:"}
-                        </span>
-                        {jarvises[jarvisIndex].profile.location}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4">
-                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-h1">
-                      Imágenes de reconocimiento facial
-                    </div>
-                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-click">
-                      Dale click para verlas en grande
-                    </div>
-                    <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-images-container">
-                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-images-container-2">
-                        <img
-                          onClick={() => {
-                            setImgSrc(
-                              jarvises[jarvisIndex].profile.images[0].srcImage
-                            );
-                            setYes(true);
-                          }}
-                          src={jarvises[jarvisIndex].profile.images[0].srcImage}
-                          alt="Imagen de IA"
-                        />
-                        <img
-                          onClick={() => {
-                            setImgSrc(
-                              jarvises[jarvisIndex].profile.images[1].srcImage
-                            );
-                            setYes(true);
-                          }}
-                          src={jarvises[jarvisIndex].profile.images[1].srcImage}
-                          alt="Imagen de IA"
-                        />
-                      </div>
-                      <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-images-container-2">
-                        <img
-                          onClick={() => {
-                            setImgSrc(
-                              jarvises[jarvisIndex].profile.images[2].srcImage
-                            );
-                            setYes(true);
-                          }}
-                          src={jarvises[jarvisIndex].profile.images[2].srcImage}
-                          alt="Imagen de IA"
-                        />
-                        <img
-                          onClick={() => {
-                            setImgSrc(
-                              jarvises[jarvisIndex].profile.images[3].srcImage
-                            );
-                            setYes(true);
-                          }}
-                          src={jarvises[jarvisIndex].profile.images[3].srcImage}
-                          alt="Imagen de IA"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            } else {
-              // NO ARTESANAL
-              return <></>;
-            }
-          } else {
-            return <></>;
-          }
-        } else {
-          if (jarvises[jarvisIndex].isInFounderLayout) {
-            if (jarvises[jarvisIndex].artesanal) {
-              // ARTESANAL, por lo tanto no se usa (premiumProfile)
-              return (
-                <div
-                  className="main-section-notificaciones-page-container-col-2-yes-jarvis"
-                  key={jarvisIndex}
-                >
-                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
-                    <img
-                      src={jarvises[jarvisIndex].profile.profileImage}
-                      alt="Imagen de Perfil"
-                    />
-                  </div>
-                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
-                    {jarvises[jarvisIndex].profile.petName}
-                  </div>
-                </div>
-              );
-            } else {
-              // NO ARTESANAL
-              return <></>;
-            }
-          } else {
-            return <></>;
-          }
+        if (
+          jarvisIndex[1] ===
+          "laCompaniaApretoBotonEnElMapaAPerroPremium_YO_SOY_COMPANIA"
+        ) {
+          titulo = "Tu Compañía encontró a un perro perdido en el mapa";
+          apodoOName = "Nombre:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se perdió?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se perdió?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de su dueño:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].owner.email,
+            telephone: jarvises[jarvisIndex[0]].owner.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "laCompaniaApretoBotonEnElMapaAPerroPremium_YO_SOY_USER_OWNER"
+        ) {
+          titulo = "Una Compañía encontró a tu perro perdido en el mapa";
+          apodoOName = "Nombre:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se perdió?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se perdió?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de la compañía que lo encontró:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].founder.email,
+            telephone: jarvises[jarvisIndex[0]].founder.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnCompania_YO_SOY_COMPANIA"
+        ) {
+          titulo = "El dueño de esta mascota la reclamó como suya en el mapa";
+          apodoOName = "Apodo:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se encontró?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se encontró?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de su dueño:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].owner.email,
+            telephone: jarvises[jarvisIndex[0]].owner.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnCompania_YO_SOY_USER_OWNER"
+        ) {
+          titulo =
+            "Esta es la mascota que reclamaste como tuya en la compañía del mapa";
+          apodoOName = "Apodo:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se encontró?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se encontró?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de la compañía que lo encontró:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].founder.email,
+            telephone: jarvises[jarvisIndex[0]].founder.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "personaApretoElBotonEnElMapaAPerroPremium_YO_SOY_USER_FOUNDER"
+        ) {
+          titulo = "Esta es la mascota que encontraste en el mapa";
+          apodoOName = "Nombre:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se perdió?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se perdió?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de su dueño:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].owner.email,
+            telephone: jarvises[jarvisIndex[0]].owner.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "personaApretoElBotonEnElMapaAPerroPremium_YO_SOY_USER_OWNER"
+        ) {
+          titulo = "Una persona encontró a tu perro perdido en el mapa";
+          apodoOName = "Nombre:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se perdió?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se perdió?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de la persona que lo encontró:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].founder.email,
+            telephone: jarvises[jarvisIndex[0]].founder.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnPerrosPerdidos_YO_SOY_USER_FOUNDER"
+        ) {
+          titulo =
+            "Una persona reclamó suya esta mascota encontrada por ti en el mapa";
+          apodoOName = "Apodo:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se encontró?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se encontró?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto del dueño:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].owner.email,
+            telephone: jarvises[jarvisIndex[0]].owner.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnPerrosPerdidos_YO_SOY_USER_OWNER"
+        ) {
+          titulo = "Esta es la mascota que reclamaste como tuya en el mapa";
+          apodoOName = "Apodo:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se encontró?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se encontró?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto del que lo encontró:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].founder.email,
+            telephone: jarvises[jarvisIndex[0]].founder.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "laIAHizoComparacionPerroEncontradoEnPerrosEncontradosYPerfilPremium_YO_SOY_USER_FOUNDER"
+        ) {
+          titulo =
+            "Nuestra Inteligencia Artificial halló un perfil similar de una mascota perdida igual a la que pusiste como encontrada";
+          apodoOName = "Nombre:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se perdió?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se perdió?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto del dueño de esta mascota:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].owner.email,
+            telephone: jarvises[jarvisIndex[0]].owner.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].premiumProfile;
+        } else if (
+          jarvisIndex[1] ===
+          "laIAHizoComparacionPerroEncontradoEnPerrosEncontradosYPerfilPremium_YO_SOY_USER_OWNER"
+        ) {
+          titulo =
+            "Nuestra Inteligencia Artificial halló un perfil similar de una mascota encontrada igual a tu perro perdido";
+          apodoOName = "Apodo:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se encontró?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se encontró?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de la persona que halló a tu mascota:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].founder.email,
+            telephone: jarvises[jarvisIndex[0]].founder.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
+        } else if (
+          jarvisIndex[1] ===
+          "laIAHizoComparacionPerroEncontradoEnCompaniaYPerfilPremium_YO_SOY_COMPANIA"
+        ) {
+          titulo =
+            "Nuestra Inteligencia Artificial halló un perfil similar de una mascota perdida igual al perro que encontró tu compañía";
+          apodoOName = "Nombre:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se perdió?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se perdió?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto del dueño de esta mascota:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].owner.email,
+            telephone: jarvises[jarvisIndex[0]].owner.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].premiumProfile;
+        } else if (
+          jarvisIndex[1] ===
+          "laIAHizoComparacionPerroEncontradoEnCompaniaYPerfilPremium_YO_SOY_USER_OWNER"
+        ) {
+          titulo =
+            "Nuestra Inteligencia Artificial halló un perfil similar de una mascota encontrada de una compañía igual a tu perro perdido";
+          apodoOName = "Apodo:";
+          cuandoSeEncontroOCuandoSePerdio = "¿Cuándo se encontró?:";
+          enDondeSeEncontroOEnDondeSePerdio = "¿En dónde se encontró?:";
+          quienLaHalloODeQuienEs =
+            "Esta es la información de contacto de la compañía:";
+          ownerOrFounder = {
+            email: jarvises[jarvisIndex[0]].founder.email,
+            telephone: jarvises[jarvisIndex[0]].founder.telephone,
+          };
+          profileObject = jarvises[jarvisIndex[0]].profile;
         }
+
+        return (
+          <div
+            className="main-section-notificaciones-page-container-col-2-yes-jarvis"
+            key={`${jarvisIndex[0]}${jarvisIndex[1]}`}
+          >
+            <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-1">
+              {titulo}
+            </div>
+            <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-2">
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-profileImage">
+                <img src={profileObject.profileImage} alt="Imagen de Perfil" />
+              </div>
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest">
+                <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-name">
+                    <span>{apodoOName}</span>
+                    {profileObject.petName}
+                  </div>
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-date">
+                    <span>{cuandoSeEncontroOCuandoSePerdio}</span>
+                    {formatDate(profileObject.whenIsLost)}
+                  </div>
+                </div>
+
+                <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-race">
+                    <span>Raza:</span>
+                    {profileObject.race}
+                  </div>
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-gender">
+                    <span>Género:</span>
+                    {profileObject.gender}
+                  </div>
+                </div>
+
+                <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-age">
+                    <span>Edad:</span>
+                    {profileObject.size}
+                  </div>
+                  <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-color">
+                    <span>Color Principal:</span>
+                    {profileObject.mainColor}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-3">
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                <div
+                  className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-row-3-location"
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <span>{enDondeSeEncontroOEnDondeSePerdio}</span>
+                  {profileObject.location}
+                </div>
+              </div>
+            </div>
+            <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4">
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-h1">
+                Imágenes de reconocimiento facial
+              </div>
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-click">
+                Dale click para verlas en grande
+              </div>
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-images-container">
+                <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-images-container-2">
+                  <img
+                    onClick={() => {
+                      setImgSrc(profileObject.images[0].srcImage);
+                      setYes(true);
+                    }}
+                    src={profileObject.images[0].srcImage}
+                    alt="Imagen de IA"
+                  />
+                  <img
+                    onClick={() => {
+                      setImgSrc(profileObject.images[1].srcImage);
+                      setYes(true);
+                    }}
+                    src={profileObject.images[1].srcImage}
+                    alt="Imagen de IA"
+                  />
+                </div>
+                <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-4-images-container-2">
+                  <img
+                    onClick={() => {
+                      setImgSrc(profileObject.images[2].srcImage);
+                      setYes(true);
+                    }}
+                    src={profileObject.images[2].srcImage}
+                    alt="Imagen de IA"
+                  />
+                  <img
+                    onClick={() => {
+                      setImgSrc(profileObject.images[3].srcImage);
+                      setYes(true);
+                    }}
+                    src={profileObject.images[3].srcImage}
+                    alt="Imagen de IA"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-5">
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-row-5-h1">
+                {quienLaHalloODeQuienEs}
+              </div>
+              <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-super">
+                <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-age">
+                  <span>Correo:</span>
+                  {ownerOrFounder.email}
+                </div>
+                <div className="main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container main-section-notificaciones-page-container-col-2-yes-jarvis-rest-container-color">
+                  <span>Teléfono:</span>
+                  {ownerOrFounder.telephone}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       })}
     </>
   );
 };
 
-const ColYes = ({ viewManualUser, children }) => {
-  const altoCol2Compu = 700;
-  const altoCol2Cel = 1200;
+const ColYes = ({ viewRightNow, children }) => {
+  const altoCol2Compu = 720;
+  const altoCol2Cel = 1400;
   return (
     <div
       className="main-section-notificaciones-page-container-col-2-yes"
       style={{
         transform: `${
           window.innerWidth < 1350
-            ? `translateY(-${viewManualUser * (altoCol2Cel - 90)}px)`
-            : `translateY(-${viewManualUser * (altoCol2Compu - 90)}px)`
+            ? `translateY(-${viewRightNow * (altoCol2Cel - 90)}px)`
+            : `translateY(-${viewRightNow * (altoCol2Compu - 90)}px)`
         }`,
       }}
     >
@@ -252,17 +391,17 @@ const ColYes = ({ viewManualUser, children }) => {
   );
 };
 
-const ArrowUP = ({ viewManualUser, setViewManualUser }) => {
+const ArrowUP = ({ viewRightNow, setViewRightNow }) => {
   return (
     <div
       className="main-section-notificaciones-page-container-col-2-arrowUP"
       onClick={() => {
-        if (viewManualUser > 0) {
-          setViewManualUser(viewManualUser - 1);
+        if (viewRightNow > 0) {
+          setViewRightNow(viewRightNow - 1);
         }
       }}
       style={{
-        cursor: viewManualUser > 0 ? "pointer" : "default",
+        cursor: viewRightNow > 0 ? "pointer" : "default",
       }}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -272,22 +411,18 @@ const ArrowUP = ({ viewManualUser, setViewManualUser }) => {
   );
 };
 
-const ArrowDOWN = ({
-  howManyManualUser,
-  viewManualUser,
-  setViewManualUser,
-}) => {
+const ArrowDOWN = ({ viewRightNow, setViewRightNow, howManyRightNow }) => {
   return (
     <div
       className="main-section-notificaciones-page-container-col-2-arrowDOWN"
       onClick={() => {
-        if (viewManualUser < howManyManualUser.length - 1) {
-          setViewManualUser(viewManualUser + 1);
+        if (viewRightNow < howManyRightNow.length - 1) {
+          setViewRightNow(viewRightNow + 1);
         }
       }}
       style={{
         cursor:
-          viewManualUser < howManyManualUser.length - 1 ? "pointer" : "default",
+          viewRightNow < howManyRightNow.length - 1 ? "pointer" : "default",
       }}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -300,19 +435,23 @@ const ArrowDOWN = ({
 const MainSectionNotificacionesPage = ({
   isIA,
   isUser,
-  howManyIAUser,
-  howManyIACompany,
-  howManyManualUser,
-  howManyManualCompany,
   setIsIA,
+
+  manualUser,
+  manualCompany,
+  IAUser,
+  IACompany,
   jarvises,
 }) => {
+  // Lo de las flechas de cada uno
   const [viewManualUser, setViewManualUser] = useState(0);
   const [viewManualCompany, setViewManualCompany] = useState(0);
   const [viewIAUser, setViewIAUser] = useState(0);
   const [viewIACompany, setViewIACompany] = useState(0);
+
   const altoCol2Compu = 250;
 
+  // Poner imágenes en grande
   const [yes, setYes] = useState(false);
   const [imgSrc, setImgSrc] = useState(undefined);
   return (
@@ -365,16 +504,12 @@ const MainSectionNotificacionesPage = ({
                       }}
                     >
                       {isUser ? (
-                        <>
-                          {howManyManualUser.length > 9
-                            ? "+9"
-                            : howManyManualUser.length}
-                        </>
+                        <>{manualUser.length > 9 ? "9+" : manualUser.length}</>
                       ) : (
                         <>
-                          {howManyManualCompany.length > 9
-                            ? "+9"
-                            : howManyManualCompany.length}
+                          {manualCompany.length > 9
+                            ? "9+"
+                            : manualCompany.length}
                         </>
                       )}
                     </div>
@@ -413,17 +548,9 @@ const MainSectionNotificacionesPage = ({
                       }}
                     >
                       {isUser ? (
-                        <>
-                          {howManyIAUser.length > 9
-                            ? "+9"
-                            : howManyIAUser.length}
-                        </>
+                        <>{IAUser.length > 9 ? "9+" : IAUser.length}</>
                       ) : (
-                        <>
-                          {howManyIACompany.length > 9
-                            ? "+9"
-                            : howManyIACompany.length}
-                        </>
+                        <>{IACompany.length > 9 ? "9+" : IACompany.length}</>
                       )}
                     </div>
                   </>
@@ -438,7 +565,7 @@ const MainSectionNotificacionesPage = ({
             <>
               {isIA ? (
                 <>
-                  {howManyIAUser.length === 0 ? (
+                  {IAUser.length === 0 ? (
                     <div
                       className="main-section-notificaciones-page-container-col-2"
                       style={{ height: `${altoCol2Compu}px` }}
@@ -451,14 +578,30 @@ const MainSectionNotificacionesPage = ({
                   ) : (
                     <div className="main-section-notificaciones-page-container-col-2">
                       <div className="main-section-notificaciones-page-container-col-2-yes">
-                        rumba
+                        <ArrowUP
+                          viewRightNow={viewIAUser}
+                          setViewRightNow={setViewIAUser}
+                        ></ArrowUP>
+                        <ColYes viewRightNow={viewIAUser}>
+                          <ColYesJarvis
+                            setImgSrc={setImgSrc}
+                            setYes={setYes}
+                            theRequiredJarvisArray={IAUser}
+                            jarvises={jarvises}
+                          ></ColYesJarvis>
+                        </ColYes>
+                        <ArrowDOWN
+                          viewRightNow={viewIAUser}
+                          setViewRightNow={setViewIAUser}
+                          howManyRightNow={IAUser}
+                        ></ArrowDOWN>
                       </div>
                     </div>
                   )}
                 </>
               ) : (
                 <>
-                  {howManyManualUser.length === 0 ? (
+                  {manualUser.length === 0 ? (
                     <div
                       className="main-section-notificaciones-page-container-col-2"
                       style={{ height: `${altoCol2Compu}px` }}
@@ -471,21 +614,21 @@ const MainSectionNotificacionesPage = ({
                   ) : (
                     <div className="main-section-notificaciones-page-container-col-2">
                       <ArrowUP
-                        viewManualUser={viewManualUser}
-                        setViewManualUser={setViewManualUser}
+                        viewRightNow={viewManualUser}
+                        setViewRightNow={setViewManualUser}
                       ></ArrowUP>
-                      <ColYes viewManualUser={viewManualUser}>
+                      <ColYes viewRightNow={viewManualUser}>
                         <ColYesJarvis
                           setImgSrc={setImgSrc}
                           setYes={setYes}
-                          howManyManualUser={howManyManualUser}
+                          theRequiredJarvisArray={manualUser}
                           jarvises={jarvises}
                         ></ColYesJarvis>
                       </ColYes>
                       <ArrowDOWN
-                        howManyManualUser={howManyManualUser}
-                        viewManualUser={viewManualUser}
-                        setViewManualUser={setViewManualUser}
+                        viewRightNow={viewManualUser}
+                        setViewRightNow={setViewManualUser}
+                        howManyRightNow={manualUser}
                       ></ArrowDOWN>
                     </div>
                   )}
@@ -496,7 +639,7 @@ const MainSectionNotificacionesPage = ({
             <>
               {isIA ? (
                 <>
-                  {howManyIACompany.length === 0 ? (
+                  {IACompany.length === 0 ? (
                     <div
                       className="main-section-notificaciones-page-container-col-2"
                       style={{ height: `${altoCol2Compu}px` }}
@@ -509,14 +652,30 @@ const MainSectionNotificacionesPage = ({
                   ) : (
                     <div className="main-section-notificaciones-page-container-col-2">
                       <div className="main-section-notificaciones-page-container-col-2-yes">
-                        rumba
+                        <ArrowUP
+                          viewRightNow={viewIACompany}
+                          setViewRightNow={setViewIACompany}
+                        ></ArrowUP>
+                        <ColYes viewRightNow={viewIACompany}>
+                          <ColYesJarvis
+                            setImgSrc={setImgSrc}
+                            setYes={setYes}
+                            theRequiredJarvisArray={IACompany}
+                            jarvises={jarvises}
+                          ></ColYesJarvis>
+                        </ColYes>
+                        <ArrowDOWN
+                          viewRightNow={viewIACompany}
+                          setViewRightNow={setViewIACompany}
+                          howManyRightNow={IACompany}
+                        ></ArrowDOWN>
                       </div>
                     </div>
                   )}
                 </>
               ) : (
                 <>
-                  {howManyManualCompany.length === 0 ? (
+                  {manualCompany.length === 0 ? (
                     <div
                       className="main-section-notificaciones-page-container-col-2"
                       style={{ height: `${altoCol2Compu}px` }}
@@ -529,7 +688,23 @@ const MainSectionNotificacionesPage = ({
                   ) : (
                     <div className="main-section-notificaciones-page-container-col-2">
                       <div className="main-section-notificaciones-page-container-col-2-yes">
-                        rumba
+                        <ArrowUP
+                          viewRightNow={viewManualCompany}
+                          setViewRightNow={setViewManualCompany}
+                        ></ArrowUP>
+                        <ColYes viewRightNow={viewManualCompany}>
+                          <ColYesJarvis
+                            setImgSrc={setImgSrc}
+                            setYes={setYes}
+                            theRequiredJarvisArray={manualCompany}
+                            jarvises={jarvises}
+                          ></ColYesJarvis>
+                        </ColYes>
+                        <ArrowDOWN
+                          viewRightNow={viewManualCompany}
+                          setViewRightNow={setViewManualCompany}
+                          howManyRightNow={manualCompany}
+                        ></ArrowDOWN>
                       </div>
                     </div>
                   )}

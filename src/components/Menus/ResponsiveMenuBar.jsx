@@ -189,7 +189,7 @@ const ResponsiveMenuBar = ({
                       <></>
                     ) : (
                       <div className="notificaciones-container-bottom-svg">
-                        {jarvises.length > 9 ? "+9" : jarvises.length}
+                        {jarvises.length > 9 ? "9+" : jarvises.length}
                       </div>
                     )}
                   </div>

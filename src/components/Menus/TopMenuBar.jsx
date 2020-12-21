@@ -306,7 +306,7 @@ const Menubar = ({
                           <></>
                         ) : (
                           <div className="notificaciones-container-svg">
-                            {jarvises.length > 9 ? "+9" : jarvises.length}
+                            {jarvises.length > 9 ? "9+" : jarvises.length}
                           </div>
                         )}
                       </div>

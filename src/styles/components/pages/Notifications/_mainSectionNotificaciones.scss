@@ -1,6 +1,6 @@
 :root {
-  --alto-col-2-compu: 700px;
-  --alto-col-2-cel: 1200px;
+  --alto-col-2-compu: 720px;
+  --alto-col-2-cel: 1400px;
 }
 .main-section-notificaciones-page {
   width: 80%;
@@ -161,7 +161,6 @@
         &-jarvis {
           width: 100%;
           height: calc(var(--alto-col-2-compu) - 90px);
-          //background-color: cadetblue;
           @media screen and (max-width: 1350px) {
             height: calc(var(--alto-col-2-cel) - 90px);
           }
@@ -172,7 +171,8 @@
           &-row-2,
           &-row-1,
           &-row-3,
-          &-row-4 {
+          &-row-4,
+          &-row-5 {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -195,7 +195,7 @@
           }
           &-row-3 {
             &-location {
-              max-height: 100px;
+              max-height: 103px;
               overflow: hidden;
             }
           }
@@ -219,25 +219,43 @@
               display: flex;
               justify-content: space-between;
               align-items: center;
-              width: 230px;
+              width: 280px;
               &-2 {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                width: 110px;
+                width: 135px;
                 img {
-                  width: 50px;
+                  width: 62.5px;
+                  height: 62.5px;
                   cursor: pointer;
-                  height: 50px;
                   border-radius: 3px;
-                  transition: ease-in-out .1s;
-                  @media (hover:hover) and (pointer:fine){
-                    &:hover{
+                  transition: ease-in-out 0.1s;
+                  @media (hover: hover) and (pointer: fine) {
+                    &:hover {
                       transform: translateY(-5px);
-                      transition: ease-in-out .1s;
+                      transition: ease-in-out 0.1s;
                     }
                   }
                 }
+              }
+            }
+          }
+          &-row-5 {
+            height: 400px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            &-h1 {
+              font-size: 1.1rem;
+              font-weight: bold;
+              width: 100%;
+              text-align: left;
+              margin-bottom: 10px;
+              @media screen and (max-width: 1350px) {
+                text-align: center;
               }
             }
           }
@@ -317,7 +335,6 @@
                 }
                 width: 100%;
                 margin-bottom: 10px;
-                // background-color: coral;
                 display: flex;
                 justify-content: space-between;
                 @media screen and (max-width: 1350px) {
