@@ -1,6 +1,6 @@
 :root {
-  --alto-col-2-compu: 720px;
-  --alto-col-2-cel: 1400px;
+  --alto-col-2-compu: 750px;
+  --alto-col-2-cel: 1500px;
 }
 .main-section-notificaciones-page {
   width: 80%;
@@ -37,7 +37,7 @@
     }
     &-col-1 {
       position: relative;
-      width: 30%;
+      width: 30%;      
       @media screen and (max-width: 1350px) {
         padding-bottom: 20px;
       }
@@ -165,7 +165,7 @@
             height: calc(var(--alto-col-2-cel) - 90px);
           }
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
           flex-direction: column;
           &-row-2,
@@ -242,7 +242,6 @@
             }
           }
           &-row-5 {
-            height: 400px;
             margin-top: 20px;
             display: flex;
             flex-direction: column;

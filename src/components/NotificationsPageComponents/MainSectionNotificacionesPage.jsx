@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
+import Col1SmartComponent from "./Col1SmartComponent";
 
 const ImageInBigView = ({ imgSrc, setYes, yes }) => {
   return (
@@ -373,8 +374,8 @@ const ColYesJarvis = ({
 };
 
 const ColYes = ({ viewRightNow, children }) => {
-  const altoCol2Compu = 720;
-  const altoCol2Cel = 1400;
+  const altoCol2Compu = 750;
+  const altoCol2Cel = 1500;
   return (
     <div
       className="main-section-notificaciones-page-container-col-2-yes"
@@ -560,6 +561,26 @@ const MainSectionNotificacionesPage = ({
             <div className="main-section-notificaciones-page-container-col-1-h2">
               {isIA ? "Por Inteligencia Artificial" : "Por usuarios"}
             </div>
+            <Col1SmartComponent
+              viewIAUser={viewIAUser}
+              viewManualUser={viewManualUser}
+              viewIACompany={viewIACompany}
+              viewManualCompany={viewManualCompany}
+              inWhatView={
+                isUser
+                  ? isIA
+                    ? "viewIAUser"
+                    : "viewManualUser"
+                  : isIA
+                  ? "viewIACompany"
+                  : "viewManualCompany"
+              }
+              jarvises={jarvises}
+              jarvisesIAUser={IAUser}
+              jarvisesManualUser={manualUser}
+              jarvisesIACompany={IACompany}
+              jarvisesManualCompany={manualCompany}
+            ></Col1SmartComponent>
           </div>
           {isUser ? (
             <>

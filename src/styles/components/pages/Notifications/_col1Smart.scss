@@ -1,0 +1,22 @@
+.main-section-notificaciones-page-container-col-1-smart {
+  width: 85%;
+  text-align: left;
+  margin-top: 20px;
+  &-view {
+    margin-bottom: 10px;
+  }
+  &-delete {
+    width: 100%;
+    margin-top: -10px;
+  }
+  &-date {
+    width: 100%;
+    span {
+      color: #c4c3c3;
+    }
+  }
+  @media screen and (max-width: 1350px) {
+    width: 300px;
+    margin-top: 30px;
+  }
+}
