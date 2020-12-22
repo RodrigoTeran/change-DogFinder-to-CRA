@@ -47,6 +47,7 @@ const MainSectionDogFoundedPage = ({
                       isPetProfile={false}
                       isFinished={profile.isFinished}
                       isFromCompany={profile.isFromCompany}
+                      canChangeProfile={profile.canChangeProfile}
                     ></CardMainSectionProfile>
                   )
                 } else if (!profile.isFromCompany && !isViewOnCompany) {
@@ -58,6 +59,7 @@ const MainSectionDogFoundedPage = ({
                       isPetProfile={false}
                       isFinished={profile.isFinished}
                       isFromCompany={profile.isFromCompany}
+                      canChangeProfile={profile.canChangeProfile}
                     ></CardMainSectionProfile>
                   )
                 };
@@ -70,6 +72,7 @@ const MainSectionDogFoundedPage = ({
                     isPetProfile={false}
                     isFinished={profile.isFinished}
                     isFromCompany={profile.isFromCompany}
+                    canChangeProfile={profile.canChangeProfile}
                   ></CardMainSectionProfile>
                 )
               };

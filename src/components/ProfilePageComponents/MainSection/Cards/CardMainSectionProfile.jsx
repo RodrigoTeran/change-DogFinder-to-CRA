@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 
 // Acciones
 import { updatePetProfileAction } from "../../../../store/reducers/user/actions";
-import { getJarvises } from "../../../../store/reducers/jarvis/selector";
 
 const CardMainSectionProfile = ({
   petName,
@@ -14,53 +13,10 @@ const CardMainSectionProfile = ({
   isLost,
   isPetProfile,
   isFinished,
+  canChangeProfile,
 
   isFromCompany,
-
-  jarvises,
 }) => {
-  const [isDifferentColor, setIsDifferentColor] = useState(false);
-  const isPetProfileCardInAJarvis = () => {
-    let status = false;
-    for (var i = 0; i < jarvises.length; i++) {
-      if (
-        jarvises[i].profile.petName === petName &&
-        jarvises[i].profile.profileImage === profileImage
-      ) {
-        if (isPetProfile) {
-          // Premium
-          if (jarvises[i].typeProfile === "Premium") {
-            // YA ESTA
-            status = true;
-            break;
-          }
-        } else {
-          // DogFounded
-          if (
-            jarvises[i].typeProfile === "DogFounded" ||
-            jarvises[i].typeProfile === "CompanyDogFounded"
-          ) {
-            if (isFromCompany) {
-              if (jarvises[i].typeFounder === "Company") {
-                // YA ESTA
-                status = true;
-                break;
-              }
-            } else {
-              if (jarvises[i].typeFounder === "User") {
-                // YA ESTA
-                status = true;
-                break;
-              }
-            }
-          }
-        }
-      }
-    }
-    if (status) {
-      setIsDifferentColor(true);
-    }
-  };
   const urlNameFunction = (petNameParametro) => {
     const newString = petNameParametro.replace(/ /g, "-");
     return newString;
@@ -97,9 +53,6 @@ const CardMainSectionProfile = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
-  useEffect(() => {
-    isPetProfileCardInAJarvis();
   });
   const [widthImg, setWidthImage] = useState("0px");
   const handleResize = () => {
@@ -150,13 +103,13 @@ const CardMainSectionProfile = ({
         <div
           className="card-main-section-profile-content"
           style={{
-            backgroundColor: isDifferentColor
+            backgroundColor: !canChangeProfile
               ? "rgb(45, 45, 45)"
               : "rgba(30, 30, 30, 1)",
             color: "#FFF",
           }}
         >
-          {isDifferentColor ? (
+          {!canChangeProfile ? (
             <svg
               style={{
                 width: "35px",
@@ -247,9 +200,7 @@ const CardMainSectionProfile = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {
-    jarvises: getJarvises(state),
-  };
+  return {};
 };
 
 // Acciones de REDUX
