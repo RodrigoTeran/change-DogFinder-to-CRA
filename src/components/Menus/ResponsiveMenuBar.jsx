@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import { getResponsiveMenuBarBody } from "../../store/reducers/layout/selector";
 // Modules
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { getJarvises } from "../../store/reducers/jarvis/selector";
 
@@ -44,6 +44,44 @@ const ResponsiveMenuBar = ({
   updateFirstResponseAPI,
   jarvises,
 }) => {
+  const [jarvisesLengthVar, setJarvisesLengthVar] = useState(0);
+  const getJarvisesLength = () => {
+    var getJarvisesLengthVar = 0;
+    for (var i = 0; i < jarvises.length; i++) {
+      if (
+        jarvises[i].typeObjectOfJarvis ===
+          "laIAHizoComparacionPerroEncontradoEnCompaniaYPerfilPremium_YO_SOY_COMPANIA" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "laIAHizoComparacionPerroEncontradoEnPerrosEncontradosYPerfilPremium_YO_SOY_USER_FOUNDER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "laIAHizoComparacionPerroEncontradoEnPerrosEncontradosYPerfilPremium_YO_SOY_USER_OWNER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "laIAHizoComparacionPerroEncontradoEnCompaniaYPerfilPremium_YO_SOY_USER_OWNER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "laCompaniaApretoBotonEnElMapaAPerroPremium_YO_SOY_COMPANIA" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnCompania_YO_SOY_COMPANIA" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnCompania_YO_SOY_USER_OWNER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "laCompaniaApretoBotonEnElMapaAPerroPremium_YO_SOY_USER_OWNER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "personaApretoElBotonEnElMapaAPerroPremium_YO_SOY_USER_FOUNDER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "personaApretoElBotonEnElMapaAPerroPremium_YO_SOY_USER_OWNER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnPerrosPerdidos_YO_SOY_USER_FOUNDER" ||
+        jarvises[i].typeObjectOfJarvis ===
+          "elDuenoApretoElBotonEnElMapaASuPerroPerdidoEnPerrosPerdidos_YO_SOY_USER_OWNER"
+      ) {
+        getJarvisesLengthVar += 1;
+      }
+    }
+    setJarvisesLengthVar(getJarvisesLengthVar);
+  };
+  useEffect(() => {
+    getJarvisesLength();
+  }, [jarvises]);
   const iniciarSesion = () => {
     updateLogInFirstAnimation(true);
     updateLogin(true);
@@ -185,11 +223,11 @@ const ResponsiveMenuBar = ({
                     >
                       <path d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z" />
                     </svg>
-                    {jarvises.length === 0 ? (
+                    {jarvisesLengthVar === 0 ? (
                       <></>
                     ) : (
                       <div className="notificaciones-container-bottom-svg">
-                        {jarvises.length > 9 ? "9+" : jarvises.length}
+                        {jarvisesLengthVar > 9 ? "9+" : jarvisesLengthVar}
                       </div>
                     )}
                   </div>

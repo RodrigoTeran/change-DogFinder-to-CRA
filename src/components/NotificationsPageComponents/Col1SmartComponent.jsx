@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
+import { deleteJarvisFromUser } from "../../routes/jarvisRoutes";
+import { updatePushJarvisInfoAction } from "../../store/reducers/jarvis/actions";
+import {
+  updateFailureMessagesComponentAction,
+  updateSuccessMessagesComponentAction,
+} from "../../store/reducers/layout/actions";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const Col1SmartComponent = ({
   viewIAUser,
@@ -12,11 +20,60 @@ const Col1SmartComponent = ({
   jarvisesManualUser,
   jarvisesIACompany,
   jarvisesManualCompany,
+
+  updatePushJarvisInfo,
+  updateSuccessMessagesComponent,
+  updateFailureMessagesComponent,
 }) => {
+  const [yesRedirect, setYesRedirect] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const deleteUserInJarvis = (idJarvis, typeUser) => {
+    setIsLoading(true);
+    const body = {
+      idJarvis,
+      typeUser,
+    };
+    fetch(deleteJarvisFromUser, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        token: localStorage.getItem("token"),
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setIsLoading(false);
+        if (data.status) {
+          setYesRedirect(true);
+          updatePushJarvisInfo(data.arrayJarvisesWithInfo);
+          updateSuccessMessagesComponent({
+            state: true,
+            title: "Notificación eliminada",
+            description: "Notificación eliminada exitosamente.",
+          });
+        } else {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: "No se pudo eliminar la notificación",
+          });
+        }
+      });
+  };
+
   var createdAt = "---";
   var indexJarvis = undefined;
   var noLength = false;
   var numeroView = undefined;
+
+  var idJarvis = undefined;
+  var typeUser = undefined;
+
   const getJarvisInfo = () => {
     if (inWhatView === "viewIAUser") {
       if (jarvisesIAUser.length > 0) {
@@ -44,6 +101,9 @@ const Col1SmartComponent = ({
       }
     }
     if (!noLength) {
+      idJarvis = jarvises[indexJarvis].idJarvis;
+      typeUser = jarvises[indexJarvis].typeUser;
+
       createdAt = formatDate(jarvises[indexJarvis].createdAt);
       if (inWhatView === "viewIAUser") {
         numeroView = viewIAUser + 1;
@@ -87,6 +147,7 @@ const Col1SmartComponent = ({
   getJarvisInfo();
   return (
     <div className="main-section-notificaciones-page-container-col-1-smart">
+      {yesRedirect ? <Redirect to="/"></Redirect> : <></>}
       {createdAt === "---" ? (
         <></>
       ) : (
@@ -110,7 +171,11 @@ const Col1SmartComponent = ({
             width="100%"
             height="50px"
             redDif="redColor-2"
-            clickFunctionAnotherOne={() => {}}
+            clickFunctionAnotherOne={() => {
+              if (!isLoading) {
+                deleteUserInJarvis(idJarvis, typeUser);
+              }
+            }}
           >
             <svg
               width="20px"
@@ -123,8 +188,41 @@ const Col1SmartComponent = ({
           </ButtonWhiteRectangle>
         </div>
       )}
+      {isLoading ? (
+        <div
+          className="loader-block"
+          style={{
+            paddingTop: "30px",
+          }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" />
+          </svg>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
 
-export default Col1SmartComponent;
+// Clases de REDUX
+const mapStateToProps = (state) => {
+  return {};
+};
+
+// Acciones de REDUX
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateFailureMessagesComponent: (data) => {
+      dispatch(updateFailureMessagesComponentAction(data));
+    },
+    updateSuccessMessagesComponent: (data) => {
+      dispatch(updateSuccessMessagesComponentAction(data));
+    },
+    updatePushJarvisInfo: (data) => {
+      dispatch(updatePushJarvisInfoAction(data));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Col1SmartComponent);

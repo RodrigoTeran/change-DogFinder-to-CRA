@@ -60,7 +60,6 @@ const HeaderNotificaciones = ({ jarvises, userCompany }) => {
       ) {
         manualUserVAR.push([i, jarvises[i].typeObjectOfJarvis]);
       } else {
-        console.log("no entró en ninguna...");
       }
     }
     setManualUser(manualUserVAR);
