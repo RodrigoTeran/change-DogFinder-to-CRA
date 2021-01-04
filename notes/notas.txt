@@ -3,6 +3,7 @@ Issues:
     ---> Poner el createdAt del jarvis en el FrontEnd
     ---> Poner el quitar notificacion
     - Poner el si atino IA
+    - Saber que hacer cuando se elimina el perfil y el otro tiene la notificacion abierta
     --> En tu página de perfil, el perfil de Freda va a tener otro color:
       - Cuando le das, te va a llevar a la página de notificaciones...
         - Si ese es tu perro confirma, ponte en contacto con esa persona, y en la página de notificaciones se va a quedar en el historial...

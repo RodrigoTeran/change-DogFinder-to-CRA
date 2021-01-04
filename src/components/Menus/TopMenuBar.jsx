@@ -269,7 +269,7 @@ const Menubar = ({
               <li
                 style={{
                   cursor: "pointer",
-                  marginRight: auth ? "30px" : "40px",
+                  marginRight: auth ? "40px" : "40px",
                 }}
               >
                 <Link to="/" style={{ cursor: "pointer" }}>
@@ -282,27 +282,6 @@ const Menubar = ({
                     </svg>
                   </div>
                 </Link>
-              </li>
-              <li className="mx-3">
-                {auth ? (
-                  <Link
-                    to="/adopcion"
-                    className="Top-menu-bar-button"
-                    title="Adopta a un perro"
-                    style={{ cursor: "pointer" }}
-                  >
-                    ADOPCIÓN
-                  </Link>
-                ) : (
-                  <div
-                    onClick={iniciarSesion}
-                    className="Top-menu-bar-button"
-                    title="Adopta a un perro"
-                    style={{ cursor: "pointer", paddingTop: "5px" }}
-                  >
-                    ADOPCIÓN
-                  </div>
-                )}
               </li>
               {auth ? (
                 <>
@@ -354,7 +333,7 @@ const Menubar = ({
               ) : (
                 <li className="ml-3">
                   <div
-                    className="link-after-effect"
+                    className="Top-menu-bar-button"
                     style={{ cursor: "pointer", marginTop: "5px" }}
                     title="Iniciar sesión"
                     onClick={iniciarSesion}

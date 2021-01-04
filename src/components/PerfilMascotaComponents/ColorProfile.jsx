@@ -1,27 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import {
-  getPetProfile,
-  getWebp
-} from "../../store/reducers/user/selector";
+import { getPetProfile, getWebp } from "../../store/reducers/user/selector";
 
-import {
-  updatePetProfileAction
-} from "../../store/reducers/user/actions";
+import { updatePetProfileAction } from "../../store/reducers/user/actions";
 
 import {
   updateFailureMessagesComponentAction,
-  updateSuccessMessagesComponentAction
+  updateSuccessMessagesComponentAction,
 } from "../../store/reducers/layout/actions";
 
-import {
-  editPetProfileColor
-} from "../../routes/index";
+import { editPetProfileColor } from "../../routes/index";
 
-import {
-  editPetProfileDogFoundedColor
-} from "../../routes/indexDogFounded";
+import { editPetProfileDogFoundedColor } from "../../routes/indexDogFounded";
 
 const ColorProfile = ({
   petProfile,
@@ -30,156 +21,217 @@ const ColorProfile = ({
   updatePetProfile,
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
-  isLoading
+  isLoading,
 }) => {
-
   const editColorProfile = (newColor) => {
     changeLoader(true);
     const body = {
-      newColor
+      newColor,
     };
-    fetch(`${petProfile.isPetProfile ? (`${editPetProfileColor}/${petProfile.name}`) : (`${editPetProfileDogFoundedColor}/${petProfile.name}`)}`, {
-      method: "PUT",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "token": localStorage.getItem("token"),
-        "isPetFromCompany": petProfile.isPetFromCompany ? (true) : (false)
-      },
-      body: JSON.stringify(body)
-    }).then(res => {
-      return res.json();
-    }).then(data => {
-      changeLoader(false);
-      if (data.status) {
-        updatePetProfile({
-          selectedState: "mainColor",
-          state: newColor
-        });
-        updateSuccessMessagesComponent({
-          state: true,
-          title: "Se ha cambiado el color",
-          description: petProfile.isPetProfile ? ("Se ha cambiado el color principal de tu mascota con éxito") : ("Se ha cambiado el color principal del perro con éxito"),
-        });
-      } else {
-        updateFailureMessagesComponent({
-          state: true,
-          title: "Error",
-          description: "No se ha podido cambiar el color principal",
-        });
-      };
-    });
+    fetch(
+      `${
+        petProfile.isPetProfile
+          ? `${editPetProfileColor}/${petProfile.name}`
+          : `${editPetProfileDogFoundedColor}/${petProfile.name}`
+      }`,
+      {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          token: localStorage.getItem("token"),
+          isPetFromCompany: petProfile.isPetFromCompany ? true : false,
+        },
+        body: JSON.stringify(body),
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        changeLoader(false);
+        if (data.status === "noSePuede") {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: `No se puede editar el perfil ya que tienes una notifiación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.`,
+          });
+        } else if (data.status) {
+          updatePetProfile({
+            selectedState: "mainColor",
+            state: newColor,
+          });
+          updateSuccessMessagesComponent({
+            state: true,
+            title: "Se ha cambiado el color",
+            description: petProfile.isPetProfile
+              ? "Se ha cambiado el color principal de tu mascota con éxito"
+              : "Se ha cambiado el color principal del perro con éxito",
+          });
+        } else {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: "No se ha podido cambiar el color principal",
+          });
+        }
+      });
   };
 
   return (
     <div className={`color-profile`}>
       <div className={`color-profile-content`}>
-        <div className={`color-profile-title`}>
-          Color principal
-        </div>
+        <div className={`color-profile-title`}>Color principal</div>
         <div className="row d-flex justify-center align-items-center color-profile-row">
-          <div className="col-lg-2 col-md-3 col-sm-4 color-profile-column" title="Negro">
-            <div className={`color-profile-circle color-profile-circle-black`} onClick={() => {
-              if (!isLoading) {
-                editColorProfile("Negro");
-              };
-            }}>
+          <div
+            className="col-lg-2 col-md-3 col-sm-4 color-profile-column"
+            title="Negro"
+          >
+            <div
+              className={`color-profile-circle color-profile-circle-black`}
+              onClick={() => {
+                if (!isLoading) {
+                  editColorProfile("Negro");
+                }
+              }}
+            >
               {petProfile.mainColor === "Negro" ? (
                 <div className={`color-profile-circle-answer`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" />
+                  </svg>
                 </div>
-              ) : (<></>)}
+              ) : (
+                <></>
+              )}
             </div>
-            <div className={`color-profile-circle-text`}>
-              Negro
-            </div>
+            <div className={`color-profile-circle-text`}>Negro</div>
           </div>
-          <div className="col-lg-2 col-md-3 col-sm-4 color-profile-column" title="Blanco">
-            <div className={`color-profile-circle color-profile-circle-white`} onClick={() => {
-              if (!isLoading) {
-                editColorProfile("Blanco");
-              };
-            }}>
+          <div
+            className="col-lg-2 col-md-3 col-sm-4 color-profile-column"
+            title="Blanco"
+          >
+            <div
+              className={`color-profile-circle color-profile-circle-white`}
+              onClick={() => {
+                if (!isLoading) {
+                  editColorProfile("Blanco");
+                }
+              }}
+            >
               {petProfile.mainColor === "Blanco" ? (
                 <div className={`color-profile-circle-answer`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" />
+                  </svg>
                 </div>
-              ) : (<></>)}
-
+              ) : (
+                <></>
+              )}
             </div>
-            <div className={`color-profile-circle-text`}>
-              Blanco
-            </div>
+            <div className={`color-profile-circle-text`}>Blanco</div>
           </div>
-          <div className="col-lg-2 col-md-3 col-sm-4 color-profile-column" title="Gris">
-            <div className={`color-profile-circle color-profile-circle-gray`} onClick={() => {
-              if (!isLoading) {
-                editColorProfile("Gris");
-              };
-            }}>
+          <div
+            className="col-lg-2 col-md-3 col-sm-4 color-profile-column"
+            title="Gris"
+          >
+            <div
+              className={`color-profile-circle color-profile-circle-gray`}
+              onClick={() => {
+                if (!isLoading) {
+                  editColorProfile("Gris");
+                }
+              }}
+            >
               {petProfile.mainColor === "Gris" ? (
                 <div className={`color-profile-circle-answer`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" />
+                  </svg>
                 </div>
-              ) : (<></>)}
+              ) : (
+                <></>
+              )}
             </div>
-            <div className={`color-profile-circle-text`}>
-              Gris
-            </div>
+            <div className={`color-profile-circle-text`}>Gris</div>
           </div>
-          <div className="col-lg-2 col-md-3 col-sm-4 color-profile-column" title="Café">
-            <div className={`color-profile-circle color-profile-circle-brown`} onClick={() => {
-              if (!isLoading) {
-                editColorProfile("Café");
-              };
-            }}>
+          <div
+            className="col-lg-2 col-md-3 col-sm-4 color-profile-column"
+            title="Café"
+          >
+            <div
+              className={`color-profile-circle color-profile-circle-brown`}
+              onClick={() => {
+                if (!isLoading) {
+                  editColorProfile("Café");
+                }
+              }}
+            >
               {petProfile.mainColor === "Café" ? (
                 <div className={`color-profile-circle-answer`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" />
+                  </svg>
                 </div>
-              ) : (<></>)}
+              ) : (
+                <></>
+              )}
             </div>
-            <div className={`color-profile-circle-text`}>
-              Café
-            </div>
+            <div className={`color-profile-circle-text`}>Café</div>
           </div>
-          <div className="col-lg-2 col-md-3 col-sm-4 color-profile-column" title="Amarillo">
-            <div className={`color-profile-circle color-profile-circle-yellow`} onClick={() => {
-              if (!isLoading) {
-                editColorProfile("Amarillo");
-              };
-            }}>
+          <div
+            className="col-lg-2 col-md-3 col-sm-4 color-profile-column"
+            title="Amarillo"
+          >
+            <div
+              className={`color-profile-circle color-profile-circle-yellow`}
+              onClick={() => {
+                if (!isLoading) {
+                  editColorProfile("Amarillo");
+                }
+              }}
+            >
               {petProfile.mainColor === "Amarillo" ? (
                 <div className={`color-profile-circle-answer`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" />
+                  </svg>
                 </div>
-              ) : (<></>)}
+              ) : (
+                <></>
+              )}
             </div>
-            <div className={`color-profile-circle-text`}>
-              Amarillo
-            </div>
+            <div className={`color-profile-circle-text`}>Amarillo</div>
           </div>
-          <div className="col-lg-2 col-md-3 col-sm-4 color-profile-column" title="Mezcla">
-            <div className={`color-profile-circle color-profile-circle-mix-${isWebp ? ("webp") : ("jpg")}`} onClick={() => {
-              if (!isLoading) {
-                editColorProfile("Mezcla");
-              };
-            }}>
+          <div
+            className="col-lg-2 col-md-3 col-sm-4 color-profile-column"
+            title="Mezcla"
+          >
+            <div
+              className={`color-profile-circle color-profile-circle-mix-${
+                isWebp ? "webp" : "jpg"
+              }`}
+              onClick={() => {
+                if (!isLoading) {
+                  editColorProfile("Mezcla");
+                }
+              }}
+            >
               {petProfile.mainColor === "Mezcla" ? (
                 <div className={`color-profile-circle-answer`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" />
+                  </svg>
                 </div>
-              ) : (<></>)}
+              ) : (
+                <></>
+              )}
             </div>
-            <div className={`color-profile-circle-text`}>
-              Mezcla
-            </div>
+            <div className={`color-profile-circle-text`}>Mezcla</div>
           </div>
         </div>
-        <div className={`color-profile-result`}>
-          {petProfile.mainColor}
-        </div>
+        <div className={`color-profile-result`}>{petProfile.mainColor}</div>
       </div>
     </div>
   );
@@ -189,16 +241,22 @@ const ColorProfile = ({
 const mapStateToProps = (state) => {
   return {
     petProfile: getPetProfile(state),
-    isWebp: getWebp(state)
+    isWebp: getWebp(state),
   };
 };
 
 // Acciones de REDUX
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) },
-    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
-    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) }
+    updatePetProfile: (data) => {
+      dispatch(updatePetProfileAction(data));
+    },
+    updateFailureMessagesComponent: (data) => {
+      dispatch(updateFailureMessagesComponentAction(data));
+    },
+    updateSuccessMessagesComponent: (data) => {
+      dispatch(updateSuccessMessagesComponentAction(data));
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ColorProfile);

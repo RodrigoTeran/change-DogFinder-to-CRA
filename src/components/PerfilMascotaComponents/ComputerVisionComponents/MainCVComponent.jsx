@@ -1,37 +1,28 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import axios from 'axios';
-import {
-  getPetProfile
-} from "../../../store/reducers/user/selector";
+import axios from "axios";
+import { getPetProfile } from "../../../store/reducers/user/selector";
 
-import {
-  updatePetProfileAction
-} from "../../../store/reducers/user/actions";
+import { updatePetProfileAction } from "../../../store/reducers/user/actions";
 
 import {
   updateSuccessMessagesComponentAction,
-  updateFailureMessagesComponentAction
+  updateFailureMessagesComponentAction,
 } from "../../../store/reducers/layout/actions";
 
-import {
-  editPetProfileImages
-} from "../../../routes/index";
+import { editPetProfileImages } from "../../../routes/index";
 
-import CardImage from "./CardImage"
+import CardImage from "./CardImage";
 import CroppImages from "./CroppImages";
 
-import {
-  editProfileDogFoundedImages
-} from "../../../routes/indexDogFounded";
+import { editProfileDogFoundedImages } from "../../../routes/indexDogFounded";
 
 const MainCVComponent = ({
   petProfile,
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
-  updatePetProfile
+  updatePetProfile,
 }) => {
-
   // CARD IMAGE
   const [srcImageToDelete, setSrcImageToDelete] = useState("no");
   const [imageSrc, setImageSrc] = useState("");
@@ -46,7 +37,7 @@ const MainCVComponent = ({
     setSrcImageToDelete(srcImage);
   };
 
-  const changeFunction = e => {
+  const changeFunction = (e) => {
     try {
       let urlImage = undefined;
       urlImage = URL.createObjectURL(e.target.files[0]);
@@ -63,7 +54,7 @@ const MainCVComponent = ({
       } else {
         setImageSrc(urlImage);
         setSrcImageYes(true);
-      };
+      }
     } catch {
       setSrcImageYes(false);
       setImageSrc("");
@@ -73,41 +64,54 @@ const MainCVComponent = ({
         title: "Error al cargar",
         description: `Algo ocurrió mal :(`,
       });
-    };
+    }
   };
 
   const onSubmitInput = () => {
     setIsLoading(true);
     const data = new FormData();
     fetch(imageDestination)
-      .then(res => res.blob())
-      .then(blob => {
-        const file = new File([blob], "File name", { type: "image/png" })
+      .then((res) => res.blob())
+      .then((blob) => {
+        const file = new File([blob], "File name", { type: "image/png" });
         data.append("file", file);
-        axios.put(`${petProfile.isPetProfile ? (`${editPetProfileImages}/${petProfile.name}`) : (`${editProfileDogFoundedImages}/${petProfile.name}`)}`,
-          data,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json",
-              "token": localStorage.getItem("token"),
-              "srcImageToDelete": srcImageToDelete,
-              "isPetFromCompany": petProfile.isPetFromCompany ? (true) : (false)
+        axios
+          .put(
+            `${
+              petProfile.isPetProfile
+                ? `${editPetProfileImages}/${petProfile.name}`
+                : `${editProfileDogFoundedImages}/${petProfile.name}`
+            }`,
+            data,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                token: localStorage.getItem("token"),
+                srcImageToDelete: srcImageToDelete,
+                isPetFromCompany: petProfile.isPetFromCompany ? true : false,
+              },
             }
-          })
-          .then(res => {
+          )
+          .then((res) => {
             setIsLoading(false);
             setIsResponse(true);
-            if (res.data.status === "true") {
+            if (res.data.status === "noSePuede") {
+              updateFailureMessagesComponent({
+                state: true,
+                title: "Error",
+                description: `No se puede editar el perfil ya que tienes una notifiación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.`,
+              });
+            } else if (res.data.status === "true") {
               updateSuccessMessagesComponent({
                 state: true,
                 title: "Se añadió la imagen",
-                description: `Se añadió la imagen para el reconocimiento facial con éxito`
+                description: `Se añadió la imagen para el reconocimiento facial con éxito`,
               });
               if (res.data.imagesArray) {
                 updatePetProfile({
                   selectedState: "images",
-                  state: res.data.imagesArray
+                  state: res.data.imagesArray,
                 });
               } else {
                 updateFailureMessagesComponent({
@@ -115,7 +119,7 @@ const MainCVComponent = ({
                   title: "Error al actualizar estado",
                   description: `Actualice la página para actualizar el estado`,
                 });
-              };
+              }
             } else if (res.data.status === "more") {
               updateFailureMessagesComponent({
                 state: true,
@@ -128,7 +132,7 @@ const MainCVComponent = ({
                 title: "Error al enviar la imagen",
                 description: `Algo ocurrió mal :(`,
               });
-            };
+            }
           });
       });
   };
@@ -139,29 +143,52 @@ const MainCVComponent = ({
         <div className="computer-vision-title">
           Imágenes para el reconocimiento facial
         </div>
-        <CardImage typeOfCard="addImage"
+        <CardImage
+          typeOfCard="addImage"
           changeFunction={changeFunction}
         ></CardImage>
-        <div className={`image-pet-profile-instructions image-pet-profile-instructions-images ${yesInstructions ? ("open") : ("close")}`} style={{
-          marginTop: "10px",
-          minHeight: "20px",
-          marginLeft: window.innerWidth < 1121 ? (`calc(50% - 150px`) : ("0px"),
-          width: window.innerWidth < 1121 ? (`300px`) : ("50%"),
-          marginBottom: "0px"
-        }}>
+        <div
+          className={`image-pet-profile-instructions image-pet-profile-instructions-images ${
+            yesInstructions ? "open" : "close"
+          }`}
+          style={{
+            marginTop: "10px",
+            minHeight: "20px",
+            marginLeft: window.innerWidth < 1121 ? `calc(50% - 150px` : "0px",
+            width: window.innerWidth < 1121 ? `300px` : "50%",
+            marginBottom: "0px",
+          }}
+        >
           <div className="image-pet-profile-instructions-icon">
-            <div onClick={() => { setInstructions(!yesInstructions) }} title="Instrucciones" style={{
-              display: "flex",
-              alignItems: "center"
-            }}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg> Instrucciones
+            <div
+              onClick={() => {
+                setInstructions(!yesInstructions);
+              }}
+              title="Instrucciones"
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" />
+              </svg>{" "}
+              Instrucciones
             </div>
           </div>
-          <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`} style={{
-            marginBottom: "0px",
-          }}>
-            {`${petProfile.isPetProfile ? (`Sube una imagen específicamente del rostro de tu mascota. Puedes subir hasta 4 imágenes.`) :
-              (`Sube una imagen específicamente del rostro del perro que hayas encontrado. Puedes subir hasta 4 imágenes.`)}`}
+          <div
+            className={`${
+              yesInstructions ? "open" : "close"
+            } image-pet-profile-instructions-text`}
+            style={{
+              marginBottom: "0px",
+            }}
+          >
+            {`${
+              petProfile.isPetProfile
+                ? `Sube una imagen específicamente del rostro de tu mascota. Puedes subir hasta 4 imágenes.`
+                : `Sube una imagen específicamente del rostro del perro que hayas encontrado. Puedes subir hasta 4 imágenes.`
+            }`}
           </div>
         </div>
         <div className="computer-vision-row row">
@@ -192,8 +219,8 @@ const MainCVComponent = ({
                 randomId={"kogarnjdsjndsbnk"}
               ></CardImage>
             </>
-          )
-            : (<>
+          ) : (
+            <>
               {petProfile.images.length === 3 ? (
                 <>
                   <CardImage
@@ -214,68 +241,55 @@ const MainCVComponent = ({
                     nowSRCImage={handleDeleteImage}
                     randomId={"jbdvcjxjxckxc"}
                   ></CardImage>
-                  <CardImage
-                    nothing={true}
-                  ></CardImage>
+                  <CardImage nothing={true}></CardImage>
                 </>
-              ) : (<>
-                {petProfile.images.length === 2 ? (
-                  <>
-                    <CardImage
-                      srcImage={petProfile.images[0].srcImage}
-                      handleDeleteImage={changeFunction}
-                      nowSRCImage={handleDeleteImage}
-                      randomId={"rhkuoodssa"}
-                    ></CardImage>
-                    <CardImage
-                      srcImage={petProfile.images[1].srcImage}
-                      handleDeleteImage={changeFunction}
-                      nowSRCImage={handleDeleteImage}
-                      randomId={"8273gibdusidsv"}
-                    ></CardImage>
-                    <CardImage
-                      nothing={true}
-                    ></CardImage>
-                    <CardImage
-                      nothing={true}
-                    ></CardImage>
-                  </>
-                ) : (<>
-                  {petProfile.images.length === 1 ? (
+              ) : (
+                <>
+                  {petProfile.images.length === 2 ? (
                     <>
                       <CardImage
                         srcImage={petProfile.images[0].srcImage}
                         handleDeleteImage={changeFunction}
                         nowSRCImage={handleDeleteImage}
-                        randomId={"hreuibe28iuviw"}
+                        randomId={"rhkuoodssa"}
                       ></CardImage>
                       <CardImage
-                        nothing={true}
+                        srcImage={petProfile.images[1].srcImage}
+                        handleDeleteImage={changeFunction}
+                        nowSRCImage={handleDeleteImage}
+                        randomId={"8273gibdusidsv"}
                       ></CardImage>
-                      <CardImage
-                        nothing={true}
-                      ></CardImage>
-                      <CardImage
-                        nothing={true}
-                      ></CardImage>
+                      <CardImage nothing={true}></CardImage>
+                      <CardImage nothing={true}></CardImage>
                     </>
-                  ) : (<>
-                    <CardImage
-                      nothing={true}
-                    ></CardImage>
-                    <CardImage
-                      nothing={true}
-                    ></CardImage>
-                    <CardImage
-                      nothing={true}
-                    ></CardImage>
-                    <CardImage
-                      nothing={true}
-                    ></CardImage>
-                  </>)}
-                </>)}
-              </>)}
-            </>)}
+                  ) : (
+                    <>
+                      {petProfile.images.length === 1 ? (
+                        <>
+                          <CardImage
+                            srcImage={petProfile.images[0].srcImage}
+                            handleDeleteImage={changeFunction}
+                            nowSRCImage={handleDeleteImage}
+                            randomId={"hreuibe28iuviw"}
+                          ></CardImage>
+                          <CardImage nothing={true}></CardImage>
+                          <CardImage nothing={true}></CardImage>
+                          <CardImage nothing={true}></CardImage>
+                        </>
+                      ) : (
+                        <>
+                          <CardImage nothing={true}></CardImage>
+                          <CardImage nothing={true}></CardImage>
+                          <CardImage nothing={true}></CardImage>
+                          <CardImage nothing={true}></CardImage>
+                        </>
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          )}
         </div>
         <CroppImages
           imageSrc={imageSrc}
@@ -288,23 +302,29 @@ const MainCVComponent = ({
           onSubmitInput={() => {
             if (!isLoading) {
               onSubmitInput();
-            };
+            }
           }}
           setImageDestination={setImageDestination}
           imageDestination={imageDestination}
-
           isResponse={isResponse}
           setIsResponse={setIsResponse}
           setSrcImageToDelete={setSrcImageToDelete}
         ></CroppImages>
         {isLoading ? (
-          <div className="loader-block" style={{
-            paddingTop: "80px",
-            paddingBottom: "60px"
-          }}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" /></svg>
+          <div
+            className="loader-block"
+            style={{
+              paddingTop: "80px",
+              paddingBottom: "60px",
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" />
+            </svg>
           </div>
-        ) : (<></>)}
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
@@ -313,16 +333,22 @@ const MainCVComponent = ({
 // Clases de REDUX
 const mapStateToProps = (state) => {
   return {
-    petProfile: getPetProfile(state)
+    petProfile: getPetProfile(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateFailureMessagesComponent: (data) => { dispatch(updateFailureMessagesComponentAction(data)) },
-    updateSuccessMessagesComponent: (data) => { dispatch(updateSuccessMessagesComponentAction(data)) },
-    updatePetProfile: (data) => { dispatch(updatePetProfileAction(data)) }
-  }
+    updateFailureMessagesComponent: (data) => {
+      dispatch(updateFailureMessagesComponentAction(data));
+    },
+    updateSuccessMessagesComponent: (data) => {
+      dispatch(updateSuccessMessagesComponentAction(data));
+    },
+    updatePetProfile: (data) => {
+      dispatch(updatePetProfileAction(data));
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainCVComponent);

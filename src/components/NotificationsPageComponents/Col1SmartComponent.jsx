@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
 import { deleteJarvisFromUser } from "../../routes/jarvisRoutes";
 import { updatePushJarvisInfoAction } from "../../store/reducers/jarvis/actions";
 import {
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction,
+  updateBannerOkCancelActionAction,
 } from "../../store/reducers/layout/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { TEXT_WANT_DELETE_NOTIFICATION } from "../../utils/textForBannerOkCancelAction";
+import { getBannerOkCancelAction } from "../../store/reducers/layout/selector";
 
 const Col1SmartComponent = ({
   viewIAUser,
@@ -24,10 +27,36 @@ const Col1SmartComponent = ({
   updatePushJarvisInfo,
   updateSuccessMessagesComponent,
   updateFailureMessagesComponent,
+
+  updateBannerOkCancelAction,
+  bannerOkCancelAction,
 }) => {
   const [yesRedirect, setYesRedirect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const deleteUserInJarvis = (idJarvis, typeUser) => {
+  useEffect(() => {
+    if (
+      bannerOkCancelAction.isDisplayed.fromWho ===
+        TEXT_WANT_DELETE_NOTIFICATION &&
+      bannerOkCancelAction.okButton === true
+    ) {
+      deleteUserInJarvis();
+      updateBannerOkCancelAction({
+        fromWho: TEXT_WANT_DELETE_NOTIFICATION,
+        inLayout: false,
+        okButton: false,
+      });
+    }
+  }, [bannerOkCancelAction]);
+  
+  const askIfWantDelete = () => {
+    updateBannerOkCancelAction({
+      fromWho: TEXT_WANT_DELETE_NOTIFICATION,
+      inLayout: true,
+      okButton: false,
+    });
+  };
+
+  const deleteUserInJarvis = () => {
     setIsLoading(true);
     const body = {
       idJarvis,
@@ -173,7 +202,7 @@ const Col1SmartComponent = ({
             redDif="redColor-2"
             clickFunctionAnotherOne={() => {
               if (!isLoading) {
-                deleteUserInJarvis(idJarvis, typeUser);
+                askIfWantDelete();
               }
             }}
           >
@@ -208,7 +237,9 @@ const Col1SmartComponent = ({
 
 // Clases de REDUX
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    bannerOkCancelAction: getBannerOkCancelAction(state),
+  };
 };
 
 // Acciones de REDUX
@@ -222,6 +253,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePushJarvisInfo: (data) => {
       dispatch(updatePushJarvisInfoAction(data));
+    },
+    updateBannerOkCancelAction: (data) => {
+      dispatch(updateBannerOkCancelActionAction(data));
     },
   };
 };

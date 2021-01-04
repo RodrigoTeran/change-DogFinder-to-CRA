@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 const CardInfoPetProfile = ({
   children,
@@ -22,13 +21,4 @@ const CardInfoPetProfile = ({
   );
 };
 
-// Clases de REDUX
-const mapStateToProps = (state) => {
-  return {};
-};
-
-// Acciones de REDUX
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(CardInfoPetProfile);
+export default CardInfoPetProfile;

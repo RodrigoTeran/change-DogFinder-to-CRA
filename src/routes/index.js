@@ -13,7 +13,6 @@ routes.getUser = `${routes.apiDomain}/user`;
 routes.getProfileDataRoute = `${routes.apiDomain}/data/profile`;
 routes.getpetProfileDataRoute = `${routes.apiDomain}/data/pet`;
 routes.getFoundDogDataRoute = `${routes.apiDomain}/data/found`;
-routes.getAdoptDataRoute = `${routes.apiDomain}/data/adopt`;
 
 // PUT
 routes.editPetName = `${routes.apiDomain}/edit`;

@@ -64,7 +64,7 @@ const PetIsLostController = ({
             state: true,
             title: "Error",
             description:
-              "No puedes cambiar su estado hasta que elimines la notificación correspondiente. Esto lo hacemos para asegurar que veas la notificación.",
+              "No se puede editar el perfil ya que tienes una notifiación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.",
           });
         } else if (data.status === "true") {
           updateSuccessMessagesComponent({
@@ -107,7 +107,13 @@ const PetIsLostController = ({
       })
       .then((data) => {
         setIsLoading(false);
-        if (data.status === "true") {
+        if (data.status === "noSePuede") {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: `No se puede editar el perfil ya que tienes una notifiación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.`,
+          });
+        } else if (data.status === "true") {
           updateSuccessMessagesComponent({
             state: true,
             title: "Se cambió el perfil con éxito",

@@ -29,7 +29,6 @@ import BannerRedirectWithLink from "./components/LayoutMessages/BannerRedirectWi
 // Pages
 import Index from "./pages/index";
 import Profile from "./pages/perfil";
-import Adpotion from "./pages/adopcion";
 import Buy from "./pages/comprar";
 import ContactUs from "./pages/contactanos";
 import Map from "./pages/mapa";
@@ -399,9 +398,6 @@ const App = ({
             </Route>
             <Route path="/perfil/">
               <Profile></Profile>
-            </Route>
-            <Route path="/adopcion">
-              <Adpotion></Adpotion>
             </Route>
             <Route path="/comprar">
               <Buy></Buy>
