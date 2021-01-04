@@ -1,16 +1,6 @@
 Issues:
   - Cuando se haga un match:
-    ---> Poner el createdAt del jarvis en el FrontEnd
-    ---> Poner el quitar notificacion
     - Poner el si atino IA
-    - Saber que hacer cuando se elimina el perfil y el otro tiene la notificacion abierta
-    --> En tu página de perfil, el perfil de Freda va a tener otro color:
-      - Cuando le das, te va a llevar a la página de notificaciones...
-        - Si ese es tu perro confirma, ponte en contacto con esa persona, y en la página de notificaciones se va a quedar en el historial...
-          - Para que lo puedas consultar si no guardaste la información del que rescato a tu mascota.
-        - Se confirma también para que ya no aparezaca en el mapa... también se quita el isLost
-        - Si no era tu perro
-          - Le das en "nel" y aun asi se gurada en el historial
   - Stripe:
     - Incluir IVA en compra
     - Crear lo del codigo de descuento con stripe
