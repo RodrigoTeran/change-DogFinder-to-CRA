@@ -31,15 +31,19 @@
   &-whereIAM {
     width: 768px;
     margin-left: calc(50% - 384px);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    height: fit-content;
     @media screen and (max-width: 950px) {
-      width: 80%;
-      margin-left: 10%;
+      width: 90%;
+      margin-left: 5%;
+      padding-left: 15px;
     }
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 1.1rem;
+    flex-wrap: wrap;
+
     &-link {
       color: #ffbfbf;
       font-weight: bold;
@@ -125,12 +129,10 @@
       padding: 7.5px;
       padding-top: 9px;
       overflow: hidden;
-      max-height: 50px;
-      transition: ease-in-out .5s;
+      transition: ease-in-out 0.5s;
       border: solid 4px rgba(32, 32, 32, 1);
       &.open {
-        transition: ease-in-out .5s;
-        max-height: 300px;
+        transition: ease-in-out 0.5s;
       }
 
       &-q {
@@ -162,10 +164,10 @@
           width: 15px;
           height: 15px;
           fill: #fff;
-          transition: ease-in-out .5s;
-          &.open{
+          transition: ease-in-out 0.5s;
+          &.open {
             transform: rotateZ(180deg);
-            transition: ease-in-out .5s;
+            transition: ease-in-out 0.5s;
           }
         }
       }
@@ -188,5 +190,21 @@
   transform: scale(0);
   &.open {
     transform: scale(1);
+  }
+}
+.still-getting-issues {
+  width: 768px;
+  text-align: left;
+  margin-left: calc(50% - 384px);
+  display: flex;
+  flex-wrap: wrap;
+  div{
+    margin-right: 10px;
+  }
+  @media screen and (max-width: 950px) {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }

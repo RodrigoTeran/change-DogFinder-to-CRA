@@ -56,7 +56,7 @@ const FAQComponentCardSmall = ({
           }`}
           style={{
             maxHeight: isOpen
-              ? "300px"
+              ? "400px"
               : window.innerWidth <= maxHeightRomper2
               ? "100px"
               : window.innerWidth <= maxHeightRomper
@@ -123,15 +123,26 @@ const FAQComponent = () => {
 
   const distanceBetweenAnimations = 0.08;
   const transitionDuration = 0.1;
+  const numberScreenOfForms = 1;
 
   const howManyScreen1 = 6;
   const howManyScreen2 = 4;
   const howManyScreen3 = 3;
+  const howManyScreen4 = 3;
+  const howManyScreen5 = 4;
+  const howManyScreen6 = 2;
+  const howManyScreen7 = 5;
+  const howManyScreen8 = 5;
 
   /**
    * screen 1 = index
    * screen 2 = producto
    * screen 3 = mapa
+   * screen 4 = IA
+   * screen 5 = General
+   * screen 6 = Notificaciones
+   * screen 7 = Pagos
+   * screen 8 = Problemas comunes
    */
 
   return (
@@ -165,6 +176,36 @@ const FAQComponent = () => {
                   cambiarScreenPrimero(
                     // howManyScreen3 por screen 3
                     howManyScreen3 * transitionDuration * 1000,
+                    1
+                  );
+                } else if (screen === 4) {
+                  cambiarScreenPrimero(
+                    // howManyScreen4 por screen 4
+                    howManyScreen4 * transitionDuration * 1000,
+                    1
+                  );
+                } else if (screen === 5) {
+                  cambiarScreenPrimero(
+                    // howManyScreen5 por screen 5
+                    howManyScreen5 * transitionDuration * 1000,
+                    1
+                  );
+                } else if (screen === 6) {
+                  cambiarScreenPrimero(
+                    // howManyScreen6 por screen 6
+                    howManyScreen6 * transitionDuration * 1000,
+                    1
+                  );
+                } else if (screen === 7) {
+                  cambiarScreenPrimero(
+                    // howManyScreen7 por screen 7
+                    howManyScreen7 * transitionDuration * 1000,
+                    1
+                  );
+                } else if (screen === 8) {
+                  cambiarScreenPrimero(
+                    // howManyScreen8 por screen 8
+                    howManyScreen8 * transitionDuration * 1000,
                     1
                   );
                 }
@@ -216,7 +257,149 @@ const FAQComponent = () => {
                     <div>Mapa</div>
                   </>
                 ) : (
-                  <>{/*MORE...*/}</>
+                  <>
+                    {screen === 4 ? (
+                      <>
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                          >
+                            <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                          </svg>
+                        </div>
+                        <div
+                          className="faqComponent-whereIAM-link"
+                          onClick={() => {
+                            cambiarScreenPrimero(
+                              // howManyScreen4 por screen 4
+                              howManyScreen4 * transitionDuration * 1000,
+                              2
+                            );
+                          }}
+                        >
+                          Producto
+                        </div>
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                          >
+                            <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                          </svg>
+                        </div>
+                        <div>Inteligencia Artificial</div>
+                      </>
+                    ) : (
+                      <>
+                        {screen === 5 ? (
+                          <>
+                            <div>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                              >
+                                <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                              </svg>
+                            </div>
+                            <div
+                              className="faqComponent-whereIAM-link"
+                              onClick={() => {
+                                cambiarScreenPrimero(
+                                  // howManyScreen5 por screen 5
+                                  howManyScreen5 * transitionDuration * 1000,
+                                  2
+                                );
+                              }}
+                            >
+                              Producto
+                            </div>
+                            <div>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                              >
+                                <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                              </svg>
+                            </div>
+                            <div>General</div>
+                          </>
+                        ) : (
+                          <>
+                            {screen === 6 ? (
+                              <>
+                                <div>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                                  </svg>
+                                </div>
+                                <div
+                                  className="faqComponent-whereIAM-link"
+                                  onClick={() => {
+                                    cambiarScreenPrimero(
+                                      // howManyScreen6 por screen 6
+                                      howManyScreen6 *
+                                        transitionDuration *
+                                        1000,
+                                      2
+                                    );
+                                  }}
+                                >
+                                  Producto
+                                </div>
+                                <div>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                                  </svg>
+                                </div>
+                                <div>Notificaciones</div>
+                              </>
+                            ) : (
+                              <>
+                                {screen === 7 ? (
+                                  <>
+                                    <div>
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 448 512"
+                                      >
+                                        <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                                      </svg>
+                                    </div>
+                                    <div>Pagos</div>
+                                  </>
+                                ) : (
+                                  <>
+                                    {screen === 8 ? (
+                                      <>
+                                        <div>
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 448 512"
+                                          >
+                                            <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                                          </svg>
+                                        </div>
+                                        <div>Problemas comunes</div>
+                                      </>
+                                    ) : (
+                                      <>{/*MORE...*/}</>
+                                    )}
+                                  </>
+                                )}
+                              </>
+                            )}
+                          </>
+                        )}
+                      </>
+                    )}
+                  </>
                 )}
               </>
             )}
@@ -254,7 +437,7 @@ const FAQComponent = () => {
                 functionClick={() => {
                   cambiarScreenPrimero(
                     howManyScreen1 * transitionDuration * 1000,
-                    2
+                    7
                   );
                 }}
               >
@@ -270,7 +453,7 @@ const FAQComponent = () => {
                 functionClick={() => {
                   cambiarScreenPrimero(
                     howManyScreen1 * transitionDuration * 1000,
-                    2
+                    8
                   );
                 }}
               >
@@ -359,7 +542,7 @@ const FAQComponent = () => {
                     functionClick={() => {
                       cambiarScreenPrimero(
                         howManyScreen2 * transitionDuration * 1000,
-                        1
+                        4
                       );
                     }}
                   >
@@ -372,32 +555,32 @@ const FAQComponent = () => {
                   </FAQComponentCardBig>
                   <FAQComponentCardBig
                     colAmount="col-lg-4 col-md-6 col-sm-12"
-                    title="Más contenido"
+                    title="General"
                     animationScreenOpen={animationScreenOpen}
                     delayAnimation={`${distanceBetweenAnimations * 2}s`}
                     functionClick={() => {
                       cambiarScreenPrimero(
                         howManyScreen2 * transitionDuration * 1000,
-                        1
+                        5
                       );
                     }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
+                      viewBox="0 0 576 512"
                     >
-                      <path d="M464,128H272L208,64H48A48,48,0,0,0,0,112V400a48,48,0,0,0,48,48H464a48,48,0,0,0,48-48V176A48,48,0,0,0,464,128ZM359.5,296a16,16,0,0,1-16,16h-64v64a16,16,0,0,1-16,16h-16a16,16,0,0,1-16-16V312h-64a16,16,0,0,1-16-16V280a16,16,0,0,1,16-16h64V200a16,16,0,0,1,16-16h16a16,16,0,0,1,16,16v64h64a16,16,0,0,1,16,16Z" />
+                      <path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z" />
                     </svg>
                   </FAQComponentCardBig>
                   <FAQComponentCardBig
-                    colAmount="col-lg-4 col-md-6 col-sm-12"
+                    colAmount="col-lg-12 col-md-6 col-sm-12"
                     title="Notificaciones"
                     animationScreenOpen={animationScreenOpen}
                     delayAnimation={`${distanceBetweenAnimations * 3}s`}
                     functionClick={() => {
                       cambiarScreenPrimero(
                         howManyScreen2 * transitionDuration * 1000,
-                        1
+                        6
                       );
                     }}
                   >
@@ -451,19 +634,439 @@ const FAQComponent = () => {
                         algún usuario se le notificará a esa persona. De esta
                         manera cada quien sabe quien esta viendo su información.
                       </FAQComponentCardSmall>
+                      <div className="still-getting-issues">
+                        <div>
+                          ¿Sigues teniendo problemas o quieres informar algo?
+                        </div>
+                        <div
+                          className="faqComponent-whereIAM-link"
+                          onClick={() => {
+                            cambiarScreenPrimero(
+                              howManyScreen3 * transitionDuration * 1000,
+                              numberScreenOfForms
+                            );
+                          }}
+                        >
+                          Contáctenos.
+                        </div>
+                      </div>
                     </>
                   ) : (
                     <>
                       {screen === 4 ? (
-                        /*SCREEN 4*/
-                        <></>
+                        /*SCREEN 4 IA*/
+                        <>
+                          <FAQComponentCardSmall
+                            colAmount="col-12"
+                            question="¿Qué tan eficiente es la IA?"
+                            maxHeightRomper={0}
+                            maxHeightRomper2={0}
+                            animationScreenOpen={animationScreenOpen}
+                            delayAnimation={`${distanceBetweenAnimations * 0}s`}
+                          >
+                            Es demasiado eficiente. La tecnología de
+                            reconocimiento facial con los filtros (color,
+                            raza... etc) tienen una taza de efectividad superior
+                            al 95%
+                          </FAQComponentCardSmall>
+                          <FAQComponentCardSmall
+                            colAmount="col-12"
+                            question="¿Por qué se usa la IA si lo puedo hacer manual desde el mapa?"
+                            maxHeightRomper={577}
+                            maxHeightRomper2={338}
+                            animationScreenOpen={animationScreenOpen}
+                            delayAnimation={`${distanceBetweenAnimations * 1}s`}
+                          >
+                            La IA que se desarrolló para esta plataforma también
+                            esta pensada para comparar los datos en grandes
+                            cantidades. Muchos por segundo...
+                          </FAQComponentCardSmall>
+                          <FAQComponentCardSmall
+                            colAmount="col-12"
+                            question="¿Qué tan rápido se comparan los datos?"
+                            maxHeightRomper={400}
+                            maxHeightRomper2={0}
+                            animationScreenOpen={animationScreenOpen}
+                            delayAnimation={`${distanceBetweenAnimations * 2}s`}
+                          >
+                            La capacidad de computación de la IA es de la más
+                            avanzada. Esta estructurada con las mejores
+                            tecnologías actuales.
+                          </FAQComponentCardSmall>
+                        </>
                       ) : (
                         <>
                           {screen === 5 ? (
-                            /*SCREEN 5*/
-                            <></>
+                            /*SCREEN 5 GENERAL*/
+                            <>
+                              <FAQComponentCardSmall
+                                colAmount="col-12"
+                                question="¿Habrá más funcionalidades en la plataforma?"
+                                maxHeightRomper={452}
+                                maxHeightRomper2={312}
+                                animationScreenOpen={animationScreenOpen}
+                                delayAnimation={`${
+                                  distanceBetweenAnimations * 0
+                                }s`}
+                              >
+                                Claro, a lo largo del 2021 saldrán más
+                                herramientas que faciliten el encontrar a los
+                                perros perdidos.
+                              </FAQComponentCardSmall>
+                              <FAQComponentCardSmall
+                                colAmount="col-12"
+                                question="¿Si ya tenía el premium y salen nuevas cosas, podré acceder a ellas?"
+                                maxHeightRomper={622}
+                                maxHeightRomper2={374}
+                                animationScreenOpen={animationScreenOpen}
+                                delayAnimation={`${
+                                  distanceBetweenAnimations * 1
+                                }s`}
+                              >
+                                Claro, una vez que tienes cuenta premium es
+                                acceso para toda la vida a funcionalidades
+                                avanzadas. Esto aunque el precio por la cuenta
+                                premium suba.
+                              </FAQComponentCardSmall>
+                              <FAQComponentCardSmall
+                                colAmount="col-12"
+                                question="¿Cómo registro a mi empresa en el mapa?"
+                                maxHeightRomper={418}
+                                maxHeightRomper2={0}
+                                animationScreenOpen={animationScreenOpen}
+                                delayAnimation={`${
+                                  distanceBetweenAnimations * 2
+                                }s`}
+                              >
+                                En esta página, en el recuadro de "Preguntas de
+                                negocios"... ahí saldrá el forms para que nos
+                                puedas enviar un correo.
+                              </FAQComponentCardSmall>
+                              <FAQComponentCardSmall
+                                colAmount="col-12"
+                                question="¿Qué información ven las personas de mí?"
+                                maxHeightRomper={420}
+                                maxHeightRomper2={0}
+                                animationScreenOpen={animationScreenOpen}
+                                delayAnimation={`${
+                                  distanceBetweenAnimations * 3
+                                }s`}
+                              >
+                                Solo la información que pones de contacto... No
+                                la de tu cuenta. Y claro, los perfiles que hagas
+                                son públicos.
+                              </FAQComponentCardSmall>
+                            </>
                           ) : (
-                            <>{/*MORE...*/}</>
+                            <>
+                              {screen === 6 ? (
+                                /*SCREEN 6 NOTIFICACIONES*/
+                                <>
+                                  <FAQComponentCardSmall
+                                    colAmount="col-12"
+                                    question="Me salen alertas rojas en la plataforma"
+                                    maxHeightRomper={394}
+                                    maxHeightRomper2={0}
+                                    animationScreenOpen={animationScreenOpen}
+                                    delayAnimation={`${
+                                      distanceBetweenAnimations * 0
+                                    }s`}
+                                  >
+                                    Estas alertas o notificaciones son un
+                                    seguimiento a cada acción que haces en la
+                                    plataforma. Si te ha salido una de color
+                                    rojo significa que algo hiciste mal, o que
+                                    el tipo de dato que se espera que pongas fue
+                                    el incorrecto. Si el error persiste,
+                                    escribenos en la sección de "Informe de
+                                    errores"
+                                  </FAQComponentCardSmall>
+                                  <FAQComponentCardSmall
+                                    colAmount="col-12"
+                                    question="¿Al dar mi correo y número me llegará publicidad?"
+                                    maxHeightRomper={482}
+                                    maxHeightRomper2={0}
+                                    animationScreenOpen={animationScreenOpen}
+                                    delayAnimation={`${
+                                      distanceBetweenAnimations * 1
+                                    }s`}
+                                  >
+                                    No, no utlizamos estos medios para hacer
+                                    publicidad o spam... El propósito es que se
+                                    te pueda contactar siempre cuando otro
+                                    usuario de la plataforma lo necesite.
+                                  </FAQComponentCardSmall>
+                                  <div className="still-getting-issues">
+                                    <div>
+                                      ¿Sigues teniendo problemas o quieres
+                                      informar algo?
+                                    </div>
+                                    <div
+                                      className="faqComponent-whereIAM-link"
+                                      onClick={() => {
+                                        cambiarScreenPrimero(
+                                          howManyScreen6 *
+                                            transitionDuration *
+                                            1000,
+                                          numberScreenOfForms
+                                        );
+                                      }}
+                                    >
+                                      Contáctenos.
+                                    </div>
+                                  </div>
+                                </>
+                              ) : (
+                                <>
+                                  {screen === 7 ? (
+                                    /*SCREEN 7 PAGOS*/
+                                    <>
+                                      <FAQComponentCardSmall
+                                        colAmount="col-12"
+                                        question="¿Dónde consigo los descuentos?"
+                                        maxHeightRomper={344}
+                                        maxHeightRomper2={0}
+                                        animationScreenOpen={
+                                          animationScreenOpen
+                                        }
+                                        delayAnimation={`${
+                                          distanceBetweenAnimations * 0
+                                        }s`}
+                                      >
+                                        Con las empresas afiliadas a nuestra
+                                        plataforma (las que ves en el mapa). Al
+                                        interactuar con esas empresas te
+                                        ofrecerán un código de descuento en la
+                                        plataforma. Solo aplica el 10%. Si te
+                                        ofrecen más o menos descuento es un
+                                        engaño.
+                                      </FAQComponentCardSmall>
+                                      <FAQComponentCardSmall
+                                        colAmount="col-12"
+                                        question="¿Cuál es su política de reembolso?"
+                                        maxHeightRomper={356}
+                                        maxHeightRomper2={0}
+                                        animationScreenOpen={
+                                          animationScreenOpen
+                                        }
+                                        delayAnimation={`${
+                                          distanceBetweenAnimations * 1
+                                        }s`}
+                                      >
+                                        No ofrecemos reembolsos bajo ninguna
+                                        circunstancia. Puedes probar nuestra
+                                        plataforma en su contenido gratuito para
+                                        decidir si le das el visto bueno al
+                                        servicio.
+                                      </FAQComponentCardSmall>
+                                      <FAQComponentCardSmall
+                                        colAmount="col-12"
+                                        question="Mi pago está siendo rechazado. ¿Cómo puedo comprar?"
+                                        maxHeightRomper={528}
+                                        maxHeightRomper2={336}
+                                        animationScreenOpen={
+                                          animationScreenOpen
+                                        }
+                                        delayAnimation={`${
+                                          distanceBetweenAnimations * 2
+                                        }s`}
+                                      >
+                                        Si se rechaza su pago, es probable que
+                                        se deba a que cuenta bancaria no está
+                                        configurada para manejar pagos
+                                        internacionales. Si persiste el error,
+                                        desafortunadamente, no hay nada que
+                                        podamos hacer para ayudar, ya que las
+                                        transacciones son manejadas enteramente
+                                        por Stripe, nuestro procesador de pago.
+                                      </FAQComponentCardSmall>
+                                      <FAQComponentCardSmall
+                                        colAmount="col-12"
+                                        question="¿Puedo comprar el premium (para una empresa, por ejemplo)?"
+                                        maxHeightRomper={584}
+                                        maxHeightRomper2={352}
+                                        animationScreenOpen={
+                                          animationScreenOpen
+                                        }
+                                        delayAnimation={`${
+                                          distanceBetweenAnimations * 3
+                                        }s`}
+                                      >
+                                        Actualmente no ofrecemos esas
+                                        funcionalidades. Solo se puede comprar
+                                        el premium por cuenta.
+                                      </FAQComponentCardSmall>
+                                      <FAQComponentCardSmall
+                                        colAmount="col-12"
+                                        question="¿Puedo obtener un recibo de mi compra?"
+                                        maxHeightRomper={412}
+                                        maxHeightRomper2={0}
+                                        animationScreenOpen={
+                                          animationScreenOpen
+                                        }
+                                        delayAnimation={`${
+                                          distanceBetweenAnimations * 4
+                                        }s`}
+                                      >
+                                        Debería recibir un recibo por correo
+                                        electrónico en la compra del premium. Si
+                                        no lo tiene, desafortunadamente, no hay
+                                        nada que podamos hacer para ayudar, ya
+                                        que las transacciones son manejadas
+                                        enteramente por Stripe, nuestro
+                                        procesador de pago.
+                                      </FAQComponentCardSmall>
+                                      <div className="still-getting-issues">
+                                        <div>
+                                          ¿Sigues teniendo problemas o quieres
+                                          informar algo?
+                                        </div>
+                                        <div
+                                          className="faqComponent-whereIAM-link"
+                                          onClick={() => {
+                                            cambiarScreenPrimero(
+                                              howManyScreen7 *
+                                                transitionDuration *
+                                                1000,
+                                              numberScreenOfForms
+                                            );
+                                          }}
+                                        >
+                                          Contáctenos.
+                                        </div>
+                                      </div>
+                                    </>
+                                  ) : (
+                                    <>
+                                      {screen === 8 ? (
+                                        /*SCREEN 8 PROBLEMAS COMUNES*/
+                                        <>
+                                          <FAQComponentCardSmall
+                                            colAmount="col-12"
+                                            question="Compré el premium, pero cuando inicio sesión, no me sale el premium"
+                                            maxHeightRomper={647}
+                                            maxHeightRomper2={0}
+                                            animationScreenOpen={
+                                              animationScreenOpen
+                                            }
+                                            delayAnimation={`${
+                                              distanceBetweenAnimations * 0
+                                            }s`}
+                                          >
+                                            Es probable que haya iniciado sesión
+                                            con una cuenta diferente a la que
+                                            tenía cuando compró. La cuenta con
+                                            la que inició sesión cuando compra
+                                            es aquella a la que está vinculado
+                                            su acceso premium.
+                                          </FAQComponentCardSmall>
+                                          <FAQComponentCardSmall
+                                            colAmount="col-12"
+                                            question="Me desconectó automáticamente de mi cuenta. ¿Por qué?"
+                                            maxHeightRomper={546}
+                                            maxHeightRomper2={0}
+                                            animationScreenOpen={
+                                              animationScreenOpen
+                                            }
+                                            delayAnimation={`${
+                                              distanceBetweenAnimations * 1
+                                            }s`}
+                                          >
+                                            Empleamos tecnología de inicio de
+                                            sesión único que solo le permite
+                                            iniciar sesión en su cuenta desde un
+                                            dispositivo activo en un momento
+                                            dado.
+                                          </FAQComponentCardSmall>
+                                          <FAQComponentCardSmall
+                                            colAmount="col-12"
+                                            question="¿Puedo iniciar sesión de forma diferente que Google o Facebook?"
+                                            maxHeightRomper={609}
+                                            maxHeightRomper2={0}
+                                            animationScreenOpen={
+                                              animationScreenOpen
+                                            }
+                                            delayAnimation={`${
+                                              distanceBetweenAnimations * 2
+                                            }s`}
+                                          >
+                                            No, no admitimos combinaciones
+                                            personalizadas de nombre de usuario
+                                            y contraseña. Nuestro sistema
+                                            aprovecha la seguridad y la
+                                            simplicidad de la autenticación de
+                                            Google y Facebook. Nunca
+                                            interactuamos con sus contraseñas.
+                                          </FAQComponentCardSmall>
+                                          <FAQComponentCardSmall
+                                            colAmount="col-12"
+                                            question="Quiero cambiar el inicio de sesión de mi cuenta. ¿Como lo puedo hacer?"
+                                            maxHeightRomper={655}
+                                            maxHeightRomper2={0}
+                                            animationScreenOpen={
+                                              animationScreenOpen
+                                            }
+                                            delayAnimation={`${
+                                              distanceBetweenAnimations * 3
+                                            }s`}
+                                          >
+                                            Actualmente no se puede transferir
+                                            las cuentas.
+                                          </FAQComponentCardSmall>
+                                          <FAQComponentCardSmall
+                                            colAmount="col-12"
+                                            question="No me llegó alguna clave que se supone me envió la página."
+                                            maxHeightRomper={563}
+                                            maxHeightRomper2={0}
+                                            animationScreenOpen={
+                                              animationScreenOpen
+                                            }
+                                            delayAnimation={`${
+                                              distanceBetweenAnimations * 4
+                                            }s`}
+                                          >
+                                            Lo más probable es porque el correo
+                                            o número de teléfono lo hayas
+                                            escrito mal. También puede ser que
+                                            la clave le llegó a spam si es por
+                                            correo. Si el problema continúa,
+                                            contáctenos.
+                                          </FAQComponentCardSmall>
+                                          <div className="still-getting-issues">
+                                            <div>
+                                              ¿Sigues teniendo problemas o
+                                              quieres informar algo?
+                                            </div>
+                                            <div
+                                              className="faqComponent-whereIAM-link"
+                                              onClick={() => {
+                                                cambiarScreenPrimero(
+                                                  howManyScreen8 *
+                                                    transitionDuration *
+                                                    1000,
+                                                  numberScreenOfForms
+                                                );
+                                              }}
+                                            >
+                                              Contáctenos.
+                                            </div>
+                                          </div>
+                                        </>
+                                      ) : (
+                                        <>
+                                          {screen === 9 ? (
+                                            /*SCREEN 9*/
+                                            <></>
+                                          ) : (
+                                            <>{/*MORE...*/}</>
+                                          )}
+                                        </>
+                                      )}
+                                    </>
+                                  )}
+                                </>
+                              )}
+                            </>
                           )}
                         </>
                       )}
