@@ -2,53 +2,6 @@
 .contact-us-page {
   width: 100%;
   color: #ffffff;
-  &-main-section {
-    width: 100%;
-    margin: 0;
-    padding-top: 150px;
-    &-text {
-      width: 80%;
-      margin-left: 10%;
-      text-align: left;
-      &-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: rgb(224, 224, 224);
-        padding-left: 15px;
-        position: relative;
-        min-height: 35px;
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        width: fit-content;
-        @media (hover: hover) and (pointer: fine) {
-          &:hover {
-            &::after {
-              transition: transform ease-in-out 0.6s;
-              transform: rotateX(180deg);
-            }
-          }
-        }
-
-        &::after {
-          content: "";
-          position: absolute;
-          z-index: 1;
-          transition: transform ease-in-out 0.6s;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 5px;
-          background-color: var(--tertiary-color);
-        }
-      }
-      &-subtitle {
-        font-size: 1rem;
-        color: rgb(224, 224, 224);
-        margin-bottom: 50px;
-      }
-    }
-  }
   &-me-div {
     position: absolute;
     top: 380px;

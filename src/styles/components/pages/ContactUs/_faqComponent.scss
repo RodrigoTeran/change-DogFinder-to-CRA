@@ -1,16 +1,45 @@
 .faqComponent {
   padding-top: 150px;
+  padding-bottom: 100px;
+  &-h1 {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+  &-h2 {
+    font-size: 1rem;
+    color: #ddd;
+    margin-top: 30px;
+    width: 70%;
+    margin-left: 15%;
+    @media screen and (max-width: 950px) {
+      width: 90%;
+      margin-left: 5%;
+    }
+  }
+  &-hr {
+    background-color: var(--tertiary-color-light);
+    width: 150px;
+    margin-left: calc(50% - 75px);
+    height: 3px;
+    margin-top: 20px;
+  }
+  &-ask {
+    font-size: 1.3rem;
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
   &-whereIAM {
-    width: 770px;
-    margin-left: calc(50% - 385px);
+    width: 768px;
+    margin-left: calc(50% - 384px);
     margin-bottom: 10px;
     @media screen and (max-width: 950px) {
-      width: 82%;
-      margin-left: 9%;
+      width: 80%;
+      margin-left: 10%;
     }
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    font-size: 1.1rem;
     &-link {
       color: #ffbfbf;
       font-weight: bold;
@@ -21,7 +50,7 @@
         }
       }
     }
-    div{
+    div {
       margin-right: 5px;
       display: flex;
       justify-content: center;
@@ -83,8 +112,76 @@
       }
     }
   }
+
+  &-screen-card-small {
+    margin-bottom: 30px;
+    &-inner {
+      width: 100%;
+      background-color: rgb(29, 29, 29);
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 7.5px;
+      padding-top: 9px;
+      overflow: hidden;
+      max-height: 50px;
+      transition: ease-in-out .5s;
+      border: solid 4px rgba(32, 32, 32, 1);
+      &.open {
+        transition: ease-in-out .5s;
+        max-height: 300px;
+      }
+
+      &-q {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: left;
+        padding-right: 10px;
+        cursor: pointer;
+        width: 100%;
+      }
+      &-svg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      &-a {
+        font-size: 1rem;
+        color: #ddd;
+        text-align: left;
+        width: 100%;
+        margin-top: 20px;
+      }
+      &-first-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        svg {
+          width: 15px;
+          height: 15px;
+          fill: #fff;
+          transition: ease-in-out .5s;
+          &.open{
+            transform: rotateZ(180deg);
+            transition: ease-in-out .5s;
+          }
+        }
+      }
+    }
+  }
 }
 .faqComponent-screen-card-big {
+  transition-timing-function: linear;
+  transition-property: transform;
+  transition-duration: 0.1s;
+  transform: scale(0);
+  &.open {
+    transform: scale(1);
+  }
+}
+.faqComponent-screen-card-small {
   transition-timing-function: linear;
   transition-property: transform;
   transition-duration: 0.1s;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const FAQComponentCardBig = ({
   colAmount,
@@ -30,7 +30,80 @@ const FAQComponentCardBig = ({
   );
 };
 
+const FAQComponentCardSmall = ({
+  colAmount,
+  question,
+  children,
+  animationScreenOpen,
+  delayAnimation,
+  maxHeightRomper,
+  maxHeightRomper2,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <div
+        className={`faqComponent-screen-card-small ${colAmount} ${
+          animationScreenOpen ? "open" : ""
+        }`}
+        style={{
+          transitionDelay: delayAnimation,
+        }}
+      >
+        <div
+          className={`faqComponent-screen-card-small-inner ${
+            isOpen ? "open" : ""
+          }`}
+          style={{
+            maxHeight: isOpen
+              ? "300px"
+              : window.innerWidth <= maxHeightRomper2
+              ? "100px"
+              : window.innerWidth <= maxHeightRomper
+              ? "75px"
+              : "50px",
+          }}
+        >
+          <div className={`faqComponent-screen-card-small-inner-first-row`}>
+            <div
+              className={`faqComponent-screen-card-small-inner-q`}
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            >
+              {question}
+            </div>
+            <div className={`faqComponent-screen-card-small-inner-svg`}>
+              <svg
+                className={`${isOpen ? "open" : ""}`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" />
+              </svg>
+            </div>
+          </div>
+          <div className={`faqComponent-screen-card-small-inner-a`}>
+            {children}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 const FAQComponent = () => {
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+  const [stateForRender, setStateForRender] = useState(false);
+
+  const handleResize = () => {
+    setStateForRender(!stateForRender);
+  };
   const [screen, setScreen] = useState(1);
   const [animationScreenOpen, setAnimationScreenOpen] = useState(true);
   const cambiarScreen = (numero) => {
@@ -49,16 +122,38 @@ const FAQComponent = () => {
   };
 
   const distanceBetweenAnimations = 0.08;
+  const transitionDuration = 0.1;
+
   const howManyScreen1 = 6;
   const howManyScreen2 = 4;
-  const transitionDuration = 0.1;
+  const howManyScreen3 = 3;
+
+  /**
+   * screen 1 = index
+   * screen 2 = producto
+   * screen 3 = mapa
+   */
 
   return (
     <div className="faqComponent">
+      {stateForRender ? (
+        <div style={{ display: "none" }}>.</div>
+      ) : (
+        <div style={{ display: "none" }}>.</div>
+      )}
+      <div className="faqComponent-h1">Preguntas Frecuentes</div>
+      <div className="faqComponent-hr"></div>
+      <div className="faqComponent-h2">
+        Si tienes una pregunta o estas experimentando algun problema con la
+        plataforma puedes mandarme un mensaje y/o checar las preguntas más
+        frecuentes.
+      </div>
+      <div className="faqComponent-ask">¿En qué te puedo ayudar?</div>
       <div className="faqComponent-whereIAM">
         {screen !== 1 ? (
           <>
-            <div className="faqComponent-whereIAM-link"
+            <div
+              className="faqComponent-whereIAM-link"
               onClick={() => {
                 if (screen === 2) {
                   cambiarScreenPrimero(
@@ -66,17 +161,65 @@ const FAQComponent = () => {
                     howManyScreen2 * transitionDuration * 1000,
                     1
                   );
+                } else if (screen === 3) {
+                  cambiarScreenPrimero(
+                    // howManyScreen3 por screen 3
+                    howManyScreen3 * transitionDuration * 1000,
+                    1
+                  );
                 }
               }}
             >
               Índice
             </div>
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
-              </svg>
-            </div>
-            <div>{screen === 2 ? "Producto" : ""}</div>
+            {screen === 2 ? (
+              <>
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                  </svg>
+                </div>
+                <div>Producto</div>
+              </>
+            ) : (
+              <>
+                {screen === 3 ? (
+                  <>
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                      </svg>
+                    </div>
+                    <div
+                      className="faqComponent-whereIAM-link"
+                      onClick={() => {
+                        cambiarScreenPrimero(
+                          // howManyScreen3 por screen 3
+                          howManyScreen3 * transitionDuration * 1000,
+                          2
+                        );
+                      }}
+                    >
+                      Producto
+                    </div>
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                      </svg>
+                    </div>
+                    <div>Mapa</div>
+                  </>
+                ) : (
+                  <>{/*MORE...*/}</>
+                )}
+              </>
+            )}
           </>
         ) : (
           ""
@@ -85,6 +228,7 @@ const FAQComponent = () => {
       <div className="faqComponent-screen">
         <div className="row">
           {screen === 1 ? (
+            /*SCREEN 1 INDEX*/
             <>
               <FAQComponentCardBig
                 colAmount="col-lg-4 col-md-6 col-sm-12"
@@ -185,70 +329,148 @@ const FAQComponent = () => {
             </>
           ) : (
             <>
-              <FAQComponentCardBig
-                colAmount="col-lg-4 col-md-6 col-sm-12"
-                title="Mapa"
-                animationScreenOpen={animationScreenOpen}
-                delayAnimation={`${distanceBetweenAnimations * 0}s`}
-                functionClick={() => {
-                  cambiarScreenPrimero(
-                    howManyScreen2 * transitionDuration * 1000,
-                    1
-                  );
-                }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z" />
-                </svg>
-              </FAQComponentCardBig>
-              <FAQComponentCardBig
-                colAmount="col-lg-4 col-md-6 col-sm-12"
-                title="Inteligencia Artificial"
-                animationScreenOpen={animationScreenOpen}
-                delayAnimation={`${distanceBetweenAnimations * 1}s`}
-                functionClick={() => {
-                  cambiarScreenPrimero(
-                    howManyScreen2 * transitionDuration * 1000,
-                    1
-                  );
-                }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                  <path d="M0 448c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V128H0v320zm448-208c0-8.84 7.16-16 16-16h96c8.84 0 16 7.16 16 16v32c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-32zm0 120c0-4.42 3.58-8 8-8h112c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H456c-4.42 0-8-3.58-8-8v-16zM64 264c0-4.42 3.58-8 8-8h304c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8v-16zm0 96c0-4.42 3.58-8 8-8h176c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8v-16zM624 32H16C7.16 32 0 39.16 0 48v48h640V48c0-8.84-7.16-16-16-16z" />
-                </svg>
-              </FAQComponentCardBig>
-              <FAQComponentCardBig
-                colAmount="col-lg-4 col-md-6 col-sm-12"
-                title="Más contenido"
-                animationScreenOpen={animationScreenOpen}
-                delayAnimation={`${distanceBetweenAnimations * 2}s`}
-                functionClick={() => {
-                  cambiarScreenPrimero(
-                    howManyScreen2 * transitionDuration * 1000,
-                    1
-                  );
-                }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z" />
-                </svg>
-              </FAQComponentCardBig>
-              <FAQComponentCardBig
-                colAmount="col-lg-4 col-md-6 col-sm-12"
-                title="Notificaciones"
-                animationScreenOpen={animationScreenOpen}
-                delayAnimation={`${distanceBetweenAnimations * 3}s`}
-                functionClick={() => {
-                  cambiarScreenPrimero(
-                    howManyScreen2 * transitionDuration * 1000,
-                    1
-                  );
-                }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z" />
-                </svg>
-              </FAQComponentCardBig>
+              {screen === 2 ? (
+                /*SCREEN 2 PRODUCTO*/
+                <>
+                  <FAQComponentCardBig
+                    colAmount="col-lg-4 col-md-6 col-sm-12"
+                    title="Mapa"
+                    animationScreenOpen={animationScreenOpen}
+                    delayAnimation={`${distanceBetweenAnimations * 0}s`}
+                    functionClick={() => {
+                      cambiarScreenPrimero(
+                        howManyScreen2 * transitionDuration * 1000,
+                        3
+                      );
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 384 512"
+                    >
+                      <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" />
+                    </svg>
+                  </FAQComponentCardBig>
+                  <FAQComponentCardBig
+                    colAmount="col-lg-4 col-md-6 col-sm-12"
+                    title="Inteligencia Artificial"
+                    animationScreenOpen={animationScreenOpen}
+                    delayAnimation={`${distanceBetweenAnimations * 1}s`}
+                    functionClick={() => {
+                      cambiarScreenPrimero(
+                        howManyScreen2 * transitionDuration * 1000,
+                        1
+                      );
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 576 512"
+                    >
+                      <path d="M208 0c-29.9 0-54.7 20.5-61.8 48.2-.8 0-1.4-.2-2.2-.2-35.3 0-64 28.7-64 64 0 4.8.6 9.5 1.7 14C52.5 138 32 166.6 32 200c0 12.6 3.2 24.3 8.3 34.9C16.3 248.7 0 274.3 0 304c0 33.3 20.4 61.9 49.4 73.9-.9 4.6-1.4 9.3-1.4 14.1 0 39.8 32.2 72 72 72 4.1 0 8.1-.5 12-1.2 9.6 28.5 36.2 49.2 68 49.2 39.8 0 72-32.2 72-72V64c0-35.3-28.7-64-64-64zm368 304c0-29.7-16.3-55.3-40.3-69.1 5.2-10.6 8.3-22.3 8.3-34.9 0-33.4-20.5-62-49.7-74 1-4.5 1.7-9.2 1.7-14 0-35.3-28.7-64-64-64-.8 0-1.5.2-2.2.2C422.7 20.5 397.9 0 368 0c-35.3 0-64 28.6-64 64v376c0 39.8 32.2 72 72 72 31.8 0 58.4-20.7 68-49.2 3.9.7 7.9 1.2 12 1.2 39.8 0 72-32.2 72-72 0-4.8-.5-9.5-1.4-14.1 29-12 49.4-40.6 49.4-73.9z" />
+                    </svg>
+                  </FAQComponentCardBig>
+                  <FAQComponentCardBig
+                    colAmount="col-lg-4 col-md-6 col-sm-12"
+                    title="Más contenido"
+                    animationScreenOpen={animationScreenOpen}
+                    delayAnimation={`${distanceBetweenAnimations * 2}s`}
+                    functionClick={() => {
+                      cambiarScreenPrimero(
+                        howManyScreen2 * transitionDuration * 1000,
+                        1
+                      );
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path d="M464,128H272L208,64H48A48,48,0,0,0,0,112V400a48,48,0,0,0,48,48H464a48,48,0,0,0,48-48V176A48,48,0,0,0,464,128ZM359.5,296a16,16,0,0,1-16,16h-64v64a16,16,0,0,1-16,16h-16a16,16,0,0,1-16-16V312h-64a16,16,0,0,1-16-16V280a16,16,0,0,1,16-16h64V200a16,16,0,0,1,16-16h16a16,16,0,0,1,16,16v64h64a16,16,0,0,1,16,16Z" />
+                    </svg>
+                  </FAQComponentCardBig>
+                  <FAQComponentCardBig
+                    colAmount="col-lg-4 col-md-6 col-sm-12"
+                    title="Notificaciones"
+                    animationScreenOpen={animationScreenOpen}
+                    delayAnimation={`${distanceBetweenAnimations * 3}s`}
+                    functionClick={() => {
+                      cambiarScreenPrimero(
+                        howManyScreen2 * transitionDuration * 1000,
+                        1
+                      );
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z" />
+                    </svg>
+                  </FAQComponentCardBig>
+                </>
+              ) : (
+                <>
+                  {screen === 3 ? (
+                    /*SCREEN 3 MAPA*/
+                    <>
+                      <FAQComponentCardSmall
+                        colAmount="col-12"
+                        question="¿Por qué tengo que dar a conocer mi ubicación actual?"
+                        maxHeightRomper={512}
+                        maxHeightRomper2={306}
+                        animationScreenOpen={animationScreenOpen}
+                        delayAnimation={`${distanceBetweenAnimations * 0}s`}
+                      >
+                        Porque así podremos mostrarte la información más
+                        relevante para ti. No compartiremos tu ubicación con
+                        nadie.
+                      </FAQComponentCardSmall>
+                      <FAQComponentCardSmall
+                        colAmount="col-12"
+                        question="¿Por qué no me carga el mapa?"
+                        maxHeightRomper={323}
+                        maxHeightRomper2={0}
+                        animationScreenOpen={animationScreenOpen}
+                        delayAnimation={`${distanceBetweenAnimations * 1}s`}
+                      >
+                        Lo más probable es porque bloqueaste el uso de compartir
+                        la ubicación. Si no es así... mandanos mensaje en la
+                        sección de errores.
+                      </FAQComponentCardSmall>
+                      <FAQComponentCardSmall
+                        colAmount="col-12"
+                        question="¿Por qué no puedo ver la información de contacto en el mapa?"
+                        maxHeightRomper={572}
+                        maxHeightRomper2={372}
+                        animationScreenOpen={animationScreenOpen}
+                        delayAnimation={`${distanceBetweenAnimations * 2}s`}
+                      >
+                        Mantenemos en privado la información de cada quien hasta
+                        que realmente se necesite. Cuando hagas "match" con
+                        algún usuario se le notificará a esa persona. De esta
+                        manera cada quien sabe quien esta viendo su información.
+                      </FAQComponentCardSmall>
+                    </>
+                  ) : (
+                    <>
+                      {screen === 4 ? (
+                        /*SCREEN 4*/
+                        <></>
+                      ) : (
+                        <>
+                          {screen === 5 ? (
+                            /*SCREEN 5*/
+                            <></>
+                          ) : (
+                            <>{/*MORE...*/}</>
+                          )}
+                        </>
+                      )}
+                    </>
+                  )}
+                </>
+              )}
             </>
           )}
         </div>

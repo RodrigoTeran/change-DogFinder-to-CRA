@@ -1,4 +1,5 @@
 Issues:
+  - pinshi notifiación
   - Cuando se haga un match:
     - Poner el si atino IA
   - Stripe:
