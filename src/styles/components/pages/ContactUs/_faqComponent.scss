@@ -1,20 +1,50 @@
 .faqComponent {
   padding-top: 150px;
-  &-screen {
-    &-1,
-    &-2 {
-      width: 800px;
-      margin-left: calc(50% - 400px);
-      @media screen and (max-width: 950px) {
-        width: 90%;
-        margin-left: 5%;
+  &-whereIAM {
+    width: 770px;
+    margin-left: calc(50% - 385px);
+    margin-bottom: 10px;
+    @media screen and (max-width: 950px) {
+      width: 82%;
+      margin-left: 9%;
+    }
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &-link {
+      color: #ffbfbf;
+      font-weight: bold;
+      cursor: pointer;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          text-decoration: underline;
+        }
       }
+    }
+    div{
+      margin-right: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
-      .row {
-        width: 100%;
-      }
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+  }
+  &-screen {
+    width: 800px;
+    margin-left: calc(50% - 400px);
+    @media screen and (max-width: 950px) {
+      width: 90%;
+      margin-left: 5%;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .row {
+      width: 100%;
     }
   }
   &-screen-card-big {
@@ -54,225 +84,12 @@
     }
   }
 }
-.faqComponent-screen-card {
-  &-1,
-  &-2,
-  &-3,
-  &-4,
-  &-5,
-  &-6,
-  &-7,
-  &-8,
-  &-9,
-  &-10 {
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-  }
-}
-
-@keyframes animation-screen-1-card-1 {
-  0% {
-    transform: scale(0);
-  }
-  16% {
-    transform: scale(1);
-  }
-  33% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1);
-  }
-  66% {
-    transform: scale(1);
-  }
-  83% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-1-card-2 {
-  0% {
-    transform: scale(0);
-  }
-  16% {
-    transform: scale(0);
-  }
-  33% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1);
-  }
-  66% {
-    transform: scale(1);
-  }
-  83% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-1-card-3 {
-  0% {
-    transform: scale(0);
-  }
-  16% {
-    transform: scale(0);
-  }
-  33% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1);
-  }
-  66% {
-    transform: scale(1);
-  }
-  83% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-1-card-4 {
-  0% {
-    transform: scale(0);
-  }
-  16% {
-    transform: scale(0);
-  }
-  33% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(0);
-  }
-  66% {
-    transform: scale(1);
-  }
-  83% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-1-card-5 {
-  0% {
-    transform: scale(0);
-  }
-  16% {
-    transform: scale(0);
-  }
-  33% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(0);
-  }
-  66% {
-    transform: scale(0);
-  }
-  83% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-1-card-6 {
-  0% {
-    transform: scale(0);
-  }
-  16% {
-    transform: scale(0);
-  }
-  33% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(0);
-  }
-  66% {
-    transform: scale(0);
-  }
-  83% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-2-card-7 {
-  0% {
-    transform: scale(0);
-  }
-  25% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1);
-  }
-  75% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-2-card-8 {
-  0% {
-    transform: scale(0);
-  }
-  25% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1);
-  }
-  75% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-2-card-9 {
-  0% {
-    transform: scale(0);
-  }
-  25% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(0);
-  }
-  75% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes animation-screen-2-card-10 {
-  0% {
-    transform: scale(0);
-  }
-  25% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(0);
-  }
-  75% {
-    transform: scale(0);
-  }
-  100% {
+.faqComponent-screen-card-big {
+  transition-timing-function: linear;
+  transition-property: transform;
+  transition-duration: 0.1s;
+  transform: scale(0);
+  &.open {
     transform: scale(1);
   }
 }
