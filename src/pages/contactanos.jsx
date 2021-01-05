@@ -11,6 +11,7 @@ import { APP_NAME } from "../utils/config";
 import { updateTopMenuBarActivatedAction } from "../store/reducers/layout/actions";
 import HeaderContactPage from "../components/ContactPageComponents/HeaderContactPage";
 import MainSectionContactPage from "../components/ContactPageComponents/MainSectionContactPage";
+import FAQComponent from "../components/ContactPageComponents/FAQComponent";
 
 // -----------------------Componentes-----------------------
 import FooterLayout from "../components/FooterLayout";
@@ -62,6 +63,7 @@ const Contactanos = ({ updateTopMenuBarActivated }) => {
       </Helmet>
       <div className={`contact-us-page text-center space-footer-bottom`}>
         <HeaderContactPage></HeaderContactPage>
+        <FAQComponent></FAQComponent>
         <MainSectionContactPage></MainSectionContactPage>
       </div>
       <FooterLayout styleForm="with-absolute"></FooterLayout>
