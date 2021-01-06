@@ -37,8 +37,8 @@ const FAQComponentCardSmall = ({
   children,
   animationScreenOpen,
   delayAnimation,
-  maxHeightRomper,
-  maxHeightRomper2,
+  // maxHeightRomper,
+  // maxHeightRomper2,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -52,18 +52,7 @@ const FAQComponentCardSmall = ({
         }}
       >
         <div
-          className={`faqComponent-screen-card-small-inner ${
-            isOpen ? "open" : ""
-          }`}
-          style={{
-            maxHeight: isOpen
-              ? "400px"
-              : window.innerWidth <= maxHeightRomper2
-              ? "100px"
-              : window.innerWidth <= maxHeightRomper
-              ? "75px"
-              : "50px",
-          }}
+          className={`faqComponent-screen-card-small-inner`}
         >
           <div className={`faqComponent-screen-card-small-inner-first-row`}>
             <div
@@ -84,7 +73,12 @@ const FAQComponentCardSmall = ({
               </svg>
             </div>
           </div>
-          <div className={`faqComponent-screen-card-small-inner-a`}>
+
+          <div
+            className={`faqComponent-screen-card-small-inner-a ${
+              isOpen ? "open" : ""
+            }`}
+          >
             {children}
           </div>
         </div>

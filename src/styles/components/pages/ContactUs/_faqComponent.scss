@@ -131,6 +131,8 @@
       overflow: hidden;
       transition: ease-in-out 0.5s;
       border: solid 4px rgba(32, 32, 32, 1);
+
+      height: fit-content;
       &-q {
         font-size: 1rem;
         font-weight: bold;
@@ -139,7 +141,6 @@
         cursor: pointer;
         width: 100%;
       }
-      // why in cell phone when having overflow hidden it moves the content css
       &-svg {
         display: flex;
         justify-content: center;
@@ -151,8 +152,14 @@
         color: #ddd;
         text-align: left;
         width: 100%;
-        margin-top: 20px;
-        background-color: lightcoral;
+        max-height: 0px;
+        transition: max-height ease-in-out 0.5s, opacity 0s ease-in-out 0.5s;
+        opacity: 0;
+        &.open {
+          transition: max-height ease-in-out 0.5s, opacity 0s ease-in-out 0s;
+          max-height: 400px;
+          opacity: 1;
+        }
       }
       &-first-row {
         display: flex;
