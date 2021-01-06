@@ -151,12 +151,7 @@
         text-align: left;
         width: 100%;
         margin-top: 20px;
-        visibility: hidden;
-        transition: 0s ease-in-out .5s;
-        &.open {
-          transition: ease-in-out 0s;
-          visibility: visible;
-        }
+        background-color: lightcoral;
       }
       &-first-row {
         display: flex;

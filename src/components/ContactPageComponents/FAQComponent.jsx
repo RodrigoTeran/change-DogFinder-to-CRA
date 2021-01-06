@@ -56,13 +56,14 @@ const FAQComponentCardSmall = ({
             isOpen ? "open" : ""
           }`}
           style={{
-            maxHeight: isOpen
-              ? "400px"
-              : window.innerWidth <= maxHeightRomper2
-              ? "100px"
-              : window.innerWidth <= maxHeightRomper
-              ? "75px"
-              : "50px",
+            // maxHeight: isOpen
+            //   ? "400px"
+            //   : window.innerWidth <= maxHeightRomper2
+            //   ? "100px"
+            //   : window.innerWidth <= maxHeightRomper
+            //   ? "75px"
+            //   : "50px",
+            maxHeight: "100px",
           }}
         >
           <div className={`faqComponent-screen-card-small-inner-first-row`}>
@@ -84,11 +85,7 @@ const FAQComponentCardSmall = ({
               </svg>
             </div>
           </div>
-          <div
-            className={`faqComponent-screen-card-small-inner-a ${
-              isOpen ? "open" : ""
-            }`}
-          >
+          <div className={`faqComponent-screen-card-small-inner-a`}>
             {children}
           </div>
         </div>
@@ -690,8 +687,8 @@ const FAQComponent = () => {
                       <FAQComponentCardSmall
                         colAmount="col-12"
                         question="¿Por qué tengo que dar a conocer mi ubicación actual?"
-                        maxHeightRomper={512}
-                        maxHeightRomper2={306}
+                        maxHeightRomper={520}
+                        maxHeightRomper2={315}
                         animationScreenOpen={animationScreenOpen}
                         delayAnimation={`${distanceBetweenAnimations * 0}s`}
                       >
@@ -702,7 +699,7 @@ const FAQComponent = () => {
                       <FAQComponentCardSmall
                         colAmount="col-12"
                         question="¿Por qué no me carga el mapa?"
-                        maxHeightRomper={323}
+                        maxHeightRomper={332}
                         maxHeightRomper2={0}
                         animationScreenOpen={animationScreenOpen}
                         delayAnimation={`${distanceBetweenAnimations * 1}s`}
@@ -714,8 +711,8 @@ const FAQComponent = () => {
                       <FAQComponentCardSmall
                         colAmount="col-12"
                         question="¿Por qué no puedo ver la información de contacto en el mapa?"
-                        maxHeightRomper={572}
-                        maxHeightRomper2={372}
+                        maxHeightRomper={583}
+                        maxHeightRomper2={380}
                         animationScreenOpen={animationScreenOpen}
                         delayAnimation={`${distanceBetweenAnimations * 2}s`}
                       >
@@ -763,8 +760,8 @@ const FAQComponent = () => {
                           <FAQComponentCardSmall
                             colAmount="col-12"
                             question="¿Por qué se usa la IA si lo puedo hacer manual desde el mapa?"
-                            maxHeightRomper={577}
-                            maxHeightRomper2={338}
+                            maxHeightRomper={578}
+                            maxHeightRomper2={340}
                             animationScreenOpen={animationScreenOpen}
                             delayAnimation={`${distanceBetweenAnimations * 1}s`}
                           >
@@ -775,7 +772,7 @@ const FAQComponent = () => {
                           <FAQComponentCardSmall
                             colAmount="col-12"
                             question="¿Qué tan rápido se comparan los datos?"
-                            maxHeightRomper={400}
+                            maxHeightRomper={403}
                             maxHeightRomper2={0}
                             animationScreenOpen={animationScreenOpen}
                             delayAnimation={`${distanceBetweenAnimations * 2}s`}
@@ -794,7 +791,7 @@ const FAQComponent = () => {
                                 colAmount="col-12"
                                 question="¿Habrá más funcionalidades en la plataforma?"
                                 maxHeightRomper={452}
-                                maxHeightRomper2={312}
+                                maxHeightRomper2={310}
                                 animationScreenOpen={animationScreenOpen}
                                 delayAnimation={`${
                                   distanceBetweenAnimations * 0
@@ -808,7 +805,7 @@ const FAQComponent = () => {
                                 colAmount="col-12"
                                 question="¿Si ya tenía el premium y salen nuevas cosas, podré acceder a ellas?"
                                 maxHeightRomper={622}
-                                maxHeightRomper2={374}
+                                maxHeightRomper2={376}
                                 animationScreenOpen={animationScreenOpen}
                                 delayAnimation={`${
                                   distanceBetweenAnimations * 1
@@ -822,7 +819,7 @@ const FAQComponent = () => {
                               <FAQComponentCardSmall
                                 colAmount="col-12"
                                 question="¿Cómo registro a mi empresa en el mapa?"
-                                maxHeightRomper={418}
+                                maxHeightRomper={417}
                                 maxHeightRomper2={0}
                                 animationScreenOpen={animationScreenOpen}
                                 delayAnimation={`${
@@ -856,7 +853,7 @@ const FAQComponent = () => {
                                   <FAQComponentCardSmall
                                     colAmount="col-12"
                                     question="Me salen alertas rojas en la plataforma"
-                                    maxHeightRomper={394}
+                                    maxHeightRomper={396}
                                     maxHeightRomper2={0}
                                     animationScreenOpen={animationScreenOpen}
                                     delayAnimation={`${
@@ -875,7 +872,7 @@ const FAQComponent = () => {
                                   <FAQComponentCardSmall
                                     colAmount="col-12"
                                     question="¿Al dar mi correo y número me llegará publicidad?"
-                                    maxHeightRomper={482}
+                                    maxHeightRomper={484}
                                     maxHeightRomper2={0}
                                     animationScreenOpen={animationScreenOpen}
                                     delayAnimation={`${
@@ -954,8 +951,8 @@ const FAQComponent = () => {
                                       <FAQComponentCardSmall
                                         colAmount="col-12"
                                         question="Mi pago está siendo rechazado. ¿Cómo puedo comprar?"
-                                        maxHeightRomper={528}
-                                        maxHeightRomper2={336}
+                                        maxHeightRomper={529}
+                                        maxHeightRomper2={338}
                                         animationScreenOpen={
                                           animationScreenOpen
                                         }
@@ -976,7 +973,7 @@ const FAQComponent = () => {
                                         colAmount="col-12"
                                         question="¿Puedo comprar el premium (para una empresa, por ejemplo)?"
                                         maxHeightRomper={584}
-                                        maxHeightRomper2={352}
+                                        maxHeightRomper2={353}
                                         animationScreenOpen={
                                           animationScreenOpen
                                         }
@@ -1056,8 +1053,8 @@ const FAQComponent = () => {
                                           <FAQComponentCardSmall
                                             colAmount="col-12"
                                             question="Me desconectó automáticamente de mi cuenta. ¿Por qué?"
-                                            maxHeightRomper={546}
-                                            maxHeightRomper2={353}
+                                            maxHeightRomper={548}
+                                            maxHeightRomper2={355}
                                             animationScreenOpen={
                                               animationScreenOpen
                                             }
@@ -1095,7 +1092,7 @@ const FAQComponent = () => {
                                             colAmount="col-12"
                                             question="Quiero cambiar el inicio de sesión de mi cuenta. ¿Como lo puedo hacer?"
                                             maxHeightRomper={655}
-                                            maxHeightRomper2={379}
+                                            maxHeightRomper2={380}
                                             animationScreenOpen={
                                               animationScreenOpen
                                             }
@@ -1109,7 +1106,7 @@ const FAQComponent = () => {
                                           <FAQComponentCardSmall
                                             colAmount="col-12"
                                             question="No me llegó alguna clave que se supone me envió la página."
-                                            maxHeightRomper={563}
+                                            maxHeightRomper={565}
                                             maxHeightRomper2={325}
                                             animationScreenOpen={
                                               animationScreenOpen
@@ -1149,7 +1146,7 @@ const FAQComponent = () => {
                                       ) : (
                                         <>
                                           {screen === 9 ? (
-                                            /*SCREEN 9*/
+                                            /*SCREEN 9 ERRORES*/
                                             <>
                                               <FAQComponentCardBig
                                                 colAmount="col-lg-6 col-md-6 col-sm-12"
