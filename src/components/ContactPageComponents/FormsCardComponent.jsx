@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
 import { connect } from "react-redux";
 import {
   updateLoginAction,
   updateLogInFirstAnimationAction,
 } from "../../store/reducers/user/actions";
+import { getAuth } from "../../store/reducers/user/selector";
+import { checkFuckingHack, checkHackInBlankSpaces } from "../../utils/hacking";
+import {
+  updateSuccessMessagesComponentAction,
+  updateFailureMessagesComponentAction,
+} from "../../store/reducers/layout/actions";
+import { contactCompany } from "../../routes/contact";
 const FormsCardComponent = ({
   whereItCameFrom,
   animationScreenOpen,
@@ -12,10 +19,154 @@ const FormsCardComponent = ({
   colAmount,
   updateLogInFirstAnimation,
   updateLogin,
+
+  auth,
+  updateSuccessMessagesComponent,
+  updateFailureMessagesComponent,
 }) => {
+  const [nameInput, setNameInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+  const [messageInput, setMessageInput] = useState("");
+
   const iniciarSesion = () => {
     updateLogInFirstAnimation(true);
     updateLogin(true);
+  };
+  const sendMessage = () => {
+    const hackName = checkFuckingHack(nameInput, []);
+    const hackEmail = checkFuckingHack(emailInput, ["@", "."]);
+    const hackMessage = checkFuckingHack(messageInput, [
+      "/",
+      ".",
+      "_",
+      "-",
+      ":",
+      ",",
+      ";",
+      '"',
+      "(",
+      ")",
+      "@",
+      "#",
+    ]);
+
+    const hackNameSpaces = checkHackInBlankSpaces(nameInput);
+    const hackEmailSpaces = checkHackInBlankSpaces(emailInput);
+    const hackMessageSpaces = checkHackInBlankSpaces(messageInput);
+
+    if (hackName) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Por favor, pon caractéres válidos en el nombre.",
+      });
+    } else if (hackEmail) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: `Por favor, pon caractéres válidos en el correo a excepción por el @ y el "."`,
+      });
+    } else if (hackMessage) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Por favor, pon caractéres válidos en el mensaje.",
+      });
+    } else if (hackNameSpaces) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description:
+          "Por favor, no dejes espacios en blanco innecesarios en el nombre.",
+      });
+    } else if (hackEmailSpaces) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description:
+          "Por favor, no dejes espacios en blanco innecesarios en el correo.",
+      });
+    } else if (hackMessageSpaces) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description:
+          "Por favor, no dejes espacios en blanco innecesarios en el mensaje.",
+      });
+    } else if (nameInput.length === 0) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Falta el nombre.",
+      });
+    } else if (emailInput.length === 0) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Falta el correo.",
+      });
+    } else if (messageInput.length === 0) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Falta el mensaje.",
+      });
+    } else {
+      // POR FIN
+      var theme = "";
+      if (whereItCameFrom === 1) {
+        theme = "Solicitud de caracteristicas";
+      } else if (whereItCameFrom === 2) {
+        theme = "Preguntas de negocios";
+      } else if (whereItCameFrom === 3) {
+        theme = "Mapa errores";
+      } else if (whereItCameFrom === 4) {
+        theme = "Notificaciones errores";
+      } else if (whereItCameFrom === 5) {
+        theme = "Pagos errores";
+      } else if (whereItCameFrom === 6) {
+        theme = "Problemas comunes errores";
+      } else if (whereItCameFrom === 7) {
+        theme = "Error misceláneo";
+      } else {
+        theme = "Error de seguridad";
+      }
+
+      const body = {
+        theme,
+        name: nameInput,
+        email: emailInput,
+        message: messageInput,
+      };
+      fetch(contactCompany, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          token: localStorage.getItem("token"),
+        },
+        body: JSON.stringify(body),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.status === "true") {
+            updateSuccessMessagesComponent({
+              state: true,
+              title: "Acción realizada con éxito",
+              description: "Se envió el mensaje con éxito",
+            });
+          } else {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error",
+              description: "No se pudo mandar el correo.",
+            });
+          }
+        });
+    }
   };
   return (
     <div
@@ -27,15 +178,19 @@ const FormsCardComponent = ({
       } ${colAmount}`}
     >
       <div className={`faqComponent-forms-card-inner`}>
-        <div className={`faqComponent-forms-card-inner-wall`}>
-          <div
-            className={`faqComponent-forms-card-inner-wall-special`}
-            onClick={iniciarSesion}
-          >
-            Inicia sesión
+        {auth ? (
+          <></>
+        ) : (
+          <div className={`faqComponent-forms-card-inner-wall`}>
+            <div
+              className={`faqComponent-forms-card-inner-wall-special`}
+              onClick={iniciarSesion}
+            >
+              Inicia sesión
+            </div>
+            <div>para contactarnos</div>
           </div>
-          <div>para contactarnos</div>
-        </div>
+        )}
         <div className={`faqComponent-forms-card-inner-row-1`}>
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -82,19 +237,34 @@ const FormsCardComponent = ({
             <div className={`faqComponent-forms-card-inner-row-2-inputs-name`}>
               <div>Nombre:</div>
               <div>
-                <input type="text" placeholder="Sheldon Cooper" />
+                <input
+                  onChange={(e) => {
+                    setNameInput(e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Sheldon Cooper"
+                />
               </div>
             </div>
             <div className={`faqComponent-forms-card-inner-row-2-inputs-email`}>
               <div>Correo electrónico:</div>
               <div>
-                <input type="text" placeholder="sheldoncooper@gmail.com" />
+                <input
+                  onChange={(e) => {
+                    setEmailInput(e.target.value);
+                  }}
+                  type="text"
+                  placeholder="sheldoncooper@gmail.com"
+                />
               </div>
             </div>
             <div className={`faqComponent-forms-card-inner-row-2-inputs-text`}>
               <div>Mensaje:</div>
               <div>
                 <textarea
+                  onChange={(e) => {
+                    setMessageInput(e.target.value);
+                  }}
                   maxLength={10000}
                   rows="10"
                   placeholder="Bazinga..."
@@ -108,7 +278,9 @@ const FormsCardComponent = ({
                 text="Enviar"
                 width="100%"
                 height="50px"
-                clickFunctionAnotherOne={() => {}}
+                clickFunctionAnotherOne={() => {
+                  sendMessage();
+                }}
               >
                 <svg
                   width="20px"
@@ -127,7 +299,9 @@ const FormsCardComponent = ({
   );
 };
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    auth: getAuth(state),
+  };
 };
 
 // Las acciones de REDUX
@@ -138,6 +312,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateLogInFirstAnimation: (data) => {
       dispatch(updateLogInFirstAnimationAction(data));
+    },
+    updateSuccessMessagesComponent: (data) => {
+      dispatch(updateSuccessMessagesComponentAction(data));
+    },
+    updateFailureMessagesComponent: (data) => {
+      dispatch(updateFailureMessagesComponentAction(data));
     },
   };
 };
