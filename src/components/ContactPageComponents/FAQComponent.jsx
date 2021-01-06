@@ -63,7 +63,7 @@ const FAQComponentCardSmall = ({
             //   : window.innerWidth <= maxHeightRomper
             //   ? "75px"
             //   : "50px",
-            maxHeight: "80px",
+            maxHeight: "50px",
           }}
         >
           <div className={`faqComponent-screen-card-small-inner-first-row`}>
