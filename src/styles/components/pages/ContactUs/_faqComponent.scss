@@ -139,6 +139,7 @@
         cursor: pointer;
         width: 100%;
       }
+      // why in cell phone when having overflow hidden it moves the content css
       &-svg {
         display: flex;
         justify-content: center;

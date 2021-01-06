@@ -56,14 +56,13 @@ const FAQComponentCardSmall = ({
             isOpen ? "open" : ""
           }`}
           style={{
-            // maxHeight: isOpen
-            //   ? "400px"
-            //   : window.innerWidth <= maxHeightRomper2
-            //   ? "100px"
-            //   : window.innerWidth <= maxHeightRomper
-            //   ? "75px"
-            //   : "50px",
-            maxHeight: "50px",
+            maxHeight: isOpen
+              ? "400px"
+              : window.innerWidth <= maxHeightRomper2
+              ? "100px"
+              : window.innerWidth <= maxHeightRomper
+              ? "75px"
+              : "50px",
           }}
         >
           <div className={`faqComponent-screen-card-small-inner-first-row`}>
