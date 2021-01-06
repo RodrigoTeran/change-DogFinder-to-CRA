@@ -1,0 +1,121 @@
+.faqComponent-forms-card {
+  transition-timing-function: linear;
+  transition-property: transform;
+  transition-duration: 0.1s;
+  transform: scale(0);
+  &.open {
+    transform: scale(1);
+  }
+  &-inner {
+    &-wall {
+      background-color: rgba(0, 0, 0, 0.404);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      font-size: 1.4rem;
+      &-special {
+        font-size: 1.8rem;
+        color: var(--tertiary-color-light);
+        font-weight: bold;
+        padding-right: 10px;
+        cursor: pointer;
+      }
+    }
+    position: relative;
+    background-color: rgb(29, 29, 29);
+    width: 100%;
+    position: relative;
+    border-radius: 5px;
+    padding: 30px;
+    text-align: left;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -5px;
+      width: 5px;
+      height: 100%;
+      background-color: var(--tertiary-color-light);
+      opacity: 0.8;
+      z-index: 1;
+      border-radius: 5px 0px 0px 5px;
+    }
+    &-row-1 {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      width: 100%;
+      font-size: 1.5rem;
+      svg {
+        fill: #fff;
+        width: 30px;
+        height: 30px;
+      }
+      div {
+        margin-right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &-row-2 {
+      margin-top: 30px;
+      width: 100%;
+      &-note {
+        margin-top: 30px;
+        font-size: 1.1rem;
+        color: #ddd;
+      }
+      &-inputs {
+        margin-top: 30px;
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        input {
+          margin-top: 10px;
+          width: 100%;
+          height: 40px;
+          background-color: rgb(32, 32, 32);
+          box-shadow: 0px 0px 3px 0px rgb(65, 65, 65);
+          padding-left: 10px;
+          padding-right: 10px;
+          font-size: 1rem;
+          color: #fff;
+        }
+        textarea {
+          width: 100%;
+          resize: none;
+          margin-top: 10px;
+          outline: none;
+          box-shadow: 0px 0px 3px 0px rgb(65, 65, 65);
+          background-color: rgba(32, 32, 32, 1);
+          font-size: 1rem;
+          color: #fff;
+          border: none;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        &-name {
+          margin-bottom: 25px;
+        }
+        &-email {
+          margin-bottom: 25px;
+        }
+        &-text {
+          margin-bottom: -5px;
+        }
+        &-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
