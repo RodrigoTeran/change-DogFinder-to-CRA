@@ -24,6 +24,8 @@ const FormsCardComponent = ({
   updateSuccessMessagesComponent,
   updateFailureMessagesComponent,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [messageInput, setMessageInput] = useState("");
@@ -33,6 +35,7 @@ const FormsCardComponent = ({
     updateLogin(true);
   };
   const sendMessage = () => {
+    setIsLoading(true);
     const hackName = checkFuckingHack(nameInput, []);
     const hackEmail = checkFuckingHack(emailInput, ["@", "."]);
     const hackMessage = checkFuckingHack(messageInput, [
@@ -60,18 +63,21 @@ const FormsCardComponent = ({
         title: "Error",
         description: "Por favor, pon caractéres válidos en el nombre.",
       });
+      setIsLoading(false);
     } else if (hackEmail) {
       updateFailureMessagesComponent({
         state: true,
         title: "Error",
         description: `Por favor, pon caractéres válidos en el correo a excepción por el @ y el "."`,
       });
+      setIsLoading(false);
     } else if (hackMessage) {
       updateFailureMessagesComponent({
         state: true,
         title: "Error",
         description: "Por favor, pon caractéres válidos en el mensaje.",
       });
+      setIsLoading(false);
     } else if (hackNameSpaces) {
       updateFailureMessagesComponent({
         state: true,
@@ -79,6 +85,7 @@ const FormsCardComponent = ({
         description:
           "Por favor, no dejes espacios en blanco innecesarios en el nombre.",
       });
+      setIsLoading(false);
     } else if (hackEmailSpaces) {
       updateFailureMessagesComponent({
         state: true,
@@ -86,6 +93,7 @@ const FormsCardComponent = ({
         description:
           "Por favor, no dejes espacios en blanco innecesarios en el correo.",
       });
+      setIsLoading(false);
     } else if (hackMessageSpaces) {
       updateFailureMessagesComponent({
         state: true,
@@ -93,24 +101,28 @@ const FormsCardComponent = ({
         description:
           "Por favor, no dejes espacios en blanco innecesarios en el mensaje.",
       });
+      setIsLoading(false);
     } else if (nameInput.length === 0) {
       updateFailureMessagesComponent({
         state: true,
         title: "Error",
         description: "Falta el nombre.",
       });
+      setIsLoading(false);
     } else if (emailInput.length === 0) {
       updateFailureMessagesComponent({
         state: true,
         title: "Error",
         description: "Falta el correo.",
       });
+      setIsLoading(false);
     } else if (messageInput.length === 0) {
       updateFailureMessagesComponent({
         state: true,
         title: "Error",
         description: "Falta el mensaje.",
       });
+      setIsLoading(false);
     } else {
       // POR FIN
       var theme = "";
@@ -152,12 +164,19 @@ const FormsCardComponent = ({
           return res.json();
         })
         .then((data) => {
+          setIsLoading(false);
           if (data.status === "true") {
             updateSuccessMessagesComponent({
               state: true,
               title: "Acción realizada con éxito",
               description: "Se envió el mensaje con éxito",
             });
+            // input-message-contact-page
+            // input-email-contact-page
+            // input-name-contact-page
+            document.querySelector(".input-message-contact-page").value = "";
+            document.querySelector(".input-email-contact-page").value = "";
+            document.querySelector(".input-name-contact-page").value = "";
           } else {
             updateFailureMessagesComponent({
               state: true,
@@ -178,6 +197,19 @@ const FormsCardComponent = ({
       } ${colAmount}`}
     >
       <div className={`faqComponent-forms-card-inner`}>
+        {isLoading ? (
+          <div className="faqComponent-forms-card-inner-wall ">
+            <svg
+              className="loader-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" />
+            </svg>
+          </div>
+        ) : (
+          <></>
+        )}
         {auth ? (
           <></>
         ) : (
@@ -238,6 +270,7 @@ const FormsCardComponent = ({
               <div>Nombre:</div>
               <div>
                 <input
+                  className="input-name-contact-page"
                   onChange={(e) => {
                     setNameInput(e.target.value);
                   }}
@@ -250,6 +283,7 @@ const FormsCardComponent = ({
               <div>Correo electrónico:</div>
               <div>
                 <input
+                  className="input-email-contact-page"
                   onChange={(e) => {
                     setEmailInput(e.target.value);
                   }}
@@ -262,6 +296,7 @@ const FormsCardComponent = ({
               <div>Mensaje:</div>
               <div>
                 <textarea
+                  className="input-message-contact-page"
                   onChange={(e) => {
                     setMessageInput(e.target.value);
                   }}
