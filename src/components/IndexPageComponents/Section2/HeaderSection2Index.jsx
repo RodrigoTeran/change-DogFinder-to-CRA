@@ -3,7 +3,7 @@ import CardHeaderSection2Index from "./Cards/CardHeaderSection2Index";
 // Modules
 import React from "react";
 
-const HeaderSection2Index = () => {
+const HeaderSection2Index = ({ setImgSrc, setYes }) => {
   return (
     <div className="container text-center container-header-section-2-index mbComponentsIndex">
       <svg
@@ -26,16 +26,28 @@ const HeaderSection2Index = () => {
           title="Inteligencia Artificial"
           text="Puedes registrar a tu mascota como perdida, nuestra IA empezará a buscarla en nuestra plataforma y con las empresas."
           id="card-index-section-2-1"
+          setImgSrc={(src) => {
+            setImgSrc(src);
+          }}
+          setYes={setYes}
         ></CardHeaderSection2Index>
         <CardHeaderSection2Index
           title="MAPA"
           text='En nuestro mapa las personas pueden ver los perfiles de perros perdidos y encontrados. Cuando alguien haya a tu mascota se hace un "match" con ese perfil. Y así ya puede contactarte.'
           id="card-index-section-2-2"
+          setImgSrc={(src) => {
+            setImgSrc(src);
+          }}
+          setYes={setYes}
         ></CardHeaderSection2Index>
         <CardHeaderSection2Index
           title="EMPRESAS"
           text="Tenemos convenio con empresas que aportan sus bases de datos a nuestra plataforma. Así es más eficiente la búsqueda de tu mascota."
           id="card-index-section-2-3"
+          setImgSrc={(src) => {
+            setImgSrc(src);
+          }}
+          setYes={setYes}
         ></CardHeaderSection2Index>
       </div>
     </div>
