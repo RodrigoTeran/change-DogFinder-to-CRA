@@ -217,7 +217,7 @@ const CheckoutForm = ({
           </Link>
         </div>) : (<></>)}
       <SubmitButton processing={processing} error={error} disabled={!stripe}>
-        Pagar $500 mexicanos
+        Pagar $150 mexicanos
       </SubmitButton>
     </form>
   );

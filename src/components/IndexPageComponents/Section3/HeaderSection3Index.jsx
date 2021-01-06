@@ -90,10 +90,10 @@ const HeaderSection3Index = () => {
           Contactamos a las más destacadas veterinarias, clínicas y compañías caninas
           </CardHeaderSection3Index>
         <CardHeaderSection3Index id="card-header-section-3-index-2" title="TECNOLOGÍA">
-          Tenemos una inteligencia artificial que busca en nuestra plataforma y en el Internet 24/7.
+          Tenemos una inteligencia artificial que busca en nuestra plataforma 24/7.
           </CardHeaderSection3Index>
         <CardHeaderSection3Index id="card-header-section-3-index-3" title="PERSONALIZACIÓN">
-          Contamos con un servicio de mensajes personalizados y un mapa en tiempo real de tu zona.
+          Contamos con un servicio de notificaciones seguras y un mapa en tiempo real de tu zona.
           </CardHeaderSection3Index>
       </div>
     </div>

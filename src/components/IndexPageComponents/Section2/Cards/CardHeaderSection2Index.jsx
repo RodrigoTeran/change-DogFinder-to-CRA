@@ -9,7 +9,9 @@ import { getWebp } from "../../../../store/reducers/user/selector";
 const CardHeaderSection2Index = ({
   animations,
   webp,
-  id
+  id,
+  title,
+  text
 }) => {
   return (
     <div id={`${id}`} className={`col-lg-4 col-md-6 col-sm-10 mt-4 cardHeaderSection2Index ${animations[`#${id}`] ? ("animationCard-header-section-2-index") : ("")}`}>
@@ -22,9 +24,9 @@ const CardHeaderSection2Index = ({
         )}
       <section className="container-header-section-2-index-info">
         <div className="container-header-section-2-index-title">
-          TITULO
+          {title}
           </div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error at incidunt repellat eos doloremque illo asperiores molestiae ex unde. Doloribus.
+          {text}
         </section>
     </div>
   );

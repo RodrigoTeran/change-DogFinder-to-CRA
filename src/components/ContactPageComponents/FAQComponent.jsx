@@ -84,7 +84,11 @@ const FAQComponentCardSmall = ({
               </svg>
             </div>
           </div>
-          <div className={`faqComponent-screen-card-small-inner-a`}>
+          <div
+            className={`faqComponent-screen-card-small-inner-a ${
+              isOpen ? "open" : ""
+            }`}
+          >
             {children}
           </div>
         </div>
@@ -704,7 +708,7 @@ const FAQComponent = () => {
                         delayAnimation={`${distanceBetweenAnimations * 1}s`}
                       >
                         Lo más probable es porque bloqueaste el uso de compartir
-                        la ubicación. Si no es así... mandanos mensaje en la
+                        la ubicación. Si no es así... mándanos mensaje en la
                         sección de errores.
                       </FAQComponentCardSmall>
                       <FAQComponentCardSmall
@@ -960,7 +964,7 @@ const FAQComponent = () => {
                                         }s`}
                                       >
                                         Si se rechaza su pago, es probable que
-                                        se deba a que cuenta bancaria no está
+                                        se deba a que su cuenta bancaria no está
                                         configurada para manejar pagos
                                         internacionales. Si persiste el error,
                                         desafortunadamente, no hay nada que

@@ -1,12 +1,22 @@
 import React from "react";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
-
+import { connect } from "react-redux";
+import {
+  updateLoginAction,
+  updateLogInFirstAnimationAction,
+} from "../../store/reducers/user/actions";
 const FormsCardComponent = ({
   whereItCameFrom,
   animationScreenOpen,
   delayAnimation,
   colAmount,
+  updateLogInFirstAnimation,
+  updateLogin,
 }) => {
+  const iniciarSesion = () => {
+    updateLogInFirstAnimation(true);
+    updateLogin(true);
+  };
   return (
     <div
       style={{
@@ -17,9 +27,14 @@ const FormsCardComponent = ({
       } ${colAmount}`}
     >
       <div className={`faqComponent-forms-card-inner`}>
-      <div className={`faqComponent-forms-card-inner-wall`}>
-      <div className={`faqComponent-forms-card-inner-wall-special`}>Inicia sesión</div>
-        <div>para contactarnos</div>
+        <div className={`faqComponent-forms-card-inner-wall`}>
+          <div
+            className={`faqComponent-forms-card-inner-wall-special`}
+            onClick={iniciarSesion}
+          >
+            Inicia sesión
+          </div>
+          <div>para contactarnos</div>
         </div>
         <div className={`faqComponent-forms-card-inner-row-1`}>
           <div>
@@ -44,7 +59,7 @@ const FormsCardComponent = ({
               : whereItCameFrom === 6
               ? "Por favor usa este medio solo para contarnos sobre errores generales en la plataforma. No respondemos a otra cosa."
               : whereItCameFrom === 7
-              ? "Por favor usa este medio solo para contarnos sobre errores o bugs que hay en la plataforma. Por favor ser lo más descriptivo posible. Antes de reportat un bug, favor de revisar nuestras preguntas frecuentes."
+              ? "Por favor usa este medio solo para contarnos sobre errores o bugs que hay en la plataforma. Por favor ser lo más descriptivo posible. Antes de reportar un bug, favor de revisar nuestras preguntas frecuentes."
               : "Por favor usa este medio solo para contarnos sobre errores de seguridad graves en la plataforma. Por favor ser lo más descriptivo posible. Dependiendo del error, puedes recibir una recompensa monetaria."}
           </div>
           {whereItCameFrom === 3 ||
@@ -86,7 +101,9 @@ const FormsCardComponent = ({
                 ></textarea>
               </div>
             </div>
-            <div className={`faqComponent-forms-card-inner-row-2-inputs-button`}>
+            <div
+              className={`faqComponent-forms-card-inner-row-2-inputs-button`}
+            >
               <ButtonWhiteRectangle
                 text="Enviar"
                 width="100%"
@@ -109,7 +126,22 @@ const FormsCardComponent = ({
     </div>
   );
 };
-export default FormsCardComponent;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+// Las acciones de REDUX
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateLogin: (data) => {
+      dispatch(updateLoginAction(data));
+    },
+    updateLogInFirstAnimation: (data) => {
+      dispatch(updateLogInFirstAnimationAction(data));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FormsCardComponent);
 
 // whereItCameFrom === 1
 //   ? "Solicitud de caracteristicas"

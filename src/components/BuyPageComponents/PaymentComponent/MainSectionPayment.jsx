@@ -44,7 +44,7 @@ const MainSectionPayment = ({
 }) => {
   const product = {
     name: `Perfil de ${APP_NAME}`,
-    price: 500,
+    price: 150,
     productBy: `${APP_NAME}`
   };
   const iniciarSesion = () => {

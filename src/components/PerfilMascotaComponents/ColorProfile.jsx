@@ -55,7 +55,7 @@ const ColorProfile = ({
           updateFailureMessagesComponent({
             state: true,
             title: "Error",
-            description: `No se puede editar el perfil ya que tienes una notifiación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.`,
+            description: `No se puede editar el perfil ya que tienes una notificación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.`,
           });
         } else if (data.status) {
           updatePetProfile({

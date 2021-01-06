@@ -131,10 +131,6 @@
       overflow: hidden;
       transition: ease-in-out 0.5s;
       border: solid 4px rgba(32, 32, 32, 1);
-      &.open {
-        transition: ease-in-out 0.5s;
-      }
-
       &-q {
         font-size: 1rem;
         font-weight: bold;
@@ -155,6 +151,12 @@
         text-align: left;
         width: 100%;
         margin-top: 20px;
+        visibility: hidden;
+        transition: 0s ease-in-out .5s;
+        &.open {
+          transition: ease-in-out 0s;
+          visibility: visible;
+        }
       }
       &-first-row {
         display: flex;
@@ -198,7 +200,7 @@
   margin-left: calc(50% - 384px);
   display: flex;
   flex-wrap: wrap;
-  div{
+  div {
     margin-right: 10px;
   }
   @media screen and (max-width: 950px) {

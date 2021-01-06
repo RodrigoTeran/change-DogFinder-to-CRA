@@ -33,7 +33,6 @@ import Buy from "./pages/comprar";
 import ContactUs from "./pages/contactanos";
 import Map from "./pages/mapa";
 import Politics from "./pages/politicas";
-import Questions from "./pages/preguntas";
 import Terms from "./pages/terminos";
 import DogFounded from "./pages/encontrada";
 import PerfilMascota from "./pages/perfilMascota";
@@ -413,9 +412,6 @@ const App = ({
             </Route>
             <Route path="/politicas">
               <Politics></Politics>
-            </Route>
-            <Route path="/preguntas">
-              <Questions></Questions>
             </Route>
             <Route path="/terminos">
               <Terms></Terms>
