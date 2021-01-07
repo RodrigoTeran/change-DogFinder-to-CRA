@@ -24,22 +24,12 @@ const CardHeaderSection2Index = ({
       style={{ cursor: "pointer" }}
       onClick={() => {
         var srcWanted = "";
-        if (webp) {
-          if (id === "card-index-section-2-1") {
-            srcWanted = "/Images/perfil-captura.webp";
-          } else if (id === "card-index-section-2-2") {
-            srcWanted = "/Images/mapa-captura.webp";
-          } else {
-            srcWanted = "/Images/company-captura.webp";
-          }
+        if (id === "card-index-section-2-1") {
+          srcWanted = "/Images/perfil-captura.jpg";
+        } else if (id === "card-index-section-2-2") {
+          srcWanted = "/Images/mapa-captura.jpg";
         } else {
-          if (id === "card-index-section-2-1") {
-            srcWanted = "/Images/perfil-captura.jpg";
-          } else if (id === "card-index-section-2-2") {
-            srcWanted = "/Images/mapa-captura.jpg";
-          } else {
-            srcWanted = "/Images/company-captura.jpg";
-          }
+          srcWanted = "/Images/company-captura.jpg";
         }
         setImgSrc(srcWanted);
         setYes(true);
