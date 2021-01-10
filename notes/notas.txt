@@ -1,5 +1,4 @@
 Issues:
-  --> pinshi notifiación
   - Cuando se haga un match por IA:
     - Se crea un jarvis no artesanal
     - Y va a tener una variable {
