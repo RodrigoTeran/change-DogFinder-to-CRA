@@ -1,24 +1,31 @@
-- Servicios que tendré que pagar
-  - Heroku
-    - 25 dólares mensuales
-    - https://www.heroku.com/pricing#
+- Servicios que uso
+  - Stripe
+  - Vercel
+  - AWS MongoDB
+  - Google Cloud Plataform (Google Maps API)
+  - Google Workspace (Gmail empresa)
+  - Cloudinary
+  - Heroku Flask y NodeJS
+
+- Servicios que tendré que pagar al principio
+  - Heroku NodeJS
+    - 7 dólares mensuales
+      - https://www.heroku.com/pricing#
+  - Vercel
+    - Dominio Web y client
+        - 50 Dolares al año
+  - Google Workspace
+    - Tengo que checar
+  - Google Cloud Plataform
+    - Tengo que checar
+  
+- Servicios que tendré que pagar comnforme vaya creciendo
   - MongoDB Atlas (AWS)
     - 9 dólares mensuales
     - https://cloud.mongodb.com/v2/5e77c4b800fd264b924795a5#clusters/edit/SocialNetworkCluster
   - Cloudinary
     - 99 dólares mensuales
     - https://cloudinary.com/console/c-cef3bc16dd81dae37ba9cd9007ccbc/upgrade_options
-  - Twilio
-    - no se sabe
-  - Dominio Web
-    - 50 pesos al año
-  --- Stripe
-
-Al mes (pesos):
-  - 2660
-    - Un mínimo de 6 usuarios al mes
-  - 680
-    - Un mínimo de 2 usuarios al mes
-Al año (pesos):
-  - 31970
-  - 8210
+  - Heroku Flask
+    - 7 dólares mensuales
+      - https://www.heroku.com/pricing#

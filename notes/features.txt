@@ -1,4 +1,7 @@
-- Video Js in react
+- Poner video en el index page
 - PWA para Google Play y para App Store
 - Cambiar las default images de Fredita
 - Agregar filtro en los perfiles... para buscar uno más fácilmente
+- Mejorar las plantillas de mail que se envían
+- Mejorar la IA
+- Implementar bots

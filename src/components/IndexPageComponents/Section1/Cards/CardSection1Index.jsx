@@ -20,7 +20,8 @@ const CardSection1Index = ({
             {children}
             <h3 style={{
               fontSize: "1.15rem",
-              fontWeight: "bold"
+              fontWeight: "bold",
+              color: "#FFF"
             }}
             >
               {title}

@@ -268,7 +268,9 @@ const LeftColumnMapPage = ({
     return superResult;
   };
   return (
-    <div className="map-page-left">
+    <div className="map-page-left" style={{
+      marginTop: "5px"
+    }}>
       <div className="map-page-left-h1">
         <svg
           className="icon-header-section-1-index-2"

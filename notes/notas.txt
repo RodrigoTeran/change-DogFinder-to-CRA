@@ -1,38 +1,26 @@
 Issues:
-  - Cuando se haga un match por IA:
-    - Se crea un jarvis no artesanal
-    - Y va a tener una variable {
-      sirve: posibles valores = (0, 1, 2)
-    }
-      - si es 0 siginfica que aun no sabemos
-      - si es uno significa que si
-      - si es 2 es que no
-    - cuando se cree este jarvis solo se le va a mandar al dueño sin info de contacto
-      - el nos dirá si sí atinó o no
-      - si sí... se pone en 1 y se manda también al otro y se le muestra la info de contacto ahora si
-        - el método de eliminar este jarvis es el mismo de siempre
-      - si pone que no...
-        - no se elimina el jarvis, se le pone variable 2
-        - de esta manera no va a salir otra ves la notificacion
-        - y ahi se va a quedar... hasta que uno de los perfiles que guarda sea eliminado... entonces ya se podra
-          eliminar ya que ahora ya no podra hacer la comparacion errónea si ya no existe una info de uno de los dos
-          perfiles
-      - no se siguen comparando perfiles que estan comparados en los jarvises no artesanales
-        - no importa el numero que tengan
-      - si se comparan a los que son artesanales
+  --> Quitar boton de ver video en el index page
+  --> En el mapa cuando no haya auth poner mas padding top al column left
+  - Eliminar Twilio xd
+  - Permisos maps Google Cloud Platform
+    - Para que solo responda a mi url
+  - Acceso apps menos seguras
+    - Cambiar la forma en que envio Gmails
+
+  - OAuth con Facebook wrong
+    - Que se pueda
+  - OAuth con Google editar pantalla de consentimiento
+
   - Stripe:
     - Incluir IVA en compra
     - Crear lo del codigo de descuento con stripe
-    - checar pagos por Stripe
-  - Editar la información que sale en INDEX
-  - Editar la información que sale en SE PERDIÓ MI PERRO
-  - Checar que información se trae de Facebook al hacer OAuth
-  - Crear cuenta de correo y de whatsapp de empresa
+    - Checar pagos por Stripe
+      - Que sirva
   - Checar lo de los impuestos
+    - Saber si tengo que pagar
+  - Editar políticas de privacidad
+  - Editar términos y condiciones
   - Poner SEO en html
-  - Crear la página de notificaciones
-    - que ahi salgan los matches con la info del otro usuario
-  - Crear la página de adopcion
-    - que puedas poner y tambien adoptar
-    - lo unico que se pide es que estes registrado con tus datos
-      - o sea no es exclusivo premium
+  - Crear página de Instagram
+  - Crear página de Facebook
+  - Checar el .txt de pagar
