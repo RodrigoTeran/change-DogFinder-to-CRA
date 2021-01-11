@@ -81,7 +81,7 @@ const HeaderNotificaciones = ({ jarvises, userCompany }) => {
       </div>
       <div className="notifications-page-header-h2">
         En esta sección vas a poder ver las notificaciones relacionadas a cuando
-        hay una conexión si encontraste o alguien encontro a tu mascota.
+        hay una conexión si encontraste o alguien encontró a tu mascota.
       </div>
       <div className="notifications-page-header-manualOrIA">
         <span>Hay dos tipos de notificaciones que te pueden llegar:</span>
