@@ -1,16 +1,11 @@
 Issues:
-  --> Permisos maps Google Cloud Platform
-    - Para que solo responda a mi url
-  - Acceso apps menos seguras
-    - Cambiar la forma en que envio Gmails
-
   - OAuth con Facebook wrong
     - Que se pueda
   - OAuth con Google editar pantalla de consentimiento
 
   - Stripe:
-    - Incluir IVA en compra
-    - Crear lo del codigo de descuento con stripe
+    --> Incluir IVA en compra
+    --> Crear lo del codigo de descuento con stripe
     - Checar pagos por Stripe
       - Que sirva
   - Checar lo de los impuestos

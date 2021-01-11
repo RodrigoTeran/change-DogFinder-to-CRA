@@ -18,7 +18,7 @@ const CardHeaderBuyPage = () => {
         </div>
         <div className={`purchase-page-header-card-premium col-lg-4 col-md-6`}>
           <div className="purchase-page-header-card-premium-h1">
-            Premium $150:
+            Premium $150, IVA incluido:
           </div>
           <div className="purchase-page-header-card-premium-element">
             búsqueda de tu mascota con inteligencia artificial

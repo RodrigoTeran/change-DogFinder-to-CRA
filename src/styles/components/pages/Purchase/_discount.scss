@@ -1,0 +1,96 @@
+.discount-container {
+  width: 420px;
+  margin-left: calc(50% - 210px);
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  &-h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: "Roboto Condensed", sans-serif;
+    width: 100%;
+    text-align: left;
+  }
+  &-stripe {
+    width: 420px;
+    margin-left: calc(50% - 210px);
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    div {
+      margin-right: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    svg {
+      fill: #fff;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &-input-container {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-aplica {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: fit-content;
+      margin-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-left: 2px;
+      &-no {
+        background-color: rgb(190, 73, 52);
+      }
+      &-si {
+        background-color: rgb(30, 126, 45);
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5px;
+        svg {
+          fill: #fff;
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+    input {
+      width: calc(100% - 102px);
+      border-radius: 5px 0px 0px 5px;
+      height: 40px;
+      background-color: #323232;
+      font-size: 1rem;
+      padding-left: 10px;
+      color: #ffffff;
+      text-align: left;
+      border: none;
+      border-top: solid 1px #000;
+      &::-webkit-input-placeholder {
+        color: rgba(155, 155, 155, 1);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    width: 280px;
+    margin-left: calc(50% - 140px);
+    &-stripe {
+      width: 280px;
+      margin-left: calc(50% - 140px);
+    }
+  }
+}

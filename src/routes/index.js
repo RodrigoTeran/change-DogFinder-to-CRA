@@ -34,6 +34,7 @@ routes.editTelephoneForContactUser = `${routes.apiDomain}/edit/telephone/contact
 routes.postNewPet = `${routes.apiDomain}/new/pet`;
 routes.postPayment = `${routes.apiDomain}/pay/service`;
 routes.postKeyPayment = `${routes.apiDomain}/pay/check-key`;
+routes.checkDiscountCode = `${routes.apiDomain}/pay/check-discount-code`;
 
 // DELETE
 routes.eraseProfile = `${routes.apiDomain}/erase/profile`;

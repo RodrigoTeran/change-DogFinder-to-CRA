@@ -1,41 +1,44 @@
-import React, { useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
+import React, { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
 
 import { STRIPE_KEY } from "../../utils/config";
 
 const CARD_OPTIONS = {
-  iconStyle: 'solid',
+  iconStyle: "solid",
   style: {
     base: {
-      iconColor: '#FFF',
-      color: '#fff',
+      iconColor: "#FFF",
+      color: "#fff",
       fontWeight: 500,
-      fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-      fontSize: '16px',
-      fontSmoothing: 'antialiased',
-      ':-webkit-autofill': {
-        color: '#FFF',
+      fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+      fontSize: "16px",
+      fontSmoothing: "antialiased",
+      ":-webkit-autofill": {
+        color: "#FFF",
       },
-      '::placeholder': {
-        color: 'rgba(142, 142, 142, 1)',
+      "::placeholder": {
+        color: "rgba(142, 142, 142, 1)",
       },
     },
     invalid: {
-      iconColor: '#FFF',
-      color: '#FFF',
+      iconColor: "#FFF",
+      color: "#FFF",
     },
   },
 };
-
 
 const CardField = ({ onChange }) => (
   <div className="FormRow">
     <CardElement options={CARD_OPTIONS} onChange={onChange} />
   </div>
 );
-
 
 const Field = ({
   label,
@@ -47,34 +50,32 @@ const Field = ({
   value,
   onChange,
 }) => (
-    <div className="FormRow">
-      <label htmlFor={id} className="FormRowLabel">
-        {label}
-      </label>
-      <input
-        className="FormRowInput"
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        autoComplete={autoComplete}
-        value={value}
-        onChange={onChange}
-      />
-    </div>
-  );
-
+  <div className="FormRow">
+    <label htmlFor={id} className="FormRowLabel">
+      {label}
+    </label>
+    <input
+      className="FormRowInput"
+      id={id}
+      type={type}
+      placeholder={placeholder}
+      required={required}
+      autoComplete={autoComplete}
+      value={value}
+      onChange={onChange}
+    />
+  </div>
+);
 
 const SubmitButton = ({ processing, error, children, disabled }) => (
   <button
-    className={`SubmitButton ${error ? 'SubmitButton--error' : ''}`}
+    className={`SubmitButton ${error ? "SubmitButton--error" : ""}`}
     type="submit"
     disabled={processing || disabled}
   >
-    {processing ? 'Cargando...' : children}
+    {processing ? "Cargando..." : children}
   </button>
 );
-
 
 const ErrorMessage = ({ children }) => (
   <div className="ErrorMessage" role="alert">
@@ -92,22 +93,21 @@ const ErrorMessage = ({ children }) => (
   </div>
 );
 
-const CheckoutForm = ({
-  makePayment
-}) => {
+const CheckoutForm = ({ makePayment, product }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [terminosCondiciones, setTerminosCondiciones] = useState(false);
-  const [terminosCondicionesRegañar, setTerminosCondicionesRegañar] = useState(false);
+  const [terminosCondicionesRegañar, setTerminosCondicionesRegañar] = useState(
+    false
+  );
   const [billingDetails, setBillingDetails] = useState({
-    email: '',
-    phone: '',
-    name: '',
+    email: "",
+    phone: "",
+    name: "",
   });
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -120,34 +120,29 @@ const CheckoutForm = ({
         return;
       }
 
-
       if (error) {
-        elements.getElement('card').focus();
+        elements.getElement("card").focus();
         return;
       }
-
 
       if (cardComplete) {
         setProcessing(true);
       }
 
-
       const payload = await stripe.createPaymentMethod({
-        type: 'card',
+        type: "card",
         card: elements.getElement(CardElement),
         billing_details: billingDetails,
       });
 
-
       setProcessing(false);
-
 
       if (payload.error) {
         setError(payload.error);
       } else {
         makePayment(payload.paymentMethod);
-      };
-    };
+      }
+    }
   };
 
   return (
@@ -201,48 +196,59 @@ const CheckoutForm = ({
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <div className="terminos-condiciones-acepto-container">
         <div>
-          <input onChange={() => {
-            setTerminosCondicionesRegañar(false);
-            setTerminosCondiciones(!terminosCondiciones)
-          }} type="checkbox" name="Acepto" id="checkbox-stripe-terminos-condiciones" value="Acepto" />
-          <label htmlFor="checkbox-stripe-terminos-condiciones">Acepto los términos y condiciones</label>
+          <input
+            onChange={() => {
+              setTerminosCondicionesRegañar(false);
+              setTerminosCondiciones(!terminosCondiciones);
+            }}
+            type="checkbox"
+            name="Acepto"
+            id="checkbox-stripe-terminos-condiciones"
+            value="Acepto"
+          />
+          <label htmlFor="checkbox-stripe-terminos-condiciones">
+            Acepto los términos y condiciones
+          </label>
         </div>
       </div>
       {terminosCondicionesRegañar ? (
         <div className="terminos-condiciones-acepto-container-regaño">
           Debes de aceptar los términos y condiciones
           <br />
-          <Link to="/terminos" className="terminos-condiciones-acepto-container-regaño-link" title="Ir a Términos y Condiciones" style={{ cursor: "pointer" }}>
+          <Link
+            to="/terminos"
+            className="terminos-condiciones-acepto-container-regaño-link"
+            title="Ir a Términos y Condiciones"
+            style={{ cursor: "pointer" }}
+          >
             Ir a Términos y Condiciones
           </Link>
-        </div>) : (<></>)}
+        </div>
+      ) : (
+        <></>
+      )}
       <SubmitButton processing={processing} error={error} disabled={!stripe}>
-        Pagar $150 mexicanos
+        Pagar ${product.price} mexicanos, IVA incluido
       </SubmitButton>
     </form>
   );
 };
 
-
 const ELEMENTS_OPTIONS = {
   fonts: [
     {
-      cssSrc: 'https://fonts.googleapis.com/css?family=Roboto',
+      cssSrc: "https://fonts.googleapis.com/css?family=Roboto",
     },
   ],
 };
 
 const stripePromise = loadStripe(STRIPE_KEY);
 
-const App = ({
-  makePayment
-}) => {
+const App = ({ makePayment, product }) => {
   return (
     <div className="AppWrapper">
       <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-        <CheckoutForm
-          makePayment={makePayment}
-        />
+        <CheckoutForm makePayment={makePayment} product={product} />
       </Elements>
     </div>
   );
