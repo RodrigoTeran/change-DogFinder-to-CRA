@@ -129,8 +129,8 @@ const CompanyInfo = ({
           </div>
         </div>
         <div className={`${yesInstructions ? ("open") : ("close")} image-pet-profile-instructions-text`}>
-          Aquí puedes ver y editar la información de tu empresa. Esta información saldrá en el mapa y en la página de adopción para que las personas conozcan mejor tu empresa.
-          Si se necesita subir a la plataforma un perro perdido que encontraron o un perro que dan en adopción, al igual como si fuera un cliente normal, deben de tener llenos los
+          Aquí puedes ver y editar la información de tu empresa. Esta información saldrá en el mapa para que las personas conozcan mejor tu empresa.
+          Si se necesita subir a la plataforma un perro perdido que encontraron, al igual como si fuera un cliente normal, deben de tener llenos los
           espacios de correo y número de teléfono, para garantizar que las personas los puedan contactar cuando se requiera.
         </div>
       </div>

@@ -692,7 +692,7 @@ const HeaderProfilePage = ({
               usuario en la plataforma de tal empresa. Si usted quiere registrar
               a su empresa en la plataforma para gozar de los beneficios únicos
               como códigos de descuento a sus clientes, un lugar único en el
-              mapa y adopción. En la página de "contáctanos" nos puede mandar un
+              mapa. En la página de "contáctanos" nos puede mandar un
               correo.
             </div>
           </div>
