@@ -19,8 +19,11 @@ const HeaderContactPage = ({ isWebp }) => {
           Hola, mi nombre es Rodrigo Terán
         </div>
         <div className="contact-us-page-image-text-h2">
-          el fundador de la plataforma...
-        </div>        
+          el fundador de la plataforma... 
+          <br/>
+          ...y dispuesto a ayudarte en lo que
+          sea...
+        </div>
       </div>
       <div
         className="contact-us-page-me-div"
