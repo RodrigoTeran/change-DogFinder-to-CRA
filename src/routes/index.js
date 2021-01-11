@@ -27,7 +27,7 @@ routes.editPetProfileWhenIsLost = `${routes.apiDomain}/edit/whenIsLost`;
 routes.editPetProfileImages = `${routes.apiDomain}/edit/images`;
 routes.editKeyForMailForContactUser = `${routes.apiDomain}/edit/key/mail`;
 routes.editMailForContactUser = `${routes.apiDomain}/edit/mail/contact`;
-routes.editKeyForTelephoneForContactUser = `${routes.apiDomain}/edit/key/telephone`;
+
 routes.editTelephoneForContactUser = `${routes.apiDomain}/edit/telephone/contact`;
 
 // POST

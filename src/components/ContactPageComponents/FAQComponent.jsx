@@ -740,13 +740,14 @@ const FAQComponent = () => {
                           </FAQComponentCardSmall>
                           <FAQComponentCardSmall
                             colAmount="col-12"
-                            question="¿Por qué se usa la IA si lo puedo hacer manual desde el mapa?"
+                            question="¿La IA no busca información privada mía en redes sociales?"
                             animationScreenOpen={animationScreenOpen}
                             delayAnimation={`${distanceBetweenAnimations * 1}s`}
                           >
-                            La IA que se desarrolló para esta plataforma también
-                            esta pensada para comparar los datos en grandes
-                            cantidades. Muchos por segundo...
+                            La IA que se desarrolló para esta plataforma. A
+                            futuro, implementaremos bots que rastren información
+                            de perros perdidos en las redes sociales. Pero jamás
+                            buscaremos información privada.
                           </FAQComponentCardSmall>
                           <FAQComponentCardSmall
                             colAmount="col-12"
@@ -1061,11 +1062,9 @@ const FAQComponent = () => {
                                             }s`}
                                           >
                                             Lo más probable es porque el correo
-                                            o número de teléfono lo hayas
-                                            escrito mal. También puede ser que
-                                            la clave le llegó a spam si es por
-                                            correo. Si el problema continúa,
-                                            contáctenos.
+                                            lo hayas escrito mal. También puede
+                                            ser que la clave le llegó a spam. Si
+                                            el problema continúa, contáctenos.
                                           </FAQComponentCardSmall>
                                           <div className="still-getting-issues">
                                             <div>

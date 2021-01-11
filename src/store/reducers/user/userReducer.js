@@ -8,7 +8,6 @@ const initialState = {
   emailForContact: undefined,
   numberOfTelephoneForContact: undefined,
   emailForContactActiveKey: undefined,
-  telephoneForContactActiveKey: undefined,
 
   // Saber si ya llego response de /user
   firstResponseUserAPI: false,

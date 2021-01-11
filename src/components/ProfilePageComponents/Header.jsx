@@ -18,7 +18,6 @@ import { updateUserCompanyAction } from "../../store/reducers/company/actions";
 import {
   editKeyForMailForContactUser,
   editMailForContactUser,
-  editKeyForTelephoneForContactUser,
   editTelephoneForContactUser,
 } from "../../routes/index";
 
@@ -26,7 +25,6 @@ import {
   editCompanyEmail,
   editCompanyEmailWithToken,
   editCompanyTelephone,
-  editCompanyTelephoneWithToken,
 } from "../../routes/company";
 
 import { checkFuckingHack } from "../../utils/hacking";
@@ -37,7 +35,6 @@ import {
   getNumberOfTelephoneForContact,
   getEmailForContact,
   getEmailForContactActiveKey,
-  getTelephoneForContactActiveKey,
 } from "../../store/reducers/user/selector";
 
 // Components
@@ -58,7 +55,6 @@ const HeaderProfilePage = ({
   updateSuccessMessagesComponent,
 
   emailForContactActiveKey,
-  telephoneForContactActiveKey,
 
   updateUser,
 
@@ -77,14 +73,9 @@ const HeaderProfilePage = ({
   const [isLoading2, setIsLoading2] = useState(false);
 
   const [valueInputMailKey, setValueInputMailKey] = useState("");
-  const [valueInputTelephoneKey, setValueInputTelephoneKey] = useState("");
 
   const onChangeInputKeyMail = (e) => {
     setValueInputMailKey(e.target.value);
-  };
-
-  const onChangeInputKeyTelephone = (e) => {
-    setValueInputTelephoneKey(e.target.value);
   };
 
   const editMailForContact = () => {
@@ -163,82 +154,6 @@ const HeaderProfilePage = ({
     }
   };
 
-  const editTelephoneForContact = () => {
-    const hack = checkFuckingHack(valueInputTelephoneKey, []);
-    if (hack) {
-      updateFailureMessagesComponent({
-        state: true,
-        title: "Error",
-        description: "Debe de introducir caracteres válidos",
-      });
-    } else {
-      setIsLoading(true);
-      const body = {
-        key: valueInputTelephoneKey,
-      };
-      fetch(
-        isViewOnCompany && userCompany.name
-          ? editCompanyTelephoneWithToken
-          : editTelephoneForContactUser,
-        {
-          method: "PUT",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            token: localStorage.getItem("token"),
-          },
-          body: JSON.stringify(body),
-        }
-      )
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setIsLoading(false);
-          if (data.status === "true") {
-            updateSuccessMessagesComponent({
-              state: true,
-              title: "Éxito",
-              description: `Se editó el teléfono de contacto público`,
-            });
-            if (isViewOnCompany && userCompany.name) {
-              updateUserCompany({
-                selectedState: "numeroCompaniaEspacioParaKey",
-                state: false,
-              });
-              updateUserCompany({
-                selectedState: "numeroTelefonoCompania",
-                state: data.newTelephone,
-              });
-            } else {
-              updateUser({
-                selectedState: "numberOfTelephoneForContact",
-                state: data.newTelephone,
-              });
-              updateUser({
-                selectedState: "telephoneForContactActiveKey",
-                state: false,
-              });
-            }
-          } else if (data.status === "expiro") {
-            updateFailureMessagesComponent({
-              state: true,
-              title: "Error",
-              description:
-                "La clave ya expiró o no coincide. Vuelva a intentarlo o envie de nuevo el teléfono",
-            });
-          } else {
-            updateFailureMessagesComponent({
-              state: true,
-              title: "Error",
-              description: "La clave no coincide",
-            });
-          }
-        });
-    }
-  };
-
   const editKeyForMail = (email) => {
     setIsLoading(true);
     const body = {
@@ -292,7 +207,7 @@ const HeaderProfilePage = ({
       });
   };
 
-  const editKeyForTelephone = (telephone) => {
+  const editTelephone = (telephone) => {
     setIsLoading(true);
     const body = {
       telephone,
@@ -300,7 +215,7 @@ const HeaderProfilePage = ({
     fetch(
       isViewOnCompany && userCompany.name
         ? editCompanyTelephone
-        : editKeyForTelephoneForContactUser,
+        : editTelephoneForContactUser,
       {
         method: "PUT",
         credentials: "include",
@@ -321,25 +236,24 @@ const HeaderProfilePage = ({
           updateSuccessMessagesComponent({
             state: true,
             title: "Éxito",
-            description: `Se envió al teléfono: ${telephone}, la clave para verificar que este teléfono es suyo`,
+            description: `Se cambió el número de teléfono de contacto`,
           });
           if (isViewOnCompany && userCompany.name) {
             updateUserCompany({
-              selectedState: "numeroCompaniaEspacioParaKey",
-              state: true,
+              selectedState: "numeroTelefonoCompania",
+              state: data.newTelephone,
             });
           } else {
             updateUser({
-              selectedState: "telephoneForContactActiveKey",
-              state: true,
+              selectedState: "numberOfTelephoneForContact",
+              state: data.newTelephone,
             });
           }
         } else {
           updateFailureMessagesComponent({
             state: true,
             title: "Error",
-            description:
-              "El teléfono no es válido, puede ser que lo hayas escrito mal",
+            description: "No se pudo cambiar el número de teléfono de contacto",
           });
         }
       });
@@ -536,7 +450,7 @@ const HeaderProfilePage = ({
       // El nombre debe contener al menos 1 caracter
       if (!status) {
         if (!isLoading && !isLoading2) {
-          editKeyForTelephone(bannerProfileContactInfo.inputInfoFromBanner);
+          editTelephone(bannerProfileContactInfo.inputInfoFromBanner);
         }
       }
 
@@ -954,59 +868,6 @@ const HeaderProfilePage = ({
           </div>
         </div>
       </div>
-      <div
-        className={`banner-email-contact-key-input ${
-          isViewOnCompany && userCompany.name
-            ? userCompany.numeroCompaniaEspacioParaKey
-              ? "open"
-              : "close"
-            : telephoneForContactActiveKey
-            ? "open"
-            : "close"
-        }`}
-      >
-        <div className="banner-email-contact-key-input-title">
-          Clave para verificar autenticidad de número de teléfono
-        </div>
-        <div className="banner-email-contact-key-input-info">
-          Introduce la clave que te llego al teléfono. Si no te ha llegado el
-          mensaje, lo más probable es que lo hayas escrito mal. Si es así, solo
-          vuelve a mandarlo. La clave expira en 10 minutos.
-        </div>
-        <div className="banner-email-contact-key-input-input-container">
-          <div>
-            <input
-              onChange={onChangeInputKeyTelephone}
-              type="text"
-              maxLength={10}
-            />
-          </div>
-          <div className="banner-email-contact-key-input-input-container-2">
-            <ButtonWhiteRectangle
-              text={`Enviar`}
-              width="280px"
-              height="50px"
-              fontSize="1rem"
-              clickFunctionAnotherOne={() => {
-                if (!isLoading && !isLoading2) {
-                  editTelephoneForContact();
-                }
-              }}
-              mt="mt-0"
-              backgroundColorRectangle={"#000000"}
-            >
-              <svg
-                width="20px"
-                height="20px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512"
-              >
-                <path d="M568.482 177.448L424.479 313.433C409.3 327.768 384 317.14 384 295.985v-71.963c-144.575.97-205.566 35.113-164.775 171.353 4.483 14.973-12.846 26.567-25.006 17.33C155.252 383.105 120 326.488 120 269.339c0-143.937 117.599-172.5 264-173.312V24.012c0-21.174 25.317-31.768 40.479-17.448l144.003 135.988c10.02 9.463 10.028 25.425 0 34.896zM384 379.128V448H64V128h50.916a11.99 11.99 0 0 0 8.648-3.693c14.953-15.568 32.237-27.89 51.014-37.676C185.708 80.83 181.584 64 169.033 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48v-88.806c0-8.288-8.197-14.066-16.011-11.302a71.83 71.83 0 0 1-34.189 3.377c-7.27-1.046-13.8 4.514-13.8 11.859z" />
-              </svg>
-            </ButtonWhiteRectangle>
-          </div>
-        </div>
-      </div>
 
       {isLoading ? (
         <div
@@ -1038,7 +899,6 @@ const mapStateToProps = (state) => {
     numberOfTelephoneForContact: getNumberOfTelephoneForContact(state),
     emailForContact: getEmailForContact(state),
     emailForContactActiveKey: getEmailForContactActiveKey(state),
-    telephoneForContactActiveKey: getTelephoneForContactActiveKey(state),
     userCompany: getUserCompany(state),
   };
 };

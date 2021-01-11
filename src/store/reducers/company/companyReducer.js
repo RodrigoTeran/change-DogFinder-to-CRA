@@ -12,7 +12,6 @@ const initialState = {
     numeroTelefonoCompania: undefined,
 
     correoCompaniaEspacioParaKey: false,
-    numeroCompaniaEspacioParaKey: false
   },
   ownPremiumProfiles: {
     lastCoordenates: {

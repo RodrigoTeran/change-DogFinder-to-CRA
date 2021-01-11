@@ -144,10 +144,6 @@ const App = ({
             selectedState: "emailForContactActiveKey",
             state: data.emailForContactActiveKey,
           });
-          updateUser({
-            selectedState: "telephoneForContactActiveKey",
-            state: data.numberForContactActiveKey,
-          });
           updateKeyActiveUser(data.compraActiva);
           // COMPANY
           try {
@@ -160,11 +156,6 @@ const App = ({
               selectedState: "correoCompaniaEspacioParaKey",
               state: data.isUserInCompany.keyEmailCompany,
             });
-            updateUserCompany({
-              selectedState: "numeroCompaniaEspacioParaKey",
-              state: data.isUserInCompany.keyNumberCompany,
-            });
-
             updateUserCompany({
               selectedState: "location",
               state: data.isUserInCompany.location,
@@ -208,10 +199,6 @@ const App = ({
             });
             updateUserCompany({
               selectedState: "correoCompaniaEspacioParaKey",
-              state: false,
-            });
-            updateUserCompany({
-              selectedState: "numeroCompaniaEspacioParaKey",
               state: false,
             });
             updateUserCompany({
@@ -286,7 +273,6 @@ const App = ({
             state: false,
           });
           updateKeyActiveUser(undefined);
-
           // COMPANY
           updateUserCompany({
             selectedState: "name",
@@ -298,10 +284,6 @@ const App = ({
           });
           updateUserCompany({
             selectedState: "correoCompaniaEspacioParaKey",
-            state: false,
-          });
-          updateUserCompany({
-            selectedState: "numeroCompaniaEspacioParaKey",
             state: false,
           });
           updateUserCompany({

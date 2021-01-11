@@ -1,7 +1,5 @@
 Issues:
-  --> Quitar boton de ver video en el index page
-  --> En el mapa cuando no haya auth poner mas padding top al column left
-  - Eliminar Twilio xd
+  - Eliminar Twilio
   - Permisos maps Google Cloud Platform
     - Para que solo responda a mi url
   - Acceso apps menos seguras

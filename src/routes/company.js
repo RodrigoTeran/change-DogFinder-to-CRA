@@ -23,8 +23,9 @@ routes.editCompanyLogo = `${routes.apiDomain}/company/edit/logo`;
 routes.editCompanyDescription = `${routes.apiDomain}/company/edit/description`;
 routes.editCompanyEmail = `${routes.apiDomain}/company/edit/email`;
 routes.editCompanyEmailWithToken = `${routes.apiDomain}/company/edit/emailWithToken`;
+
+
 routes.editCompanyTelephone = `${routes.apiDomain}/company/edit/telephone`;
-routes.editCompanyTelephoneWithToken = `${routes.apiDomain}/company/edit/telephoneWithToken`;
 
 // DELETE
 routes.deleteUserFromCompany = `${routes.apiDomain}/company/delete/userInCompany`;
