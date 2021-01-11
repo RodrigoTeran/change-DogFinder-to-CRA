@@ -1,6 +1,5 @@
 Issues:
-  --> Eliminar Twilio
-  - Permisos maps Google Cloud Platform
+  --> Permisos maps Google Cloud Platform
     - Para que solo responda a mi url
   - Acceso apps menos seguras
     - Cambiar la forma en que envio Gmails
