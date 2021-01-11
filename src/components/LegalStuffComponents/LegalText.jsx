@@ -19,13 +19,13 @@ const LegalText = () => {
           Términos y Condiciones
         </div>
         <LegalTextBlock title="Acuerdo entre el Usuario y https://www.dogfinder.com.mx">
-          Bienvenido a https://www.dogfinder.com.mx. El sitio web
+          Bienvenido a https://www.dogfinder.com.mx. El sitio web de DogFinder,
           https://www.dogfinder.com.mx. El sitio es una plataforma web que usa
           tecnología para encontrar perros perdidos. El Sitio se le ofrece a
           usted condicionado a su aceptación sin modificación de los términos,
-          condiciones y avisos aquí contenidos (los "Términos"). Lea estos
-          términos detenidamente y guarde una copia de ellos para su referencia.
-          Las compras son definitivas y no reembolsables.
+          condiciones y avisos aquí contenidos (los "Términos y Condiciones").
+          Lea estos términos detenidamente y guarde una copia de ellos para su
+          referencia. Las compras son definitivas y no reembolsables.
         </LegalTextBlock>
         <LegalTextBlock title="Privacidad">
           Su uso del Sitio está sujeto a la Política de privacidad de DogFinder.
@@ -44,16 +44,16 @@ const LegalText = () => {
         <LegalTextBlock title="Su cuenta">
           Para los propósitos de estos Términos y Condiciones, a menos que se
           indique lo contrario, todas las referencias a "su cuenta" significan /
-          incluyen su derecho de acceso y uso de este sitio y su uso de este
-          sitio. Si usa este sitio, es responsable de mantener la
-          confidencialidad de su cuenta y de restringir el acceso a su
-          computadora, y acepta la responsabilidad de todas las actividades que
-          ocurran en su cuenta. No puede ceder ni transferir su cuenta a ninguna
-          otra persona o entidad, y no puede compartir una cuenta con otra
-          persona. Usted reconoce que DogFinder no es responsable del acceso de
-          terceros a su cuenta que resulte del robo o apropiación indebida de su
-          cuenta. DogFinder se reserva el derecho de rechazar o cancelar el
-          servicio, cancelar cuentas o eliminar o editar contenido.
+          incluyen su derecho de acceso y uso de este sitio. Si usa este sitio,
+          es responsable de mantener la confidencialidad de su cuenta y de
+          restringir el acceso a su computadora, y acepta la responsabilidad de
+          todas las actividades que ocurran en su cuenta. No puede ceder ni
+          transferir su cuenta a ninguna otra persona o entidad, y no puede
+          compartir una cuenta con otra persona. Usted reconoce que DogFinder no
+          es responsable del acceso de terceros a su cuenta que resulte del robo
+          o apropiación indebida de su cuenta. DogFinder se reserva el derecho
+          de rechazar o cancelar el servicio, cancelar cuentas, eliminar o
+          editar contenido.
         </LegalTextBlock>
         <LegalTextBlock title="Niños menores de trece">
           DogFinder no recopila a sabiendas información de identificación
@@ -121,7 +121,7 @@ const LegalText = () => {
           como limitación, usted acepta que al utilizar un Servicio de
           comunicación, no: difamará, abusará, acosará, acechará, amenazará o
           violará de otra manera los derechos legales (como los derechos de
-          privacidad y publicidad) de otros. ; publicar, publicar, cargar,
+          privacidad y publicidad) de otros. ; publicar, cargar,
           distribuir o difundir cualquier tema, nombre, material o información
           inapropiado, profano, difamatorio, infractor, obsceno, indecente o
           ilegal; cargar archivos que contengan software u otro material
