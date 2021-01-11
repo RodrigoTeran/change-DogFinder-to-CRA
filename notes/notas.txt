@@ -1,5 +1,5 @@
 Issues:
-  - Eliminar Twilio
+  --> Eliminar Twilio
   - Permisos maps Google Cloud Platform
     - Para que solo responda a mi url
   - Acceso apps menos seguras
