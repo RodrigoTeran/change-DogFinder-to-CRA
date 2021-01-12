@@ -68,19 +68,30 @@ const InputMap = ({
         });
       } else {
         // ------------------------------ PRIMERA VEZ ------------------------------
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setActualCoordenates({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-            setMarker({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
+        try {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              setActualCoordenates({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              });
+              setMarker({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              });
+            },
+            () => null
+          );
+        } catch {
+          setActualCoordenates({
+            lat: 20.56129252556516,
+            lng: -100.42083859172072,
+          });
+          setMarker({
+            lat: 20.56129252556516,
+            lng: -100.42083859172072,
+          });
+        }
       }
     } catch (error) {}
   };
@@ -247,19 +258,30 @@ const InputMap = ({
             <button
               className="map-input-fixed-button-location"
               onClick={() => {
-                navigator.geolocation.getCurrentPosition(
-                  (position) => {
-                    setActualCoordenates({
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude,
-                    });
-                    panTo({
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude,
-                    });
-                  },
-                  () => null
-                );
+                try {
+                  navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                      setActualCoordenates({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                      });
+                      setMarker({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                      });
+                    },
+                    () => null
+                  );
+                } catch {
+                  setActualCoordenates({
+                    lat: 20.56129252556516,
+                    lng: -100.42083859172072,
+                  });
+                  setMarker({
+                    lat: 20.56129252556516,
+                    lng: -100.42083859172072,
+                  });
+                }
               }}
             >
               Poner en mi ubicación actual
