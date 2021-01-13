@@ -120,15 +120,13 @@
       transition: ease-in-out 0.3s;
     }
   }
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      left: 0;
-      transition: ease-in-out 0.3s;
-      .social-media-arrow {
-        svg {
-          transform: rotateZ(180deg);
-          transition: ease-in-out 0.3s;
-        }
+  &:hover {
+    left: 0;
+    transition: ease-in-out 0.3s;
+    .social-media-arrow {
+      svg {
+        transform: rotateZ(180deg);
+        transition: ease-in-out 0.3s;
       }
     }
   }
