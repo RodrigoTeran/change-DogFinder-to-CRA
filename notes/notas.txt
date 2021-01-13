@@ -1,6 +1,4 @@
 Issues:
-  - OAuth con Facebook wrong
-    - Que se pueda
   - OAuth con Google editar pantalla de consentimiento
   - Stripe:
     - Checar pagos por Stripe
