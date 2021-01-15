@@ -27,8 +27,10 @@ routes.editPetProfileWhenIsLost = `${routes.apiDomain}/edit/whenIsLost`;
 routes.editPetProfileImages = `${routes.apiDomain}/edit/images`;
 routes.editKeyForMailForContactUser = `${routes.apiDomain}/edit/key/mail`;
 routes.editMailForContactUser = `${routes.apiDomain}/edit/mail/contact`;
-
 routes.editTelephoneForContactUser = `${routes.apiDomain}/edit/telephone/contact`;
+
+routes.editMailProfile = `${routes.apiDomain}/edit/mail/profile`;
+routes.editMailProfileWithKey = `${routes.apiDomain}/edit/mail/profile/key`;
 
 // POST
 routes.postNewPet = `${routes.apiDomain}/new/pet`;
@@ -39,6 +41,7 @@ routes.checkDiscountCode = `${routes.apiDomain}/pay/check-discount-code`;
 // DELETE
 routes.eraseProfile = `${routes.apiDomain}/erase/profile`;
 routes.eraseKeyPaymentFromAPI = `${routes.apiDomain}/pay/erase/key/stripe`;
+routes.deleteKeyMailProfile = `${routes.apiDomain}/erase/mail/profile/key`;
 
 // DEFAULTS
 // Pet default image

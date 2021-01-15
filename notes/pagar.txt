@@ -15,9 +15,10 @@
     - Dominio Web y client
         - 50 Dolares al año
   - Google Workspace
-    - Tengo que checar
+    - 105.30 pesos al mes pero hasta el 22 de enero
   - Google Cloud Plataform
     - Tengo que checar
+      - Al parecer... no jajaja
   
 - Servicios que tendré que pagar comnforme vaya creciendo
   - MongoDB Atlas (AWS)

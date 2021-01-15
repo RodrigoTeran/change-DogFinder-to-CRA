@@ -5,9 +5,15 @@ import history from "./history";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { isWebpSupported } from "react-image-webp/dist/utils";
+import { checkFuckingHack, checkHackInBlankSpaces } from "./utils/hacking";
 
 // Routes
-import { getUser } from "./routes/index";
+import {
+  getUser,
+  editMailProfile,
+  editMailProfileWithKey,
+  deleteKeyMailProfile,
+} from "./routes/index";
 import { updateUserCompanyAction } from "./store/reducers/company/actions";
 
 // Selectores
@@ -25,6 +31,7 @@ import SuccessMessagesComponent from "./components/LayoutMessages/SuccessMessage
 import BannerOkCancelAction from "./components/LayoutMessages/BannerOkCancelAction";
 import BannerProfileContactInfo from "./components/LayoutMessages/BannerProfileContactInfo";
 import BannerRedirectWithLink from "./components/LayoutMessages/BannerRedirectWithLink";
+import BannerIsEmailBad from "./components/LayoutMessages/BannerIsEmailBad";
 
 // Pages
 import Index from "./pages/index";
@@ -43,6 +50,7 @@ import {
   updateResponsiveMenuBarBodyOpenAction,
   updateTopMenuBarActivatedAction,
   updateLinesAction,
+  updateFailureMessagesComponentAction,
 } from "./store/reducers/layout/actions";
 
 import { updatePushJarvisInfoAction } from "./store/reducers/jarvis/actions";
@@ -75,6 +83,7 @@ const App = ({
   updateKeyActiveUser,
   updateUserCompany,
   updatePushJarvisInfo,
+  updateFailureMessagesComponent,
 }) => {
   useEffect(() => {
     getUserData();
@@ -111,6 +120,8 @@ const App = ({
       })
       .then((data) => {
         if (data.username) {
+          setIsEmailBad(data.isEmailBad);
+          setIsEmailBadBannerPositionOne(data.isEmailBadBannerPositionOne);
           updatePushJarvisInfo(data.arrayJarvisesWithInfo);
           updateUser({
             selectedState: "username",
@@ -239,6 +250,8 @@ const App = ({
             });
           }
         } else {
+          setIsEmailBad(false);
+          setIsEmailBadBannerPositionOne(true);
           updatePushJarvisInfo([]);
           updateUser({
             selectedState: "username",
@@ -349,6 +362,146 @@ const App = ({
   const closeLogIn = () => {
     updateLogin(false);
   };
+  // editMailProfile,
+  // editMailProfileWithKey,
+  // deleteKeyMailProfile,
+  const [isEmailBad, setIsEmailBad] = useState(false);
+  const [
+    isEmailBadBannerPositionOne,
+    setIsEmailBadBannerPositionOne,
+  ] = useState(true);
+  const changeEmailUser = (newEmail) => {
+    setIsLoadingBannerEmail(true);
+    const hack = checkFuckingHack(newEmail, ["@", "."]);
+    const hackSpaces = checkHackInBlankSpaces(newEmail);
+    if (hack) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Por favor, introduzca caracteres válidos",
+      });
+      setIsLoadingBannerEmail(false);
+    } else if (hackSpaces) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Por favor, no deje espacios en blanco",
+      });
+      setIsLoadingBannerEmail(false);
+    } else {
+      const body = {
+        newEmail,
+      };
+      fetch(editMailProfile, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          token: localStorage.getItem("token"),
+        },
+        body: JSON.stringify(body),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setIsLoadingBannerEmail(false);
+          if (data.status) {
+            setIsEmailBadBannerPositionOne(false);
+          } else {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error",
+              description: "No se pudo enviar el correo",
+            });
+          }
+        });
+    }
+  };
+
+  const changeEmailUserWithKey = (userKey) => {
+    setIsLoadingBannerEmail(true);
+    const hack = checkFuckingHack(userKey, []);
+    const hackSpaces = checkHackInBlankSpaces(userKey);
+    if (hack) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Por favor, introduzca caracteres válidos",
+      });
+      setIsLoadingBannerEmail(false);
+    } else if (hackSpaces) {
+      updateFailureMessagesComponent({
+        state: true,
+        title: "Error",
+        description: "Por favor, no deje espacios en blanco",
+      });
+      setIsLoadingBannerEmail(false);
+    } else {
+      const body = {
+        key: userKey,
+      };
+      fetch(editMailProfileWithKey, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          token: localStorage.getItem("token"),
+        },
+        body: JSON.stringify(body),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setIsLoadingBannerEmail(false);
+          if (data.status) {
+            updateUser({
+              selectedState: "email",
+              state: data.newEmail,
+            });
+            setIsEmailBad(false);
+          } else {
+            updateFailureMessagesComponent({
+              state: true,
+              title: "Error",
+              description: "La clave no coincide",
+            });
+          }
+        });
+    }
+  };
+  const deleteEmailProfileKey = () => {
+    setIsLoadingBannerEmail(true);
+    fetch(deleteKeyMailProfile, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        token: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setIsLoadingBannerEmail(false);
+        if (data.status) {
+          setIsEmailBadBannerPositionOne(true);
+        } else {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: "Hubo un error, actualiza la página",
+          });
+        }
+      });
+  };
+
+  const [isLoadingBannerEmail, setIsLoadingBannerEmail] = useState(false);
   return (
     <Router history={history}>
       <a className="skip-link" href="#maincontent">
@@ -369,6 +522,14 @@ const App = ({
         <BannerOkCancelAction></BannerOkCancelAction>
         <BannerProfileContactInfo></BannerProfileContactInfo>
         <BannerRedirectWithLink></BannerRedirectWithLink>
+        <BannerIsEmailBad
+          isActive={isEmailBad}
+          isInFirstPosition={isEmailBadBannerPositionOne}
+          changeEmailUser={changeEmailUser}
+          changeEmailUserWithKey={changeEmailUserWithKey}
+          deleteEmailProfileKey={deleteEmailProfileKey}
+          isLoading={isLoadingBannerEmail}
+        ></BannerIsEmailBad>
         <div>
           <Switch>
             <Route path="/perfil/mascota">
@@ -499,6 +660,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePushJarvisInfo: (data) => {
       dispatch(updatePushJarvisInfoAction(data));
+    },
+    updateFailureMessagesComponent: (data) => {
+      dispatch(updateFailureMessagesComponentAction(data));
     },
   };
 };
