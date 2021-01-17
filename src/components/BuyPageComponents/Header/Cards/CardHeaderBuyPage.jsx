@@ -44,7 +44,7 @@ const CardHeaderBuyPage = () => {
             className="purchase-page-header-card-premium-element"
             style={{ color: "#BBB", fontWeight: "bold" }}
           >
-            búsqueda por medio de bots en todo el Internet (PROXIMAMENTE)
+            posts automáticos en redes sociales (PROXIMAMENTE)
           </div>
         </div>
       </div>

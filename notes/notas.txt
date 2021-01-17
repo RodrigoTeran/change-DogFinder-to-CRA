@@ -8,3 +8,38 @@ Issues:
   --> Crear página de Instagram
   --> Crear página de Facebook
   - Checar el .txt de pagar
+  - Instagram:
+    -> Cuando se ejecute el schedule de cron cada 5 minutos va a hacer scrapping de Instagram
+    -> Va a retornar una matriz de dos dimensiones con esta información
+      [
+        ...[],
+        [{
+          text: "texto...",
+          image: "imagen ( en public folder )",
+        }]
+      ],
+    -> Para saber que este post no tengo ya una notificación:
+      -> Se manda a la IA para que analice la imagen
+      -> Si es igual a una que ya tenemos se cancela el proceso
+      -> Si no es igual a ninguna, sigue
+        -> Luego se manda a los algoritmos para que retorne el texto ordenado
+        -> Luego se manda a la IA para que saque un porcentaje incluyendo el de la imagen...
+        -> Si hay coincidencia, se crea el schema:
+          -> Se borra la imagen del public folder y se manda a Cloudinary
+          -> Se crea el schema con la información ordenada
+          -> Se crea un Jarvis relacionando dos documentos con:
+            {
+              ...,
+              typeProfile: "Instagram"
+            }
+          -> Se manda un correo alertando de la notificacion
+          -> Si el usuario pone que la IA acertó...
+            -> El schema del jarvis se borrará cuando el usuario elimine la notificacion:
+              -> Tambien se borrara en conjunto el schema de Instagram
+          -> Si no acertó la IA:
+            -> No se borra el Jarvis ni:
+              -> El schema de Instagram; así se podrá saber si ya se hizo match con la imagen
+              -> El Jarvis se borrara cuando el perfil se haya eliminado, por eso dejamos el Jarvis,
+                para saber cuando pasa esto, tambien se borrara el schema de Instagram
+        -> Si no hay coincidencia con ningun perfil Premium:
+          -> Se sigue con el siguiente bloque, y se elimina la imagen del public folder
