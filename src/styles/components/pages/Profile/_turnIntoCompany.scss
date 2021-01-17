@@ -45,7 +45,7 @@
   }
   &-COMPANY,
   &-USER {
-    width: 45px;
+    width: 54px;
     height: 45px;
     display: flex;
     justify-content: center;
@@ -64,6 +64,19 @@
       fill: #fff;
       width: 30px;
       height: 30px;
+    }
+  }
+  &-COMPANY{
+    &-noHOVER{
+      background-color: #414141;
+      cursor: default;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: #414141;
+          transform: translateY(0px);
+          transition: ease-in-out 0.3s;
+        }
+      }
     }
   }
   &-USER {

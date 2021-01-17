@@ -120,7 +120,7 @@ const MatchComponent = ({
       updateLogin(true);
     } else {
       var siEmpresa = false;
-      if (companyXd && textButton === "Encontré a esta perro") {
+      if (companyXd && textButton === "Encontré a este perro") {
         siEmpresa = true;
       } else {
         siEmpresa = false;
@@ -160,7 +160,7 @@ const MatchComponent = ({
           {textButton}
         </div>
       </div>
-      {userCompany.name && textButton === "Encontré a esta perro" ? (
+      {userCompany.name && textButton === "Encontré a este perro" ? (
         <div
           className="match-button"
           onClick={() => {
@@ -488,7 +488,7 @@ const LeftColumnMapPage = ({
             auth={auth}
             updateLogInFirstAnimation={updateLogInFirstAnimation}
             updateLogin={updateLogin}
-            textButton={"Encontré a esta perro"}
+            textButton={"Encontré a este perro"}
             updateFailureMessagesComponent={updateFailureMessagesComponent}
             typeProfile="Premium"
             idProfile={profilePremiumDataLeftPage.idProfile}
