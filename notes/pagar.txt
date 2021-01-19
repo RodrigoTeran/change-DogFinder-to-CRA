@@ -13,7 +13,7 @@
       - https://www.heroku.com/pricing#
   - Vercel
     - Dominio Web y client
-        - 50 Dolares al año
+      - 50 Dolares al año
   - Google Workspace
     - 105.30 pesos al mes pero hasta el 22 de enero
   - Google Cloud Plataform

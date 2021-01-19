@@ -5,6 +5,4 @@ Issues:
       - Que sirva
   - Checar lo de los impuestos
     - Saber si tengo que pagar
-  --> Crear página de Instagram
-  --> Crear página de Facebook
   - Checar el .txt de pagar
