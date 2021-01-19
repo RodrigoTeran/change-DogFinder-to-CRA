@@ -584,7 +584,7 @@ const App = ({
         <div className="social-media">
           <a
             className="social-media-icon"
-            href="https://www.facebook.com/dogFinder90"
+            href="https://www.facebook.com/dogFinderMx"
             target="blank"
           >
             <div>
@@ -594,7 +594,7 @@ const App = ({
             </div>
           </a>
           <a
-            href="https://www.instagram.com/dogfinder90/"
+            href="https://www.instagram.com/dogfinderMx/"
             target="blank"
             className="social-media-icon"
           >
