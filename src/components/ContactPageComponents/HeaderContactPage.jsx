@@ -94,7 +94,7 @@ const HeaderContactPage = ({ isWebp }) => {
       <div className="contact-us-page-image-text">
         <div className="contact-us-page-image-text-h1">Nuestro equipo</div>
         <div className="contact-us-page-image-text-h2">
-          somos un equipo apasionado por las mascotas
+          somos un equipo apasionado por las mascotas y la tecnología
         </div>
       </div>
       <div className="our-team-container">
