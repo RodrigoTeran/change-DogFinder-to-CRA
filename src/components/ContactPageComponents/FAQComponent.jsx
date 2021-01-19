@@ -166,7 +166,7 @@ const FAQComponent = () => {
         plataforma puedes mandarnos un mensaje y/o checar las preguntas más
         frecuentes.
       </div>
-      <div className="faqComponent-ask">¿En qué te puedo ayudar?</div>
+      <div className="faqComponent-ask">¿En qué te podemos ayudar?</div>
       <div className="faqComponent-whereIAM">
         {screen !== 1 ? (
           <>
