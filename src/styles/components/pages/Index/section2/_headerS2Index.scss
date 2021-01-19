@@ -9,7 +9,7 @@
 
   img {
     width: 100%;
-    height: 200px;
+    height: 180px;
   }
   &-title{
     font-family: "Roboto Condensed", sans-serif;
@@ -20,7 +20,7 @@
 
   &-info {
     background-color: rgba(32, 32, 32, 1);
-    height: calc(100% - 200px);
+    height: calc(100% - 180px);
     padding: 10px;
     display: flex;
     justify-content: center;
