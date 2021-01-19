@@ -163,7 +163,7 @@ const FAQComponent = () => {
       <div className="faqComponent-hr"></div>
       <div className="faqComponent-h2">
         Si tienes una pregunta o estas experimentando algun problema con la
-        plataforma puedes mandarme un mensaje y/o checar las preguntas más
+        plataforma puedes mandarnos un mensaje y/o checar las preguntas más
         frecuentes.
       </div>
       <div className="faqComponent-ask">¿En qué te puedo ayudar?</div>
