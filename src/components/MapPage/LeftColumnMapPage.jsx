@@ -268,9 +268,12 @@ const LeftColumnMapPage = ({
     return superResult;
   };
   return (
-    <div className="map-page-left" style={{
-      marginTop: "5px"
-    }}>
+    <div
+      className="map-page-left"
+      style={{
+        marginTop: "5px",
+      }}
+    >
       <div className="map-page-left-h1">
         <svg
           className="icon-header-section-1-index-2"
@@ -482,21 +485,23 @@ const LeftColumnMapPage = ({
               </div>
             </div>
           </div>
-          <MatchComponent
-            emailForContact={emailForContact}
-            numberOfTelephoneForContact={numberOfTelephoneForContact}
-            auth={auth}
-            updateLogInFirstAnimation={updateLogInFirstAnimation}
-            updateLogin={updateLogin}
-            textButton={"Encontré a este perro"}
-            updateFailureMessagesComponent={updateFailureMessagesComponent}
-            typeProfile="Premium"
-            idProfile={profilePremiumDataLeftPage.idProfile}
-            updateActualViewDataLeftPage={updateActualViewDataLeftPage}
-            userCompany={userCompany}
-            updatePushJarvisInfo={updatePushJarvisInfo}
-            updateSuccessMessagesComponent={updateSuccessMessagesComponent}
-          ></MatchComponent>
+          {profilePremiumDataLeftPage.isLost ? (
+            <MatchComponent
+              emailForContact={emailForContact}
+              numberOfTelephoneForContact={numberOfTelephoneForContact}
+              auth={auth}
+              updateLogInFirstAnimation={updateLogInFirstAnimation}
+              updateLogin={updateLogin}
+              textButton={"Encontré a este perro"}
+              updateFailureMessagesComponent={updateFailureMessagesComponent}
+              typeProfile="Premium"
+              idProfile={profilePremiumDataLeftPage.idProfile}
+              updateActualViewDataLeftPage={updateActualViewDataLeftPage}
+              userCompany={userCompany}
+              updatePushJarvisInfo={updatePushJarvisInfo}
+              updateSuccessMessagesComponent={updateSuccessMessagesComponent}
+            ></MatchComponent>
+          ) : null}
         </>
       ) : actualViewData === "ProfileDogFounded" ||
         actualViewData === "CompanyProfile" ? (

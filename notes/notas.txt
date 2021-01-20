@@ -9,5 +9,8 @@ Issues:
   --> Cambiar el diseño de los posts que se me mandan a mi correo
   --> Que esos posts se me manden cada vez que un perro se pone como perdido
   --> Cambiar el código, que sea de 10 cifras
+  --> Que cheque que el perfil sí este perdido en el PostJarvis Artesanal
+  --> Que no me mande todos los perfiles en el mail, solo el que lo activa
   - Cambiar el isFromCompany.state method
   - Cambiar el diseño de los correos que se mandan en general
+  --> Que en el mapa cuando sea la vista en mis propios perfiles, no salgan los botoness
