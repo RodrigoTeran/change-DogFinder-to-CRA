@@ -1,12 +1,12 @@
 export const updateActualViewDataLeftPageAction = (data) => {
-  return ({
+  return {
     type: "CHANGE_ACTUAL_VIEW_DATA",
-    state: data
-  });
+    state: data,
+  };
 };
 
 export const updateActualCompanyDataLeftPageAction = (data) => {
-  return ({
+  return {
     type: "CHANGE_ACTUAL_COMPANY_DATA_LEFT_PAGE",
     name: data.name,
     webPage: data.webPage,
@@ -14,12 +14,12 @@ export const updateActualCompanyDataLeftPageAction = (data) => {
     descriptionCompany: data.descriptionCompany,
     logo: data.logo,
     idProfile: data.idProfile,
-    arrayProfilesDogFounded: data.arrayProfilesDogFounded
-  });
+    arrayProfilesDogFounded: data.arrayProfilesDogFounded,
+  };
 };
 
 export const updateActualProfilePremiumDataLeftPageAction = (data) => {
-  return ({
+  return {
     type: "CHANGE_ACTUAL_PROFILE_PREMIUM_DATA_LEFT_PAGE",
     name: data.name,
     whenIsLost: data.whenIsLost,
@@ -30,12 +30,13 @@ export const updateActualProfilePremiumDataLeftPageAction = (data) => {
     color: data.color,
     imagesCV: data.imagesCV,
     idProfile: data.idProfile,
-    profileImage: data.profileImage
-  });
+    profileImage: data.profileImage,
+    isLost: data.isLost,
+  };
 };
 
 export const updateActualProfileDogFoundedDataLeftPageAction = (data) => {
-  return ({
+  return {
     type: "CHANGE_ACTUAL_PROFILE_DOG_FOUNDED_DATA_LEFT_PAGE",
     name: data.name,
     whenIsFounded: data.whenIsFounded,
@@ -46,6 +47,6 @@ export const updateActualProfileDogFoundedDataLeftPageAction = (data) => {
     color: data.color,
     imagesCV: data.imagesCV,
     idProfile: data.idProfile,
-    profileImage: data.profileImage
-  });
+    profileImage: data.profileImage,
+  };
 };

@@ -28,7 +28,7 @@ const initialState = {
             breed: undefined
           }
       */
-    ]
+    ],
   },
   profilePremiumData: {
     name: undefined,
@@ -41,7 +41,8 @@ const initialState = {
     imagesCV: [],
     idProfile: undefined,
     profileImage: undefined,
-    typeOfProfile: "Profile"
+    typeOfProfile: "Profile",
+    isLost: false,
   },
   profileDogFoundedData: {
     name: undefined,
@@ -54,16 +55,16 @@ const initialState = {
     imagesCV: [],
     idProfile: undefined,
     profileImage: undefined,
-    typeOfProfile: "ProfileDogFounded"
-  }
+    typeOfProfile: "ProfileDogFounded",
+  },
 };
 export default function leftDataMapPageReducer(state = initialState, action) {
   if (action.type === "CHANGE_ACTUAL_VIEW_DATA") {
     return {
       ...state,
-      actualViewedData: action.state
+      actualViewedData: action.state,
     };
-  };
+  }
   if (action.type === "CHANGE_ACTUAL_COMPANY_DATA_LEFT_PAGE") {
     return {
       ...state,
@@ -75,10 +76,10 @@ export default function leftDataMapPageReducer(state = initialState, action) {
         logo: action.logo,
         typeOfProfile: "Company",
         idProfile: action.idProfile,
-        arrayProfilesDogFounded: action.arrayProfilesDogFounded
-      }
+        arrayProfilesDogFounded: action.arrayProfilesDogFounded,
+      },
     };
-  };
+  }
   if (action.type === "CHANGE_ACTUAL_PROFILE_PREMIUM_DATA_LEFT_PAGE") {
     return {
       ...state,
@@ -93,10 +94,11 @@ export default function leftDataMapPageReducer(state = initialState, action) {
         imagesCV: action.imagesCV,
         idProfile: action.idProfile,
         profileImage: action.profileImage,
-        typeOfProfile: "Profile"
+        typeOfProfile: "Profile",
+        isLost: action.isLost
       },
     };
-  };
+  }
   if (action.type === "CHANGE_ACTUAL_PROFILE_DOG_FOUNDED_DATA_LEFT_PAGE") {
     return {
       ...state,
@@ -111,9 +113,9 @@ export default function leftDataMapPageReducer(state = initialState, action) {
         imagesCV: action.imagesCV,
         idProfile: action.idProfile,
         profileImage: action.profileImage,
-        typeOfProfile: "ProfileDogFounded"
-      }
+        typeOfProfile: "ProfileDogFounded",
+      },
     };
-  };
+  }
   return state;
-};
+}

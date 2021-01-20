@@ -186,6 +186,7 @@ const InputMap = ({
               imagesCV: data.information.imagesCV,
               idProfile: data.information.idProfile,
               profileImage: data.information.profileImage,
+              isLost: data.information.isLost
             });
           } else if (typeOfObject === "ProfileDogFounded") {
             updateActualProfileDogFoundedDataLeftPage({
