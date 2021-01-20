@@ -12,5 +12,8 @@ Issues:
   --> Que cheque que el perfil sí este perdido en el PostJarvis Artesanal
   --> Que no me mande todos los perfiles en el mail, solo el que lo activa
   - Cambiar el isFromCompany.state method
+  - Que también te mande el post del perfil premium cuando se cambie la fecha y
+    no solo el status
   - Cambiar el diseño de los correos que se mandan en general
   --> Que en el mapa cuando sea la vista en mis propios perfiles, no salgan los botoness
+  - Que si el date es null no salga 31/12/1969 xd

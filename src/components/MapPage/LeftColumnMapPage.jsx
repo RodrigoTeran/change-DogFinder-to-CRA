@@ -260,12 +260,17 @@ const LeftColumnMapPage = ({
     }
   };
   const formatDate = (date) => {
-    const PrototypeDate = new Date(date);
-    const day = PrototypeDate.getDate();
-    const month = PrototypeDate.getMonth() + 1;
-    const year = PrototypeDate.getFullYear();
-    const superResult = String(day) + "/" + String(month) + "/" + String(year);
-    return superResult;
+    if (!date) {
+      return "No se ha establecido";
+    } else {
+      const PrototypeDate = new Date(date);
+      const day = PrototypeDate.getDate();
+      const month = PrototypeDate.getMonth() + 1;
+      const year = PrototypeDate.getFullYear();
+      const superResult =
+        String(day) + "/" + String(month) + "/" + String(year);
+      return superResult;
+    }
   };
   return (
     <div
