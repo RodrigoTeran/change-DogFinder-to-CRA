@@ -144,7 +144,7 @@ const ConnectWithCode = ({
         <InputTextComponent
           closeInput={closeInput}
           closeStyle={!isInputActivated}
-          maxLenghtInput={30}
+          maxLenghtInput={10}
           onChangeFunction={changeInput}
           clickFunction={() => {
             if (!isLoading) {
@@ -157,7 +157,7 @@ const ConnectWithCode = ({
             Escribe el código de la mascota para conectar con su dueño
           </div>
           <div className="input-layout-text-subtitle">
-            Máximo número de caracteres: 30
+            Máximo número de caracteres: 10
           </div>
         </InputTextComponent>
         <div className="connect-with-code-container-button">
