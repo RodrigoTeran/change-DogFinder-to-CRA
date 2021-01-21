@@ -10,11 +10,13 @@ import ChangeLocationCompany from "./CompanyMethods/ChangeLocationCompany";
 import CredentialsCompany from "./CompanyMethods/CredentialsCompany";
 import ChangeDescriptionCompany from "./CompanyMethods/ChangeDescriptionCompany";
 import ButtonWhiteRectangle from "../Buttons/ButtonWhiteRectangle";
+import { ProfilePageCompanyInfo } from "../../utils/textForInstructions";
 
 import {
   updateBannerOkCancelActionAction,
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction,
+  updateBannerInstructionsAction,
 } from "../../store/reducers/layout/actions";
 
 import { getBannerOkCancelAction } from "../../store/reducers/layout/selector";
@@ -30,8 +32,8 @@ const CompanyInfo = ({
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
   bannerOkCancelAction,
+  updateBannerInstructions,
 }) => {
-  const [yesInstructions, setInstructions] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -110,33 +112,27 @@ const CompanyInfo = ({
         INFORMACIÓN EMPRESA
       </div>
       <div
-        className={`image-pet-profile-instructions ${
-          yesInstructions ? "open" : "close"
-        }`}
+        className={`image-pet-profile-instructions`}
         style={{
           marginTop: window.innerWidth < 768 ? "30px" : "40px",
-          width: window.innerWidth < 768 ? "300px" : "50%",
           marginRight: `${window.innerWidth < 768 ? "0px" : "auto"}`,
           marginLeft: window.innerWidth < 768 ? "0px" : "2px",
-          marginBottom: `${window.innerWidth < 768 ? "30px" : "0px"}`,
         }}
       >
         <div className="image-pet-profile-instructions-icon">
           <div
             onClick={() => {
-              setInstructions(!yesInstructions);
+              updateBannerInstructions({
+                state: true,
+                title: "Instrucciones",
+                description: ProfilePageCompanyInfo,
+              });
             }}
             title="Instrucciones"
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: `${
-                window.innerWidth < 768
-                  ? yesInstructions
-                    ? "left"
-                    : "center"
-                  : "left"
-              }`,
+              justifyContent: `center`,
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -144,18 +140,6 @@ const CompanyInfo = ({
             </svg>{" "}
             Instrucciones
           </div>
-        </div>
-        <div
-          className={`${
-            yesInstructions ? "open" : "close"
-          } image-pet-profile-instructions-text`}
-        >
-          Aquí puedes ver y editar la información de tu empresa. Esta
-          información saldrá en el mapa para que las personas conozcan mejor tu
-          empresa. Si se necesita subir a la plataforma un perro perdido que
-          encontraron, al igual como si fuera un cliente normal, deben de tener
-          llenos los espacios de correo y número de teléfono, para garantizar
-          que las personas los puedan contactar cuando se requiera.
         </div>
       </div>
       <div className="edit-company-info-container-2">
@@ -227,16 +211,19 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (disptach) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     updateBannerOkCancelAction: (data) => {
-      disptach(updateBannerOkCancelActionAction(data));
+      dispatch(updateBannerOkCancelActionAction(data));
     },
     updateFailureMessagesComponent: (data) => {
-      disptach(updateFailureMessagesComponentAction(data));
+      dispatch(updateFailureMessagesComponentAction(data));
     },
     updateSuccessMessagesComponent: (data) => {
-      disptach(updateSuccessMessagesComponentAction(data));
+      dispatch(updateSuccessMessagesComponentAction(data));
+    },
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
     },
   };
 };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-
+import { connect } from "react-redux";
+import { ProfilePageDiscountCodeCompany } from "../../../utils/textForInstructions";
+import { updateBannerInstructionsAction } from "../../../store/reducers/layout/actions";
 const CardsForCredentialsCompany = ({ title, text, children }) => {
   return (
     <div className="card-credentials-company">
@@ -14,8 +16,7 @@ const CardsForCredentialsCompany = ({ title, text, children }) => {
   );
 };
 
-const CredentialsCompany = ({ userCompany }) => {
-  const [yesInstructions, setInstructions] = useState(false);
+const CredentialsCompany = ({ userCompany, updateBannerInstructions }) => {
   const [stateForRender, setStateForRender] = useState(false);
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -52,12 +53,9 @@ const CredentialsCompany = ({ userCompany }) => {
         </CardsForCredentialsCompany>
       </div>
       <div
-        className={`image-pet-profile-instructions image-pet-profile-instructions-2 ${
-          yesInstructions ? "open" : "close"
-        }`}
+        className={`image-pet-profile-instructions image-pet-profile-instructions-2`}
         style={{
           marginTop: "10px",
-          width: window.innerWidth < 1050 ? "300px" : "95%",
           marginLeft: `${
             window.innerWidth < 1050 ? "calc(50% - 150px)" : "0px"
           }`,
@@ -67,19 +65,17 @@ const CredentialsCompany = ({ userCompany }) => {
         <div className="image-pet-profile-instructions-icon">
           <div
             onClick={() => {
-              setInstructions(!yesInstructions);
+              updateBannerInstructions({
+                state: true,
+                title: "Instrucciones",
+                description: ProfilePageDiscountCodeCompany,
+              });
             }}
             title="Instrucciones"
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: `${
-                window.innerWidth < 1050
-                  ? yesInstructions
-                    ? "left"
-                    : "center"
-                  : "left"
-              }`,
+              justifyContent: `center`,
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -88,24 +84,18 @@ const CredentialsCompany = ({ userCompany }) => {
             Instrucciones
           </div>
         </div>
-        <div
-          className={`${
-            yesInstructions ? "open" : "close"
-          } image-pet-profile-instructions-text`}
-        >
-          A tus clientes como empresa les puedes dar el código de descuento.
-          Ellos tienen un 10% de descuento en la compra de un perfil premium. Y
-          al final de cada mes se cuentan cuantos usuarios nuevos usaron su
-          código. Se toma ese número de nuevos usuarios con código de ustedes y
-          se multiplica por 15, y esa cantidad de dinero se les da a ustedes
-          como empresa por el trabajo de difundir la plataforma. Es decir... los
-          usuarios se ahorran el 10%, ustedes como empresa ganan ese 10% por
-          cada usuario que use el código al final de cada mes. Ejemplo: Si
-          ustedes al final de un mes registraron a 10 nuevos usuarios que usaron
-          el código para comprar el premium, se les da a ustedes $150.
-        </div>
       </div>
     </>
   );
 };
-export default CredentialsCompany;
+const mapStateToProps = (state) => {
+  return {};
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CredentialsCompany);

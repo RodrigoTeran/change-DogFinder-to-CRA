@@ -6,7 +6,13 @@ import {
   updateBannerProfileContactInfoAction,
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction,
+  updateBannerInstructionsAction,
 } from "../../store/reducers/layout/actions";
+import {
+  ProfilePageContactInfoCompany,
+  ProfilePageContactInfoUser,
+  ProfilePageRegisterInCompany,
+} from "../../utils/textForInstructions";
 
 import CompanyInfo from "./CompanyInfo";
 
@@ -64,9 +70,8 @@ const HeaderProfilePage = ({
   isViewOnCompany,
   setIsViewOnCompany,
   children,
+  updateBannerInstructions,
 }) => {
-  const [yesInstructions, setInstructions] = useState(false);
-  const [yesInstructions2, setInstructions2] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -646,33 +651,27 @@ const HeaderProfilePage = ({
             <></>
           )}
           <div
-            className={`image-pet-profile-instructions ${
-              yesInstructions2 ? "open" : "close"
-            }`}
+            className={`image-pet-profile-instructions`}
             style={{
               marginTop: "20px",
-              width: window.innerWidth < 768 ? "300px" : "50%",
               marginRight: `${window.innerWidth < 768 ? "0px" : "auto"}`,
               marginLeft: `${window.innerWidth < 768 ? "" : "calc(5% + 20px)"}`,
-              marginBottom: `${window.innerWidth < 768 ? "30px" : "20px"}`,
             }}
           >
             <div className="image-pet-profile-instructions-icon">
               <div
                 onClick={() => {
-                  setInstructions2(!yesInstructions2);
+                  updateBannerInstructions({
+                    state: true,
+                    title: "Información",
+                    description: ProfilePageRegisterInCompany,
+                  });
                 }}
                 title="Información registro empresa"
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: `${
-                    window.innerWidth < 768
-                      ? yesInstructions2
-                        ? "left"
-                        : "center"
-                      : "left"
-                  }`,
+                  justifyContent: `center`,
                 }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -680,20 +679,6 @@ const HeaderProfilePage = ({
                 </svg>{" "}
                 Información registro empresa
               </div>
-            </div>
-            <div
-              className={`${
-                yesInstructions2 ? "open" : "close"
-              } image-pet-profile-instructions-text`}
-            >
-              Si es empleado de una organización, veterinaria, estética canina u
-              otra empresa afiliada a la plataforma contacte con su empresa para
-              obtener el código de su organización y así registrarse como
-              usuario en la plataforma de tal empresa. Si usted quiere registrar
-              a su empresa en la plataforma para gozar de los beneficios únicos
-              como códigos de descuento a sus clientes, un lugar único en el
-              mapa. En la página de "contáctanos" nos puede mandar un
-              correo.
             </div>
           </div>
         </>
@@ -759,33 +744,29 @@ const HeaderProfilePage = ({
         </div>
       </div>
       <div
-        className={`image-pet-profile-instructions ${
-          yesInstructions ? "open" : "close"
-        }`}
+        className={`image-pet-profile-instructions`}
         style={{
-          marginTop: "0px",
-          width: window.innerWidth < 768 ? "300px" : "50%",
           marginRight: `${window.innerWidth < 768 ? "0px" : "auto"}`,
           marginLeft: `${window.innerWidth < 768 ? "" : "calc(5% + 20px)"}`,
-          marginBottom: `${window.innerWidth < 768 ? "30px" : "0px"}`,
         }}
       >
         <div className="image-pet-profile-instructions-icon">
           <div
             onClick={() => {
-              setInstructions(!yesInstructions);
+              updateBannerInstructions({
+                state: true,
+                title: "Instrucciones",
+                description:
+                  isViewOnCompany && userCompany.name
+                    ? ProfilePageContactInfoCompany
+                    : ProfilePageContactInfoUser,
+              });
             }}
             title="Instrucciones"
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: `${
-                window.innerWidth < 768
-                  ? yesInstructions
-                    ? "left"
-                    : "center"
-                  : "left"
-              }`,
+              justifyContent: `center`,
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -793,30 +774,6 @@ const HeaderProfilePage = ({
             </svg>{" "}
             Instrucciones
           </div>
-        </div>
-        <div
-          className={`${
-            yesInstructions ? "open" : "close"
-          } image-pet-profile-instructions-text`}
-        >
-          {isViewOnCompany && userCompany.name ? (
-            <>
-              Debes de llenar estos dos campos antes de poder reportar a un
-              perro desaparecido en tu organización. Estos datos los van a poder
-              ver las personas cuando te intenten contactar, y te saldrá una
-              notificación. Es decir, cuando alguien vea tus datos de contacto,
-              se te notificará de inmediato para que puedas contactar con ellos.
-            </>
-          ) : (
-            <>
-              Debes de llenar estos dos campos antes de poder poner un perfil de
-              tu mascota como perdido o reportar a un perro desaparecido. Estos
-              datos los van a poder ver las personas que hayan encontrado tu
-              mascota y viceversa. Cuando alguien vea estos datos de contacto,
-              se te notificará de inmediato para que puedas contactar con ellos.
-              No van a poder ver tu correo electrónico de tu cuenta de usuario.
-            </>
-          )}
         </div>
       </div>
       <div
@@ -920,6 +877,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateUserCompany: (data) => {
       dispatch(updateUserCompanyAction(data));
+    },
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
     },
   };
 };

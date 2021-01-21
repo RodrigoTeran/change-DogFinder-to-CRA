@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import CardMainSectionProfile from "./Cards/CardMainSectionProfile";
 import CardMainSectionNewPet from "./Cards/CardMainSectionNewPet";
 
+import { ProfilePageCreateProfilesPremium } from "../../../utils/textForInstructions";
+import { updateBannerInstructionsAction } from "../../../store/reducers/layout/actions";
+
 // Selectores
 import { getProfiles } from "../../../store/reducers/user/selector";
 
@@ -17,8 +20,8 @@ const MainSectionProfilePage = ({
   userCompany,
 
   isViewOnCompany,
+  updateBannerInstructions,
 }) => {
-  const [yesInstructions, setInstructions] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -46,28 +49,23 @@ const MainSectionProfilePage = ({
               </div>
               <div className="main-section-profile-page-instructions">
                 <div
-                  className={`image-pet-profile-instructions ${
-                    yesInstructions ? "open" : "close"
-                  }`}
-                  style={{
-                    width: window.innerWidth < 768 ? "300px" : "50%",
-                  }}
+                  className={`image-pet-profile-instructions`}
+                  style={{ marginTop: "20px" }}
                 >
                   <div className="image-pet-profile-instructions-icon">
                     <div
                       onClick={() => {
-                        setInstructions(!yesInstructions);
+                        updateBannerInstructions({
+                          state: true,
+                          title: "Instrucciones",
+                          description: ProfilePageCreateProfilesPremium,
+                        });
                       }}
                       title="Instrucciones"
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        justifyContent:
-                          window.innerWidth < 768
-                            ? yesInstructions
-                              ? "left"
-                              : "center"
-                            : "left",
+                        justifyContent: "center",
                       }}
                       className="image-pet-profile-instructions-text-2"
                     >
@@ -79,14 +77,6 @@ const MainSectionProfilePage = ({
                       </svg>{" "}
                       Instrucciones
                     </div>
-                  </div>
-                  <div
-                    className={`${
-                      yesInstructions ? "open" : "close"
-                    } image-pet-profile-instructions-text`}
-                  >
-                    Crea perfiles de tu(s) mascota(s) para poder registrar su
-                    información y ayudarte si se extravían.
                   </div>
                 </div>
               </div>
@@ -137,28 +127,23 @@ const MainSectionProfilePage = ({
                   </div>
                   <div className="main-section-profile-page-instructions">
                     <div
-                      className={`image-pet-profile-instructions ${
-                        yesInstructions ? "open" : "close"
-                      }`}
-                      style={{
-                        width: window.innerWidth < 768 ? "300px" : "50%",
-                      }}
+                      className={`image-pet-profile-instructions`}
+                      style={{ marginTop: "20px" }}
                     >
                       <div className="image-pet-profile-instructions-icon">
                         <div
                           onClick={() => {
-                            setInstructions(!yesInstructions);
+                            updateBannerInstructions({
+                              state: true,
+                              title: "Instrucciones",
+                              description: ProfilePageCreateProfilesPremium,
+                            });
                           }}
                           title="Instrucciones"
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            justifyContent:
-                              window.innerWidth < 768
-                                ? yesInstructions
-                                  ? "left"
-                                  : "center"
-                                : "left",
+                            justifyContent: "center",
                           }}
                           className="image-pet-profile-instructions-text-2"
                         >
@@ -170,14 +155,6 @@ const MainSectionProfilePage = ({
                           </svg>{" "}
                           Instrucciones
                         </div>
-                      </div>
-                      <div
-                        className={`${
-                          yesInstructions ? "open" : "close"
-                        } image-pet-profile-instructions-text`}
-                      >
-                        Crea perfiles de tu(s) mascota(s) para poder registrar
-                        su información y ayudarte si se extravían.
                       </div>
                     </div>
                   </div>
@@ -223,5 +200,15 @@ const mapStateToProps = (state) => {
     userCompany: getUserCompany(state),
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
+    },
+  };
+};
 
-export default connect(mapStateToProps)(MainSectionProfilePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainSectionProfilePage);

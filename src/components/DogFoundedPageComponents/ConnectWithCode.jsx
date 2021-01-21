@@ -7,18 +7,20 @@ import { connect } from "react-redux";
 import {
   updateSuccessMessagesComponentAction,
   updateFailureMessagesComponentAction,
+  updateBannerInstructionsAction,
 } from "../../store/reducers/layout/actions";
 import { updatePushJarvisInfoAction } from "../../store/reducers/jarvis/actions";
+import { DogFoundedPageCode } from "../../utils/textForInstructions";
 
 const ConnectWithCode = ({
   isViewOnCompany,
   updateSuccessMessagesComponent,
   updateFailureMessagesComponent,
   updatePushJarvisInfo,
+  updateBannerInstructions,
 }) => {
   const [isInputActivated, setIsInputActivated] = useState(false);
   const [stateForRender, setStateForRender] = useState(false);
-  const [yesInstructions, setInstructions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const handleResize = () => {
     setStateForRender(!stateForRender);
@@ -187,12 +189,9 @@ const ConnectWithCode = ({
         style={{ marginTop: "-15px", marginBottom: "50px" }}
       >
         <div
-          className={`image-pet-profile-instructions ${
-            yesInstructions ? "open" : "close"
-          }`}
+          className={`image-pet-profile-instructions`}
           style={{
             marginTop: window.innerWidth < 750 ? "50px" : "40px",
-            width: window.innerWidth < 750 ? "300px" : "50%",
             marginRight: `${window.innerWidth < 750 ? "0px" : "auto"}`,
             marginLeft: window.innerWidth < 750 ? "0px" : "2px",
             marginBottom: `${window.innerWidth < 750 ? "30px" : "0px"}`,
@@ -201,19 +200,17 @@ const ConnectWithCode = ({
           <div className="image-pet-profile-instructions-icon">
             <div
               onClick={() => {
-                setInstructions(!yesInstructions);
+                updateBannerInstructions({
+                  state: true,
+                  title: "Instrucciones",
+                  description: DogFoundedPageCode,
+                });
               }}
               title="Instrucciones"
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: `${
-                  window.innerWidth < 750
-                    ? yesInstructions
-                      ? "left"
-                      : "center"
-                    : "left"
-                }`,
+                justifyContent: `center`,
               }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -221,19 +218,6 @@ const ConnectWithCode = ({
               </svg>{" "}
               Instrucciones
             </div>
-          </div>
-          <div
-            className={`${
-              yesInstructions ? "open" : "close"
-            } image-pet-profile-instructions-text`}
-            style={{
-              textAlign: `${window.innerWidth < 750 ? "center" : "left"}`,
-            }}
-          >
-            Aquí puedes ver conectar con un perfil con solo poner el código que
-            encontraste en un post en redes sociales. Así podrás ver la
-            información de contacto de su dueño. Primero tienes que tener tu
-            información de contacto llena.
           </div>
         </div>
       </div>
@@ -270,6 +254,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePushJarvisInfo: (data) => {
       dispatch(updatePushJarvisInfoAction(data));
+    },
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
     },
   };
 };

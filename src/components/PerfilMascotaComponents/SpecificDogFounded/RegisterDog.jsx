@@ -6,7 +6,10 @@ import { updatePetProfileAction } from "../../../store/reducers/user/actions";
 import {
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction,
+  updateBannerInstructionsAction,
 } from "../../../store/reducers/layout/actions";
+
+import { PetProfilePageRegisterDogFounded } from "../../../utils/textForInstructions";
 
 import { getPetProfile } from "../../../store/reducers/user/selector";
 
@@ -17,8 +20,8 @@ const RegisterDog = ({
   petProfile,
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
+  updateBannerInstructions,
 }) => {
-  const [yesInstructions, setInstructions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const registerDogFounded = () => {
     setIsLoading(true);
@@ -90,20 +93,22 @@ const RegisterDog = ({
         Registrar reporte de perro
       </div>
       <div
-        className={`image-pet-profile-instructions ${
-          yesInstructions ? "open" : "close"
-        }`}
+        className={`image-pet-profile-instructions`}
         style={{
           minHeight: "25px",
           marginBottom: "0px",
           marginLeft: window.innerWidth < 1121 ? `calc(50% - 150px` : "0px",
-          width: window.innerWidth < 1121 ? `300px` : "90%",
+          marginTop: "15px"
         }}
       >
         <div className="image-pet-profile-instructions-icon">
           <div
             onClick={() => {
-              setInstructions(!yesInstructions);
+              updateBannerInstructions({
+                state: true,
+                title: "Información",
+                description: PetProfilePageRegisterDogFounded,
+              });
             }}
             title="Información"
             style={{
@@ -115,42 +120,6 @@ const RegisterDog = ({
               <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" />
             </svg>{" "}
             Información
-          </div>
-        </div>
-        <div
-          className={`${
-            yesInstructions ? "open" : "close"
-          } image-pet-profile-instructions-text`}
-        >
-          <div
-            className={`${
-              yesInstructions ? "open" : "close"
-            } image-pet-profile-instructions-text-ul`}
-          >
-            Cuando termines de llenar los campos requeridos:
-            <ul>
-              <li>¿Cuándo encontraste a esta mascota?</li>
-              <li>Raza</li>
-              <li>¿Dónde lo hallaste?</li>
-              <li>Género</li>
-              <li>Color principal</li>
-              <li>Edad</li>
-              <li>Imágenes para el reconocimiento facial ( las 4 imágenes )</li>
-              <li>Tu correo electrónico de contacto</li>
-              <li>Tu número de teléfono de contacto</li>
-            </ul>
-            Podrás reportar este perfil como terminado, para que ahora sí
-            empezemos a encontrar a su dueño.
-            <br />
-            No podemos empezar si no están todos los datos. Es importante
-            también tener tu correo y número, ya que si se encuentra al dueño,
-            este no podrá contactarse contigo; estos los puedes llenar en la
-            página de tu perfil.
-            <br />
-            <br />
-            <span style={{ fontWeight: "bold" }}>Nota: </span> Podrás hacer
-            cambios después, y ya no tendrás que dar click en "registrar perfil"
-            cada vez que hagas cambios
           </div>
         </div>
       </div>
@@ -237,6 +206,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateSuccessMessagesComponent: (data) => {
       dispatch(updateSuccessMessagesComponentAction(data));
+    },
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
     },
   };
 };

@@ -32,6 +32,7 @@ import BannerOkCancelAction from "./components/LayoutMessages/BannerOkCancelActi
 import BannerProfileContactInfo from "./components/LayoutMessages/BannerProfileContactInfo";
 import BannerRedirectWithLink from "./components/LayoutMessages/BannerRedirectWithLink";
 import BannerIsEmailBad from "./components/LayoutMessages/BannerIsEmailBad";
+import BannerInstructions from "./components/LayoutMessages/BannerInstructions";
 
 // Pages
 import Index from "./pages/index";
@@ -572,6 +573,7 @@ const App = ({
         </div>
         <FailureMessagesComponent></FailureMessagesComponent>
         <SuccessMessagesComponent></SuccessMessagesComponent>
+        <BannerInstructions></BannerInstructions>
         <button
           className={`up-button-layout ${arrowAppear ? "" : "closed"}`}
           onClick={goUp}

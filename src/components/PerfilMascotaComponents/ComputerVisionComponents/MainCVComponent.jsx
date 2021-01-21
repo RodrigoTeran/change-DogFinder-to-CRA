@@ -8,7 +8,12 @@ import { updatePetProfileAction } from "../../../store/reducers/user/actions";
 import {
   updateSuccessMessagesComponentAction,
   updateFailureMessagesComponentAction,
+  updateBannerInstructionsAction,
 } from "../../../store/reducers/layout/actions";
+import {
+  PetProfilePageCVDogFounded,
+  PetProfilePageCVPremium,
+} from "../../../utils/textForInstructions";
 
 import { editPetProfileImages } from "../../../routes/index";
 
@@ -22,12 +27,12 @@ const MainCVComponent = ({
   updateFailureMessagesComponent,
   updateSuccessMessagesComponent,
   updatePetProfile,
+  updateBannerInstructions,
 }) => {
   // CARD IMAGE
   const [srcImageToDelete, setSrcImageToDelete] = useState("no");
   const [imageSrc, setImageSrc] = useState("");
   const [srcImageYes, setSrcImageYes] = useState(false);
-  const [yesInstructions, setInstructions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [imageDestination, setImageDestination] = useState("");
@@ -148,21 +153,23 @@ const MainCVComponent = ({
           changeFunction={changeFunction}
         ></CardImage>
         <div
-          className={`image-pet-profile-instructions image-pet-profile-instructions-images ${
-            yesInstructions ? "open" : "close"
-          }`}
+          className={`image-pet-profile-instructions image-pet-profile-instructions-images`}
           style={{
             marginTop: "10px",
             minHeight: "20px",
             marginLeft: window.innerWidth < 1121 ? `calc(50% - 150px` : "0px",
-            width: window.innerWidth < 1121 ? `300px` : "50%",
-            marginBottom: "0px",
           }}
         >
           <div className="image-pet-profile-instructions-icon">
             <div
               onClick={() => {
-                setInstructions(!yesInstructions);
+                updateBannerInstructions({
+                  state: true,
+                  title: "Instrucciones",
+                  description: petProfile.isPetProfile
+                    ? PetProfilePageCVPremium
+                    : PetProfilePageCVDogFounded,
+                });
               }}
               title="Instrucciones"
               style={{
@@ -175,20 +182,6 @@ const MainCVComponent = ({
               </svg>{" "}
               Instrucciones
             </div>
-          </div>
-          <div
-            className={`${
-              yesInstructions ? "open" : "close"
-            } image-pet-profile-instructions-text`}
-            style={{
-              marginBottom: "0px",
-            }}
-          >
-            {`${
-              petProfile.isPetProfile
-                ? `Sube una imagen específicamente del rostro de tu mascota. Puedes subir hasta 4 imágenes.`
-                : `Sube una imagen específicamente del rostro del perro que hayas encontrado. Puedes subir hasta 4 imágenes.`
-            }`}
           </div>
         </div>
         <div className="computer-vision-row row">
@@ -347,6 +340,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePetProfile: (data) => {
       dispatch(updatePetProfileAction(data));
+    },
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
     },
   };
 };

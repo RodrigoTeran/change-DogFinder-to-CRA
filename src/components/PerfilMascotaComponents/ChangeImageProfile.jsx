@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 
 import InputFile from "../Inputs/InputFile";
 import axios from "axios";
+import { PetProfilePageChangeImage } from "../../utils/textForInstructions";
 
 import {
   updateFailureMessagesComponentAction,
   updateSuccessMessagesComponentAction,
+  updateBannerInstructionsAction,
 } from "../../store/reducers/layout/actions";
 
 import { updatePetProfileAction } from "../../store/reducers/user/actions";
@@ -25,6 +27,7 @@ const ChangeImageProfile = ({
   updateSuccessMessagesComponent,
   petProfile,
   updatePetProfile,
+  updateBannerInstructions,
 }) => {
   const [srcImage, setSrcImage] = useState("");
   const [ImageInput, setImageInput] = useState(undefined);
@@ -108,7 +111,6 @@ const ChangeImageProfile = ({
         }
       });
   };
-  const [yesInstructions, setInstructions] = useState(false);
   return (
     <div>
       <div
@@ -130,14 +132,21 @@ const ChangeImageProfile = ({
           </svg>
         </InputFile>
         <div
-          className={`image-pet-profile-instructions ${
-            yesInstructions ? "open" : "close"
-          }`}
+          className={`image-pet-profile-instructions`}
+          style={{
+            marginTop: "20px",
+            marginLeft: "0px",
+            width: "250px",
+          }}
         >
           <div className="image-pet-profile-instructions-icon">
             <div
               onClick={() => {
-                setInstructions(!yesInstructions);
+                updateBannerInstructions({
+                  state: true,
+                  title: "Información",
+                  description: PetProfilePageChangeImage,
+                });
               }}
               title="Información"
               style={{
@@ -150,19 +159,6 @@ const ChangeImageProfile = ({
               </svg>{" "}
               Información
             </div>
-          </div>
-          <div
-            className={`${
-              yesInstructions ? "open" : "close"
-            } image-pet-profile-instructions-text`}
-          >
-            Esta imagen es solo de perfil, no se va a tomar en cuenta para su
-            análisis.
-            <br />
-            <br />
-            Esta imagen sirve para ponerse pública en el mapa. Es el "rostro"
-            del perfil, asi que no debe de ser una foto muy detallada... solo
-            con que se vea al perro.
           </div>
         </div>
         {srcImageYes ? (
@@ -258,6 +254,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePetProfile: (data) => {
       dispatch(updatePetProfileAction(data));
+    },
+    updateBannerInstructions: (data) => {
+      dispatch(updateBannerInstructionsAction(data));
     },
   };
 };

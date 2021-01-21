@@ -139,29 +139,7 @@
 }
 .image-pet-profile {
   &-instructions {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 250px;
-    &.open {
-      height: 100%;
-      transition: ease-in-out 0.5s;
-    }
-    &.close {
-      height: 0;
-      transition: ease-in-out 0.5s;
-    }
-    &-2 {
-      &.open {
-        height: 200px;
-        @media screen and (max-width: 1275px) {
-          height: 250px;
-        }
-        @media screen and (max-width: 1050px) {
-          height: 420px;
-        }
-        transition: ease-in-out 0.5s;
-      }
-    }
+    width: fit-content;
     &-icon {
       cursor: pointer;
       svg {
@@ -177,19 +155,6 @@
             transition: ease-in-out 0.5s;
           }
         }
-      }
-    }
-    &-text {
-      color: rgb(219, 219, 219);
-      margin-top: 5px;
-      &.open {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-        transition: ease-in-out 0.5s;
-      }
-      &.close {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
-        visibility: hidden;
-        transition: ease-in-out 0.5s;
       }
     }
   }

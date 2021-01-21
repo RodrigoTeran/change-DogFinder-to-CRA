@@ -5,45 +5,72 @@ const selectorGetResponsiveMenuBarBody = (state) => {
   return state.layoutReducer.responsiveMenuBarBody;
 };
 
-export const getResponsiveMenuBarBody = createSelector([selectorGetResponsiveMenuBarBody], (getResponsiveMenuBarBody) => {
-  return getResponsiveMenuBarBody;
-});
+export const getResponsiveMenuBarBody = createSelector(
+  [selectorGetResponsiveMenuBarBody],
+  (getResponsiveMenuBarBody) => {
+    return getResponsiveMenuBarBody;
+  }
+);
 
 // topMenuBar
 const selectorGetTopMenuBar = (state) => {
   return state.layoutReducer.topMenuBar;
 };
 
-export const getTopMenuBar = createSelector([selectorGetTopMenuBar], (getTopMenuBar) => {
-  return getTopMenuBar;
-});
+export const getTopMenuBar = createSelector(
+  [selectorGetTopMenuBar],
+  (getTopMenuBar) => {
+    return getTopMenuBar;
+  }
+);
 
 // bannerProfileContactInfo
 const selectorGetBannerProfileContactInfo = (state) => {
   return state.layoutReducer.bannerProfileContactInfo;
 };
 
-export const getBannerProfileContactInfo = createSelector([selectorGetBannerProfileContactInfo], (getBannerProfileContactInfo) => {
-  return getBannerProfileContactInfo;
-});
+export const getBannerProfileContactInfo = createSelector(
+  [selectorGetBannerProfileContactInfo],
+  (getBannerProfileContactInfo) => {
+    return getBannerProfileContactInfo;
+  }
+);
+
+// bannerInstructions
+const selectorGetBannerInstructions = (state) => {
+  return state.layoutReducer.bannerInstructions;
+};
+
+export const getBannerInstructions = createSelector(
+  [selectorGetBannerInstructions],
+  (getBannerInstructions) => {
+    return getBannerInstructions;
+  }
+);
 
 // bannerOkCancelAction
 const selectorGetBannerOkCancelAction = (state) => {
   return state.layoutReducer.bannerOkCancelAction;
 };
 
-export const getBannerOkCancelAction = createSelector([selectorGetBannerOkCancelAction], (getBannerOkCancelAction) => {
-  return getBannerOkCancelAction;
-});
+export const getBannerOkCancelAction = createSelector(
+  [selectorGetBannerOkCancelAction],
+  (getBannerOkCancelAction) => {
+    return getBannerOkCancelAction;
+  }
+);
 
 // bannerRedirectWithLink
 const selectorGetBannerRedirectWithLink = (state) => {
   return state.layoutReducer.bannerRedirectWithLink;
 };
 
-export const getBannerRedirectWithLink = createSelector([selectorGetBannerRedirectWithLink], (getBannerRedirectWithLink) => {
-  return getBannerRedirectWithLink;
-});
+export const getBannerRedirectWithLink = createSelector(
+  [selectorGetBannerRedirectWithLink],
+  (getBannerRedirectWithLink) => {
+    return getBannerRedirectWithLink;
+  }
+);
 
 // lines
 const selectorGetLines = (state) => {
@@ -59,15 +86,21 @@ const selectorGetSuccessMessagesComponent = (state) => {
   return state.layoutReducer.successMessagesComponent;
 };
 
-export const getSuccessMessagesComponent = createSelector([selectorGetSuccessMessagesComponent], (getSuccessMessagesComponent) => {
-  return getSuccessMessagesComponent;
-});
+export const getSuccessMessagesComponent = createSelector(
+  [selectorGetSuccessMessagesComponent],
+  (getSuccessMessagesComponent) => {
+    return getSuccessMessagesComponent;
+  }
+);
 
 // failureMessagesComponent
 const selectorGetFailureMessagesComponent = (state) => {
   return state.layoutReducer.failureMessagesComponent;
 };
 
-export const getFailureMessagesComponent = createSelector([selectorGetFailureMessagesComponent], (getFailureMessagesComponent) => {
-  return getFailureMessagesComponent;
-});
+export const getFailureMessagesComponent = createSelector(
+  [selectorGetFailureMessagesComponent],
+  (getFailureMessagesComponent) => {
+    return getFailureMessagesComponent;
+  }
+);
