@@ -11,8 +11,12 @@ Issues:
   --> Cambiar el código, que sea de 10 cifras
   --> Que cheque que el perfil sí este perdido en el PostJarvis Artesanal
   --> Que no me mande todos los perfiles en el mail, solo el que lo activa
-  - Cambiar el isFromCompany.state method
   --> Que también te mande el post del perfil premium cuando se cambie el perfil
-  - Cambiar el diseño de los correos que se mandan en general
   --> Que en el mapa cuando sea la vista en mis propios perfiles, no salgan los botoness
   --> Que si el date es null no salga 31/12/1969 xd
+  - Cambiar el isFromCompany.state method
+  - Cambiar el diseño de los correos que se mandan en general
+  - Cambiar el diseño de los perfiles en IPAD mode
+  - Cambiar los instrucciones, que sean pop ups
+  - Quitar la restricción de las 4 imágenes de CV
+  - Cambiar la información del index

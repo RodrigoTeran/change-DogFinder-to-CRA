@@ -194,3 +194,13 @@
     }
   }
 }
+.pet-profile-first-div-mobile-mode {
+  align-items: flex-start;
+  justify-content: space-around;
+  display: flex;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}

@@ -37,7 +37,7 @@
     }
     &-col-1 {
       position: relative;
-      width: 30%;      
+      width: 30%;
       @media screen and (max-width: 1350px) {
         padding-bottom: 20px;
       }
@@ -91,15 +91,23 @@
     &-col-1,
     &-col-2 {
       height: 100%;
+    }
+    &-col-1 {
       @media screen and (max-width: 1350px) {
         width: 300px;
       }
     }
+
     &-col-2 {
       height: var(--alto-col-2-compu);
       margin-bottom: 50px;
       @media screen and (max-width: 1350px) {
         height: var(--alto-col-2-cel);
+        width: 100%;
+      }
+      @media screen and (max-width: 750px) {
+        height: var(--alto-col-2-cel);
+        width: 300px;
       }
       overflow: hidden;
       position: relative;
@@ -161,7 +169,7 @@
         &-jarvis {
           width: 100%;
           height: calc(var(--alto-col-2-compu) - 90px);
-          @media screen and (max-width: 1350px) {
+          @media screen and (max-width: 750px) {
             height: calc(var(--alto-col-2-cel) - 90px);
           }
           display: flex;
@@ -177,7 +185,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            @media screen and (max-width: 1350px) {
+            @media screen and (max-width: 750px) {
               flex-direction: column;
               align-items: center;
               justify-content: flex-start;
@@ -253,7 +261,7 @@
               width: 100%;
               text-align: left;
               margin-bottom: 10px;
-              @media screen and (max-width: 1350px) {
+              @media screen and (max-width: 750px) {
                 text-align: center;
               }
             }
@@ -262,7 +270,7 @@
             width: 200px;
             height: 200px;
             transform: translateY(-5px);
-            @media screen and (max-width: 1350px) {
+            @media screen and (max-width: 750px) {
               height: 300px;
               width: 300px;
               margin-bottom: 10px;
@@ -282,7 +290,7 @@
             align-items: flex-start;
             flex-direction: column;
             padding-left: 10px;
-            @media screen and (max-width: 1350px) {
+            @media screen and (max-width: 750px) {
               height: fit-content;
               width: 100%;
               padding-left: 0px;
@@ -315,7 +323,7 @@
               &-color {
                 width: 50%;
               }
-              @media screen and (max-width: 1350px) {
+              @media screen and (max-width: 750px) {
                 width: 100%;
                 margin-bottom: 10px;
               }
@@ -336,7 +344,7 @@
                 margin-bottom: 10px;
                 display: flex;
                 justify-content: space-between;
-                @media screen and (max-width: 1350px) {
+                @media screen and (max-width: 750px) {
                   flex-direction: column;
                   align-items: center;
                   justify-content: center;
