@@ -30,6 +30,8 @@ import { editPetProfileDogFoundedCoordenates } from "../../routes/indexDogFounde
 
 function getUrlForReverseGeoCoding(LAT, LNG) {
   let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${LAT},${LNG}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+  console.log("URL: ", url);
+  console.log("URL JSON: ", JSON.stringify(url));
   return url;
 }
 const mapContainerStyle = {
@@ -122,6 +124,8 @@ const InputMap = ({
         return res.json();
       })
       .then((data) => {
+        console.log("DATA: ", data);
+        console.log("DATA JSON: ", JSON.stringify(data));
         const body = {
           latitude: marker.lat,
           longitude: marker.lng,
