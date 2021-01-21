@@ -18,4 +18,4 @@ export const PetProfilePageIsLostPremium =
   "Es importante para nosotros saber si necesitas que busquemos a tu mascota. Actualiza su estado para avisarle a nuestra Inteligencia Artificial si la intenta buscar o no. Su mascota solo va a salir en el mapa si está registrada como perdida.";
 export const PetProfilePageChangeImage = `Esta imagen es solo de perfil, no se va a tomar en cuenta para su análisis. Esta imagen sirve para ponerse pública en el mapa. Es el "rostro" del perfil, asi que no debe de ser una foto muy detallada... solo con que se vea al perro.`;
 export const DogFoundedPageCode =
-  "Aquí puedes ver conectar con un perfil con solo poner el código que encontraste en un post en redes sociales. Así podrás ver la información de contacto de su dueño. Primero tienes que tener tu información de contacto llena.";
+  "Aquí puedes conectar con un perfil con solo poner el código que encontraste en un post en redes sociales. Así podrás ver la información de contacto de su dueño. Primero tienes que tener tu información de contacto llena.";
