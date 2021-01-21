@@ -126,71 +126,80 @@ const InputMap = ({
       .then((data) => {
         console.log("DATA: ", data);
         console.log("DATA JSON: ", JSON.stringify(data));
-        const body = {
-          latitude: marker.lat,
-          longitude: marker.lng,
-          location: data.results[0].formatted_address,
-        };
-        fetch(
-          `${
-            petProfile.isPetProfile
-              ? `${editCoordenates}/${petProfile.name}`
-              : `${editPetProfileDogFoundedCoordenates}/${petProfile.name}`
-          }`,
-          {
-            method: "PUT",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              token: localStorage.getItem("token"),
-              isPetFromCompany: petProfile.isPetFromCompany ? true : false,
-            },
-            body: JSON.stringify(body),
-          }
-        )
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            setIsLoading(false);
-            closeFunction();
-            if (data.status === "noSePuede") {
-              updateFailureMessagesComponent({
-                state: true,
-                title: "Error",
-                description: `No se puede editar el perfil ya que tienes una notificación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.`,
-              });
-            } else if (data.status) {
-              // todo bien
-              updateSuccessMessagesComponent({
-                state: true,
-                title: "Se cambió la localización",
-                description: petProfile.isPetProfile
-                  ? "Se cambió la localización de tu mascota con éxito"
-                  : "Se cambió la localización del perrito con éxito",
-              });
-              updatePetProfile({
-                selectedState: "location",
-                state: body.location,
-              });
-              updatePetProfile({
-                selectedState: "coordenates",
-                state: {
-                  latitude: marker.lat,
-                  longitude: marker.lng,
-                },
-              });
-            } else {
-              updateFailureMessagesComponent({
-                state: true,
-                title: "Error",
-                description: petProfile.isPetProfile
-                  ? "No se pudo cambiar la localización de tu mascota"
-                  : "No se pudo cambiar la localización del perrito",
-              });
-            }
+        if (data.results.length == 0) {
+          updateFailureMessagesComponent({
+            state: true,
+            title: "Error",
+            description: `Hubo un error con el mapa.`,
           });
+          setIsLoading(false);
+        } else {
+          const body = {
+            latitude: marker.lat,
+            longitude: marker.lng,
+            location: data.results[0].formatted_address,
+          };
+          fetch(
+            `${
+              petProfile.isPetProfile
+                ? `${editCoordenates}/${petProfile.name}`
+                : `${editPetProfileDogFoundedCoordenates}/${petProfile.name}`
+            }`,
+            {
+              method: "PUT",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                token: localStorage.getItem("token"),
+                isPetFromCompany: petProfile.isPetFromCompany ? true : false,
+              },
+              body: JSON.stringify(body),
+            }
+          )
+            .then((res) => {
+              return res.json();
+            })
+            .then((data) => {
+              setIsLoading(false);
+              closeFunction();
+              if (data.status === "noSePuede") {
+                updateFailureMessagesComponent({
+                  state: true,
+                  title: "Error",
+                  description: `No se puede editar el perfil ya que tienes una notificación relacionada con este perfil. Cuando elimines la notificación podrás editar este perfil.`,
+                });
+              } else if (data.status) {
+                // todo bien
+                updateSuccessMessagesComponent({
+                  state: true,
+                  title: "Se cambió la localización",
+                  description: petProfile.isPetProfile
+                    ? "Se cambió la localización de tu mascota con éxito"
+                    : "Se cambió la localización del perrito con éxito",
+                });
+                updatePetProfile({
+                  selectedState: "location",
+                  state: body.location,
+                });
+                updatePetProfile({
+                  selectedState: "coordenates",
+                  state: {
+                    latitude: marker.lat,
+                    longitude: marker.lng,
+                  },
+                });
+              } else {
+                updateFailureMessagesComponent({
+                  state: true,
+                  title: "Error",
+                  description: petProfile.isPetProfile
+                    ? "No se pudo cambiar la localización de tu mascota"
+                    : "No se pudo cambiar la localización del perrito",
+                });
+              }
+            });
+        }
       });
   };
 
