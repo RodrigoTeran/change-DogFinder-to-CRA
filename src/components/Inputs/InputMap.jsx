@@ -133,6 +133,7 @@ const InputMap = ({
             description: `Hubo un error con el mapa.`,
           });
           setIsLoading(false);
+          closeFunction();
         } else {
           const body = {
             latitude: marker.lat,
