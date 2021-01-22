@@ -4,7 +4,7 @@ import CardSection1Index from "./Cards/CardSection1Index";
 import React from "react";
 
 // CONFIG
-import { APP_NAME_CAPITALS } from "../../../utils/config";
+import { APP_NAME_CAPITALS, APP_NAME } from "../../../utils/config";
 
 const HeaderSection1Index = () => {
   return (
@@ -29,11 +29,11 @@ const HeaderSection1Index = () => {
           </h3>
         </header>
       </div>
-      <div className="row justify-content-center" style={{marginTop: "40px"}}>
+      <div className="row justify-content-center" style={{ marginTop: "40px" }}>
         <CardSection1Index
           id="card-index-section-1-1"
           title="Te facilita el trabajo"
-          description={"Una Inteligencia Artificial lo hace por ti."}
+          description={`${APP_NAME} cuenta con muchísimos datos de redes sociales. Además que una Inteligencia Artificial hace el trabajo por ti.`}
         >
           <svg
             className="icon-card-section-1-index"
@@ -47,7 +47,9 @@ const HeaderSection1Index = () => {
         <CardSection1Index
           id="card-index-section-1-2"
           title="Lo hace más rápido"
-          description={"Lo hacemos más rápido que cualquier otra plataforma."}
+          description={
+            "Cuando encontramos a tu mascota, te llega una notificación al instante, sin retrasos..."
+          }
         >
           <svg
             className="icon-card-section-1-index"
@@ -61,7 +63,7 @@ const HeaderSection1Index = () => {
         <CardSection1Index
           id="card-index-section-1-3"
           title="Aumenta las posibilidades"
-          description="Nuestra plataforma cuenta con registro de encuentro y de perdida de mascotas."
+          description="Nuestra plataforma conecta con muchísimas páginas de redes sociales. Básicamente estas contando con toda la información disponible en solo una plataforma."
         >
           <svg
             className="icon-card-section-1-index"
@@ -88,10 +90,8 @@ const HeaderSection1Index = () => {
 
         <CardSection1Index
           id="card-index-section-1-5"
-          title="Informamos al público al instante"
-          description={
-            "Tenemos un mapa en tiempo real para ver toda la información de nuestra plataforma con solo un click."
-          }
+          title="Organizamos la información"
+          description={`En las redes sociales la información no esta organizada. En ${APP_NAME} contamos con un mapa en donde está toda la información disponible al momento.`}
         >
           <svg
             className="icon-card-section-1-index"

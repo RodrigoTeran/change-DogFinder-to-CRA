@@ -39,14 +39,17 @@
   background-color: rgba(32, 32, 32, 1);
   border: rgba(35, 35, 35, 1) 2px solid;
   margin-bottom: 10px;
-  height: 230px;
+  height: 250px;
   padding-bottom: 20px;
 
   display: flex;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 1199px){
-    height: 250px;
+    height: 275px;
+  }
+  @media screen and (max-width: 800px){
+    height: 300px;
   }
 }
 

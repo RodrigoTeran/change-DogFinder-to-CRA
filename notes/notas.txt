@@ -18,8 +18,8 @@ Issues:
   --> Cambiar el tamaño del mapa en isMobile
   --> Cambiar el isFromCompany.state method
   --> Cambiar los instrucciones, que sean pop ups
-  - Quitar la restricción de las 4 imágenes de CV
-  - Cambiar la información del index
-  - Cambiar el diseño de los correos que se mandan en general
+  --> Cambiar la información del index
   - Que en el mapa salgan todos los perfiles de perros encontrados sean de empresa o no...
     - Que cuando le des, hasta arriba salga la organización
+  - Quitar la restricción de las 4 imágenes de CV
+  - Cambiar el diseño de los correos que se mandan en general

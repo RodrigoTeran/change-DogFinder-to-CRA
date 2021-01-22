@@ -37,7 +37,7 @@ const Section2Index_section1 = ({
           title="ENCONTRÉ A UN PERRO, PERO NO SÉ SI ESTÁ PERDIDO"
           description="Si te llegas a encontrar a un perro en la calle, pero no
            estas seguro si está perdido, entonces puedes checar nuestro mapa en tiempo real para saber cuáles son los perros que estan perdidos 
-           por tu localización."
+           por tu localización. El mapa recopila información de muchas organizaciones."
           button="Mapa de tu zona"
           clickToLink="/mapa"
         >
@@ -56,7 +56,7 @@ const Section2Index_section1 = ({
           title="SE PERDIÓ MI PERRO"
           description="Si llegas a perder a tu perro, puedes crear un 
           perfil de tu mascota y actualizarlo a estado de “perdido”. De esta manera nuestra inteligencia artificial va a 
-          buscar en nuestra plataforma si alguien ya halló a tu mascota."
+          buscar en nuestra plataforma si alguien ya halló a tu mascota. Además se van a hacer posts en las páginas de todas las organizaciones afiliadas."
           button="Perfil"
           clickToLink={auth ? "/perfil" : undefined}
           clickFunction={() => {
@@ -77,7 +77,7 @@ const Section2Index_section1 = ({
           number="3"
           title="ENCONTRÉ A UN PERRO PERDIDO"
           description="Si encontraste a un perro, sube unas fotos de la
-           mascota a nuestro espacio de mascotas rescatadas, y así si el dueño ya reportó su desaparición en nuestra aplicación, 
+           mascota a nuestro espacio de mascotas rescatadas. Nuestra Inteligencia Artificial va a buscar 24/7 en la plataforma, y así si el dueño ya reportó su desaparición en nuestra aplicación, 
            te vas a poder poner en contacto con su dueño."
           button="Perros rescatados"
           clickToLink={auth ? "/registro/mascota/encontrada" : undefined}
