@@ -206,6 +206,10 @@
     }
   }
 }
+.map-page-right {
+  position: relative;
+  z-index: 1;
+}
 
 .map-page-right-buttons {
   &-container {

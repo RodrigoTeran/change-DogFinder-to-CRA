@@ -11,6 +11,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 
 import { Combobox, ComboboxInput } from "@reach/combobox";
+import Logo from "../../Google/Logo";
 import "@reach/combobox/styles.css";
 
 import mapStyles from "../../../utils/mapStyles";
@@ -198,6 +199,7 @@ const InputMapCompany = ({
           backgroundColor: isActivated ? "#000" : "transparent",
         }}
       >
+        <Logo alwaysDown></Logo>
         {isActivated ? (
           <>
             <button onClick={closeFunction} className="map-input-close-button">

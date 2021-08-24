@@ -61,3 +61,22 @@
   align-items: center;
   width: 250px;
 }
+
+
+.google {
+  position: absolute;
+  z-index: 9999;
+  right: 20px;
+  top: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+  &.down {
+    top: 50px;
+    @media screen and (max-width: 800px) {
+      top: 120px;
+    }
+  }
+  @media screen and (max-width: 1121px) {
+    top: 50px;
+  }
+}

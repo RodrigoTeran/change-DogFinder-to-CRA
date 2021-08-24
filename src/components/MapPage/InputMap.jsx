@@ -22,6 +22,7 @@ import {
 } from "../../store/reducers/leftDataMapPage/actions";
 
 import { getUsername, getPremium } from "../../store/reducers/user/selector";
+import Logo from "../Google/Logo";
 
 import {
   updateLogInFirstAnimationAction,
@@ -186,7 +187,7 @@ const InputMap = ({
               imagesCV: data.information.imagesCV,
               idProfile: data.information.idProfile,
               profileImage: data.information.profileImage,
-              isLost: data.information.isLost
+              isLost: data.information.isLost,
             });
           } else if (typeOfObject === "ProfileDogFounded") {
             updateActualProfileDogFoundedDataLeftPage({
@@ -581,6 +582,7 @@ const InputMap = ({
         <></>
       )}
       <Search panTo={panTo} actualCoordenates={actualCoordenates}></Search>
+      <Logo></Logo>
       {isNeededToLoad ? (
         <div
           className="charge-again-info-map"
