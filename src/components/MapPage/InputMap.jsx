@@ -22,7 +22,7 @@ import {
 } from "../../store/reducers/leftDataMapPage/actions";
 
 import { getUsername, getPremium } from "../../store/reducers/user/selector";
-import Logo from "../Google/Logo";
+// import Logo from "../Google/Logo";
 
 import {
   updateLogInFirstAnimationAction,
@@ -63,7 +63,7 @@ const mapContainerStyle = {
   height: "100%",
 };
 const options = {
-  disableDefaultUI: true,
+  disableDefaultUI: false,
   zoomControl: true,
   styles: mapStyles,
 };
@@ -582,7 +582,7 @@ const InputMap = ({
         <></>
       )}
       <Search panTo={panTo} actualCoordenates={actualCoordenates}></Search>
-      <Logo></Logo>
+      {/* <Logo></Logo> */}
       {isNeededToLoad ? (
         <div
           className="charge-again-info-map"

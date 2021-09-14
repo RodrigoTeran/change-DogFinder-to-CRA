@@ -38,7 +38,7 @@ const mapContainerStyle = {
   height: "100vh",
 };
 const options = {
-  disableDefaultUI: true,
+  disableDefaultUI: false,
   zoomControl: true,
   styles: mapStyles,
 };
